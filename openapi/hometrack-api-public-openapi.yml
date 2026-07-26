@@ -1,0 +1,1845 @@
+openapi: 3.0.1
+info:
+  title: Hometrack API Public
+  description: Hometrack API for public consumption
+  version: '1.0'
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and
+      schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com
+- url: https://api.hometrack.local
+paths:
+  /api/authentication/{apiKey}:
+    post:
+      operationId: AuthenticationApi_Post
+      summary: Authenticates the user by exchanging an API key with a temporary token
+      description: The resulting token will be a plain text GUID. e.g. 64e12ae6-f941-4851-aa4f-86439104056d
+      parameters:
+      - name: apiKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The API key
+      responses:
+        '201':
+          description: Created - authentication was successful
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiAuthenticationApiKeyPost201TextPlainResponse'
+        '400':
+          description: Bad Request - the apiKey is missing
+          content:
+            text/plain:
+              schema:
+                type: string
+        '403':
+          description: Forbidden - the apiKey could not be authenticated
+          content:
+            text/plain:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            text/plain:
+              schema:
+                type: string
+        '503':
+          description: Service Unavailable - unable to authenticate at this time
+          content:
+            text/plain:
+              schema:
+                type: string
+  /api/reporting/moveToBlobStorage:
+    get:
+      operationId: ReportingApi_MoveToBlobStorage
+      summary: "Called via a scheduled task, this method uploads all files from the report directory\r\
+        \nto blob storage and then deletes them."
+      description: "Called via a scheduled task, this method uploads all files from the report directory\r\
+        \nto blob storage and then deletes them."
+      responses:
+        '200':
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingMoveToBlobStorageGet200ApplicationXmlResponse'
+              example: <ApiReportingMoveToBlobStorageGet200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingMoveToBlobStorageGet200TextXmlResponse'
+              example: <ApiReportingMoveToBlobStorageGet200TextXmlResponse />
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingMoveToBlobStorageGet200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingMoveToBlobStorageGet200TextJsonResponse'
+              example: {}
+  /api/pvrplugin/enquiry/{token}:
+    post:
+      operationId: PvrPluginApi_StoreEnquiry
+      summary: Checks if email or it's domain is blacklisted and sends verification code if set in umbraco
+      description: Checks if email or it's domain is blacklisted and sends verification code if set in
+        umbraco
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Enquiry'
+            example:
+              Contact:
+                Email: string
+                Firstname: string
+                Lastname: string
+                Phone: string
+                Company: string
+                JobTitle: string
+              BrandCode: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Enquiry'
+            example:
+              Contact:
+                Email: string
+                Firstname: string
+                Lastname: string
+                Phone: string
+                Company: string
+                JobTitle: string
+              BrandCode: string
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Enquiry'
+            example: "<Enquiry>\r\n  <Contact>\r\n    <Email>string</Email>\r\n    <Firstname>string</Firstname>\r\
+              \n    <Lastname>string</Lastname>\r\n    <Phone>string</Phone>\r\n    <Company>string</Company>\r\
+              \n    <JobTitle>string</JobTitle>\r\n  </Contact>\r\n  <BrandCode>string</BrandCode>\r\n\
+              </Enquiry>"
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Enquiry'
+            example: "<Enquiry>\r\n  <Contact>\r\n    <Email>string</Email>\r\n    <Firstname>string</Firstname>\r\
+              \n    <Lastname>string</Lastname>\r\n    <Phone>string</Phone>\r\n    <Company>string</Company>\r\
+              \n    <JobTitle>string</JobTitle>\r\n  </Contact>\r\n  <BrandCode>string</BrandCode>\r\n\
+              </Enquiry>"
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginEnquiryTokenPost200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginEnquiryTokenPost200TextJsonResponse'
+              example: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginEnquiryTokenPost200ApplicationXmlResponse'
+              example: <ApiPvrpluginEnquiryTokenPost200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginEnquiryTokenPost200TextXmlResponse'
+              example: <ApiPvrpluginEnquiryTokenPost200TextXmlResponse />
+  /api/zoopla/partners/{token}:
+    post:
+      operationId: ZooplaPartnersApi_CreateZooplaPartner
+      summary: Creates a new Zoopla partner. This requires a "partner.create" permission
+      description: Creates a new Zoopla partner. This requires a "partner.create" permission
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Token'
+        description: Format - uuid. The authentication token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ZooplaPartnerCreateRequest'
+            example:
+              BranchId: string
+              Name: string
+      responses:
+        '201':
+          description: Created - the partner was created
+        '400':
+          description: Bad Request - request parameters do not pass the validation
+        '401':
+          description: Unauthorized - token is invalid or expired
+        '403':
+          description: Forbidden - the authentication token is invalid
+        '404':
+          description: Not Found - the principal could not be found
+        '409':
+          description: Conflict - partner already exists
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+        '503':
+          description: Service Unavailable - this or a dependent service is unavailable
+  /api/partners/{token}:
+    post:
+      operationId: PartnersApi_Post
+      summary: Creates a Partner-to-Account entry. Requires the "partner.modify" permission
+      description: Creates a Partner-to-Account entry. Requires the "partner.modify" permission
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Token'
+        description: Format - uuid. The authentication token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartnerCreateRequest'
+            example:
+              accountApiKey: string
+              partnerId: string
+              partnerType: string
+      responses:
+        '201':
+          description: Created - the entry was created
+        '400':
+          description: Bad Request - the request parameters are not provided or are malformed
+        '401':
+          description: Unauthorized - token is invalid or expired
+        '403':
+          description: Forbidden - the authentication token doe not have enough rights to update the account's
+            branding
+        '409':
+          description: Conflict - a Partner with the same Partner ID and Type already exists
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+  /api/pvrplugin/order/{token}:
+    post:
+      operationId: PvrPluginApi_GenerateOrder
+      summary: Creates a report for pvr plugin
+      description: Creates a report for pvr plugin
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GratisOrder'
+            example:
+              NodeId: 0
+              Firstname: string
+              Surname: string
+              EmailAddress: string
+              ValidationCode: string
+              Product:
+                Name: string
+                Type: string
+                Description: string
+                Price: 0
+                InputTypes: string
+                InputValues: string
+              ReportPostcode: string
+              ReportAddress: string
+              BrandName: string
+              BrandCode: string
+              Telephone: string
+              PreparedFor: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GratisOrder'
+            example:
+              NodeId: 0
+              Firstname: string
+              Surname: string
+              EmailAddress: string
+              ValidationCode: string
+              Product:
+                Name: string
+                Type: string
+                Description: string
+                Price: 0
+                InputTypes: string
+                InputValues: string
+              ReportPostcode: string
+              ReportAddress: string
+              BrandName: string
+              BrandCode: string
+              Telephone: string
+              PreparedFor: string
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GratisOrder'
+            example: "<GratisOrder>\r\n  <NodeId>0</NodeId>\r\n  <Firstname>string</Firstname>\r\n  <Surname>string</Surname>\r\
+              \n  <EmailAddress>string</EmailAddress>\r\n  <ValidationCode>string</ValidationCode>\r\n\
+              \  <Product>\r\n    <Name>string</Name>\r\n    <Type>string</Type>\r\n    <Description>string</Description>\r\
+              \n    <Price>0</Price>\r\n    <InputTypes>string</InputTypes>\r\n    <InputValues>string</InputValues>\r\
+              \n  </Product>\r\n  <ReportPostcode>string</ReportPostcode>\r\n  <ReportAddress>string</ReportAddress>\r\
+              \n  <BrandName>string</BrandName>\r\n  <BrandCode>string</BrandCode>\r\n  <Telephone>string</Telephone>\r\
+              \n  <PreparedFor>string</PreparedFor>\r\n</GratisOrder>"
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/GratisOrder'
+            example: "<GratisOrder>\r\n  <NodeId>0</NodeId>\r\n  <Firstname>string</Firstname>\r\n  <Surname>string</Surname>\r\
+              \n  <EmailAddress>string</EmailAddress>\r\n  <ValidationCode>string</ValidationCode>\r\n\
+              \  <Product>\r\n    <Name>string</Name>\r\n    <Type>string</Type>\r\n    <Description>string</Description>\r\
+              \n    <Price>0</Price>\r\n    <InputTypes>string</InputTypes>\r\n    <InputValues>string</InputValues>\r\
+              \n  </Product>\r\n  <ReportPostcode>string</ReportPostcode>\r\n  <ReportAddress>string</ReportAddress>\r\
+              \n  <BrandName>string</BrandName>\r\n  <BrandCode>string</BrandCode>\r\n  <Telephone>string</Telephone>\r\
+              \n  <PreparedFor>string</PreparedFor>\r\n</GratisOrder>"
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginOrderTokenPost200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginOrderTokenPost200TextJsonResponse'
+              example: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginOrderTokenPost200ApplicationXmlResponse'
+              example: <ApiPvrpluginOrderTokenPost200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginOrderTokenPost200TextXmlResponse'
+              example: <ApiPvrpluginOrderTokenPost200TextXmlResponse />
+  /api/brands/{token}/{targetAccountApiKey}:
+    put:
+      operationId: BrandsApi_Put
+      summary: Creates or updates the branding configuration for an account, based on the account's API
+        key
+      description: Creates or updates the branding configuration for an account, based on the account's
+        API key
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The authentication token
+      - name: targetAccountApiKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The API Key for the target account for which you want to update the branding
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrandApiModel'
+            example:
+              brandName: string
+              branchName: string
+              branchAddress: string
+              branchPostcode: string
+              branchTelephoneNumber: string
+              branchEmailAddress: string
+              branchWebsite: string
+              reportName: string
+              hometrackLogoType: 0
+              reportHeading: string
+              reportText: string
+              terms: string
+              showValueRangeOnly: true
+              defaultContactDetails: string
+              frontPageComments: string
+              customerPVRConfiguration: 0
+              agentPVRConfiguration: 0
+              minimumConfidenceBand: string
+              brandLogoColour: string
+              highlightColour: string
+              accentColourIcons: true
+              logo: string
+              branchPhoto: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BrandApiModel'
+            example:
+              brandName: string
+              branchName: string
+              branchAddress: string
+              branchPostcode: string
+              branchTelephoneNumber: string
+              branchEmailAddress: string
+              branchWebsite: string
+              reportName: string
+              hometrackLogoType: 0
+              reportHeading: string
+              reportText: string
+              terms: string
+              showValueRangeOnly: true
+              defaultContactDetails: string
+              frontPageComments: string
+              customerPVRConfiguration: 0
+              agentPVRConfiguration: 0
+              minimumConfidenceBand: string
+              brandLogoColour: string
+              highlightColour: string
+              accentColourIcons: true
+              logo: string
+              branchPhoto: string
+      responses:
+        '200':
+          description: OK - the account's branding configuration has been updated
+        '400':
+          description: Bad Request - request parameters do not pass the validation
+        '401':
+          description: Unauthorized - token is invalid or expired
+        '403':
+          description: Forbidden - the token does not have enough rights to update the account's branding
+        '404':
+          description: Not Found - the target account was not found
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+    get:
+      operationId: BrandsApi_Get
+      summary: Retrieves the branding configuration associated to a given account
+      description: If a brand for the specific target account is not found, the default Hometrack brand
+        configuration is returned
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The authentication token
+      - name: targetAccountApiKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The API Key for the target account for which you want to retrieve the branding
+      responses:
+        '200':
+          description: OK - request completed successfully, includes model containing the requested brand
+            details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandApiModel'
+              example:
+                brandName: string
+                branchName: string
+                branchAddress: string
+                branchPostcode: string
+                branchTelephoneNumber: string
+                branchEmailAddress: string
+                branchWebsite: string
+                reportName: string
+                hometrackLogoType: 0
+                reportHeading: string
+                reportText: string
+                terms: string
+                showValueRangeOnly: true
+                defaultContactDetails: string
+                frontPageComments: string
+                customerPVRConfiguration: 0
+                agentPVRConfiguration: 0
+                minimumConfidenceBand: string
+                brandLogoColour: string
+                highlightColour: string
+                accentColourIcons: true
+                logo: string
+                branchPhoto: string
+        '400':
+          description: Bad Request - request parameters do not pass the validation
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized - token is invalid or expired
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden - the token does not have enough rights to update the account's branding
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Not Found - the brand could not be found
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: string
+  /api/reporting/PropertyValuation/{token}/{transactionReference}:
+    get:
+      operationId: ReportingApi_RetrievePropertyValuationReport
+      summary: Downloads the previously generated Property Valuation Report file
+      description: Downloads the previously generated Property Valuation Report file
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Client's authentication token
+      - name: transactionReference
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The report's transaction ID
+      responses:
+        '200':
+          description: OK - when the report is found and available, includes the binary file stream of
+            the PDF
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/ApiReportingPropertyValuationTokenTransactionReferenceGet200ApplicationPdfRe'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingPropertyValuationTokenTransactionReferenceGet200ApplicationXmlRe'
+              example: <ApiReportingPropertyValuationTokenTransactionReferenceGet200ApplicationXmlRe />
+        '202':
+          description: Accepted - the report has not finished generating - try again later
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/ApiReportingPropertyValuationTokenTransactionReferenceGet202ApplicationPdfRe'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingPropertyValuationTokenTransactionReferenceGet202ApplicationXmlRe'
+              example: <ApiReportingPropertyValuationTokenTransactionReferenceGet202ApplicationXmlRe />
+        '403':
+          description: Forbidden - the authentication token is invalid
+          content:
+            application/pdf:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+        '404':
+          description: Not Found - no record of transactionId found
+          content:
+            application/pdf:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+        '410':
+          description: Gone - the record for that transactionId was found, but the associated PDF file
+            cannot be found
+          content:
+            application/pdf:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+        '499':
+          description: Client Closed Request - production failed when the production of the report failed
+            for an unknown reason - please contact our customer support
+          content:
+            application/pdf:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            application/pdf:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+        '503':
+          description: Service Unavailable - this or a dependent service is unavailable
+          content:
+            application/pdf:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+  /api/reporting/TestGet:
+    get:
+      operationId: ReportingApi_TestGet
+      summary: For test purpose
+      description: For test purpose
+      responses:
+        '200':
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestGetGet200ApplicationXmlResponse'
+              example: <ApiReportingTestGetGet200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestGetGet200TextXmlResponse'
+              example: <ApiReportingTestGetGet200TextXmlResponse />
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestGetGet200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestGetGet200TextJsonResponse'
+              example: {}
+  /api/reporting/TestPost:
+    post:
+      operationId: ReportingApi_TestPost
+      summary: For test purpose
+      description: For test purpose
+      responses:
+        '200':
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestPostPost200ApplicationXmlResponse'
+              example: <ApiReportingTestPostPost200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestPostPost200TextXmlResponse'
+              example: <ApiReportingTestPostPost200TextXmlResponse />
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestPostPost200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestPostPost200TextJsonResponse'
+              example: {}
+  /api/reporting/PropertyValuation:
+    post:
+      operationId: ReportingApi_RequestPropertyValuationReport
+      summary: Requests a Property Valuation Report
+      description: Requests a Property Valuation Report
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropertyValuationReportRequest'
+            example:
+              Address: string
+              Postcode: string
+              Bedrooms: 0
+              PropertyType: string
+              Receptions: 0
+              YearBuilt: 0
+              FloorArea: 0
+              ValuationDate: string
+              Bathrooms: 0
+              BrandCode: string
+              NoBill: true
+              NoBillSecret: string
+              PreparedFor: string
+              BranchId: string
+              Token: string
+              TransactionId: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PropertyValuationReportRequest'
+            example:
+              Address: string
+              Postcode: string
+              Bedrooms: 0
+              PropertyType: string
+              Receptions: 0
+              YearBuilt: 0
+              FloorArea: 0
+              ValuationDate: string
+              Bathrooms: 0
+              BrandCode: string
+              NoBill: true
+              NoBillSecret: string
+              PreparedFor: string
+              BranchId: string
+              Token: string
+              TransactionId: string
+      responses:
+        '201':
+          description: Created - request accepted and property valuation processed
+        '400':
+          description: Bad Request - request parameters do not pass the validation
+        '402':
+          description: Payment Required - the license has lapsed or the report volume has been used up
+        '403':
+          description: Forbidden - the authentication token is invalid
+        '409':
+          description: Conflict - non-unique transaction ID is provided
+        '499':
+          description: Client Closed Request - production failed when the confidence level for the subject
+            property was lower than the minimum level specified in configuration
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+        '503':
+          description: Service Unavailable - this or a dependent service is unavailable
+  /api/reporting/PropertyValuation/config/{token}:
+    get:
+      operationId: ReportingApi_GetPvrConfigurations
+      summary: Retrieves IDs and Names of PVR Configuration Umbraco nodes
+      description: 'Requires a PVR account type with permission: pvr.configuration.list'
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Client's authentication token
+      responses:
+        '200':
+          description: OK - Returns PVR Configurations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PvrConfigsResponse'
+              example:
+                pvrConfigs:
+                - name: string
+                  id: 0
+                pvrV2Configs:
+                - name: string
+                  id: 0
+        '401':
+          description: Unauthorized - the authentication token is invalid
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden - the account does not have permission
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: string
+  /api/partners/{token}/{partnerType}/{id}:
+    get:
+      operationId: PartnersApi_Get
+      summary: Retrieves the name and API key of the associated account
+      description: Retrieves the name and API key of the associated account
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Token'
+        description: Format - uuid. The authentication token
+      - name: partnerType
+        in: path
+        required: true
+        schema:
+          type: string
+        description: 'Accepted values: "zooplaBranch" or "PSG"'
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The Partner ID
+      responses:
+        '200':
+          description: OK - request completed successfully, includes the requested Partner details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnerResponse'
+              example:
+                partnerId: string
+                partnerType: string
+                apiKey: string
+                principalName: string
+                principalUniqueId: 00000000-0000-0000-0000-000000000000
+                createDate: string
+                modifyDate: string
+        '400':
+          description: Bad Request - the request parameters are not provided or are malformed
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized - token is invalid or expired
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden - the authentication token doe not have enough rights to retrieve partner
+            details
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Not Found - the partner could not be found
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: string
+  /api/licences/{token}/{product}:
+    get:
+      operationId: LicencesApi_Licences
+      summary: Returns all the product licences (valid, expired, blocked, etc...) which belong to the
+        authenticated client
+      description: Returns all the product licences (valid, expired, blocked, etc...) which belong to
+        the authenticated client
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Client's authentication token
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product code
+      responses:
+        '200':
+          description: OK - request completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenceArray'
+              example:
+              - product: string
+                status: string
+                type: string
+                startDate: string
+                endDate: string
+                volume: 0
+                remainingVolume: 0
+        '400':
+          description: Bad Request - an input parameter is missing
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden - the authentication token is invalid
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Not Found - the account or licences could not be found
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: string
+        '503':
+          description: Service Unavailable - this or a dependent service is unavailable
+          content:
+            application/json:
+              schema:
+                type: string
+  /api/pvrplugin/{domain}:
+    get:
+      operationId: PvrPluginApi_GetConfiguration
+      summary: "Returns the requirements for pvr plugin.\r\nThis method calls an account service to resolve\
+        \ and authenticate domain.\r\nAlso it checks if XML configuration is set and brandcode is specified.\r\
+        \nIt also checks if Brand exists in umbraco and Partner associated with it."
+      description: "Returns the requirements for pvr plugin.\r\nThis method calls an account service to\
+        \ resolve and authenticate domain.\r\nAlso it checks if XML configuration is set and brandcode\
+        \ is specified.\r\nIt also checks if Brand exists in umbraco and Partner associated with it."
+      parameters:
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainGet200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainGet200TextJsonResponse'
+              example: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainGet200ApplicationXmlResponse'
+              example: <ApiPvrpluginDomainGet200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainGet200TextXmlResponse'
+              example: <ApiPvrpluginDomainGet200TextXmlResponse />
+  /api/pvrplugin/{domain}/{partnerid}:
+    get:
+      operationId: PvrPluginApi_GetConfigurationByPartnerId
+      summary: "Returns the requirements for pvr plugin.\r\nThis method calls an account service to resolve\
+        \ and authenticate domain.\r\nAlso it checks if XML configuration is set and brandcode is specified.\r\
+        \nIt also checks if Brand exists in umbraco and Partner associated with it."
+      description: "Returns the requirements for pvr plugin.\r\nThis method calls an account service to\
+        \ resolve and authenticate domain.\r\nAlso it checks if XML configuration is set and brandcode\
+        \ is specified.\r\nIt also checks if Brand exists in umbraco and Partner associated with it."
+      parameters:
+      - name: partnerid
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Partnerid'
+        description: Format - int32.
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainPartneridGet200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainPartneridGet200TextJsonResponse'
+              example: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainPartneridGet200ApplicationXmlResponse'
+              example: <ApiPvrpluginDomainPartneridGet200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainPartneridGet200TextXmlResponse'
+              example: <ApiPvrpluginDomainPartneridGet200TextXmlResponse />
+  /api/trial/{apikey}/{token}:
+    get:
+      operationId: TrialApi_Trial
+      summary: Returns trial licence for the ApiKey
+      description: Returns trial licence for the ApiKey
+      parameters:
+      - name: apikey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The customers ApiKey
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Authentication token with the licence.list rights
+      responses:
+        '200':
+          description: OK - request completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trial'
+              example:
+                status: string
+                apiKey: string
+                product: string
+                startDate: string
+                endDate: string
+                volume: 0
+                remainingVolume: 0
+        '400':
+          description: Bad Request - the apiKey or token is missing
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden - the authentication token is invalid
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Not Found - the apiKey is not recognized
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: string
+        '503':
+          description: Service Unavailable - this or a dependent service is unavailable
+          content:
+            application/json:
+              schema:
+                type: string
+  /api/reporting/{token}:
+    post:
+      operationId: ReportingApi_ProcessPropertyValuation
+      summary: "The main report processing endpoint. \r\nReport Processor calls this method with the message\
+        \ body from *-Created queues"
+      description: "The main report processing endpoint. \r\nReport Processor calls this method with the\
+        \ message body from *-Created queues"
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreatedReportModel'
+            example: "<CreatedReportModel>\r\n  <AccountApiKey>00000000-0000-0000-0000-000000000000</AccountApiKey>\r\
+              \n  <OrderUniqueIdentifier>00000000-0000-0000-0000-000000000000</OrderUniqueIdentifier>\r\
+              \n  <UniqueIdentifier>string</UniqueIdentifier>\r\n  <OrderNumber>string</OrderNumber>\r\
+              \n  <ReportType>string</ReportType>\r\n  <BrandCode>string</BrandCode>\r\n  <Recipient>string</Recipient>\r\
+              \n  <PreparedFor>string</PreparedFor>\r\n  <ContactDetail>\r\n    <UniqueId>00000000-0000-0000-0000-000000000000</UniqueId>\r\
+              \n    <Title>string</Title>\r\n    <Firstname>string</Firstname>\r\n    <Surname>string</Surname>\r\
+              \n    <EmailAddress>string</EmailAddress>\r\n    <CompanyName>string</CompanyName>\r\n \
+              \   <JobTitle>string</JobTitle>\r\n    <Fullname>string</Fullname>\r\n    <DeliveryEmail>string</DeliveryEmail>\r\
+              \n    <Telephone>string</Telephone>\r\n  </ContactDetail>\r\n  <ReportParameters />\r\n\
+              \  <FileName>string</FileName>\r\n  <FilePath>string</FilePath>\r\n  <IsApiReport>true</IsApiReport>\r\
+              \n  <IsLandingPageReport>true</IsLandingPageReport>\r\n  <TransactionReference>string</TransactionReference>\r\
+              \n  <AdditionalReportDetails />\r\n  <DateCreated>string</DateCreated>\r\n</CreatedReportModel>"
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/CreatedReportModel'
+            example: "<CreatedReportModel>\r\n  <AccountApiKey>00000000-0000-0000-0000-000000000000</AccountApiKey>\r\
+              \n  <OrderUniqueIdentifier>00000000-0000-0000-0000-000000000000</OrderUniqueIdentifier>\r\
+              \n  <UniqueIdentifier>string</UniqueIdentifier>\r\n  <OrderNumber>string</OrderNumber>\r\
+              \n  <ReportType>string</ReportType>\r\n  <BrandCode>string</BrandCode>\r\n  <Recipient>string</Recipient>\r\
+              \n  <PreparedFor>string</PreparedFor>\r\n  <ContactDetail>\r\n    <UniqueId>00000000-0000-0000-0000-000000000000</UniqueId>\r\
+              \n    <Title>string</Title>\r\n    <Firstname>string</Firstname>\r\n    <Surname>string</Surname>\r\
+              \n    <EmailAddress>string</EmailAddress>\r\n    <CompanyName>string</CompanyName>\r\n \
+              \   <JobTitle>string</JobTitle>\r\n    <Fullname>string</Fullname>\r\n    <DeliveryEmail>string</DeliveryEmail>\r\
+              \n    <Telephone>string</Telephone>\r\n  </ContactDetail>\r\n  <ReportParameters />\r\n\
+              \  <FileName>string</FileName>\r\n  <FilePath>string</FilePath>\r\n  <IsApiReport>true</IsApiReport>\r\
+              \n  <IsLandingPageReport>true</IsLandingPageReport>\r\n  <TransactionReference>string</TransactionReference>\r\
+              \n  <AdditionalReportDetails />\r\n  <DateCreated>string</DateCreated>\r\n</CreatedReportModel>"
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatedReportModel'
+            example:
+              AccountApiKey: 00000000-0000-0000-0000-000000000000
+              OrderUniqueIdentifier: 00000000-0000-0000-0000-000000000000
+              UniqueIdentifier: string
+              OrderNumber: string
+              ReportType: string
+              BrandCode: string
+              Recipient: string
+              PreparedFor: string
+              ContactDetail:
+                UniqueId: 00000000-0000-0000-0000-000000000000
+                Title: string
+                Firstname: string
+                Surname: string
+                EmailAddress: string
+                CompanyName: string
+                JobTitle: string
+                Fullname: string
+                DeliveryEmail: string
+                Telephone: string
+              ReportParameters: {}
+              FileName: string
+              FilePath: string
+              IsApiReport: true
+              IsLandingPageReport: true
+              TransactionReference: string
+              AdditionalReportDetails: {}
+              DateCreated: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreatedReportModel'
+            example:
+              AccountApiKey: 00000000-0000-0000-0000-000000000000
+              OrderUniqueIdentifier: 00000000-0000-0000-0000-000000000000
+              UniqueIdentifier: string
+              OrderNumber: string
+              ReportType: string
+              BrandCode: string
+              Recipient: string
+              PreparedFor: string
+              ContactDetail:
+                UniqueId: 00000000-0000-0000-0000-000000000000
+                Title: string
+                Firstname: string
+                Surname: string
+                EmailAddress: string
+                CompanyName: string
+                JobTitle: string
+                Fullname: string
+                DeliveryEmail: string
+                Telephone: string
+              ReportParameters: {}
+              FileName: string
+              FilePath: string
+              IsApiReport: true
+              IsLandingPageReport: true
+              TransactionReference: string
+              AdditionalReportDetails: {}
+              DateCreated: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTokenPost200ApplicationXmlResponse'
+              example: <ApiReportingTokenPost200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTokenPost200TextXmlResponse'
+              example: <ApiReportingTokenPost200TextXmlResponse />
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTokenPost200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTokenPost200TextJsonResponse'
+              example: {}
+  /api/trial/{token}:
+    post:
+      operationId: TrialApi_NewTrial
+      summary: This method will create a new user with the trial account and licence
+      description: This method will create a new user with the trial account and licence
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrialRequest'
+            example:
+              product: string
+              startDate: string
+              termMonths: string
+              volume: string
+              companyName: string
+              contactFirstname: string
+              contactSurname: string
+              contactEmailAddress: string
+              contactPhoneNumber: string
+      responses:
+        '201':
+          description: Created - trial account created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trial'
+              example:
+                status: string
+                apiKey: string
+                product: string
+                startDate: string
+                endDate: string
+                volume: 0
+                remainingVolume: 0
+        '400':
+          description: Bad Request - the apiKey or token is missing
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden - the authentication token is invalid
+          content:
+            application/json:
+              schema:
+                type: string
+        '409':
+          description: Conflict - a user with this email address already exists
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: string
+        '503':
+          description: Service Unavailable - this or a dependent service is unavailable
+          content:
+            application/json:
+              schema:
+                type: string
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+  schemas:
+    BrandApiModel:
+      description: "This model represents a Brand configuration. \r\nIt is normally used for co-branded\
+        \ Property Valuation Reports."
+      type: object
+      properties:
+        brandName:
+          description: <b>[Required on creation]</b> The name of the brand. This field is required when
+            first creating the brand, but can be ignored on update.
+          type: string
+        branchName:
+          description: The name of the branch.
+          type: string
+        branchAddress:
+          description: The address of the branch
+          type: string
+        branchPostcode:
+          description: The postcode of the address of the branch
+          type: string
+        branchTelephoneNumber:
+          description: The telephone number of the branch
+          type: string
+        branchEmailAddress:
+          description: An email address of the branch
+          type: string
+        branchWebsite:
+          description: The website of the branch
+          type: string
+        reportName:
+          description: Name of the report, to be printed on all reports generated using this brand. E.g.
+            "Property Valuation Report" or "Market Appraisal".
+          type: string
+        hometrackLogoType:
+          format: int32
+          description: "Specifies the type of logo desired. It can be one of the following values:\r\n\
+            <ul><li>1: Standard Hometrack logo</li><li>2: Powered by Hometrack logo</li></ul>"
+          maximum: 2
+          minimum: 1
+          type: integer
+        reportHeading:
+          description: Additional text heading shown in the last page of PDF report
+          type: string
+        reportText:
+          description: Additional text shown in the last page of PDF report
+          type: string
+        terms:
+          description: "<b>[Required on creation]</b> Terms and conditions text which will be shown in\
+            \ Hometrack's PVR plugin. \r\n            This field is required when first creating the brand,\
+            \ but can be ignored on update."
+          type: string
+        showValueRangeOnly:
+          description: If set to 'true', only the capital value range will be displayed in PDF report
+            (no capital valuation).
+          type: boolean
+        defaultContactDetails:
+          description: "Details to be printed on the back page of the agent leave-behind if contact details\
+            \ are not supplied in the order form. \r\nAgent name Telephone number(s) Email address"
+          type: string
+        frontPageComments:
+          description: Agent comments to be displayed on the front page of the Agent leave behind.
+          type: string
+        customerPVRConfiguration:
+          format: int32
+          description: The ID of the PVR configuration desired for generating the PDF report.
+          type: integer
+        agentPVRConfiguration:
+          format: int32
+          description: (Obsolete)
+          type: integer
+        minimumConfidenceBand:
+          description: "Low limit for the confidence level which will appear in the PVR. \r\nYou should\
+            \ provide a decimal value in a range from 1 to 7, or the value 0 if you want to allow any\
+            \ confidence level. <br />\r\nI.e. if the requested PVR would show a confidence level lower\
+            \ than that specified here, \r\nthe Low Confidence Level error message will be displayed and\
+            \ the report will not be generated. <br />\r\nIf not provided, this setting will default to\
+            \ 0 - all confidence levels allowed."
+          type: string
+        brandLogoColour:
+          description: The hex code for the brand's logo colour, to be used on the front and back page
+            of the Agent Leave behind.
+          type: string
+        highlightColour:
+          description: "The hex code for the brand's accent colour, to be used to frame headers in the\
+            \ Agent Leave behind. \r\nIf no accent colour, please repeat the logo colour."
+          type: string
+        accentColourIcons:
+          type: boolean
+        logo:
+          description: "A Base64-encoded image representing the brand's logo. \r\nIf set, this logo will\
+            \ be visible on the PDF report.<br />\r\nWe accept images with or without the data URL scheme.\
+            \ Considering that &lt;data&gt; is the Base64 encoded string representing your logo,\r\nthe\
+            \ data URL scheme is of this form: <br /><pre>data:[&lt;mediatype&gt;][;base64],&lt;data&gt;</pre>\r\
+            \nExample: \r\n<pre>data:image/png;base64,iVBORw0KGgo...</pre>"
+          type: string
+        branchPhoto:
+          description: "A Base64-encoded image representing the branch photo. \r\nIf set, this logo will\
+            \ be visible on the last page of the PDF report.<br />"
+          type: string
+    Licence:
+      description: Licence response model
+      type: object
+      properties:
+        product:
+          description: Product code
+          type: string
+        status:
+          description: Status (Licensed/Expired/Suspended)
+          type: string
+        type:
+          description: AccessOnly or Volume.
+          type: string
+        startDate:
+          format: date-time
+          description: The start date
+          type: string
+        endDate:
+          format: date-time
+          description: The end date
+          type: string
+        volume:
+          format: int32
+          description: The licence volume if applicable
+          type: integer
+        remainingVolume:
+          format: int32
+          description: Shows how many reports can be created for this licence
+          type: integer
+    PartnerResponse:
+      type: object
+      properties:
+        partnerId:
+          type: string
+        partnerType:
+          type: string
+        apiKey:
+          type: string
+        principalName:
+          type: string
+        principalUniqueId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        createDate:
+          format: date-time
+          type: string
+        modifyDate:
+          format: date-time
+          type: string
+    PartnerCreateRequest:
+      required:
+      - accountApiKey
+      - partnerId
+      - partnerType
+      type: object
+      properties:
+        accountApiKey:
+          description: <b>[Required]</b> The API Key for the associated Account.
+          type: string
+        partnerId:
+          description: <b>[Required]</b> The partner ID.
+          type: string
+        partnerType:
+          description: '<b>[Required]</b> The partner type: ''zoopla'' or ''PSG''.'
+          type: string
+    GratisOrder:
+      type: object
+      properties:
+        NodeId:
+          format: int32
+          type: integer
+        Firstname:
+          type: string
+        Surname:
+          type: string
+        EmailAddress:
+          type: string
+        ValidationCode:
+          type: string
+        Product:
+          $ref: '#/components/schemas/Product'
+        ReportPostcode:
+          type: string
+        ReportAddress:
+          type: string
+        BrandName:
+          type: string
+        BrandCode:
+          type: string
+        Telephone:
+          type: string
+        PreparedFor:
+          type: string
+    Product:
+      type: object
+      properties:
+        Name:
+          type: string
+        Type:
+          type: string
+        Description:
+          type: string
+        Price:
+          format: double
+          type: number
+        InputTypes:
+          type: string
+        InputValues:
+          type: string
+    Enquiry:
+      description: Enquiry model.
+      type: object
+      properties:
+        Contact:
+          $ref: '#/components/schemas/Contact'
+          description: Contact details
+        BrandCode:
+          description: Brand code
+          type: string
+    Contact:
+      description: The Contact model. Used for Create/Update/Retrieve operations with salesforce
+      type: object
+      properties:
+        Email:
+          description: Email address
+          type: string
+        Firstname:
+          description: Firstname
+          type: string
+        Lastname:
+          description: Lastname
+          type: string
+        Phone:
+          description: Phone number
+          type: string
+        Company:
+          description: Company name
+          type: string
+        JobTitle:
+          description: Job title
+          type: string
+    PvrConfigsResponse:
+      description: Used for getting Pvr configuration from umbraco
+      type: object
+      properties:
+        pvrConfigs:
+          description: An array of v1 configurations
+          type: array
+          items:
+            $ref: '#/components/schemas/PvrConfigModel'
+        pvrV2Configs:
+          description: An array of v2 configurations
+          type: array
+          items:
+            $ref: '#/components/schemas/PvrConfigModel'
+    PvrConfigModel:
+      description: Used for getting Pvr configuration from umbraco
+      type: object
+      properties:
+        name:
+          description: Configuration name
+          type: string
+        id:
+          format: int32
+          description: Configuration Id
+          type: integer
+    CreatedReportModel:
+      description: Used to pass the data required to send the report to a customer.
+      type: object
+      properties:
+        AccountApiKey:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        OrderUniqueIdentifier:
+          format: uuid
+          description: ''
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        UniqueIdentifier:
+          description: Report unique identifier to get and update the ReportProductionLog record.
+          type: string
+        OrderNumber:
+          description: ''
+          type: string
+        ReportType:
+          description: ''
+          type: string
+        BrandCode:
+          description: ''
+          type: string
+        Recipient:
+          description: ''
+          type: string
+        PreparedFor:
+          description: Used in PVR header
+          type: string
+        ContactDetail:
+          $ref: '#/components/schemas/ProcessContact'
+          description: Customer details
+        ReportParameters:
+          description: ''
+          type: object
+          additionalProperties:
+            type: string
+        FileName:
+          description: This is the report file name, including extension.
+          type: string
+        FilePath:
+          description: This is the full path with the file name and extension.
+          type: string
+        IsApiReport:
+          description: If true the email will be not sent.
+          type: boolean
+        IsLandingPageReport:
+          description: "If true, then several steps in transformation process will be ignored to improve\
+            \ performance.\r\nTransactionId value will be required too."
+          type: boolean
+        TransactionReference:
+          description: Required to retrieve the report path for a landing page order
+          type: string
+        AdditionalReportDetails:
+          description: "Used to pass the additional information to the report transformation process.\r\
+            \nWill be NOT stored anywhere(Salesforce, DB, Logs), and only used to produce the report."
+          type: object
+          additionalProperties:
+            type: object
+        DateCreated:
+          format: date-time
+          type: string
+    ProcessContact:
+      type: object
+      properties:
+        UniqueId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        Title:
+          type: string
+        Firstname:
+          type: string
+        Surname:
+          type: string
+        EmailAddress:
+          type: string
+        CompanyName:
+          type: string
+        JobTitle:
+          type: string
+        Fullname:
+          type: string
+        DeliveryEmail:
+          type: string
+        Telephone:
+          type: string
+    PropertyValuationReportRequest:
+      description: Property valuation report request model.
+      required:
+      - Address
+      - Postcode
+      - Bedrooms
+      - PropertyType
+      - Token
+      - TransactionId
+      type: object
+      properties:
+        Address:
+          description: '[Required] Address'
+          type: string
+        Postcode:
+          description: '[Required] Postcode'
+          type: string
+        Bedrooms:
+          format: int32
+          description: '[Required] Bedroom count. Must be an integer 1 to 10.'
+          maximum: 10
+          minimum: 1
+          type: integer
+        PropertyType:
+          description: "[Required] Property type. It should be one of the following values:\r\n<ul><li>Bungalow\
+            \ - Semi-Detached</li><li>Bungalow - Detached</li><li>Bungalow - End Terrace</li><li>Bungalow\
+            \ - Mid Terrace</li><li>Flat - Converted</li><li>Flat - Purpose Built</li><li>House - End\
+            \ Terrace</li><li>House - Mid Terrace</li><li>House - Semi-Detached</li><li>House - Detached</li></ul>\r\
+            \nWe also accept the following alternative values:\r\n<ul><li>semi detached bungalow</li><li>detached\
+            \ bungalow</li><li>end terrace bungalow</li><li>mid terrace bungalow</li><li>converted flat</li><li>purpose\
+            \ built flat</li><li>end terrace house</li><li>mid terrace house</li><li>semi detached house</li><li>detached\
+            \ house</li></ul>"
+          type: string
+        Receptions:
+          format: int32
+          description: '[Optional] Receptions count. Must be an integer 1 to 5.'
+          maximum: 5
+          minimum: 1
+          type: integer
+        YearBuilt:
+          format: int32
+          description: "[Optional] Year built. \r\nAn integer between 1500 and the current year, or null."
+          type: integer
+        FloorArea:
+          format: double
+          description: '[Optional] Floor area, in sq m.'
+          type: number
+        ValuationDate:
+          format: date-time
+          description: "[Optional] Date to apply to the valuation. \r\nValid range is from 1 Jan 1999\
+            \ to today.\r\nIf null, then today's date applied."
+          type: string
+        Bathrooms:
+          format: int32
+          description: '[Optional] The number of bathrooms.'
+          maximum: 10
+          minimum: 1
+          type: integer
+        BrandCode:
+          description: '[Optional] If a brand with this code is set up in our system, the report will
+            be generated with the respective brand options.'
+          type: string
+        NoBill:
+          description: "[Optional] If set to true, the NoBillSecret will be checked against the whitelist.\r\
+            \nOn success the report will be created in test mode and transaction will not be synced to\
+            \ Salesforce."
+          type: boolean
+        NoBillSecret:
+          description: "[Optional] If a value is supplied and paired with NoBill set to true, it will\
+            \ be checked against the whitelist.\r\nOn success the report will be created in test mode\
+            \ and transaction will not be synced to Salesforce."
+          type: string
+        PreparedFor:
+          description: '[Optional] If specified, will be displayed on front page before valuation address'
+          type: string
+        BranchId:
+          description: '[Optional] Zoopla partner/ branch ID'
+          type: string
+        Token:
+          description: '[Required] Once authenticated, the client will use the received token for all
+            subsequent API calls.'
+          type: string
+        TransactionId:
+          description: '[Required] A unique ID for the transaction request, generated by the customer.
+            The field allows only alphanumeric characters, hyphens (-) and underscores (_).'
+          type: string
+    Trial:
+      type: object
+      properties:
+        status:
+          type: string
+        apiKey:
+          type: string
+        product:
+          type: string
+        startDate:
+          format: date-time
+          type: string
+        endDate:
+          format: date-time
+          type: string
+        volume:
+          format: int32
+          type: integer
+        remainingVolume:
+          format: int32
+          type: integer
+    TrialRequest:
+      description: Represents the request to TrialApi endpoint
+      type: object
+      properties:
+        product:
+          description: 'The product code. Ex.: PVR, SAR, Dashboard...'
+          type: string
+        startDate:
+          format: date-time
+          description: Trial start date
+          type: string
+        termMonths:
+          description: Trial term in months.
+          type: string
+        volume:
+          description: Trial volume limit.
+          type: string
+        companyName:
+          description: Contact company name
+          type: string
+        contactFirstname:
+          description: First name of the contact
+          type: string
+        contactSurname:
+          description: Last name of the contact
+          type: string
+        contactEmailAddress:
+          description: Contact email address
+          type: string
+        contactPhoneNumber:
+          description: Contact phone number.
+          type: string
+    ZooplaPartnerCreateRequest:
+      type: object
+      properties:
+        BranchId:
+          description: Partner / branch ID
+          type: string
+        Name:
+          description: Partner / branch Name
+          type: string
+    ApiAuthenticationApiKeyPost201TextPlainResponse:
+      type: string
+    LicenceArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/Licence'
+    Token:
+      format: uuid
+      x-apim-inline: true
+    ApiPvrpluginDomainGet200ApplicationJsonResponse:
+      type: object
+    ApiPvrpluginDomainGet200TextJsonResponse:
+      type: object
+    ApiPvrpluginDomainGet200ApplicationXmlResponse:
+      type: object
+    ApiPvrpluginDomainGet200TextXmlResponse:
+      type: object
+    Partnerid:
+      format: int32
+      x-apim-inline: true
+    ApiPvrpluginDomainPartneridGet200ApplicationJsonResponse:
+      type: object
+    ApiPvrpluginDomainPartneridGet200TextJsonResponse:
+      type: object
+    ApiPvrpluginDomainPartneridGet200ApplicationXmlResponse:
+      type: object
+    ApiPvrpluginDomainPartneridGet200TextXmlResponse:
+      type: object
+    ApiPvrpluginOrderTokenPost200ApplicationJsonResponse:
+      type: object
+    ApiPvrpluginOrderTokenPost200TextJsonResponse:
+      type: object
+    ApiPvrpluginOrderTokenPost200ApplicationXmlResponse:
+      type: object
+    ApiPvrpluginOrderTokenPost200TextXmlResponse:
+      type: object
+    ApiPvrpluginEnquiryTokenPost200ApplicationJsonResponse:
+      type: object
+    ApiPvrpluginEnquiryTokenPost200TextJsonResponse:
+      type: object
+    ApiPvrpluginEnquiryTokenPost200ApplicationXmlResponse:
+      type: object
+    ApiPvrpluginEnquiryTokenPost200TextXmlResponse:
+      type: object
+    ApiReportingTestGetGet200ApplicationXmlResponse:
+      type: object
+    ApiReportingTestGetGet200TextXmlResponse:
+      type: object
+    ApiReportingTestGetGet200ApplicationJsonResponse:
+      type: object
+    ApiReportingTestGetGet200TextJsonResponse:
+      type: object
+    ApiReportingMoveToBlobStorageGet200ApplicationXmlResponse:
+      type: object
+    ApiReportingMoveToBlobStorageGet200TextXmlResponse:
+      type: object
+    ApiReportingMoveToBlobStorageGet200ApplicationJsonResponse:
+      type: object
+    ApiReportingMoveToBlobStorageGet200TextJsonResponse:
+      type: object
+    ApiReportingPropertyValuationTokenTransactionReferenceGet200ApplicationPdfRe:
+      type: object
+    ApiReportingPropertyValuationTokenTransactionReferenceGet200ApplicationXmlRe:
+      type: object
+    ApiReportingPropertyValuationTokenTransactionReferenceGet202ApplicationPdfRe:
+      type: object
+    ApiReportingPropertyValuationTokenTransactionReferenceGet202ApplicationXmlRe:
+      type: object
+    ApiReportingTokenPost200ApplicationXmlResponse:
+      type: object
+    ApiReportingTokenPost200TextXmlResponse:
+      type: object
+    ApiReportingTokenPost200ApplicationJsonResponse:
+      type: object
+    ApiReportingTokenPost200TextJsonResponse:
+      type: object
+    ApiReportingTestPostPost200ApplicationXmlResponse:
+      type: object
+    ApiReportingTestPostPost200TextXmlResponse:
+      type: object
+    ApiReportingTestPostPost200ApplicationJsonResponse:
+      type: object
+    ApiReportingTestPostPost200TextJsonResponse:
+      type: object
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []

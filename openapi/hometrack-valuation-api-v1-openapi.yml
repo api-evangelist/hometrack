@@ -1,0 +1,293 @@
+openapi: 3.0.1
+info:
+  title: Valuation API
+  description: Generally available version of the Valuation API.
+  version: '1.0'
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/realtime-proxy-api?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/realtime-proxy-api/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/realtime-proxy-api/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/realtime-proxy-api/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and
+      schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com/valuation-api/v1
+- url: https://api.hometrack.local/valuation-api/v1
+paths:
+  /authentication/{apiKey}:
+    post:
+      operationId: authentication
+      summary: Authentication
+      description: Authenticates the client by exchanging an API key with a temporary token. The token
+        will only be valid for 5 minutes.
+      parameters:
+      - name: apiKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The API key.
+      responses:
+        '200':
+          description: The response JSON, which contains the newly generated token, along with a list
+            of resources which can be accessed using the token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Authentication Response Definition'
+              example:
+                token: a962c38a-6517-4eb5-8ca9-22d4c845487f
+                links:
+                - rel: valuation
+                  href: /v1/valuation
+  /status:
+    get:
+      operationId: status
+      summary: Status
+      description: This function checks if the Valuation API is currently available.
+      responses:
+        '200':
+          description: The Valuation API is up and running.
+        '503':
+          description: The Valuation API is currently unavailable.
+  /valuation/{accountId}:
+    post:
+      operationId: valuation
+      summary: Valuation
+      description: "This endpoint runs a valuation on a given property.\n\n<div class=\"row\">\n    <div\
+        \ class=\"col-md-12\">\n        <h4>Authorization</h4>\n        <p>\n            The Valuation\
+        \ endpoint uses a <b>token-based authorization</b>. Each valuation request will require an 'Authorization'\
+        \ header with a valid user token. \n            The token can be generated through a POST request\
+        \ to the <span style='font-family: \"Courier New\", Courier, monospace;'>/authentication/{apiKey}</span>\
+        \ endpoint. This will authenticate your API Key and will exchange it with a temporary authorization\
+        \ token which will be valid for 5 minutes.\n            <br/><br />\n            The Authorization\
+        \ header format for Token based authentication needed for the Valuation API looks like this:\n\
+        \        </p>\n            <pre>Authorization: Token token=\"652da107-bb66-4886-9f73-d8d4a3243eb7\"\
+        </pre>\n        <p>We also accept less strict variations, such as:</p>\n        <pre>Authorization:\
+        \ Token token=652da107-bb66-4886-9f73-d8d4a3243eb7<br />Authorization: Token 652da107-bb66-4886-9f73-d8d4a3243eb7</pre>\n\
+        \    </div>\n</div>"
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Your account ID.
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+        description: 'Token based authorization header. Example value: <br/>
+
+          <div style=''font-family: "Courier New", Courier, monospace;''>Token token="652da107-bb66-4886-9f73-d8d4a3243eb7"</div>'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Valuation request definition'
+            example:
+              property:
+                address: 141 Upper Hill street
+                postcode: L8 8EN
+                propertyType: end terrace house
+                bedrooms: 4
+                receptions: 1
+                reference: CREF55555
+      responses:
+        '200':
+          description: Valuation response JSON. Depending on your subscription, the response body may
+            not include all the fields presented here. Have a look at the sample below, and check the
+            schema definition for details about each field.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Valuation API Response Definition'
+              example:
+                propertyValuation:
+                  value: 132000
+                  upperValue: 158000
+                  lowerValue: 106000
+                  confidenceBand: low
+                  effectiveDate: '2019-08-28'
+                rentalValuation:
+                  monthlyRentalValue: 1410
+                  monthlyRentalUpperValue: 1690
+                  monthlyRentalLowerValue: 1130
+                  confidenceBand: low
+                  effectiveDate: '2019-08-28'
+                flags: []
+                clientReference: CREF55555
+                ourReference: HT123123REF
+        '400':
+          description: The request body does not match the definition.
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: The 'Authorization' header is missing or has the wrong format.
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: "We return this in the following situations:\n- The provided user token is invalid\
+            \ or has expired. \n- The account ID provided in the URL does not match the account authenticated\
+            \ by the user token. \n- The associated account is incorrectly set up for running valuations."
+          content:
+            application/json:
+              schema:
+                type: string
+        '429':
+          description: Rate limit is exceeded. The response body will tell you when you can try again.
+          content:
+            application/json:
+              example:
+                statusCode: 429
+                message: Rate limit is exceeded. Try again in 60 seconds.
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+  schemas:
+    Authentication Response Definition:
+      type: object
+      properties:
+        token:
+          description: Token which can be used for doing an authorized request to the Valuation API endpoint.
+          type: string
+        links:
+          description: A list of available resources which can be accessed using the generated token.
+          type: array
+          items:
+            required:
+            - rel
+            - href
+            type: object
+            properties:
+              rel:
+                description: Endpoint name.
+                type: string
+              href:
+                description: The path to this endpoint.
+                type: string
+    Valuation API Response Definition:
+      title: Valuation API Response
+      description: Schema definition for a full Valuation API response.
+      type: object
+      properties:
+        propertyValuation:
+          description: Property valuation.
+          type: object
+          properties:
+            value:
+              description: The AVM property value.
+              type: number
+            upperValue:
+              description: The upper value of the valuation range.
+              type: number
+            lowerValue:
+              description: The lower value of the valuation range.
+              type: number
+            confidenceBand:
+              description: 'The confidence band for this valuation. Possible values: ''high'', ''medium'',
+                ''low''.'
+              type: string
+            effectiveDate:
+              description: The date for which this valuation applies. (YYYY-MM-DD)
+              type: string
+        rentalValuation:
+          description: Rental property valuation.
+          type: object
+          properties:
+            monthlyRentalValue:
+              description: The monthly rental value of the property.
+              type: number
+            monthlyRentalUpperValue:
+              description: The upper value of the rental valuation range.
+              type: number
+            monthlyRentalLowerValue:
+              description: The lower value of the rental valuation range.
+              type: number
+            confidenceBand:
+              description: 'The confidence band for this valuation. Possible values: ''high'', ''medium'',
+                ''low''.'
+              type: string
+            effectiveDate:
+              description: The date for which this valuation applies. (YYYY-MM-DD)
+              type: string
+        flags:
+          description: Flags for the valuation
+          type: array
+        clientReference:
+          description: Your unique reference number or key (which is not tied to any PII indicator) used
+            for linking Hometrack outputs back to your system(s).
+          type: string
+        ourReference:
+          description: Hometrack reference number.
+          type: string
+    Valuation request definition:
+      type: object
+      properties:
+        property:
+          type: object
+          properties:
+            address:
+              description: The property address.
+              type: string
+            postcode:
+              description: The property postcode.
+              type: string
+            propertyType:
+              description: The property type. This must match one of the values listed above.
+              type: string
+            bedrooms:
+              description: The number of bedrooms.
+              type: integer
+            receptions:
+              description: The number of receptions.
+              type: integer
+            reference:
+              description: Client reference code.
+              type: string
+            effectiveDate:
+              description: (optional) The date for which this valuation applies. (YYYY-MM-DD)
+              type: string
+            estimatedValue:
+              description: (optional) The estimated value of the property.
+              type: number
+            loanAmount:
+              description: (optional) The loan amount for the property.
+              type: number
+      example:
+        property:
+          address: 141 Upper Hill street
+          postcode: L8 8EN
+          propertyType: end terrace house
+          bedrooms: 4
+          receptions: 1
+          reference: CREF55555
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []

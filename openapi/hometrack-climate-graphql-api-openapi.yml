@@ -1,0 +1,43 @@
+openapi: 3.0.1
+info:
+  title: Climate GraphQL
+  description: ''
+  version: '1.0'
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/climate-api-graphql?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/climate-api-graphql/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/climate-api-graphql/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/climate-api-graphql/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and
+      schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com/climate/graphql
+- url: https://api.hometrack.local/climate/graphql
+paths: {}
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []

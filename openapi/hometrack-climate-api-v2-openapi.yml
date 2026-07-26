@@ -1,0 +1,1979 @@
+openapi: 3.0.1
+info:
+  title: Climate API (v2)
+  description: ''
+  version: v2
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and
+      schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com/climate
+- url: https://api.hometrack.local/climate
+paths:
+  /ground-coastalerosion-twinn/{uprn}:
+    get:
+      operationId: CoastalErosionData
+      summary: Returns CoastalErosionData data for a given property
+      description: Returns CoastalErosionData data for a given property
+      parameters:
+      - name: dataVersion
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Ground-coastalerosion-twinn-uprn-GetRequest'
+        description: Data Version Number
+      - name: uprn
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Ground-coastalerosion-twinn-uprn-GetRequest-1'
+        description: Format - int64. Data Version Number
+      - name: X-Client-ID
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-coastalerosion-twinn-uprn-GetRequest-2'
+        description: Client Identifer used for tracking
+      - name: X-Client-Reference
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-coastalerosion-twinn-uprn-GetRequest-3'
+        description: Client Reference used for tracking
+      - name: X-Correlation-ID
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-coastalerosion-twinn-uprn-GetRequest-4'
+        description: Unique Transaction ID, used for tracking and support
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoastalErosionScoreResponseModelV2'
+              example:
+                uprn: 0
+                versionNumber: string
+                noActiveIntervention:
+                  managementPlan: string
+                  distanceM: string
+                  current:
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+                  future:
+                  - scenario: string
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+                shorelineManagementPlan:
+                  managementPlan: string
+                  distanceM: string
+                  current:
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+                  future:
+                  - scenario: string
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CoastalErosionScoreResponseModelV2'
+              example:
+                uprn: 0
+                versionNumber: string
+                noActiveIntervention:
+                  managementPlan: string
+                  distanceM: string
+                  current:
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+                  future:
+                  - scenario: string
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+                shorelineManagementPlan:
+                  managementPlan: string
+                  distanceM: string
+                  current:
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+                  future:
+                  - scenario: string
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+        '400':
+          description: Request was not valid
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '404':
+          description: CoastalErosionData data not found
+        '500':
+          description: An error has occured
+  /epc-hometrack/{uprn}:
+    get:
+      operationId: Epc
+      summary: Returns EPC data for a given property
+      description: Returns EPC data for a given property
+      parameters:
+      - name: uprn
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Epc-hometrack-uprn-GetRequest'
+        description: Format - int64.
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnergyCertificateResponseModelV2'
+              example:
+                rawHashValue: string
+                mappingHeatingKey: 0
+                mappingTenureKey: 0
+                dataSourceId: 0
+                uprn: 0
+                concatenatedAddress: string
+                custRef1: string
+                custRef2: string
+                postcode: string
+                pcd: string
+                houseName: string
+                streetName: string
+                locality: string
+                town: string
+                county: string
+                fullAddress: string
+                propType: string
+                propStyle: string
+                totalRoomCount: 0
+                floorArea: 0
+                heating: string
+                floorsInBlock: 0
+                outbuildings: 0
+                inspectionDate: string
+                reportDate: string
+                instrType1: string
+                addressMatchFlag: true
+                addressMatchAttempts: 0
+                numberHeatedRooms: 0
+                roofDescription: string
+                floorHeight: 0
+                currentEnergyRating: A
+                currentEnergyEfficiency: 0
+                potentialEnergyRating: A
+                potentialEnergyEfficiency: 0
+                localAuthority: string
+                constituency: string
+                environmentImpactCurrent: 0
+                environmentImpactPotential: 0
+                energyConsumptionCurrent: 0
+                energyConsumptionPotential: 0
+                co2EmissionCurrent: 0
+                co2CurrentPerFloorArea: 0
+                co2EmissionPotential: 0
+                lightingCostCurrent: 0
+                lightingCostPotential: 0
+                heatingCostCurrent: 0
+                heatingCostPotential: 0
+                hotWaterCostCurrent: 0
+                hotWaterCostPotential: 0
+                energyTariff: string
+                mainsGasFlag: string
+                floorLevel: string
+                flatTopStorey: string
+                mainHeatingControls: 0
+                multiGlazeProportion: 0
+                glazedType: string
+                glazedArea: string
+                lowEnergyLighting: 0
+                numberOpenFireplaces: 0
+                hotwaterDescription: string
+                hotWaterEnergyEff: string
+                hotWaterEnvEff: string
+                floorDescription: string
+                floorEnergyEff: string
+                floorEnvEff: string
+                windowsDescription: string
+                windowsEnergyEff: string
+                windowsEnvEff: string
+                wallsDescription: string
+                wallsEnergyEff: string
+                wallsEnvEff: string
+                secondheatDescription: string
+                sheatingEnergyEff: string
+                sheatingEnvEff: string
+                roofEnergyEff: string
+                roofEnvEff: string
+                mainheatDescription: string
+                mainheatEnergyEff: string
+                mainheatEnvEff: string
+                mainheatcontDescription: string
+                mainheatcEnergyEff: string
+                mainheatcEnvEff: string
+                lightingDescription: string
+                lightingEnergyEff: string
+                lightingEnvEff: string
+                airTightnessDescription: string
+                airTightnessEnergyEff: string
+                airTightnessEnvEff: string
+                windTurbineCount: 0
+                heatLossCorridoor: string
+                heatLossCorridoorLength: 0
+                photoSupply: 0
+                solarWaterHeatingFlag: string
+                mechanicalVentilation: string
+                localAuthorityLabel: string
+                constituencyLabel: string
+                constructionAgeBand: string
+                lodgementDate: string
+                tenure: string
+                fixedLightingOutletsCount: 0
+                lowEnergyFixedLightCount: 0
+                typeOfAssessment: string
+                _3YearEnergyCostCurrent: 0
+                _3YearEnergySavingPotential: 0
+                currentEnvironmentalRating: string
+                potentialEnvironmentalRating: string
+                lzcEnergySources: 0
+                spaceHeatingDemand: 0
+                waterHeatingDemand: 0
+                impactLoftInsulation: 0
+                impactCavityWallInsulation: 0
+                impactSolidWallInsulation: 0
+                mainHeatingCategory: 0
+                addendumText: 0
+                dataZone: 0
+                YearBuilt: 0
+                isNewBuild: 0
+                effectiveDate: string
+                hashValue: string
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EnergyCertificateResponseModelV2'
+              example:
+                rawHashValue: string
+                mappingHeatingKey: 0
+                mappingTenureKey: 0
+                dataSourceId: 0
+                uprn: 0
+                concatenatedAddress: string
+                custRef1: string
+                custRef2: string
+                postcode: string
+                pcd: string
+                houseName: string
+                streetName: string
+                locality: string
+                town: string
+                county: string
+                fullAddress: string
+                propType: string
+                propStyle: string
+                totalRoomCount: 0
+                floorArea: 0
+                heating: string
+                floorsInBlock: 0
+                outbuildings: 0
+                inspectionDate: string
+                reportDate: string
+                instrType1: string
+                addressMatchFlag: true
+                addressMatchAttempts: 0
+                numberHeatedRooms: 0
+                roofDescription: string
+                floorHeight: 0
+                currentEnergyRating: A
+                currentEnergyEfficiency: 0
+                potentialEnergyRating: A
+                potentialEnergyEfficiency: 0
+                localAuthority: string
+                constituency: string
+                environmentImpactCurrent: 0
+                environmentImpactPotential: 0
+                energyConsumptionCurrent: 0
+                energyConsumptionPotential: 0
+                co2EmissionCurrent: 0
+                co2CurrentPerFloorArea: 0
+                co2EmissionPotential: 0
+                lightingCostCurrent: 0
+                lightingCostPotential: 0
+                heatingCostCurrent: 0
+                heatingCostPotential: 0
+                hotWaterCostCurrent: 0
+                hotWaterCostPotential: 0
+                energyTariff: string
+                mainsGasFlag: string
+                floorLevel: string
+                flatTopStorey: string
+                mainHeatingControls: 0
+                multiGlazeProportion: 0
+                glazedType: string
+                glazedArea: string
+                lowEnergyLighting: 0
+                numberOpenFireplaces: 0
+                hotwaterDescription: string
+                hotWaterEnergyEff: string
+                hotWaterEnvEff: string
+                floorDescription: string
+                floorEnergyEff: string
+                floorEnvEff: string
+                windowsDescription: string
+                windowsEnergyEff: string
+                windowsEnvEff: string
+                wallsDescription: string
+                wallsEnergyEff: string
+                wallsEnvEff: string
+                secondheatDescription: string
+                sheatingEnergyEff: string
+                sheatingEnvEff: string
+                roofEnergyEff: string
+                roofEnvEff: string
+                mainheatDescription: string
+                mainheatEnergyEff: string
+                mainheatEnvEff: string
+                mainheatcontDescription: string
+                mainheatcEnergyEff: string
+                mainheatcEnvEff: string
+                lightingDescription: string
+                lightingEnergyEff: string
+                lightingEnvEff: string
+                airTightnessDescription: string
+                airTightnessEnergyEff: string
+                airTightnessEnvEff: string
+                windTurbineCount: 0
+                heatLossCorridoor: string
+                heatLossCorridoorLength: 0
+                photoSupply: 0
+                solarWaterHeatingFlag: string
+                mechanicalVentilation: string
+                localAuthorityLabel: string
+                constituencyLabel: string
+                constructionAgeBand: string
+                lodgementDate: string
+                tenure: string
+                fixedLightingOutletsCount: 0
+                lowEnergyFixedLightCount: 0
+                typeOfAssessment: string
+                _3YearEnergyCostCurrent: 0
+                _3YearEnergySavingPotential: 0
+                currentEnvironmentalRating: string
+                potentialEnvironmentalRating: string
+                lzcEnergySources: 0
+                spaceHeatingDemand: 0
+                waterHeatingDemand: 0
+                impactLoftInsulation: 0
+                impactCavityWallInsulation: 0
+                impactSolidWallInsulation: 0
+                mainHeatingCategory: 0
+                addendumText: 0
+                dataZone: 0
+                YearBuilt: 0
+                isNewBuild: 0
+                effectiveDate: string
+                hashValue: string
+        '400':
+          description: Request was not valid
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '404':
+          description: EPC data not found
+        '500':
+          description: An error has occured
+  /flood-twinn/{uprn}:
+    get:
+      operationId: Flood
+      summary: Returns Flood data for a given property
+      description: Returns Flood data for a given property
+      parameters:
+      - name: dataVersion
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Flood-twinn-uprn-GetRequest'
+        description: Data Version Number
+      - name: uprn
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Flood-twinn-uprn-GetRequest-1'
+        description: Format - int64. Data Version Number
+      - name: X-Client-ID
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Flood-twinn-uprn-GetRequest-2'
+        description: Client Identifer used for tracking
+      - name: X-Client-Reference
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Flood-twinn-uprn-GetRequest-3'
+        description: Client Reference used for tracking
+      - name: X-Correlation-ID
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Flood-twinn-uprn-GetRequest-4'
+        description: Unique Transaction ID, used for tracking and support
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FloodScoreResponseModelV2'
+              example:
+                current:
+                - versionNumber: string
+                  year: string
+                  scenario: string
+                  floodDefenceLevel: 0
+                  defendedScore: 0
+                  defendedRiskRatio: 0
+                  defendedADR: 0
+                  defendedAAL: 0
+                  defendedFluvialScore: 0
+                  defendedFluvialRiskRatio: 0
+                  defendedFluvialMaxDepth30Years: 0
+                  defendedFluvialMaxDepth75Years: 0
+                  defendedFluvialMaxDepth100Years: 0
+                  defendedFluvialMaxDepth250Years: 0
+                  defendedFluvialMaxDepth500Years: 0
+                  defendedFluvialMaxDepth1000Years: 0
+                  defendedFluvialADR: 0
+                  defendedFluvialAAL: 0
+                  defendedTidalScore: 0
+                  defendedTidalRiskRatio: 0
+                  defendedTidalMaxDepth30Years: 0
+                  defendedTidalMaxDepth75Years: 0
+                  defendedTidalMaxDepth100Years: 0
+                  defendedTidalMaxDepth250Years: 0
+                  defendedTidalMaxDepth500Years: 0
+                  defendedTidalMaxDepth1000Years: 0
+                  defendedTidalADR: 0
+                  defendedTidalAAL: 0
+                  undefendedScore: 0
+                  undefendedRiskRatio: 0
+                  undefendedADR: 0
+                  undefendedAAL: 0
+                  undefendedFluvialScore: 0
+                  undefendedFluvialRiskRatio: 0
+                  undefendedFluvialMaxDepth30Years: 0
+                  undefendedFluvialMaxDepth75Years: 0
+                  undefendedFluvialMaxDepth100Years: 0
+                  undefendedFluvialMaxDepth250Years: 0
+                  undefendedFluvialMaxDepth500Years: 0
+                  undefendedFluvialMaxDepth1000Years: 0
+                  undefendedFluvialADR: 0
+                  undefendedFluvialAAL: 0
+                  undefendedTidalScore: 0
+                  undefendedTidalRiskRatio: 0
+                  undefendedTidalMaxDepth30Years: 0
+                  undefendedTidalMaxDepth75Years: 0
+                  undefendedTidalMaxDepth100Years: 0
+                  undefendedTidalMaxDepth250Years: 0
+                  undefendedTidalMaxDepth500Years: 0
+                  undefendedTidalMaxDepth1000Years: 0
+                  undefendedTidalADR: 0
+                  undefendedTidalAAL: 0
+                  undefendedPluvialScore: 0
+                  undefendedPluvialRiskRatio: 0
+                  undefendedPluvialMaxDepth30Years: 0
+                  undefendedPluvialMaxDepth75Years: 0
+                  undefendedPluvialMaxDepth100Years: 0
+                  undefendedPluvialMaxDepth250Years: 0
+                  undefendedPluvialMaxDepth500Years: 0
+                  undefendedPluvialMaxDepth1000Years: 0
+                  undefendedPluvialADR: 0
+                  undefendedPluvialAAL: 0
+                future:
+                - versionNumber: string
+                  year: string
+                  scenario: string
+                  floodDefenceLevel: 0
+                  defendedScore: 0
+                  defendedRiskRatio: 0
+                  defendedADR: 0
+                  defendedAAL: 0
+                  defendedFluvialScore: 0
+                  defendedFluvialRiskRatio: 0
+                  defendedFluvialMaxDepth30Years: 0
+                  defendedFluvialMaxDepth75Years: 0
+                  defendedFluvialMaxDepth100Years: 0
+                  defendedFluvialMaxDepth250Years: 0
+                  defendedFluvialMaxDepth500Years: 0
+                  defendedFluvialMaxDepth1000Years: 0
+                  defendedFluvialADR: 0
+                  defendedFluvialAAL: 0
+                  defendedTidalScore: 0
+                  defendedTidalRiskRatio: 0
+                  defendedTidalMaxDepth30Years: 0
+                  defendedTidalMaxDepth75Years: 0
+                  defendedTidalMaxDepth100Years: 0
+                  defendedTidalMaxDepth250Years: 0
+                  defendedTidalMaxDepth500Years: 0
+                  defendedTidalMaxDepth1000Years: 0
+                  defendedTidalADR: 0
+                  defendedTidalAAL: 0
+                  undefendedScore: 0
+                  undefendedRiskRatio: 0
+                  undefendedADR: 0
+                  undefendedAAL: 0
+                  undefendedFluvialScore: 0
+                  undefendedFluvialRiskRatio: 0
+                  undefendedFluvialMaxDepth30Years: 0
+                  undefendedFluvialMaxDepth75Years: 0
+                  undefendedFluvialMaxDepth100Years: 0
+                  undefendedFluvialMaxDepth250Years: 0
+                  undefendedFluvialMaxDepth500Years: 0
+                  undefendedFluvialMaxDepth1000Years: 0
+                  undefendedFluvialADR: 0
+                  undefendedFluvialAAL: 0
+                  undefendedTidalScore: 0
+                  undefendedTidalRiskRatio: 0
+                  undefendedTidalMaxDepth30Years: 0
+                  undefendedTidalMaxDepth75Years: 0
+                  undefendedTidalMaxDepth100Years: 0
+                  undefendedTidalMaxDepth250Years: 0
+                  undefendedTidalMaxDepth500Years: 0
+                  undefendedTidalMaxDepth1000Years: 0
+                  undefendedTidalADR: 0
+                  undefendedTidalAAL: 0
+                  undefendedPluvialScore: 0
+                  undefendedPluvialRiskRatio: 0
+                  undefendedPluvialMaxDepth30Years: 0
+                  undefendedPluvialMaxDepth75Years: 0
+                  undefendedPluvialMaxDepth100Years: 0
+                  undefendedPluvialMaxDepth250Years: 0
+                  undefendedPluvialMaxDepth500Years: 0
+                  undefendedPluvialMaxDepth1000Years: 0
+                  undefendedPluvialADR: 0
+                  undefendedPluvialAAL: 0
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FloodScoreResponseModelV2'
+              example:
+                current:
+                - versionNumber: string
+                  year: string
+                  scenario: string
+                  floodDefenceLevel: 0
+                  defendedScore: 0
+                  defendedRiskRatio: 0
+                  defendedADR: 0
+                  defendedAAL: 0
+                  defendedFluvialScore: 0
+                  defendedFluvialRiskRatio: 0
+                  defendedFluvialMaxDepth30Years: 0
+                  defendedFluvialMaxDepth75Years: 0
+                  defendedFluvialMaxDepth100Years: 0
+                  defendedFluvialMaxDepth250Years: 0
+                  defendedFluvialMaxDepth500Years: 0
+                  defendedFluvialMaxDepth1000Years: 0
+                  defendedFluvialADR: 0
+                  defendedFluvialAAL: 0
+                  defendedTidalScore: 0
+                  defendedTidalRiskRatio: 0
+                  defendedTidalMaxDepth30Years: 0
+                  defendedTidalMaxDepth75Years: 0
+                  defendedTidalMaxDepth100Years: 0
+                  defendedTidalMaxDepth250Years: 0
+                  defendedTidalMaxDepth500Years: 0
+                  defendedTidalMaxDepth1000Years: 0
+                  defendedTidalADR: 0
+                  defendedTidalAAL: 0
+                  undefendedScore: 0
+                  undefendedRiskRatio: 0
+                  undefendedADR: 0
+                  undefendedAAL: 0
+                  undefendedFluvialScore: 0
+                  undefendedFluvialRiskRatio: 0
+                  undefendedFluvialMaxDepth30Years: 0
+                  undefendedFluvialMaxDepth75Years: 0
+                  undefendedFluvialMaxDepth100Years: 0
+                  undefendedFluvialMaxDepth250Years: 0
+                  undefendedFluvialMaxDepth500Years: 0
+                  undefendedFluvialMaxDepth1000Years: 0
+                  undefendedFluvialADR: 0
+                  undefendedFluvialAAL: 0
+                  undefendedTidalScore: 0
+                  undefendedTidalRiskRatio: 0
+                  undefendedTidalMaxDepth30Years: 0
+                  undefendedTidalMaxDepth75Years: 0
+                  undefendedTidalMaxDepth100Years: 0
+                  undefendedTidalMaxDepth250Years: 0
+                  undefendedTidalMaxDepth500Years: 0
+                  undefendedTidalMaxDepth1000Years: 0
+                  undefendedTidalADR: 0
+                  undefendedTidalAAL: 0
+                  undefendedPluvialScore: 0
+                  undefendedPluvialRiskRatio: 0
+                  undefendedPluvialMaxDepth30Years: 0
+                  undefendedPluvialMaxDepth75Years: 0
+                  undefendedPluvialMaxDepth100Years: 0
+                  undefendedPluvialMaxDepth250Years: 0
+                  undefendedPluvialMaxDepth500Years: 0
+                  undefendedPluvialMaxDepth1000Years: 0
+                  undefendedPluvialADR: 0
+                  undefendedPluvialAAL: 0
+                future:
+                - versionNumber: string
+                  year: string
+                  scenario: string
+                  floodDefenceLevel: 0
+                  defendedScore: 0
+                  defendedRiskRatio: 0
+                  defendedADR: 0
+                  defendedAAL: 0
+                  defendedFluvialScore: 0
+                  defendedFluvialRiskRatio: 0
+                  defendedFluvialMaxDepth30Years: 0
+                  defendedFluvialMaxDepth75Years: 0
+                  defendedFluvialMaxDepth100Years: 0
+                  defendedFluvialMaxDepth250Years: 0
+                  defendedFluvialMaxDepth500Years: 0
+                  defendedFluvialMaxDepth1000Years: 0
+                  defendedFluvialADR: 0
+                  defendedFluvialAAL: 0
+                  defendedTidalScore: 0
+                  defendedTidalRiskRatio: 0
+                  defendedTidalMaxDepth30Years: 0
+                  defendedTidalMaxDepth75Years: 0
+                  defendedTidalMaxDepth100Years: 0
+                  defendedTidalMaxDepth250Years: 0
+                  defendedTidalMaxDepth500Years: 0
+                  defendedTidalMaxDepth1000Years: 0
+                  defendedTidalADR: 0
+                  defendedTidalAAL: 0
+                  undefendedScore: 0
+                  undefendedRiskRatio: 0
+                  undefendedADR: 0
+                  undefendedAAL: 0
+                  undefendedFluvialScore: 0
+                  undefendedFluvialRiskRatio: 0
+                  undefendedFluvialMaxDepth30Years: 0
+                  undefendedFluvialMaxDepth75Years: 0
+                  undefendedFluvialMaxDepth100Years: 0
+                  undefendedFluvialMaxDepth250Years: 0
+                  undefendedFluvialMaxDepth500Years: 0
+                  undefendedFluvialMaxDepth1000Years: 0
+                  undefendedFluvialADR: 0
+                  undefendedFluvialAAL: 0
+                  undefendedTidalScore: 0
+                  undefendedTidalRiskRatio: 0
+                  undefendedTidalMaxDepth30Years: 0
+                  undefendedTidalMaxDepth75Years: 0
+                  undefendedTidalMaxDepth100Years: 0
+                  undefendedTidalMaxDepth250Years: 0
+                  undefendedTidalMaxDepth500Years: 0
+                  undefendedTidalMaxDepth1000Years: 0
+                  undefendedTidalADR: 0
+                  undefendedTidalAAL: 0
+                  undefendedPluvialScore: 0
+                  undefendedPluvialRiskRatio: 0
+                  undefendedPluvialMaxDepth30Years: 0
+                  undefendedPluvialMaxDepth75Years: 0
+                  undefendedPluvialMaxDepth100Years: 0
+                  undefendedPluvialMaxDepth250Years: 0
+                  undefendedPluvialMaxDepth500Years: 0
+                  undefendedPluvialMaxDepth1000Years: 0
+                  undefendedPluvialADR: 0
+                  undefendedPluvialAAL: 0
+        '400':
+          description: Request was not valid
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '404':
+          description: Flood data not found
+        '500':
+          description: An error has occured
+  /ground-terrafirma/{uprn}:
+    get:
+      operationId: Ground
+      summary: Returns Ground data for a given property
+      description: Returns Ground data for a given property
+      parameters:
+      - name: dataVersion
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Ground-terrafirma-uprn-GetRequest'
+        description: Data Version Number
+      - name: uprn
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Ground-terrafirma-uprn-GetRequest-1'
+        description: Format - int64. Data Version Number
+      - name: X-Client-ID
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-terrafirma-uprn-GetRequest-2'
+        description: Client Identifer used for tracking
+      - name: X-Client-Reference
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-terrafirma-uprn-GetRequest-3'
+        description: Client Reference used for tracking
+      - name: X-Correlation-ID
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-terrafirma-uprn-GetRequest-4'
+        description: Unique Transaction ID, used for tracking and support
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroundScoreResponseModelV2'
+              example:
+                current:
+                - versionNumber: string
+                  highestScore: 0
+                  miningScore: 0
+                  miningNonCoalScore: 0
+                  miningCoalScore: 0
+                  miningCheshireBrineScore: 0
+                  dissolutionScore: 0
+                  sinkHoleScore: 0
+                  miscellaneousScore: 0
+                  soilSubsidenceScore: 0
+                  coastalErosionScore: 0
+                  landslipScore: 0
+                  shape: string
+                  subsidenceScore: 0
+                future:
+                - versionNumber: string
+                  year: string
+                  scenario: string
+                  uprn: 0
+                  highestScore: 0
+                  soilSubsidenceScore: 0
+                  coastalErosionScore: 0
+                  subsidenceScore: 0
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GroundScoreResponseModelV2'
+              example:
+                current:
+                - versionNumber: string
+                  highestScore: 0
+                  miningScore: 0
+                  miningNonCoalScore: 0
+                  miningCoalScore: 0
+                  miningCheshireBrineScore: 0
+                  dissolutionScore: 0
+                  sinkHoleScore: 0
+                  miscellaneousScore: 0
+                  soilSubsidenceScore: 0
+                  coastalErosionScore: 0
+                  landslipScore: 0
+                  shape: string
+                  subsidenceScore: 0
+                future:
+                - versionNumber: string
+                  year: string
+                  scenario: string
+                  uprn: 0
+                  highestScore: 0
+                  soilSubsidenceScore: 0
+                  coastalErosionScore: 0
+                  subsidenceScore: 0
+        '400':
+          description: Request was not valid
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '404':
+          description: Ground data not found
+        '500':
+          description: An error has occured
+  /ground-subsidence-twinn/{uprn}:
+    get:
+      operationId: SubsidenceScoreData
+      summary: Returns SubsidenceScoreData data for a given property
+      description: Returns SubsidenceScoreData data for a given property
+      parameters:
+      - name: dataVersion
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Ground-subsidence-twinn-uprn-GetRequest'
+        description: Data Version Number
+      - name: uprn
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Ground-subsidence-twinn-uprn-GetRequest-1'
+        description: Format - int64. Data Version Number
+      - name: X-Client-ID
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-subsidence-twinn-uprn-GetRequest-2'
+        description: Client Identifer used for tracking
+      - name: X-Client-Reference
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-subsidence-twinn-uprn-GetRequest-3'
+        description: Client Reference used for tracking
+      - name: X-Correlation-ID
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-subsidence-twinn-uprn-GetRequest-4'
+        description: Unique Transaction ID, used for tracking and support
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubsidenceScoreResponseModelV2'
+              example:
+                uprn: 0
+                versionNumber: string
+                current:
+                  collapsibleDeposits: 0
+                  compressibleGround: 0
+                  landslides: 0
+                  runningSands: 0
+                  solubleRocks: 0
+                  shrinkSwell: 0
+                  subsidenceScore: 0
+                  subsidenceValuesFrmBGS: 0
+                future:
+                - year: string
+                  scenario: string
+                  subsidenceScore: 0
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SubsidenceScoreResponseModelV2'
+              example:
+                uprn: 0
+                versionNumber: string
+                current:
+                  collapsibleDeposits: 0
+                  compressibleGround: 0
+                  landslides: 0
+                  runningSands: 0
+                  solubleRocks: 0
+                  shrinkSwell: 0
+                  subsidenceScore: 0
+                  subsidenceValuesFrmBGS: 0
+                future:
+                - year: string
+                  scenario: string
+                  subsidenceScore: 0
+        '400':
+          description: Request was not valid
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '404':
+          description: SubsidenceScoreData data not found
+        '500':
+          description: An error has occured
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+  schemas:
+    ClimateChangeDataWithVersionResponseFloodScoreDataModel:
+      type: object
+      properties:
+        versionNumber:
+          type: string
+          nullable: true
+        year:
+          type: string
+          nullable: true
+        scenario:
+          type: string
+          nullable: true
+        floodDefenceLevel:
+          type: integer
+          format: int32
+          nullable: true
+        defendedScore:
+          type: integer
+          format: int32
+          nullable: true
+        defendedRiskRatio:
+          type: integer
+          format: int32
+          nullable: true
+        defendedADR:
+          type: number
+          format: double
+          nullable: true
+        defendedAAL:
+          type: integer
+          format: int32
+          nullable: true
+        defendedFluvialScore:
+          type: integer
+          format: int32
+          nullable: true
+        defendedFluvialRiskRatio:
+          type: integer
+          format: int32
+          nullable: true
+        defendedFluvialMaxDepth30Years:
+          type: integer
+          format: int32
+          nullable: true
+        defendedFluvialMaxDepth75Years:
+          type: integer
+          format: int32
+          nullable: true
+        defendedFluvialMaxDepth100Years:
+          type: integer
+          format: int32
+          nullable: true
+        defendedFluvialMaxDepth250Years:
+          type: integer
+          format: int32
+          nullable: true
+        defendedFluvialMaxDepth500Years:
+          type: integer
+          format: int32
+          nullable: true
+        defendedFluvialMaxDepth1000Years:
+          type: integer
+          format: int32
+          nullable: true
+        defendedFluvialADR:
+          type: integer
+          format: int32
+          nullable: true
+        defendedFluvialAAL:
+          type: integer
+          format: int32
+          nullable: true
+        defendedTidalScore:
+          type: integer
+          format: int32
+          nullable: true
+        defendedTidalRiskRatio:
+          type: integer
+          format: int32
+          nullable: true
+        defendedTidalMaxDepth30Years:
+          type: integer
+          format: int32
+          nullable: true
+        defendedTidalMaxDepth75Years:
+          type: integer
+          format: int32
+          nullable: true
+        defendedTidalMaxDepth100Years:
+          type: integer
+          format: int32
+          nullable: true
+        defendedTidalMaxDepth250Years:
+          type: integer
+          format: int32
+          nullable: true
+        defendedTidalMaxDepth500Years:
+          type: integer
+          format: int32
+          nullable: true
+        defendedTidalMaxDepth1000Years:
+          type: integer
+          format: int32
+          nullable: true
+        defendedTidalADR:
+          type: integer
+          format: int32
+          nullable: true
+        defendedTidalAAL:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedScore:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedRiskRatio:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedADR:
+          type: number
+          format: double
+          nullable: true
+        undefendedAAL:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedFluvialScore:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedFluvialRiskRatio:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedFluvialMaxDepth30Years:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedFluvialMaxDepth75Years:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedFluvialMaxDepth100Years:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedFluvialMaxDepth250Years:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedFluvialMaxDepth500Years:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedFluvialMaxDepth1000Years:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedFluvialADR:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedFluvialAAL:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedTidalScore:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedTidalRiskRatio:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedTidalMaxDepth30Years:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedTidalMaxDepth75Years:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedTidalMaxDepth100Years:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedTidalMaxDepth250Years:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedTidalMaxDepth500Years:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedTidalMaxDepth1000Years:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedTidalADR:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedTidalAAL:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedPluvialScore:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedPluvialRiskRatio:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedPluvialMaxDepth30Years:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedPluvialMaxDepth75Years:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedPluvialMaxDepth100Years:
+          type: integer
+          format: int32
+          nullable: true
+        undefendedPluvialMaxDepth250Years:
+          type: number
+          format: double
+          nullable: true
+        undefendedPluvialMaxDepth500Years:
+          type: number
+          format: double
+          nullable: true
+        undefendedPluvialMaxDepth1000Years:
+          type: number
+          format: double
+          nullable: true
+        undefendedPluvialADR:
+          type: number
+          format: double
+          nullable: true
+        undefendedPluvialAAL:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    ClimateChangeDataWithVersionResponseGroundRiskCurrentModel:
+      required:
+      - coastalErosionScore
+      type: object
+      properties:
+        versionNumber:
+          type: string
+          nullable: true
+        highestScore:
+          type: integer
+          format: int32
+          nullable: true
+        miningScore:
+          type: integer
+          format: int32
+          nullable: true
+        miningNonCoalScore:
+          type: integer
+          format: int32
+          nullable: true
+        miningCoalScore:
+          type: integer
+          format: int32
+          nullable: true
+        miningCheshireBrineScore:
+          type: integer
+          format: int32
+          nullable: true
+        dissolutionScore:
+          type: integer
+          format: int32
+          nullable: true
+        sinkHoleScore:
+          type: integer
+          format: int32
+          nullable: true
+        miscellaneousScore:
+          type: integer
+          format: int32
+          nullable: true
+        soilSubsidenceScore:
+          type: integer
+          format: int32
+          nullable: true
+        coastalErosionScore:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        landslipScore:
+          type: integer
+          format: int32
+          nullable: true
+        shape:
+          type: string
+          nullable: true
+        subsidenceScore:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    ClimateChangeDataWithVersionResponseGroundRiskFutureModel:
+      required:
+      - coastalErosionScore
+      type: object
+      properties:
+        versionNumber:
+          type: string
+          nullable: true
+        year:
+          type: string
+          nullable: true
+        scenario:
+          type: string
+          nullable: true
+        uprn:
+          type: integer
+          format: int64
+          nullable: true
+        highestScore:
+          type: integer
+          format: int32
+          nullable: true
+        soilSubsidenceScore:
+          type: integer
+          format: int32
+          nullable: true
+        coastalErosionScore:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        subsidenceScore:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    CoastalErosionScoreResponseModelV2:
+      type: object
+      properties:
+        uprn:
+          type: integer
+          format: int64
+        versionNumber:
+          type: string
+          nullable: true
+        noActiveIntervention:
+          $ref: '#/components/schemas/ErosionManagementPlanModel'
+        shorelineManagementPlan:
+          $ref: '#/components/schemas/ErosionManagementPlanModel'
+      additionalProperties: false
+    EnergyCertificateResponseModelV2:
+      required:
+      - currentEnergyRating
+      type: object
+      properties:
+        rawHashValue:
+          type: string
+          nullable: true
+        mappingHeatingKey:
+          type: integer
+          format: int64
+          nullable: true
+        mappingTenureKey:
+          type: integer
+          format: int64
+          nullable: true
+          x-cleaned: false
+        dataSourceId:
+          type: integer
+          description: 'This field is cleaned. Internal data source id for source data: 282 = England/Wales,
+            369 = Scotland.'
+          format: int32
+          nullable: true
+          x-cleaned: true
+        uprn:
+          type: integer
+          description: This field is cleaned. Unique id for each property, primary key of dataset.
+          format: int64
+          nullable: true
+          x-cleaned: true
+        concatenatedAddress:
+          type: string
+          description: Number and street name of address.
+          nullable: true
+        custRef1:
+          type: string
+          description: This field is cleaned. Unique ID for the individual energy certificate.
+          nullable: true
+          x-cleaned: true
+        custRef2:
+          type: string
+          description: Unique ID for the building.
+          nullable: true
+        postcode:
+          type: string
+          description: Post Code.
+          nullable: true
+        pcd:
+          type: string
+          description: This field is cleaned. First half of post code.
+          nullable: true
+          x-cleaned: true
+        houseName:
+          type: string
+          description: House number/name.
+          nullable: true
+        streetName:
+          type: string
+          nullable: true
+        locality:
+          type: string
+          nullable: true
+        town:
+          type: string
+          description: Town.
+          nullable: true
+        county:
+          type: string
+          description: County.
+          nullable: true
+        fullAddress:
+          type: string
+          nullable: true
+        propType:
+          type: string
+          description: E.g. House, Flat.
+          nullable: true
+        propStyle:
+          type: string
+          description: E.g. Detached, End-Terrace.
+          nullable: true
+        totalRoomCount:
+          type: integer
+          description: Total room count within the property.
+          format: int32
+          nullable: true
+        floorArea:
+          type: number
+          description: This field is cleaned. Property floor area in metres squared.
+          format: double
+          nullable: true
+          x-cleaned: true
+        heating:
+          type: string
+          description: Type of heating in property.
+          nullable: true
+        floorsInBlock:
+          type: integer
+          format: int32
+          nullable: true
+        outbuildings:
+          type: integer
+          description: Number of outbuildings.
+          format: int32
+          nullable: true
+        inspectionDate:
+          type: string
+          description: This field is cleaned. Inspection date for certificate.
+          format: date-time
+          nullable: true
+          x-cleaned: true
+        reportDate:
+          type: string
+          description: Date report was created.
+          format: date-time
+          nullable: true
+        instrType1:
+          type: string
+          nullable: true
+        addressMatchFlag:
+          type: boolean
+          description: Lecgacy column, invald value.
+          nullable: true
+        addressMatchAttempts:
+          type: integer
+          description: Legacy column, invalid value.
+          format: int32
+          nullable: true
+        numberHeatedRooms:
+          type: integer
+          description: Number of rooms with central heating.
+          format: int32
+          nullable: true
+        roofDescription:
+          type: string
+          description: Description of the roof build.
+          nullable: true
+        floorHeight:
+          type: integer
+          format: int32
+          nullable: true
+        currentEnergyRating:
+          $ref: '#/components/schemas/EnergyRating'
+        currentEnergyEfficiency:
+          type: integer
+          description: This field is cleaned. Current energy efficiency of the property, out of 100.
+          format: int32
+          nullable: true
+          x-cleaned: true
+        potentialEnergyRating:
+          $ref: '#/components/schemas/EnergyRating'
+        potentialEnergyEfficiency:
+          type: integer
+          description: This field is cleaned. Potential energy efficiency, out of 100.
+          format: int32
+          nullable: true
+          x-cleaned: true
+        localAuthority:
+          type: string
+          description: Unique ID of the local authority.
+          nullable: true
+        constituency:
+          type: string
+          description: Unique ID of the constituency the property is found in.
+          nullable: true
+        environmentImpactCurrent:
+          type: integer
+          format: int32
+          nullable: true
+        environmentImpactPotential:
+          type: integer
+          format: int32
+          nullable: true
+        energyConsumptionCurrent:
+          type: integer
+          format: int32
+          nullable: true
+        energyConsumptionPotential:
+          type: integer
+          format: int32
+          nullable: true
+        co2EmissionCurrent:
+          type: integer
+          format: int32
+          nullable: true
+        co2CurrentPerFloorArea:
+          type: integer
+          format: int32
+          nullable: true
+        co2EmissionPotential:
+          type: integer
+          format: int32
+          nullable: true
+        lightingCostCurrent:
+          type: integer
+          format: int32
+          nullable: true
+        lightingCostPotential:
+          type: integer
+          format: int32
+          nullable: true
+        heatingCostCurrent:
+          type: integer
+          format: int32
+          nullable: true
+        heatingCostPotential:
+          type: integer
+          format: int32
+          nullable: true
+        hotWaterCostCurrent:
+          type: integer
+          format: int32
+          nullable: true
+        hotWaterCostPotential:
+          type: integer
+          format: int32
+          nullable: true
+        energyTariff:
+          type: string
+          nullable: true
+        mainsGasFlag:
+          type: string
+          nullable: true
+        floorLevel:
+          type: string
+          nullable: true
+        flatTopStorey:
+          type: string
+          nullable: true
+        mainHeatingControls:
+          type: integer
+          format: int32
+          nullable: true
+        multiGlazeProportion:
+          type: integer
+          format: int32
+          nullable: true
+        glazedType:
+          type: string
+          nullable: true
+        glazedArea:
+          type: string
+          nullable: true
+        lowEnergyLighting:
+          type: integer
+          format: int32
+          nullable: true
+        numberOpenFireplaces:
+          type: integer
+          format: int32
+          nullable: true
+        hotwaterDescription:
+          type: string
+          nullable: true
+        hotWaterEnergyEff:
+          type: string
+          nullable: true
+        hotWaterEnvEff:
+          type: string
+          nullable: true
+        floorDescription:
+          type: string
+          nullable: true
+        floorEnergyEff:
+          type: string
+          nullable: true
+        floorEnvEff:
+          type: string
+          nullable: true
+        windowsDescription:
+          type: string
+          nullable: true
+        windowsEnergyEff:
+          type: string
+          nullable: true
+        windowsEnvEff:
+          type: string
+          nullable: true
+        wallsDescription:
+          type: string
+          nullable: true
+        wallsEnergyEff:
+          type: string
+          nullable: true
+        wallsEnvEff:
+          type: string
+          nullable: true
+        secondheatDescription:
+          type: string
+          nullable: true
+        sheatingEnergyEff:
+          type: string
+          nullable: true
+        sheatingEnvEff:
+          type: string
+          nullable: true
+        roofEnergyEff:
+          type: string
+          nullable: true
+        roofEnvEff:
+          type: string
+          nullable: true
+        mainheatDescription:
+          type: string
+          nullable: true
+        mainheatEnergyEff:
+          type: string
+          nullable: true
+        mainheatEnvEff:
+          type: string
+          nullable: true
+        mainheatcontDescription:
+          type: string
+          nullable: true
+        mainheatcEnergyEff:
+          type: string
+          nullable: true
+        mainheatcEnvEff:
+          type: string
+          nullable: true
+        lightingDescription:
+          type: string
+          nullable: true
+        lightingEnergyEff:
+          type: string
+          nullable: true
+        lightingEnvEff:
+          type: string
+          nullable: true
+        airTightnessDescription:
+          type: string
+          nullable: true
+        airTightnessEnergyEff:
+          type: string
+          nullable: true
+        airTightnessEnvEff:
+          type: string
+          nullable: true
+        windTurbineCount:
+          type: integer
+          format: int32
+          nullable: true
+        heatLossCorridoor:
+          type: string
+          nullable: true
+        heatLossCorridoorLength:
+          type: integer
+          format: int32
+          nullable: true
+        photoSupply:
+          type: integer
+          format: int32
+          nullable: true
+        solarWaterHeatingFlag:
+          type: string
+          nullable: true
+        mechanicalVentilation:
+          type: string
+          nullable: true
+        localAuthorityLabel:
+          type: string
+          nullable: true
+        constituencyLabel:
+          type: string
+          nullable: true
+        constructionAgeBand:
+          type: string
+          nullable: true
+        lodgementDate:
+          type: string
+          description: This field is cleaned. Date of certificate publication; used to get the latest
+            certificate per property (UPRN).
+          format: date-time
+          nullable: true
+          x-cleaned: true
+        tenure:
+          type: string
+          nullable: true
+        fixedLightingOutletsCount:
+          type: integer
+          format: int32
+          nullable: true
+        lowEnergyFixedLightCount:
+          type: integer
+          format: int32
+          nullable: true
+        typeOfAssessment:
+          type: string
+          nullable: true
+        _3YearEnergyCostCurrent:
+          type: integer
+          format: int32
+          nullable: true
+        _3YearEnergySavingPotential:
+          type: integer
+          format: int32
+          nullable: true
+        currentEnvironmentalRating:
+          type: string
+          nullable: true
+        potentialEnvironmentalRating:
+          type: string
+          nullable: true
+        lzcEnergySources:
+          type: integer
+          format: int32
+          nullable: true
+        spaceHeatingDemand:
+          type: integer
+          format: int32
+          nullable: true
+        waterHeatingDemand:
+          type: integer
+          format: int32
+          nullable: true
+        impactLoftInsulation:
+          type: integer
+          format: int32
+          nullable: true
+        impactCavityWallInsulation:
+          type: integer
+          format: int32
+          nullable: true
+        impactSolidWallInsulation:
+          type: integer
+          format: int32
+          nullable: true
+        mainHeatingCategory:
+          type: integer
+          format: int32
+          nullable: true
+        addendumText:
+          type: integer
+          format: int32
+          nullable: true
+        dataZone:
+          type: integer
+          format: int32
+          nullable: true
+        YearBuilt:
+          type: integer
+          format: int32
+          nullable: true
+          readOnly: true
+        isNewBuild:
+          type: integer
+          format: int32
+          nullable: true
+        effectiveDate:
+          type: string
+          format: date-time
+          nullable: true
+        hashValue:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EnergyRating:
+      enum:
+      - A
+      - B
+      - C
+      - D
+      - E
+      - F
+      - G
+      type: string
+    ErosionCurrentScoreModel:
+      type: object
+      properties:
+        firstYearOfHazard:
+          type: integer
+          format: int32
+        firstYearOfHazardErosionScore:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ErosionFuturesScoreModel:
+      type: object
+      properties:
+        scenario:
+          type: string
+          nullable: true
+        firstYearOfHazard:
+          type: integer
+          format: int32
+        firstYearOfHazardErosionScore:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ErosionManagementPlanModel:
+      type: object
+      properties:
+        managementPlan:
+          type: string
+          nullable: true
+        distanceM:
+          type: string
+          nullable: true
+        current:
+          $ref: '#/components/schemas/ErosionCurrentScoreModel'
+        future:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErosionFuturesScoreModel'
+          nullable: true
+      additionalProperties: false
+    FloodScoreResponseModelV2:
+      required:
+      - current
+      - future
+      type: object
+      properties:
+        current:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseFloodScoreDataModel'
+        future:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseFloodScoreDataModel'
+      additionalProperties: false
+    GroundScoreResponseModelV2:
+      required:
+      - current
+      - future
+      type: object
+      properties:
+        current:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseGroundRiskCurrentModel'
+        future:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseGroundRiskFutureModel'
+      additionalProperties: false
+    SubsidenceScoreCurrentModel:
+      type: object
+      properties:
+        collapsibleDeposits:
+          type: integer
+          format: int32
+        compressibleGround:
+          type: integer
+          format: int32
+        landslides:
+          type: integer
+          format: int32
+        runningSands:
+          type: integer
+          format: int32
+        solubleRocks:
+          type: integer
+          format: int32
+        shrinkSwell:
+          type: integer
+          format: int32
+        subsidenceScore:
+          type: integer
+          format: int32
+          nullable: true
+        subsidenceValuesFrmBGS:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    SubsidenceScoreFutureModel:
+      type: object
+      properties:
+        year:
+          type: string
+          nullable: true
+        scenario:
+          type: string
+          nullable: true
+        subsidenceScore:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    SubsidenceScoreResponseModelV2:
+      required:
+      - current
+      - future
+      type: object
+      properties:
+        uprn:
+          type: integer
+          format: int64
+          nullable: true
+        versionNumber:
+          type: string
+          nullable: true
+        current:
+          $ref: '#/components/schemas/SubsidenceScoreCurrentModel'
+        future:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubsidenceScoreFutureModel'
+      additionalProperties: false
+    Ground-coastalerosion-twinn-uprn-GetRequest:
+      type: string
+      x-apim-inline: true
+    Ground-coastalerosion-twinn-uprn-GetRequest-1:
+      type: integer
+      format: int64
+      x-apim-inline: true
+    Ground-coastalerosion-twinn-uprn-GetRequest-2:
+      maxLength: 20
+      type: string
+      x-apim-inline: true
+    Ground-coastalerosion-twinn-uprn-GetRequest-3:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+    Ground-coastalerosion-twinn-uprn-GetRequest-4:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+    Epc-hometrack-uprn-GetRequest:
+      type: integer
+      format: int64
+      x-apim-inline: true
+    Flood-twinn-uprn-GetRequest:
+      type: string
+      x-apim-inline: true
+    Flood-twinn-uprn-GetRequest-1:
+      type: integer
+      format: int64
+      x-apim-inline: true
+    Flood-twinn-uprn-GetRequest-2:
+      maxLength: 20
+      type: string
+      x-apim-inline: true
+    Flood-twinn-uprn-GetRequest-3:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+    Flood-twinn-uprn-GetRequest-4:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+    Ground-terrafirma-uprn-GetRequest:
+      type: string
+      x-apim-inline: true
+    Ground-terrafirma-uprn-GetRequest-1:
+      type: integer
+      format: int64
+      x-apim-inline: true
+    Ground-terrafirma-uprn-GetRequest-2:
+      maxLength: 20
+      type: string
+      x-apim-inline: true
+    Ground-terrafirma-uprn-GetRequest-3:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+    Ground-terrafirma-uprn-GetRequest-4:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+    Ground-subsidence-twinn-uprn-GetRequest:
+      type: string
+      x-apim-inline: true
+    Ground-subsidence-twinn-uprn-GetRequest-1:
+      type: integer
+      format: int64
+      x-apim-inline: true
+    Ground-subsidence-twinn-uprn-GetRequest-2:
+      maxLength: 20
+      type: string
+      x-apim-inline: true
+    Ground-subsidence-twinn-uprn-GetRequest-3:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+    Ground-subsidence-twinn-uprn-GetRequest-4:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []

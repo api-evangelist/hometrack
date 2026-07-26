@@ -1,0 +1,637 @@
+aid: hometrack
+name: Hometrack
+review:
+  question: What is Hometrack's real, publicly reachable API surface, what does a
+    developer have to sign or join to use it, and what is its RESO posture?
+  date: '2026-07-26'
+  reviewer: API Evangelist
+  homeMarket: United Kingdom
+  tier: valuation-avm
+  primaryDomain: hometrack.com
+  summary: |
+    Hometrack is the clearest example in this sector so far of a provider whose
+    CONTRACTS are open and whose DATA is closed, and the two must not be
+    collapsed into one judgement.
+
+    The contracts are genuinely open. developer.hometrack.com is a stock Azure
+    API Management developer portal served anonymously with no login wall, and —
+    critically — its data plane is anonymous too. GET
+    https://developer.hometrack.com/developer/apis?api-version=2022-04-01-preview
+    returned HTTP 200 and the complete API catalogue. From there the per-API
+    operations collections, the per-operation request/response metadata (including
+    worked JSON examples) and the component schema documents all answered HTTP 200
+    without credentials, and the OpenAPI export endpoint
+    (?export=true&format=openapi-link) issued SAS-signed blob links that served
+    real OpenAPI 3.0.1 documents. Six specs were harvested this way, covering 55
+    paths and 381 component schemas.
+
+    The data is closed. The portal's own home page states: "To interact with any
+    of our APIs you will need to have a valid API Key for that respective product.
+    If you do not yet have an API Key, please contact us" — the link goes to a
+    marketing contact form, not to a self-serve key issuer. The gateway confirms
+    it: GET https://api.hometrack.com/valuation/v2/broker/order/1 returned HTTP 401
+    with {"statusCode": 401, "message": "Unauthorized. Access token is missing or
+    invalid."}. Exactly one operation in the entire published surface answered an
+    anonymous probe successfully: GET https://api.hometrack.com/valuation-api/v1/status,
+    HTTP 200 with a zero-byte body — the documented availability check.
+
+    Hometrack's customers are mortgage lenders, surveyors, brokers, housing
+    associations and investors under commercial contract. There is no trial, no
+    sandbox, no published pricing and no documented self-service path to a
+    credential. A stock APIM /signup page renders, but it is unmodified boilerplate
+    and was not exercised; the documented route to a key is "contact us".
+
+resoPosture:
+  certified: false
+  posture: No RESO reference found anywhere in Hometrack's developer portal,
+    corporate site, or API catalogue; RESO is a North American NAR/MLS construct
+    and the United Kingdom has no MLS to certify against.
+  webApiCertification: none found
+  dataDictionaryCertification: none found
+  dataDictionaryVersion: null
+  directoryEvidence: |
+    https://www.reso.org/certificates/ was fetched anonymously on 2026-07-26
+    (HTTP 200, 416,233 bytes). A case-insensitive count of "hometrack" in the
+    response body returned 0, and a count of "united kingdom" also returned 0.
+    No RESO certification claim appears on hometrack.com or on
+    developer.hometrack.com.
+  odataEndpoint: none
+  metadataDocument: |
+    Probed https://api.hometrack.com/$metadata — HTTP 301 to
+    https://developer.hometrack.com (Microsoft-Azure-Application-Gateway/v2
+    catch-all redirect for unmatched root paths), not an OData service document.
+    Probed https://developer.hometrack.com/$metadata — HTTP 404 (the portal's
+    styled 404 page, 3,907 bytes). Probed https://api.hometrack.com/odata and
+    https://api.hometrack.com/Reso — both HTTP 301 to the developer portal. There
+    is no OData surface. The APIs are plain REST behind Azure API Management,
+    plus one GraphQL API. No $metadata document exists to save.
+  universalPropertyIdentifier: |
+    No RESO UPI — but this is the most interesting finding in the RESO block and
+    it cuts the other way. Hometrack's Climate API keys EVERY operation off the
+    UPRN: /epc-hometrack/{uprn}, /flood-twinn/{uprn}, /ground-terrafirma/{uprn},
+    /ground-subsidence-twinn/{uprn}, /ground-coastalerosion-twinn/{uprn}. UPRN is
+    the Unique Property Reference Number, created by local authorities, curated by
+    GeoPlace and distributed through Ordnance Survey AddressBase — a genuinely
+    national, government-issued, persistent identifier for every addressable
+    location in Great Britain. The Broker AVM API's address request schema also
+    carries uprn alongside postcode and free-text address. So the UK does have a
+    universal property identifier; it simply comes from government rather than
+    from a real-estate standards body, which is the structural inverse of the RESO
+    UPI story. RESO is absent here not because the UK lacks identifier discipline
+    but because it lacks an MLS to standardise around.
+  wordBoundaryGrep: |
+    Case-insensitive search for RESO, "Data Dictionary", "Universal Property
+    Identifier", UPI, IDX, VOW, MLS and OData across the harvested developer
+    portal pages (/, /apis, /apis, /api-authentication, /api-details, /signin,
+    /signup), the full anonymous APIM catalogue JSON, all six exported OpenAPI
+    documents, all 59 harvested operation-detail documents, all five schema
+    documents, and the fetched www.hometrack.com home, /about/ and /data-services/
+    pages returned zero hits for RESO, IDX, VOW, MLS, Data Dictionary or UPI. The
+    only related token present anywhere is UPRN, which is the UK government
+    identifier described above, not a RESO construct.
+  marketNote: |
+    This is the expected and correct UK answer, and Hometrack sits on the side of
+    the market where RESO would never have applied anyway. The UK has no MLS.
+    Residential listings are controlled by two portals — Rightmove and Zoopla —
+    and reach them through agency CRM software (Reapit, Alto, Street, Apex27),
+    not through a cooperative database. Hometrack is not in that listings chain
+    at all: it is on the lending and risk side, selling valuation and property
+    risk to mortgage lenders. There is a quiet irony in the corporate structure —
+    Hometrack and Zoopla are both Houseful companies, so one group owns both the
+    dominant consumer listings portal and the dominant lender-side AVM, and
+    neither of them publishes an open listings feed.
+
+accessGate:
+  gate: partner-only
+  gated: true
+  selfServe: false
+  gateNuance: |
+    Two surfaces, two gates, and they must be recorded separately. The
+    DOCUMENTATION and CONTRACT surface is ungated: the developer portal and its
+    entire APIM data plane, including OpenAPI exports, operation metadata with
+    request/response examples, and component schemas, are served to anonymous
+    callers with no account and no key. The DATA surface is partner-only: a
+    commercial relationship with Hometrack is the only documented route to a
+    credential, and the gateway rejects everything else with HTTP 401. Classified
+    partner-only rather than application-approval because there is no application
+    form, no review workflow, no published terms to accept and no self-service
+    issuance — just a marketing "contact us" link.
+  whatYouMustSignOrJoin: |
+    A commercial agreement with Hometrack. The developer portal states verbatim:
+    "To interact with any of our APIs you will need to have a valid API Key for
+    that respective product. If you do not yet have an API Key, please contact
+    us", with the contact link pointing at https://www.hometrack.com/uk/#contactus
+    (which resolves to the corporate site). You do not have to join an MLS, a
+    board or an association — none exist in this market — and you do not have to
+    be a licensed agent or be sponsored by a broker. There is no IDX or VOW
+    licence in the UK. What you do need is to be, in practice, a Hometrack
+    customer: a mortgage lender, surveyor, broker, housing association or
+    investor buying valuation, comparables or property risk data under contract.
+  credentialIssuance: |
+    Issued by Hometrack, not self-issued. The API Authentication page describes a
+    client_id and client_secret "used to uniquely identify your subscription to
+    the Hometrack API", which the caller exchanges at
+    https://hometrack-prod.eu.auth0.com/oauth/token for a bearer access token
+    valid for 24 hours. Separately, the Valuation API and the Hometrack API Public
+    both expose an /authentication/{apiKey} endpoint that exchanges a
+    Hometrack-issued API key for a short-lived token (five minutes on the
+    Valuation API; a plain-text GUID on the public API). Every one of those flows
+    starts from a credential Hometrack hands you.
+  signupPageObserved: |
+    https://developer.hometrack.com/signup returned HTTP 200 and renders the stock
+    Azure API Management "signup-runtime" widget with a "Already a member? Sign
+    in" link; https://developer.hometrack.com/signin returned HTTP 200 with the
+    matching sign-in page. These are unmodified APIM boilerplate pages and were
+    NOT exercised — no account was created. They are recorded as observed, not as
+    a working self-serve path, because the portal's own instructions contradict
+    them and because a portal account would in any case yield only an APIM
+    subscription key, while the gateway enforces Auth0 bearer tokens. Every API in
+    the catalogue is registered with "subscriptionRequired": false, which confirms
+    that the APIM subscription key is not the operative credential.
+  productsCatalogue: |
+    GET https://developer.hometrack.com/developer/products?api-version=2022-04-01-preview
+    returned HTTP 200 with exactly two products: "Broker AVM API Product"
+    (id broker-avm) and "Realtime Proxy Product" (id realtime-proxy). Both carry
+    subscriptionRequired: true and approvalRequired: false, with empty description
+    and empty terms, and no subscriptionsLimit. Neither is a pricing plan and
+    neither publishes terms.
+  trialSandboxPricing: |
+    No sandbox host resolves (sandbox.hometrack.com does not resolve). No trial is
+    offered on the developer portal — the only trial concept in the entire surface
+    is GET /api/trial/{apikey}/{token} inside the Hometrack API Public API, which
+    itself requires an existing Hometrack API key. No pricing is published
+    anywhere.
+  commercialContact: https://www.hometrack.com/contact-us/
+  docsAreOpen: |
+    Yes, and more open than Hometrack likely intends. The APIM developer data
+    plane leaks the full machine-readable contract — every operation, every
+    parameter, every request and response example, every component schema —
+    without any credential, including for the "Hometrack API Public" API which
+    contains an internal scheduled-task endpoint and two "For test purpose"
+    endpoints. This is recorded as a finding, not exploited: everything harvested
+    was served by Hometrack's own portal to an ordinary anonymous GET.
+
+openData:
+  publishesOpenData: false
+  note: |
+    Hometrack publishes no open, unlicensed, publicly callable dataset. It
+    publishes market commentary as PDFs and web pages — the UK Cities House Price
+    Index, rental market reports, new build and sales rates reports under
+    /newsroom/ — but those are reports for humans behind a newsletter signup, not
+    data products, and none of them is exposed as an API. Its comparables,
+    housing market intelligence and property listings data services are all sold
+    under commercial licence.
+
+    Two caveats worth recording precisely. First, https://www.hometrack.com/wp-json/
+    returned HTTP 200 with 233,451 bytes — the WordPress REST API on the corporate
+    site is publicly readable and advertises 13 namespaces including wp/v2. That
+    is a CMS surface, not a property data product, so it is not listed as one of
+    Hometrack's APIs. Second, Hometrack CONSUMES the open UK layer without
+    republishing it: its Climate API is keyed on UPRN, the government identifier,
+    and its EPC endpoint surfaces Energy Performance Certificate data that
+    originates with the UK government's open EPC register. The genuinely open UK
+    property layer belongs to HM Land Registry (Price Paid Data and ownership data
+    under the Open Government Licence) and Ordnance Survey (addressing and
+    mapping), not to Hometrack. This is the UK counterweight to US private
+    control: no industry standard, but real open government property data — and
+    the private AVM vendors are downstream consumers of it.
+
+authModel:
+  scheme: OAuth 2.0 client credentials (machine-to-machine) via Auth0, plus a
+    secondary API-key-for-short-lived-token exchange on two of the APIs
+  identityProvider: Auth0 (EU tenant)
+  issuer: https://hometrack-prod.eu.auth0.com/
+  audience: https://api.hometrack.com
+  tokenEndpoint: https://hometrack-prod.eu.auth0.com/oauth/token
+  documentedFlow: |
+    The API Authentication page documents the flow verbatim. Step 1: POST to
+    https://hometrack-prod.eu.auth0.com/oauth/token with a JSON body of
+    {"client_id", "client_secret", "audience": "https://api.hometrack.com",
+    "grant_type": "client_credentials"}. Step 2: Auth0 returns
+    {"access_token", "scope", "expires_in": 86400, "token_type": "Bearer"} —
+    the token is valid for 24 hours. Step 3: call the API, for example
+    https://api.hometrack.com/valuation/v2, with an Authorization header of type
+    Bearer. The page illustrates step 3 with a Postman screenshot but publishes no
+    downloadable Postman collection.
+  scopesDocumented:
+  - read:valuations
+  - write:valuations
+  scopesNote: |
+    Those two scopes appear verbatim in the example token response on
+    https://developer.hometrack.com/api-authentication. No wider scope catalogue
+    is published. Two application-level permission strings also appear verbatim in
+    the harvested operation metadata for the Hometrack API Public API —
+    "partner.create", "partner.modify" and "pvr.configuration.list" — but those
+    are account permissions on Hometrack's own platform, not OAuth scopes.
+  discoveryDocument: |
+    https://hometrack-prod.eu.auth0.com/.well-known/openid-configuration was
+    fetched anonymously (HTTP 200, 2,753 bytes) and saved verbatim to
+    authentication/hometrack-auth0-openid-configuration.json. It advertises the
+    standard Auth0 endpoint set (authorize, oauth/token, userinfo, oidc/register,
+    oauth/revoke, oauth/device/code, mfa/challenge), a jwks_uri at
+    https://hometrack-prod.eu.auth0.com/.well-known/jwks.json (fetched, HTTP 200,
+    3,068 bytes), PKCE methods S256 and plain, RS256 signing, and Auth0-specific
+    grant types including http://auth0.com/oauth/grant-type/password-realm and
+    the MFA grants. The OIDC scopes_supported list is the generic Auth0 profile
+    set (openid, profile, offline_access, name, given_name, family_name, nickname,
+    email, email_verified, picture, created_at, identities, phone, address) and is
+    NOT the API authorization scope list.
+  noPortalOIDC: |
+    https://developer.hometrack.com/.well-known/openid-configuration returned
+    HTTP 404. The portal itself does not advertise OIDC discovery; only the Auth0
+    tenant does.
+  secondaryTokenExchange: |
+    Two APIs implement a separate, older pattern. The Valuation API's POST
+    /authentication/{apiKey} "authenticates the client by exchanging an API key
+    with a temporary token. The token will only be valid for 5 minutes", and its
+    valuation call then expects Authorization: Token token="<guid>" (Hometrack
+    documents that it also accepts Token token=<guid> and Token <guid>). The
+    Hometrack API Public's POST /api/authentication/{apiKey} returns a plain-text
+    GUID token that is then passed as a URL path segment on almost every other
+    operation in that API — a token-in-the-path design that is worth flagging.
+  gatewayBehaviour: |
+    api.hometrack.com is fronted by Microsoft-Azure-Application-Gateway/v2 behind
+    Azure Front Door. Unmatched root-level paths return HTTP 301 to
+    https://developer.hometrack.com (observed for /, /$metadata, /openapi.json,
+    /swagger.json, /odata, /Reso and even /valuation/v2 with no sub-path).
+    Matched API paths behave properly: /valuation/v2/broker/order/1 returned
+    HTTP 401 with a JSON error body, /climate/epc-hometrack/1 returned HTTP 404
+    {"statusCode": 404, "message": "Resource not found"}, and
+    /valuation-api/v1/status returned HTTP 200 with a zero-byte body. The 301
+    behaviour means a bare 200 on api.hometrack.com is never evidence of an API.
+  transportSecurity: HTTPS only; every API in the catalogue declares
+    protocols ["https"].
+
+apiFamily:
+  segmentationUsedByTheCatalogue:
+  - (PRH) - Core External Client API v2.0
+  - Broker Avm API
+  - Climate API (v2)
+  - Climate GraphQL
+  - Hometrack API Public
+  - Valuation API
+  note: |
+    The six entries in apis.yml mirror the six entries Hometrack's own APIM
+    catalogue returns, one for one. Nothing was invented, nothing was merged and
+    nothing was split. Two of the six are versioned members of APIM version sets
+    (prd-core-api-versions and climate-api-versionset), which implies older
+    versions exist that are not exposed anonymously.
+  listingsSearch: |
+    None. Hometrack publishes no listings search API. It sells a "Property
+    listings data" service under /data-services/, but it is a licensed data feed
+    with no developer surface. This is expected: in the UK, listings live in
+    Rightmove and Zoopla and are fed from agency CRMs, and Hometrack is on the
+    lender side of the market entirely.
+  propertyRecords: |
+    Partial and always keyed to a property, never browsable. The PRH API's
+    /organisation/{orgId}/property/repository endpoints retrieve a property value
+    from the property valuation repository and search that repository by postal
+    code. The Climate API returns per-UPRN risk records. There is no general
+    property record resource.
+  valuationAVM: |
+    The core of the surface and the reason this repo exists. Three of the six APIs
+    are valuation: the Valuation API (POST /valuation/{accountId}), the Broker AVM
+    API (order, order status, valuation, valuation input, raw valuation with audit
+    traces, plus a v2 order that includes climate data), and the PRH API's
+    valuation report retrieval. The Broker AVM request schema is fully harvested
+    and shows exactly what an AVM order requires: address with UPRN, effective
+    date, a loan block including repayment type, loan amount, outstanding and
+    additional loan amounts, remaining term, minimum rental income and instruction
+    type, and a property block including bedrooms, receptions, property type and
+    style, construction type and period, year built, floor area, parking,
+    ex-local-authority status and visibility from road.
+  transactions: |
+    No transaction, escrow, title or conveyancing API. PRH's instruction and case
+    lifecycle is the nearest thing — instructing a valuation, tracking case
+    processes and statuses, and receiving reports — but that is a surveyor
+    instruction workflow, not a property transaction API.
+  documents: |
+    Yes, and it is a real strength. The PRH API attaches documents to cases
+    (POST /organisation/{orgId}/case/{caseId}/documents), lists them, retrieves an
+    individual document by reference, and offers a /verify sub-resource to confirm
+    availability. The Hometrack API Public generates and downloads Property
+    Valuation Report files and manages their co-branding.
+  tenancy: |
+    None. No tenancy, landlord, lettings or property management API. The only
+    lettings-adjacent field found anywhere is minimumRentalIncome inside the
+    Broker AVM loan block, used for buy-to-let affordability.
+  payments: |
+    None. No payments API and no billing API. Commercial terms sit outside the
+    developer surface entirely.
+  climateAndRisk: |
+    A distinct family that most providers in this sector do not have at all:
+    flood, coastal erosion, subsidence, ground risk and EPC energy performance,
+    per property, with named third-party suppliers visible in the URL paths
+    (Twinn for flood/subsidence/coastal erosion, Terrafirma for ground).
+
+webhooksEventsSdksPostman:
+  webhooks: |
+    None found. No webhook, callback, subscription or event-notification operation
+    appears in any of the six APIs, and the developer portal has no webhooks page.
+    Every published interaction is synchronous request/response. The Broker AVM
+    API's order/status polling pattern (POST /broker/order then GET
+    /broker/order/{orderId}/status) is the giveaway — an asynchronous workflow
+    served by polling rather than by callbacks.
+  events: |
+    None. No AsyncAPI, no message queue, no streaming surface, no SSE.
+  sdks: |
+    None found. No SDK, client library or code-sample repository is published.
+    github.com/Hometrack exists as an organisation (created 2023-03-07, blog
+    https://www.hometrack.com, location "United Kingdom") but the GitHub API
+    reports public_repos: 0 and the repos endpoint returns an empty array.
+  postman: |
+    None published. The API Authentication page illustrates step 3 with a Postman
+    screenshot ("In Postman this will look as follows:") but offers no collection
+    to download, no Run-in-Postman button and no workspace link.
+  status: |
+    No status page. status.hometrack.com does not resolve. The nearest thing is
+    the Valuation API's own GET /status availability check.
+  changelog: |
+    No changelog page, but the portal home publishes an explicit versioning
+    policy: "only the three newest versions will be available", plus an optional
+    public beta/preview version, with a worked example (v11b public beta, v10
+    latest, v9 deprecated first warning, v8 deprecated last warning). That is a
+    real, published deprecation policy and is unusually clear for this sector.
+
+harvest:
+  fetchDate: '2026-07-26'
+  openapiHarvested: true
+  specsCount: 6
+  method: |
+    Azure API Management developer data plane, anonymous, api-version
+    2022-04-01-preview. The catalogue at /developer/apis returned all six APIs.
+    For each API: /developer/apis/{id}?export=true&format=openapi-link returned an
+    HTTP 200 JSON body containing a SAS-signed blob URL, and that URL served a
+    real OpenAPI 3.0.1 YAML document (info, servers, securitySchemes and security
+    populated; paths empty in the export). /developer/apis/{id}/operations
+    returned the operation list, /developer/apis/{id}/operations/{opId} returned
+    per-operation templateParameters, query parameters, headers, request
+    representations with worked examples and typed schema references, and
+    responses with status codes and descriptions. /developer/apis/{id}/schemas and
+    /developer/apis/{id}/schemas/{schemaId} returned the component schema
+    documents. 76 anonymous requests in total, all HTTP 200.
+  assembly: |
+    The exported OpenAPI documents carry empty paths, so each saved spec is the
+    verbatim export with its paths and components.schemas repopulated from
+    Hometrack's own operation and schema metadata fetched from the same portal.
+    Nothing was invented: every path, method, parameter, description, example and
+    schema is a byte-for-byte copy of what Hometrack's APIM instance served. Each
+    saved spec records its exact source URLs, HTTP statuses and fetch date in
+    info.x-api-evangelist-provenance.
+  normalizations: |
+    Two mechanical, lossless conversions were applied and are recorded in each
+    affected file. (1) Three of the five schema documents are served as Swagger 2.0
+    definition blocks (contentType application/vnd.ms-azure-apim.swagger.definitions+json);
+    their internal $ref values were rewritten from #/definitions/X to
+    #/components/schemas/X so they resolve under OpenAPI 3. (2) The PRH schema
+    document is raw draft-4 JSON Schema and used the draft-4 tuple form for
+    "items" in 13 places; each single-element items array was rewritten to the
+    equivalent single items object. No property, type, description, example,
+    required list or enum was changed anywhere.
+  validation: |
+    All six specs parse as YAML and pass openapi-spec-validator 0.9.0 (OpenAPI
+    3.0). All $ref targets resolve — zero dangling references across 381
+    component schemas. apis.yml and review.yml parse as YAML; the saved Auth0
+    discovery document parses as JSON.
+  artifactsSaved:
+  - path: openapi/hometrack-valuation-api-v1-openapi.yml
+    sourceURL: https://developer.hometrack.com/developer/apis/realtime-proxy-api?api-version=2022-04-01-preview&export=true&format=openapi-link
+    httpStatus: 200
+    format: OpenAPI 3.0.1
+    paths: 3
+    schemas: 3
+    parsed: true
+  - path: openapi/hometrack-broker-avm-api-openapi.yml
+    sourceURL: https://developer.hometrack.com/developer/apis/broker-avm-api?api-version=2022-04-01-preview&export=true&format=openapi-link
+    httpStatus: 200
+    format: OpenAPI 3.0.1
+    paths: 12
+    schemas: 30
+    parsed: true
+  - path: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
+    sourceURL: https://developer.hometrack.com/developer/apis/prd-core-api-v2-0?api-version=2022-04-01-preview&export=true&format=openapi-link
+    httpStatus: 200
+    format: OpenAPI 3.0.1
+    paths: 16
+    schemas: 257
+    parsed: true
+  - path: openapi/hometrack-climate-api-v2-openapi.yml
+    sourceURL: https://developer.hometrack.com/developer/apis/climate-api-v2?api-version=2022-04-01-preview&export=true&format=openapi-link
+    httpStatus: 200
+    format: OpenAPI 3.0.1
+    paths: 5
+    schemas: 35
+    parsed: true
+  - path: openapi/hometrack-api-public-openapi.yml
+    sourceURL: https://developer.hometrack.com/developer/apis/hometrack-api-public?api-version=2022-04-01-preview&export=true&format=openapi-link
+    httpStatus: 200
+    format: OpenAPI 3.0.1
+    paths: 19
+    schemas: 56
+    parsed: true
+  - path: openapi/hometrack-climate-graphql-api-openapi.yml
+    sourceURL: https://developer.hometrack.com/developer/apis/climate-api-graphql?api-version=2022-04-01-preview&export=true&format=openapi-link
+    httpStatus: 200
+    format: OpenAPI 3.0.1
+    paths: 0
+    schemas: 0
+    parsed: true
+    note: Stub by necessity. This is a GraphQL API; its operations and schemas
+      collections both returned empty arrays anonymously, so no SDL and no paths
+      could be harvested. Saved because the servers and securitySchemes blocks
+      are real and because the absence of the schema is the finding.
+  - path: authentication/hometrack-auth0-openid-configuration.json
+    sourceURL: https://hometrack-prod.eu.auth0.com/.well-known/openid-configuration
+    httpStatus: 200
+    bytes: 2753
+    format: OpenID Connect Discovery 1.0
+    parsed: true
+    note: Saved verbatim, unmodified. Fetched anonymously with no credentials.
+
+probes:
+- url: https://hometrack.com/
+  status: 301
+  note: Redirects to https://www.hometrack.com/.
+- url: https://www.hometrack.com/
+  status: 200
+  note: 1,631,675 bytes. WordPress corporate site. Products, solutions, newsroom.
+- url: https://www.hometrack.com/about/
+  status: 200
+  note: Founded 1999, part of Houseful, founding member of the European AVM
+    Alliance, ISO 27001.
+- url: https://www.hometrack.com/data-services/
+  status: 200
+  note: Where /developers redirects to. Comparables, housing intelligence,
+    property listings data, property valuation report, site appraisal report.
+- url: https://www.hometrack.com/developers
+  status: 301
+  note: Redirects to /solutions/developers-and-housing-associations/ — "developers"
+    here means property developers, not software developers. A homonym trap.
+- url: https://www.hometrack.com/api
+  status: 404
+- url: https://www.hometrack.com/docs
+  status: 404
+- url: https://www.hometrack.com/robots.txt
+  status: 200
+  note: 82 bytes. Disallows /wp-admin/ only. Crawl-delay 10.
+- url: https://www.hometrack.com/sitemap.xml
+  status: 301
+  note: Redirects to the home page — no sitemap is served.
+- url: https://www.hometrack.com/.well-known/security.txt
+  status: 404
+  note: nginx default 404. No security.txt, no published vulnerability disclosure
+    policy.
+- url: https://www.hometrack.com/wp-json/
+  status: 200
+  note: 233,451 bytes. WordPress REST API discovery document, publicly readable,
+    13 namespaces including wp/v2. CMS surface, not a product API.
+- url: https://www.hometrack.com/feed/
+  status: 200
+  note: application/rss+xml. Site-wide RSS feed.
+- url: https://www.hometrack.com/press-releases/
+  status: 301
+  note: Trailing-slash redirect; the page itself serves. /press-releases/feed/
+    returned HTTP 403.
+- url: https://developer.hometrack.com/
+  status: 200
+  note: 7,338 bytes. THE developer portal. Azure API Management managed portal,
+    anonymous, no login wall. Footer identifies Hometrack Data Systems Ltd,
+    company number 4622244, The Cooperage, 5 Copper Row, London SE1 2LH, and
+    carries a "Part of Zoopla" logo. States the API-key-by-request policy and the
+    three-newest-versions deprecation policy verbatim.
+- url: https://developer.hometrack.com/apis
+  status: 200
+  note: 4,453 bytes. The API list page. Rendered client-side by an APIM
+    <api-list> widget, so the HTML itself is empty of API names.
+- url: https://developer.hometrack.com/api-authentication
+  status: 200
+  note: 6,200 bytes. The complete OAuth2 client-credentials flow, the Auth0 token
+    endpoint, the audience, an example token response containing the
+    read:valuations and write:valuations scopes, and the 24-hour token lifetime.
+- url: https://developer.hometrack.com/api-details
+  status: 200
+  note: 5,764 bytes. Client-side API detail template.
+- url: https://developer.hometrack.com/signin
+  status: 200
+  note: Stock APIM sign-in page.
+- url: https://developer.hometrack.com/signup
+  status: 200
+  note: Stock APIM sign-up page with the signup-runtime widget. Not exercised; no
+    account created.
+- url: https://developer.hometrack.com/.well-known/openid-configuration
+  status: 404
+- url: https://developer.hometrack.com/openapi.json
+  status: 404
+- url: https://developer.hometrack.com/swagger.json
+  status: 404
+- url: https://developer.hometrack.com/$metadata
+  status: 404
+- url: https://developer.hometrack.com/api/apis
+  status: 404
+- url: https://developer.hometrack.com/mapi/apis
+  status: 400
+  note: MissingOrIncorrectVersionParameter — the error itself disclosed the
+    supported api-version list.
+- url: https://developer.hometrack.com/developer/apis?api-version=2022-04-01-preview
+  status: 200
+  note: 2,622 bytes. THE anonymous catalogue. All six APIs with ids, paths,
+    protocols, version sets and subscription settings.
+- url: https://developer.hometrack.com/developer/products?api-version=2022-04-01-preview
+  status: 200
+  note: 403 bytes. Two products, both subscriptionRequired true and
+    approvalRequired false, both with empty terms.
+- url: https://developer.hometrack.com/developer/apis/{id}/operations?api-version=2022-04-01-preview
+  status: 200
+  note: Six requests, all 200. 59 operations total across the five REST APIs; the
+    GraphQL API returned an empty array.
+- url: https://developer.hometrack.com/developer/apis/{id}/operations/{opId}?api-version=2022-04-01-preview
+  status: 200
+  note: 59 requests, all 200. Full request/response metadata including worked JSON
+    examples.
+- url: https://developer.hometrack.com/developer/apis/{id}/schemas?api-version=2022-04-01-preview
+  status: 200
+  note: Five schema documents found; the GraphQL API has none exposed.
+- url: https://developer.hometrack.com/developer/identity?api-version=2022-04-01-preview
+  status: 401
+  note: '{"code":"Unauthorized","message":"Please ensure that Authorization header
+    contains valid token."}'
+- url: https://developer.hometrack.com/developer/identityProviders?api-version=2022-04-01-preview
+  status: 404
+- url: https://api.hometrack.com/
+  status: 301
+  note: Microsoft-Azure-Application-Gateway/v2 redirect to
+    https://developer.hometrack.com. Same for /$metadata, /openapi.json,
+    /swagger.json, /odata, /Reso and bare /valuation/v2.
+- url: https://api.hometrack.com/valuation/v2/broker/order/1
+  status: 401
+  note: '{ "statusCode": 401, "message": "Unauthorized. Access token is missing or
+    invalid." } — the real gate, confirmed.'
+- url: https://api.hometrack.com/climate/epc-hometrack/1
+  status: 404
+  note: '{ "statusCode": 404, "message": "Resource not found" } — routed and live,
+    UPRN 1 simply does not exist.'
+- url: https://api.hometrack.com/valuation-api/v1/status
+  status: 200
+  note: Zero-byte body. The ONLY anonymously successful call in the entire
+    surface, and it is the documented availability check.
+- url: https://api.hometrack.com/climate/graphql
+  status: 404
+  note: '{ "statusCode": 404, "message": "Resource not found" } to an anonymous GET;
+    no GraphQL Playground and no introspection surface exposed.'
+- url: https://hometrack-prod.eu.auth0.com/.well-known/openid-configuration
+  status: 200
+  note: 2,753 bytes, harvested verbatim.
+- url: https://hometrack-prod.eu.auth0.com/.well-known/jwks.json
+  status: 200
+  note: 3,068 bytes.
+- url: https://developers.hometrack.com/
+  status: '000'
+  note: Does not resolve. The portal is developer. (singular), not developers.
+- url: https://docs.hometrack.com/
+  status: '000'
+  note: Does not resolve.
+- url: https://status.hometrack.com/
+  status: '000'
+  note: Does not resolve. No status page.
+- url: https://sandbox.hometrack.com/
+  status: '000'
+  note: Does not resolve. No sandbox.
+- url: https://portal.hometrack.com/
+  status: '000'
+  note: Does not resolve.
+- url: https://api.hometrack.com.au/
+  status: '000'
+  note: Probed to rule out confusion with the separately-owned Australian
+    Hometrack brand. Does not resolve.
+- url: https://api.github.com/orgs/hometrack
+  status: 200
+  note: Organisation exists (created 2023-03-07, location "United Kingdom", blog
+    https://www.hometrack.com) but public_repos is 0 and the repos endpoint
+    returns an empty array. No public code, no SDKs.
+- url: https://www.reso.org/certificates/
+  status: 200
+  note: 416,233 bytes. Zero occurrences of "hometrack"; zero occurrences of
+    "united kingdom".
+
+identity:
+  legalEntity: Hometrack Data Systems Ltd
+  companyNumber: '4622244'
+  vat: '798493353'
+  registeredAddress: The Cooperage, 5 Copper Row, London, SE1 2LH, United Kingdom
+  source: https://developer.hometrack.com/ footer, verbatim
+  founded: '1999'
+  parent: Houseful (formerly Zoopla Property Group / ZPG), owned by Silver Lake;
+    sibling brands include Zoopla, PrimeLocation, Alto and Jupix. The developer
+    portal still carries a "Part of Zoopla" logo asset.
+  memberships: Founding member of the European AVM Alliance
+    (https://www.europeanavmalliance.org/), stated verbatim in the developer
+    portal footer.
+  certifications: ISO 27001, claimed at https://www.hometrack.com/iso-27001/
+  claims: |
+    Stated by Hometrack on its own site and recorded here as claims, not as
+    verified facts: AVM launched 2002; more than 50 million valuations a year;
+    18 of the top 20 UK mortgage lenders use the AVM in origination; roughly
+    1,600 mortgage origination AVMs each working day and 24 million portfolio
+    AVMs a year; 80% of valuations within 10% of the surveyor's recommended
+    value; first AVM accredited by Moody's, Standard & Poor's and Fitch; powers
+    Zoopla My Home estimates.

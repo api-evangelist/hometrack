@@ -1,0 +1,1018 @@
+openapi: 3.0.1
+info:
+  title: Broker Avm API
+  description: This API provides access to the Broker AVM service.
+  version: '1.0'
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/broker-avm-api?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/broker-avm-api/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/broker-avm-api/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/broker-avm-api/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and
+      schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com/valuation/v2
+- url: https://api.hometrack.local/valuation/v2
+paths:
+  /broker/valuation/{valuationId}:
+    get:
+      operationId: FindValuationById-Spec
+      summary: FindValuationById-Spec
+      description: Find a valuation by ID
+      parameters:
+      - name: valuationId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/BrokerValuation-valuationId-GetRequest'
+        description: ID of valuation to return
+      responses:
+        '200':
+          description: Valuation response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiValuationResponseBroker'
+              example:
+                order:
+                  orderReference: string
+                  orderId: string
+                valuationId: string
+                reference: string
+                avm:
+                  valuationDate: string
+                  effectiveDate: string
+                  result: 0
+                  capital:
+                    capitalAmount: 0
+                    confidenceBand: string
+                    lowerCapitalAmount: 0
+                    upperCapitalAmount: 0
+                  rental:
+                    rentalAmount: 0
+                    confidenceBand: string
+                    lowerRentalAmount: 0
+                    upperRentalAmount: 0
+                  property:
+                    yearBuilt: 0
+                    floorArea: 0
+                    receptions: 0
+                    knownValueDate: string
+                    knownValue: 0
+                    bedrooms: 0
+                    propertyType: 0
+                  additionalAttributes:
+                  - name: string
+                    value: string
+                  address:
+                    postcode: string
+                    postTown: string
+                    uprn: 0
+                    udprn: 0
+                    building: string
+                    thoroughfare: string
+                    dependentLocality: string
+                    buildingNumber: 0
+                    dependantThoroughfare: string
+                    subBuilding: string
+        '202':
+          description: Valuation order in progress
+        '401':
+          description: Unauthorised request
+        '404':
+          description: Valuation order not found
+  /broker/v2/valuation/{valuationId}:
+    get:
+      operationId: FindValuationByIdV2-Spec
+      summary: FindValuationByIdV2-Spec
+      description: Find a valuation by ID
+      parameters:
+      - name: valuationId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/BrokerV2Valuation-valuationId-GetRequest'
+        description: ID of valuation to return
+      responses:
+        '200':
+          description: Valuation response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiValuationResponseBroker'
+              example:
+                order:
+                  orderReference: string
+                  orderId: string
+                valuationId: string
+                reference: string
+                avm:
+                  valuationDate: string
+                  effectiveDate: string
+                  result: 0
+                  capital:
+                    capitalAmount: 0
+                    confidenceBand: string
+                    lowerCapitalAmount: 0
+                    upperCapitalAmount: 0
+                  rental:
+                    rentalAmount: 0
+                    confidenceBand: string
+                    lowerRentalAmount: 0
+                    upperRentalAmount: 0
+                  property:
+                    yearBuilt: 0
+                    floorArea: 0
+                    receptions: 0
+                    knownValueDate: string
+                    knownValue: 0
+                    bedrooms: 0
+                    propertyType: 0
+                  additionalAttributes:
+                  - name: string
+                    value: string
+                  address:
+                    postcode: string
+                    postTown: string
+                    uprn: 0
+                    udprn: 0
+                    building: string
+                    thoroughfare: string
+                    dependentLocality: string
+                    buildingNumber: 0
+                    dependantThoroughfare: string
+                    subBuilding: string
+        '202':
+          description: Valuation order in progress
+        '401':
+          description: Unauthorised request
+        '404':
+          description: Valuation order not found
+  /internal/valuation/{valuationId}/raw:
+    get:
+      operationId: GetRawValuationById-Spec
+      summary: GetRawValuationById-Spec
+      description: Returns a single valuation response in raw format - with all data, audit traces etc
+      parameters:
+      - name: valuationId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/InternalValuation-valuationId-RawGetRequest'
+        description: ID of valuation to return
+      responses:
+        '200':
+          description: Valuation response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiValuationResponseBroker'
+              example:
+                order:
+                  orderReference: string
+                  orderId: string
+                valuationId: string
+                reference: string
+                avm:
+                  valuationDate: string
+                  effectiveDate: string
+                  result: 0
+                  capital:
+                    capitalAmount: 0
+                    confidenceBand: string
+                    lowerCapitalAmount: 0
+                    upperCapitalAmount: 0
+                  rental:
+                    rentalAmount: 0
+                    confidenceBand: string
+                    lowerRentalAmount: 0
+                    upperRentalAmount: 0
+                  property:
+                    yearBuilt: 0
+                    floorArea: 0
+                    receptions: 0
+                    knownValueDate: string
+                    knownValue: 0
+                    bedrooms: 0
+                    propertyType: 0
+                  additionalAttributes:
+                  - name: string
+                    value: string
+                  address:
+                    postcode: string
+                    postTown: string
+                    uprn: 0
+                    udprn: 0
+                    building: string
+                    thoroughfare: string
+                    dependentLocality: string
+                    buildingNumber: 0
+                    dependantThoroughfare: string
+                    subBuilding: string
+        '202':
+          description: Valuation order in progress
+        '401':
+          description: Unauthorised request
+        '404':
+          description: Valuation order not found
+  /internal/v2/valuation/{valuationId}/raw:
+    get:
+      operationId: GetRawValuationByIdV2-Spec
+      summary: GetRawValuationByIdV2-Spec
+      description: Returns a single valuation response in raw format - with all data, audit traces etc
+      parameters:
+      - name: valuationId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/InternalV2Valuation-valuationId-RawGetRequest'
+        description: ID of valuation to return
+      responses:
+        '200':
+          description: Valuation response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiValuationResponseBroker'
+              example:
+                order:
+                  orderReference: string
+                  orderId: string
+                valuationId: string
+                reference: string
+                avm:
+                  valuationDate: string
+                  effectiveDate: string
+                  result: 0
+                  capital:
+                    capitalAmount: 0
+                    confidenceBand: string
+                    lowerCapitalAmount: 0
+                    upperCapitalAmount: 0
+                  rental:
+                    rentalAmount: 0
+                    confidenceBand: string
+                    lowerRentalAmount: 0
+                    upperRentalAmount: 0
+                  property:
+                    yearBuilt: 0
+                    floorArea: 0
+                    receptions: 0
+                    knownValueDate: string
+                    knownValue: 0
+                    bedrooms: 0
+                    propertyType: 0
+                  additionalAttributes:
+                  - name: string
+                    value: string
+                  address:
+                    postcode: string
+                    postTown: string
+                    uprn: 0
+                    udprn: 0
+                    building: string
+                    thoroughfare: string
+                    dependentLocality: string
+                    buildingNumber: 0
+                    dependantThoroughfare: string
+                    subBuilding: string
+        '202':
+          description: Valuation order in progress
+        '401':
+          description: Unauthorised request
+        '404':
+          description: Valuation order not found
+  /broker/valuation/{valuationId}/input:
+    get:
+      operationId: GetValuationInputById-Spec
+      summary: GetValuationInputById-Spec
+      description: Gets the input supplied at inception to request a valuation
+      parameters:
+      - name: valuationId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/BrokerValuation-valuationId-InputGetRequest'
+        description: ID of valuation to return
+      responses:
+        '200':
+          description: Valuation Input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/valuationSectionBroker'
+              example:
+                address:
+                  postcode: string
+                  address: string
+                  uprn: 0
+                effectiveDate: string
+                loan:
+                  repaymentType: 0
+                  minimumRentalIncome: 0
+                  additionalLoanAmount: 0
+                  outstandingLoanAmount: 0
+                  loanAmount: 0
+                  remainingTerm: 0
+                  existingMortgage: 0
+                  instructionType: 1
+                property:
+                  receptions: 0
+                  bedrooms: 0
+                  propertyStyle: string
+                  propertyType: 0
+                  visibleFromRoad: true
+                  constructionPeriod: string
+                  constructionType: 0
+                  exLocalAuthority: true
+                  parking: true
+                  floorArea: 0
+                  yearBuilt: 0
+                reference: string
+        '401':
+          description: Unauthorised request
+        '404':
+          description: Valuation order not found
+  /broker/v2/valuation/{valuationId}/input:
+    get:
+      operationId: GetValuationInputByIdV2-Spec
+      summary: GetValuationInputByIdV2-Spec
+      description: Gets the input supplied at inception to request a valuation
+      parameters:
+      - name: valuationId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/BrokerV2Valuation-valuationId-InputGetRequest'
+        description: ID of valuation to return
+      responses:
+        '200':
+          description: Valuation Input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/valuationSectionBroker'
+              example:
+                address:
+                  postcode: string
+                  address: string
+                  uprn: 0
+                effectiveDate: string
+                loan:
+                  repaymentType: 0
+                  minimumRentalIncome: 0
+                  additionalLoanAmount: 0
+                  outstandingLoanAmount: 0
+                  loanAmount: 0
+                  remainingTerm: 0
+                  existingMortgage: 0
+                  instructionType: 1
+                property:
+                  receptions: 0
+                  bedrooms: 0
+                  propertyStyle: string
+                  propertyType: 0
+                  visibleFromRoad: true
+                  constructionPeriod: string
+                  constructionType: 0
+                  exLocalAuthority: true
+                  parking: true
+                  floorArea: 0
+                  yearBuilt: 0
+                reference: string
+        '401':
+          description: Unauthorised request
+        '404':
+          description: Valuation order not found
+  /broker/order/{orderId}:
+    get:
+      operationId: GetValuationOrderById-Spec
+      summary: GetValuationOrderById-Spec
+      description: Find a valuation order by ID
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/BrokerOrder-orderId-GetRequest'
+        description: ID of order to return
+      responses:
+        '200':
+          description: Valuation order response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/valuationOrderResponse'
+              example:
+                orderId: string
+                orderReference: string
+                valuations:
+                - valuationId: string
+                  reference: string
+        '401':
+          description: Unauthorised request
+        '404':
+          description: Valuation order not found
+  /broker/v2/order/{orderId}:
+    get:
+      operationId: GetValuationOrderByIdV2-Spec
+      summary: GetValuationOrderByIdV2-Spec
+      description: Find a valuation order by ID
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/BrokerV2Order-orderId-GetRequest'
+        description: ID of order to return
+      responses:
+        '200':
+          description: Valuation order response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/valuationOrderResponse'
+              example:
+                orderId: string
+                orderReference: string
+                valuations:
+                - valuationId: string
+                  reference: string
+        '401':
+          description: Unauthorised request
+        '404':
+          description: Valuation order not found
+  /broker/order/{orderId}/status:
+    get:
+      operationId: GetValuationStatusById-Spec
+      summary: GetValuationStatusById-Spec
+      description: Get the status of a valuation order by order ID
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/BrokerOrder-orderId-StatusGetRequest'
+        description: ID of order to return
+      responses:
+        '200':
+          description: Valuation order status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/orderStatusResponse'
+              example:
+                orderId: string
+                orderReference: string
+                status: 0
+                valuations:
+                - valuationId: string
+                  reference: string
+                  status: 0
+                  valuationType: 0
+        '401':
+          description: Unauthorised request
+        '404':
+          description: Valuation order not found
+  /broker/v2/order/{orderId}/status:
+    get:
+      operationId: GetValuationStatusByIdV2-Spec
+      summary: GetValuationStatusByIdV2-Spec
+      description: Get the status of a valuation order by order ID
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/BrokerV2Order-orderId-StatusGetRequest'
+        description: ID of order to return
+      responses:
+        '200':
+          description: Valuation order status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/orderStatusResponse'
+              example:
+                orderId: string
+                orderReference: string
+                status: 0
+                valuations:
+                - valuationId: string
+                  reference: string
+                  status: 0
+                  valuationType: 0
+        '401':
+          description: Unauthorised request
+        '404':
+          description: Valuation order not found
+  /broker/order:
+    post:
+      operationId: ValuePropertyBroker-Spec
+      summary: ValuePropertyBroker-Spec
+      description: Creates the valuation order for the property
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/apiRequestBroker'
+            example:
+              order:
+                accountId: 0
+                orderReference: string
+                userId: 0
+                valuationType: 0
+              valuations:
+              - address:
+                  postcode: string
+                  address: string
+                  uprn: 0
+                effectiveDate: string
+                loan:
+                  repaymentType: 0
+                  minimumRentalIncome: 0
+                  additionalLoanAmount: 0
+                  outstandingLoanAmount: 0
+                  loanAmount: 0
+                  remainingTerm: 0
+                  existingMortgage: 0
+                  instructionType: 1
+                property:
+                  receptions: 0
+                  bedrooms: 0
+                  propertyStyle: string
+                  propertyType: 0
+                  visibleFromRoad: true
+                  constructionPeriod: string
+                  constructionType: 0
+                  exLocalAuthority: true
+                  parking: true
+                  floorArea: 0
+                  yearBuilt: 0
+                reference: string
+      responses:
+        '200':
+          description: Valuation order ID
+          content:
+            plain/text:
+              schema:
+                $ref: '#/components/schemas/BrokerOrderPost200PlainTextResponse'
+        '400':
+          description: Incorrect input data submitted
+        '403':
+          description: Operation forbidden
+  /broker/v2/order:
+    post:
+      operationId: ValuePropertyBrokerV2-Spec
+      summary: ValuePropertyBrokerV2-Spec
+      description: Creates the valuation order with climate data for the property
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/apiRequestBroker'
+            example:
+              order:
+                accountId: 0
+                orderReference: string
+                userId: 0
+                valuationType: 0
+              valuations:
+              - address:
+                  postcode: string
+                  address: string
+                  uprn: 0
+                effectiveDate: string
+                loan:
+                  repaymentType: 0
+                  minimumRentalIncome: 0
+                  additionalLoanAmount: 0
+                  outstandingLoanAmount: 0
+                  loanAmount: 0
+                  remainingTerm: 0
+                  existingMortgage: 0
+                  instructionType: 1
+                property:
+                  receptions: 0
+                  bedrooms: 0
+                  propertyStyle: string
+                  propertyType: 0
+                  visibleFromRoad: true
+                  constructionPeriod: string
+                  constructionType: 0
+                  exLocalAuthority: true
+                  parking: true
+                  floorArea: 0
+                  yearBuilt: 0
+                reference: string
+      responses:
+        '200':
+          description: Valuation order ID
+          content:
+            plain/text:
+              schema:
+                $ref: '#/components/schemas/BrokerV2OrderPost200PlainTextResponse'
+        '400':
+          description: Incorrect input data submitted
+        '403':
+          description: Operation forbidden
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+  schemas:
+    additionalAttribute:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    addressRequestBroker:
+      type: object
+      properties:
+        postcode:
+          type: string
+        address:
+          type: string
+        uprn:
+          type: integer
+          format: int64
+          nullable: true
+    addressResponse:
+      type: object
+      properties:
+        postcode:
+          type: string
+        postTown:
+          type: string
+        uprn:
+          type: integer
+          format: int64
+          nullable: true
+        udprn:
+          type: integer
+          format: int64
+          nullable: true
+        building:
+          type: string
+        thoroughfare:
+          type: string
+        dependentLocality:
+          type: string
+        buildingNumber:
+          type: integer
+          format: int32
+          nullable: true
+        dependantThoroughfare:
+          type: string
+        subBuilding:
+          type: string
+    apiRequestBroker:
+      type: object
+      properties:
+        order:
+          $ref: '#/components/schemas/order'
+        valuations:
+          type: array
+          items:
+            $ref: '#/components/schemas/valuationSectionBroker'
+    apiValuationResponseBroker:
+      type: object
+      properties:
+        order:
+          $ref: '#/components/schemas/orderApi'
+        valuationId:
+          type: string
+        reference:
+          type: string
+        avm:
+          $ref: '#/components/schemas/avmValuationBroker'
+    avmValuationBroker:
+      type: object
+      properties:
+        valuationDate:
+          type: string
+          format: date-time
+        effectiveDate:
+          type: string
+          format: date-time
+        result:
+          enum:
+          - 0
+          - 1
+          type: integer
+          format: int32
+          default: 0
+        capital:
+          $ref: '#/components/schemas/cavmCapital'
+        rental:
+          $ref: '#/components/schemas/cavmRental'
+        property:
+          $ref: '#/components/schemas/propertyAttributesUsedBroker'
+        additionalAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/additionalAttribute'
+        address:
+          $ref: '#/components/schemas/addressResponse'
+    cavmCapital:
+      type: object
+      properties:
+        capitalAmount:
+          type: integer
+          format: int32
+        confidenceBand:
+          type: string
+        lowerCapitalAmount:
+          type: integer
+          format: int32
+        upperCapitalAmount:
+          type: integer
+          format: int32
+    cavmRental:
+      type: object
+      properties:
+        rentalAmount:
+          type: integer
+          format: int32
+        confidenceBand:
+          type: string
+        lowerRentalAmount:
+          type: integer
+          format: int32
+        upperRentalAmount:
+          type: integer
+          format: int32
+    loan:
+      type: object
+      properties:
+        repaymentType:
+          type: integer
+          format: int32
+          nullable: true
+        minimumRentalIncome:
+          type: integer
+          format: int32
+          nullable: true
+        additionalLoanAmount:
+          type: integer
+          format: int32
+          nullable: true
+        outstandingLoanAmount:
+          type: integer
+          format: int32
+          nullable: true
+        loanAmount:
+          type: integer
+          format: int32
+          nullable: true
+        remainingTerm:
+          type: integer
+          format: int32
+          nullable: true
+        existingMortgage:
+          type: integer
+          format: int32
+          nullable: true
+        instructionType:
+          enum:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          type: integer
+          format: int32
+          default: 1
+          nullable: true
+    order:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        orderReference:
+          type: string
+        userId:
+          type: integer
+          format: int32
+        valuationType:
+          enum:
+          - 0
+          - 1
+          - 2
+          type: integer
+          format: int32
+          default: 0
+    orderApi:
+      type: object
+      properties:
+        orderReference:
+          type: string
+        orderId:
+          type: string
+    orderStatusResponse:
+      type: object
+      properties:
+        orderId:
+          type: string
+        orderReference:
+          type: string
+        status:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          type: integer
+          format: int32
+          default: 0
+        valuations:
+          type: array
+          items:
+            $ref: '#/components/schemas/valuationStatusResponse'
+    property:
+      type: object
+      properties:
+        receptions:
+          type: integer
+          format: int32
+          nullable: true
+        bedrooms:
+          type: integer
+          format: int32
+          nullable: true
+        propertyStyle:
+          type: string
+        propertyType:
+          type: integer
+          format: int32
+          nullable: true
+        visibleFromRoad:
+          type: boolean
+        constructionPeriod:
+          type: string
+        constructionType:
+          type: integer
+          format: int32
+          nullable: true
+        exLocalAuthority:
+          type: boolean
+        parking:
+          type: boolean
+        floorArea:
+          type: integer
+          format: int32
+          nullable: true
+        yearBuilt:
+          type: integer
+          format: int32
+          nullable: true
+    propertyAttributesUsedBroker:
+      type: object
+      properties:
+        yearBuilt:
+          type: integer
+          format: int32
+          nullable: true
+        floorArea:
+          type: integer
+          format: int32
+          nullable: true
+        receptions:
+          type: integer
+          format: int32
+          nullable: true
+        knownValueDate:
+          type: string
+          format: date-time
+          nullable: true
+        knownValue:
+          type: integer
+          format: int32
+          nullable: true
+        bedrooms:
+          type: integer
+          format: int32
+          nullable: true
+        propertyType:
+          type: integer
+          format: int32
+          nullable: true
+    valuationListResponse:
+      type: object
+      properties:
+        valuationId:
+          type: string
+        reference:
+          type: string
+    valuationOrderResponse:
+      type: object
+      properties:
+        orderId:
+          type: string
+        orderReference:
+          type: string
+        valuations:
+          type: array
+          items:
+            $ref: '#/components/schemas/valuationListResponse'
+    valuationSectionBroker:
+      type: object
+      properties:
+        address:
+          $ref: '#/components/schemas/addressRequestBroker'
+        effectiveDate:
+          type: string
+          format: date-time
+          nullable: true
+        loan:
+          $ref: '#/components/schemas/loan'
+        property:
+          $ref: '#/components/schemas/property'
+        reference:
+          type: string
+    valuationStatusResponse:
+      type: object
+      properties:
+        valuationId:
+          type: string
+        reference:
+          type: string
+        status:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          type: integer
+          format: int32
+          default: 0
+        valuationType:
+          enum:
+          - 0
+          - 1
+          - 2
+          type: integer
+          format: int32
+          default: 0
+    BrokerOrderPost200PlainTextResponse:
+      type: string
+      x-apim-inline: true
+    BrokerValuation-valuationId-GetRequest:
+      type: string
+      x-apim-inline: true
+    InternalValuation-valuationId-RawGetRequest:
+      type: string
+      x-apim-inline: true
+    BrokerValuation-valuationId-InputGetRequest:
+      type: string
+      x-apim-inline: true
+    BrokerOrder-orderId-GetRequest:
+      type: string
+      x-apim-inline: true
+    BrokerOrder-orderId-StatusGetRequest:
+      type: string
+      x-apim-inline: true
+    BrokerV2OrderPost200PlainTextResponse:
+      type: string
+      x-apim-inline: true
+    BrokerV2Valuation-valuationId-GetRequest:
+      type: string
+      x-apim-inline: true
+    InternalV2Valuation-valuationId-RawGetRequest:
+      type: string
+      x-apim-inline: true
+    BrokerV2Valuation-valuationId-InputGetRequest:
+      type: string
+      x-apim-inline: true
+    BrokerV2Order-orderId-GetRequest:
+      type: string
+      x-apim-inline: true
+    BrokerV2Order-orderId-StatusGetRequest:
+      type: string
+      x-apim-inline: true
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
