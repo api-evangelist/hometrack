@@ -1,0 +1,200 @@
+generated: '2026-07-26'
+method: derived
+source: >-
+  Derived from every 4xx/5xx response declared across the six OpenAPI documents
+  in openapi/ (55 paths, 59 operations), plus the live gateway error body
+  observed by anonymous probe of api.hometrack.com.
+format: none
+format_note: >-
+  Hometrack does not use RFC 9457 problem+json. No response in any spec declares
+  application/problem+json and no `type` URI vocabulary exists. Three different
+  error shapes coexist: the APIM gateway envelope, the PRH message/reason
+  envelope, and bare string bodies on the legacy .NET APIs.
+envelopes:
+- id: gateway
+  applies_to: all APIs (Azure API Management edge)
+  media_type: application/json
+  shape: '{"statusCode": <int>, "message": "<string>"}'
+  observed_example: '{"statusCode": 401, "message": "Unauthorized. Access token is missing or invalid."}'
+  source: live anonymous probe 2026-07-26
+- id: prh
+  applies_to: PRH Core External Client API v2.0
+  media_type: application/json
+  shape: '{"message": "<string>", "reason": "<string>"}'
+  required: [message]
+  observed_example: '{"message": "Bad request", "reason": "Further error information"}'
+  source: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
+- id: legacy-string
+  applies_to: [Hometrack API Public, Broker AVM API, Valuation API]
+  media_type: [application/json, text/plain, application/xml, application/pdf]
+  shape: bare string body (or empty body)
+  source: openapi/hometrack-api-public-openapi.yml
+problems:
+- status: 400
+  title: Bad Request
+  envelope: prh
+  apis: [PRH Core External Client API, Hometrack API Public, Broker AVM API, Climate API]
+  description: >-
+    PRH: "The server cannot or will not process the request due to something
+    that is perceived to be a client error (e.g., malformed request syntax,
+    invalid request message framing, or deceptive request routing)." Public API
+    variants: "an input parameter is missing", "request parameters do not pass
+    the validation", "the apiKey is missing", "the apiKey or token is missing",
+    "the request parameters are not provided or are malformed". Broker AVM:
+    "Incorrect input data submitted". Climate: "Request was not valid".
+  operations: 36
+  remediation: Validate the request body against the schema and re-send; never retry unchanged.
+- status: 401
+  title: Unauthorized / Bad or Expired Token
+  envelope: [gateway, prh]
+  apis: [all]
+  description: >-
+    PRH: "Bad or Expired Token. The OAuth token provided is Bad or it has
+    expired. The server is unable to process the request without a valid OAuth
+    token." Public API: "the authentication token is invalid" / "token is
+    invalid or expired". Broker AVM: "Unauthorised request". Gateway:
+    "Unauthorized. Access token is missing or invalid."
+  operations: 35
+  remediation: >-
+    Re-run the client-credentials exchange at
+    https://hometrack-prod.eu.auth0.com/oauth/token (tokens last 24h); for the
+    Valuation API re-run POST /authentication/{apiKey} (tokens last 5 minutes).
+- status: 403
+  title: Forbidden / Bad OAuth Request
+  envelope: [prh, legacy-string]
+  apis: [PRH Core External Client API, Hometrack API Public, Broker AVM API]
+  description: >-
+    PRH: "Bad OAuth Request or Forbidden. The server has attempted to use the
+    OAuth token provided to authorise the access to the resource and found that
+    the token is bad or that access to the resource is forbidden." Public API
+    variants name the missing right explicitly: "the account does not have
+    permission", "the apiKey could not be authenticated", "the authentication
+    token does not have enough rights to retrieve partner details", "…to update
+    the account's branding". Broker AVM: "Operation forbidden".
+  operations: 33
+  remediation: The credential is valid but lacks the product licence or permission; contact Hometrack.
+- status: 404
+  title: Not Found
+  envelope: [prh, legacy-string]
+  apis: [all]
+  description: >-
+    PRH: "The requested resource could not be found but may be available again
+    in the future." Broker AVM: "Valuation order not found". Climate returns a
+    dataset-specific message per operation ("EPC data not found", "Flood data
+    not found", "Ground data not found", "SubsidenceScoreData data not found",
+    "CoastalErosionData data not found") — for the Climate API a 404 usually
+    means no data exists for that UPRN, not a bad URL. Public API variants: "no
+    record of transactionId found", "the account or licences could not be
+    found", "the apiKey is not recognized", "the brand could not be found",
+    "the partner could not be found", "the principal could not be found", "the
+    target account was not found".
+  operations: 41
+  remediation: For Climate, treat as data-absence for that UPRN; elsewhere check the identifier.
+- status: 405
+  title: Method Not Allowed
+  envelope: prh
+  apis: [PRH Core External Client API]
+  description: '"A request was made of a resource using a request method not supported by that resource."'
+  operations: 19
+- status: 406
+  title: Not Acceptable
+  envelope: prh
+  apis: [PRH Core External Client API]
+  description: '"The requested resource is only capable of generating content not acceptable according to the Accept headers sent in the request."'
+  operations: 19
+- status: 409
+  title: Conflict
+  envelope: legacy-string
+  apis: [Hometrack API Public]
+  description: >-
+    "a Partner with the same Partner ID and Type already exists", "a user with
+    this email address already exists", "non-unique transaction ID is provided",
+    "partner already exists". The transaction-ID conflict is the closest thing
+    Hometrack has to duplicate-request protection.
+  operations: 4
+- status: 410
+  title: Gone
+  envelope: legacy-string
+  apis: [Hometrack API Public]
+  description: '"the record for that transactionId was found, but the associated PDF file cannot be found"'
+  operations: 1
+- status: 415
+  title: Unsupported Media Type
+  envelope: prh
+  apis: [PRH Core External Client API]
+  description: '"The request entity has a media type which the server or resource does not support."'
+  operations: 19
+- status: 425
+  title: Too Early
+  envelope: prh
+  apis: [PRH Core External Client API]
+  description: '"The requested resource is not available yet, but will be soon."'
+  operations: 19
+  remediation: Back off and re-poll; this is the case-management platform saying the artifact is still being produced.
+- status: 429
+  title: Too Many Requests
+  envelope: [prh, legacy-string]
+  apis: [PRH Core External Client API, Valuation API]
+  description: >-
+    PRH: "The request has been submitted too many times within a given time
+    window." (example body {"message": "Request limit exceeded. Try again
+    later."}). Valuation API: "Rate limit is exceeded. The response body will
+    tell you when you can try again." (example body "Rate limit is exceeded. Try
+    again in 60 seconds.")
+  operations: 20
+  remediation: Read the retry hint from the body; no Retry-After header is declared.
+- status: 402
+  title: Payment Required
+  envelope: legacy-string
+  apis: [Hometrack API Public]
+  description: '"the license has lapsed or the report volume has been used up"'
+  operations: 1
+  remediation: Commercial — the account's report allowance is exhausted.
+- status: 499
+  title: Client Closed Request (non-standard)
+  envelope: legacy-string
+  apis: [Hometrack API Public]
+  description: >-
+    "production failed when the confidence level for the subject property was
+    lower than the minimum level specified in configuration" and "production
+    failed when the production of the report failed for an unknown reason -
+    please contact our customer support". Hometrack reuses the nginx-origin 499
+    code for a business outcome — an AVM that could not reach the configured
+    confidence threshold.
+  operations: 2
+- status: 500
+  title: Internal Server Error
+  envelope: [prh, legacy-string]
+  apis: [all]
+  description: 'PRH: "The server encountered an error when processing your request." Public API: "an unexpected error has occured". Climate: "An error has occured".'
+  operations: 36
+- status: 502
+  title: Bad Gateway
+  envelope: prh
+  apis: [PRH Core External Client API]
+  operations: 19
+- status: 503
+  title: Service Unavailable
+  envelope: legacy-string
+  apis: [Hometrack API Public, Valuation API]
+  description: '"this or a dependent service is unavailable", "unable to authenticate at this time". The Valuation API returns 503 from GET /status when the AVM service is down.'
+  operations: 8
+- status: 504
+  title: Gateway Timeout
+  envelope: prh
+  apis: [PRH Core External Client API]
+  operations: 19
+observations:
+- >-
+  PRH is the only Hometrack API with a disciplined, uniform status vocabulary:
+  the same thirteen statuses (400, 401, 403, 404, 405, 406, 415, 425, 429, 500,
+  502, 504) on all nineteen operations, each with an RFC-style description and a
+  worked example body — an artefact of its RAML/AMF provenance.
+- >-
+  The two legacy .NET APIs carry the most business-meaningful errors (402
+  licence exhausted, 499 confidence-threshold failure, 409 duplicate
+  transaction) but express them as bare strings with no machine-readable code.
+- No error code registry, no `type` URIs, no problem+json, no documented error reference page.
+cross_links:
+  conventions: conventions/hometrack-conventions.yml
+  lifecycle: lifecycle/hometrack-lifecycle.yml

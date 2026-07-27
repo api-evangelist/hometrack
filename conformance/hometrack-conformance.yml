@@ -1,0 +1,134 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  https://developer.hometrack.com/api-authentication +
+  https://www.hometrack.com/iso-27001/ + the six OpenAPI documents in openapi/ +
+  well-known/hometrack-auth0-openid-configuration.json + live probes.
+summary: >-
+  Hometrack conforms to the general web/OAuth layer and to one published
+  information-security certification, and to nothing sector-specific. There is
+  no RESO Web API or RESO Data Dictionary anywhere in its stack — RESO is a
+  North-American NAR/MLS construct and the UK has no MLS to certify against —
+  and no OData $metadata. Its property identity does come from a national
+  standard, but a governmental one: the Climate API keys every property off the
+  UPRN issued by GeoPlace and distributed by Ordnance Survey.
+standards:
+- id: oauth2-client-credentials
+  conforms: true
+  evidence: >-
+    Published authentication guide documents RFC 6749 client-credentials against
+    https://hometrack-prod.eu.auth0.com/oauth/token with audience
+    https://api.hometrack.com; token_type Bearer, expires_in 86400.
+  source: https://developer.hometrack.com/api-authentication
+- id: rfc6750-bearer-token
+  conforms: true
+  evidence: 'Access token presented as Authorization: Bearer <token>.'
+- id: oidc-discovery
+  conforms: true
+  evidence: >-
+    Authorization server publishes /.well-known/openid-configuration (HTTP 200);
+    saved at well-known/hometrack-auth0-openid-configuration.json.
+- id: rfc8414-authorization-server-metadata
+  conforms: true
+  evidence: >-
+    /.well-known/oauth-authorization-server returns HTTP 200 on the Auth0 tenant;
+    saved at well-known/hometrack-auth0-oauth-authorization-server.json.
+- id: openapi-3
+  conforms: true
+  evidence: Six OpenAPI 3.0.1 documents exported anonymously from the APIM developer portal and saved in openapi/.
+- id: iso-27001
+  conforms: true
+  evidence: >-
+    "Hometrack is ISO 27001 certified, demonstrating that our Information
+    Security Management System (ISMS) adheres to the most rigorous international
+    standards." Assessed by NQA; scope covers the management, development and
+    supply of market intelligence, risk analytics and automation services for
+    mortgage risk applications; Statement of Applicability version 2.2.
+  source: https://www.hometrack.com/iso-27001/
+- id: uprn-geoplace
+  conforms: true
+  evidence: >-
+    Every Climate API path is keyed on {uprn} — the Unique Property Reference
+    Number, the UK's national property identifier issued by GeoPlace and
+    distributed by Ordnance Survey.
+  source: openapi/hometrack-climate-api-v2-openapi.yml
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on www and developer hosts and 301 on the API gateway.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No response declares application/problem+json; three different ad-hoc error shapes are in use.
+- id: rfc8594-sunset-header
+  conforms: unknown
+  evidence: >-
+    A three-version deprecation policy is published, but Sunset/Deprecation
+    header support cannot be verified anonymously — every data-plane path except
+    GET /valuation-api/v1/status returns 401.
+- id: reso-web-api
+  conforms: false
+  evidence: >-
+    No RESO Web API endpoint, no OData $metadata, no RESO certification. Not
+    applicable in the UK market — there is no MLS. Hometrack sits on the lending
+    and risk side, not the listings side.
+- id: reso-data-dictionary
+  conforms: false
+  evidence: Property/valuation schemas are Hometrack-proprietary (order, loan, property, avmValuationBroker); no RESO field names.
+- id: odata
+  conforms: false
+  evidence: No $metadata document, no OData query options on any operation.
+- id: json-api
+  conforms: false
+  evidence: Plain JSON resource representations; no JSON:API document structure.
+- id: fhir-r4
+  conforms: false
+  evidence: Not a healthcare API.
+- id: psd2
+  conforms: false
+  evidence: Not a payments API; no account/payment initiation surface.
+- id: fapi
+  conforms: false
+  evidence: >-
+    No FAPI security profile claim. The tenant advertises DPoP (ES256) and
+    private_key_jwt as available Auth0 capabilities, but Hometrack documents
+    plain client_secret client credentials.
+- id: scim
+  conforms: false
+  evidence: No /Users or /Groups provisioning surface.
+- id: graphql
+  conforms: partial
+  evidence: >-
+    A GraphQL API is registered in APIM (type "graphql", path /climate/graphql)
+    but introspection is auth-gated (HTTP 401) and the APIM schemas collection is
+    empty to anonymous callers, so no SDL could be captured.
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming or webhook surface exists to describe.
+- id: idempotency-key
+  conforms: false
+  evidence: No idempotency header or documented retry-safety contract on any write operation.
+- id: european-avm-alliance
+  conforms: true
+  kind: industry-membership
+  evidence: >-
+    "Hometrack is a founding member of the European AVM Alliance" (developer
+    portal footer, www.europeanavmalliance.org). Membership commits participants
+    to a common AVM performance-testing and reporting standard; it is not an API
+    standard.
+  source: https://developer.hometrack.com/
+compliance:
+  published: true
+  page: https://www.hometrack.com/iso-27001/
+  certifications:
+  - {name: ISO 27001, body: NQA, scope: 'management, development and supply of market intelligence, risk analytics and automation services for mortgage risk applications supporting the financial services sector', soa_version: '2.2'}
+  not_published: [SOC 2, PCI DSS, HIPAA, FedRAMP, Cyber Essentials, CSA STAR]
+  trust_center: false
+  note: >-
+    Hometrack publishes a single certification page, not a trust centre. No
+    subprocessor list, no pen-test summary, no security whitepaper, and no
+    vulnerability-disclosure policy could be found (see
+    security/hometrack-domain-security.yml for the probed posture).
+cross_links:
+  authentication: authentication/hometrack-authentication.yml
+  well_known: well-known/hometrack-well-known.yml
+  conventions: conventions/hometrack-conventions.yml
+  security: security/hometrack-domain-security.yml

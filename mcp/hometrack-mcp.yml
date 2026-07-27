@@ -1,0 +1,246 @@
+generated: '2026-07-26'
+method: derived
+status: candidate
+source: >-
+  openapi/hometrack-valuation-api-v1-openapi.yml,
+  openapi/hometrack-broker-avm-api-openapi.yml,
+  openapi/hometrack-climate-api-v2-openapi.yml,
+  openapi/hometrack-prh-core-external-client-api-v2-openapi.yml,
+  openapi/hometrack-api-public-openapi.yml
+summary: >-
+  No official hosted or remote Model Context Protocol server was found for
+  Hometrack — nothing in the developer portal, nothing in the MCP registries,
+  and the GitHub organisation has zero public repositories. The tool set below
+  is DERIVED from the 59 operations Hometrack publishes, as a proposal for what
+  an agent-facing surface would look like. It is not published by Hometrack.
+  Every candidate tool names the real operationId it would bind to, so its input
+  schema is the operation's parameters + requestBody in the referenced OpenAPI
+  — nothing here is invented. Note the access reality: every one of these tools
+  would require an OAuth 2.0 client-credentials token issued under a Hometrack
+  commercial agreement; only `get_valuation_api_status` is anonymously callable.
+server: null
+transport: null
+url: null
+auth:
+  type: oauth2
+  flow: client_credentials
+  token_endpoint: https://hometrack-prod.eu.auth0.com/oauth/token
+  audience: https://api.hometrack.com
+  see: authentication/hometrack-authentication.yml
+candidate_tools:
+- name: get_valuation_api_status
+  category: valuation
+  description: Check whether the Valuation API is currently available. The only anonymously callable operation Hometrack publishes.
+  source_operation: openapi/hometrack-valuation-api-v1-openapi.yml#status
+  maps_to: GET /valuation-api/v1/status
+  read_only: true
+- name: value_property
+  category: valuation
+  description: Run a valuation on a property for an account (real-time Valuation API).
+  source_operation: openapi/hometrack-valuation-api-v1-openapi.yml#valuation
+  maps_to: POST /valuation-api/v1/valuation/{accountId}
+  read_only: false
+- name: exchange_valuation_api_key
+  category: auth
+  description: Exchange an API key for a five-minute Valuation API token.
+  source_operation: openapi/hometrack-valuation-api-v1-openapi.yml#authentication
+  maps_to: POST /valuation-api/v1/authentication/{apiKey}
+  read_only: false
+- name: order_broker_valuation
+  category: broker-avm
+  description: Create a broker valuation order for one or more properties, with loan and property context.
+  source_operation: openapi/hometrack-broker-avm-api-openapi.yml#ValuePropertyBroker-Spec
+  maps_to: POST /valuation/v2/broker/order
+  read_only: false
+- name: order_broker_valuation_with_climate
+  category: broker-avm
+  description: Create the valuation order with climate data for the property (v2).
+  source_operation: openapi/hometrack-broker-avm-api-openapi.yml#ValuePropertyBrokerV2-Spec
+  maps_to: POST /valuation/v2/broker/v2/order
+  read_only: false
+- name: get_broker_order
+  category: broker-avm
+  description: Retrieve a valuation order by id.
+  source_operation: openapi/hometrack-broker-avm-api-openapi.yml#GetValuationOrderById-Spec
+  maps_to: GET /valuation/v2/broker/order/{orderId}
+  v2_variant: GetValuationOrderByIdV2-Spec
+  read_only: true
+- name: get_broker_order_status
+  category: broker-avm
+  description: Retrieve the status of a valuation order.
+  source_operation: openapi/hometrack-broker-avm-api-openapi.yml#GetValuationStatusById-Spec
+  maps_to: GET /valuation/v2/broker/order/{orderId}/status
+  v2_variant: GetValuationStatusByIdV2-Spec
+  read_only: true
+- name: get_broker_valuation
+  category: broker-avm
+  description: Retrieve a completed valuation by id (202 while still in production).
+  source_operation: openapi/hometrack-broker-avm-api-openapi.yml#FindValuationById-Spec
+  maps_to: GET /valuation/v2/broker/valuation/{valuationId}
+  v2_variant: FindValuationByIdV2-Spec
+  read_only: true
+- name: get_broker_valuation_input
+  category: broker-avm
+  description: Retrieve the valuation input supplied at inception — what the caller asserted about the property.
+  source_operation: openapi/hometrack-broker-avm-api-openapi.yml#GetValuationInputById-Spec
+  maps_to: GET /valuation/v2/broker/valuation/{valuationId}/input
+  v2_variant: GetValuationInputByIdV2-Spec
+  read_only: true
+- name: get_raw_broker_valuation
+  category: broker-avm
+  description: Retrieve the raw valuation response with all data and audit traces (internal projection).
+  source_operation: openapi/hometrack-broker-avm-api-openapi.yml#GetRawValuationById-Spec
+  maps_to: GET /valuation/v2/internal/valuation/{valuationId}/raw
+  v2_variant: GetRawValuationByIdV2-Spec
+  read_only: true
+- name: get_property_epc
+  category: climate
+  description: Return EPC (energy performance) data for a property by UPRN.
+  source_operation: openapi/hometrack-climate-api-v2-openapi.yml#Epc
+  maps_to: GET /climate/epc-hometrack/{uprn}
+  read_only: true
+- name: get_property_flood_risk
+  category: climate
+  description: Return flood risk data for a property by UPRN (supplier Twinn).
+  source_operation: openapi/hometrack-climate-api-v2-openapi.yml#Flood
+  maps_to: GET /climate/flood-twinn/{uprn}
+  read_only: true
+- name: get_property_ground_risk
+  category: climate
+  description: Return ground risk data for a property by UPRN (supplier Terrafirma).
+  source_operation: openapi/hometrack-climate-api-v2-openapi.yml#Ground
+  maps_to: GET /climate/ground-terrafirma/{uprn}
+  read_only: true
+- name: get_property_subsidence_risk
+  category: climate
+  description: Return subsidence score data for a property by UPRN (supplier Twinn).
+  source_operation: openapi/hometrack-climate-api-v2-openapi.yml#SubsidenceScoreData
+  maps_to: GET /climate/ground-subsidence-twinn/{uprn}
+  read_only: true
+- name: get_property_coastal_erosion_risk
+  category: climate
+  description: Return coastal erosion data for a property by UPRN (supplier Twinn).
+  source_operation: openapi/hometrack-climate-api-v2-openapi.yml#CoastalErosionData
+  maps_to: GET /climate/ground-coastalerosion-twinn/{uprn}
+  read_only: true
+- name: create_prh_instruction
+  category: property-risk-hub
+  description: Create a property-risk instruction for an organisation (opens a case).
+  source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#post-organisation-orgid-instruction
+  maps_to: POST /prh/organisation/{orgId}/instruction
+  read_only: false
+- name: reinstruct_prh_case
+  category: property-risk-hub
+  description: Reinstruct or reprocess an existing case.
+  source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#put-organisation-orgid-instruction
+  maps_to: PUT /prh/organisation/{orgId}/instruction
+  read_only: false
+- name: list_prh_cases
+  category: property-risk-hub
+  description: List and filter cases (status, lender reference, instruction reference, date ranges, has-report), paged.
+  source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#get-organisation-orgid-case
+  maps_to: GET /prh/organisation/{orgId}/case
+  read_only: true
+- name: get_prh_case
+  category: property-risk-hub
+  description: Retrieve a single case.
+  source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#get-organisation-orgid-case-caseid
+  maps_to: GET /prh/organisation/{orgId}/case/{caseId}
+  read_only: true
+- name: get_prh_case_process
+  category: property-risk-hub
+  description: Retrieve a case filtered to a specific case process, and that process's status.
+  source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#get-organisation-orgid-case-caseid-process-caseprocessid
+  related: [get-organisation-orgid-case-caseid-process-caseprocessid-status]
+  read_only: true
+- name: get_prh_case_status
+  category: property-risk-hub
+  description: Read data-provider status updates on a case, or the latest one.
+  source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#get-organisation-orgid-case-caseid-status
+  related: [get-organisation-orgid-case-caseid-status-latest]
+  read_only: true
+- name: post_prh_case_status
+  category: property-risk-hub
+  description: Post a data-provider status update onto a case.
+  source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#post-organisation-orgid-case-caseid-status
+  maps_to: POST /prh/organisation/{orgId}/case/{caseId}/status
+  read_only: false
+- name: list_prh_case_documents
+  category: property-risk-hub
+  description: List the documents attached to a case.
+  source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#get-organisation-orgid-case-caseid-documents
+  read_only: true
+- name: attach_prh_case_document
+  category: property-risk-hub
+  description: Attach a document to a case (202 accepted).
+  source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#post-organisation-orgid-case-caseid-documents
+  read_only: false
+- name: get_prh_case_document
+  category: property-risk-hub
+  description: Retrieve a case document, and verify it.
+  source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#get-organisation-orgid-case-caseid-documents-documentreference
+  related: [get-organisation-orgid-case-caseid-documents-documentreference-verify]
+  read_only: true
+- name: get_prh_case_report
+  category: property-risk-hub
+  description: Retrieve the valuation reports attached to a case — all, a specific revision, or the latest.
+  source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#get-organisation-orgid-case-caseid-report
+  related: [get-organisation-orgid-case-caseid-report-revision, get-organisation-orgid-case-caseid-report-latest]
+  read_only: true
+- name: search_prh_property_repository
+  category: property-risk-hub
+  description: Search the organisation's property valuation repository by external reference, instruction reference or UPRN; or fetch by repository id.
+  source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#get-organisation-orgid-property-repository
+  related: [get-organisation-orgid-property-repository-repositoryid]
+  read_only: true
+- name: search_prh_properties_by_postcode
+  category: property-risk-hub
+  description: Search properties by postal code (and optional address line), paged.
+  source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#get-organisation-orgid-property-postalcode-postalcode
+  read_only: true
+- name: request_property_valuation_report
+  category: reporting
+  description: Request a Property Valuation Report (async; returns a transactionReference).
+  source_operation: openapi/hometrack-api-public-openapi.yml#ReportingApi_RequestPropertyValuationReport
+  read_only: false
+- name: download_property_valuation_report
+  category: reporting
+  description: Download a previously generated Property Valuation Report (PDF/XML; 202 while still generating).
+  source_operation: openapi/hometrack-api-public-openapi.yml#ReportingApi_RetrievePropertyValuationReport
+  read_only: true
+- name: get_account_licences
+  category: account
+  description: Return the product licences belonging to the authenticated account.
+  source_operation: openapi/hometrack-api-public-openapi.yml#LicencesApi_Licences
+  read_only: true
+- name: get_report_branding
+  category: account
+  description: Retrieve the co-branding configuration for an account.
+  source_operation: openapi/hometrack-api-public-openapi.yml#BrandsApi_Get
+  read_only: true
+excluded_from_candidate_surface:
+- {operation: ReportingApi_MoveToBlobStorage, reason: 'Scheduled-task plumbing ("Called via a scheduled task, this method uploads all files from the report directory") — internal, not an agent capability.'}
+- {operation: ReportingApi_TestGet, reason: '"For test purpose" — internal.'}
+- {operation: ReportingApi_TestPost, reason: '"For test purpose" — internal.'}
+- {operation: ReportingApi_ProcessPropertyValuation, reason: Internal report-processing entry point.}
+- {operation: PartnersApi_Post, reason: Partner administration under a "partner.modify" permission — administrative, not an agent capability.}
+- {operation: PartnersApi_Get, reason: Partner administration.}
+- {operation: ZooplaPartnersApi_CreateZooplaPartner, reason: Partner administration under a "partner.create" permission.}
+- {operation: BrandsApi_Put, reason: Writes account branding — administrative.}
+- {operation: PvrPluginApi_GetConfiguration, reason: Serves the embedded PVR plugin; see components/hometrack-components.yml.}
+- {operation: PvrPluginApi_GetConfigurationByPartnerId, reason: Serves the embedded PVR plugin.}
+- {operation: PvrPluginApi_StoreEnquiry, reason: Consumer lead capture from the embedded plugin.}
+- {operation: PvrPluginApi_GenerateOrder, reason: Report generation from the embedded plugin.}
+- {operation: ReportingApi_GetPvrConfigurations, reason: Reads Umbraco CMS node ids — internal configuration.}
+- {operation: TrialApi_Trial, reason: Commercial trial-licence administration.}
+- {operation: TrialApi_NewTrial, reason: Creates a user and trial licence — account administration.}
+- {operation: AuthenticationApi_Post, reason: Credential exchange; belongs in the transport layer, not the tool list.}
+coverage:
+  operations_published: 59
+  candidate_tools: 32
+  operations_bound: 43
+  operations_excluded: 16
+cross_links:
+  crosswalk: mcp/hometrack-tool-crosswalk.yml
+  agentic_access: agentic-access/hometrack-agentic-access.yml
+  authentication: authentication/hometrack-authentication.yml

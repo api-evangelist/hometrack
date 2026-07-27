@@ -94,6 +94,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/hometrack-valuation-api-v1-openapi.yml
+  - type: Overlay
+    url: overlays/hometrack-valuation-api-v1-overlay.yaml
   - type: Documentation
     url: https://developer.hometrack.com/apis
   - type: Authentication
@@ -129,6 +131,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/hometrack-broker-avm-api-openapi.yml
+  - type: Overlay
+    url: overlays/hometrack-broker-avm-api-overlay.yaml
   - type: Documentation
     url: https://developer.hometrack.com/apis
   - type: Authentication
@@ -161,6 +165,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
+  - type: Overlay
+    url: overlays/hometrack-prh-core-external-client-api-v2-overlay.yaml
   - type: Documentation
     url: https://developer.hometrack.com/apis
   - type: Authentication
@@ -195,6 +201,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/hometrack-climate-api-v2-openapi.yml
+  - type: Overlay
+    url: overlays/hometrack-climate-api-v2-overlay.yaml
   - type: Documentation
     url: https://developer.hometrack.com/apis
   - type: Authentication
@@ -221,6 +229,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/hometrack-climate-graphql-api-openapi.yml
+  - type: Overlay
+    url: overlays/hometrack-climate-graphql-api-overlay.yaml
   - type: Documentation
     url: https://developer.hometrack.com/apis
 - aid: hometrack:hometrack-api-public
@@ -252,11 +262,57 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/hometrack-api-public-openapi.yml
+  - type: Overlay
+    url: overlays/hometrack-api-public-overlay.yaml
   - type: Documentation
     url: https://developer.hometrack.com/apis
   - type: Authentication
     url: https://developer.hometrack.com/api-authentication
 common:
+- type: APIReference
+  url: https://developer.hometrack.com/apis
+- type: ChangeLog
+  url: https://developer.hometrack.com/api-changelog
+- type: ChangeLog
+  url: changelog/hometrack-changelog.yml
+- type: Deprecation
+  url: https://developer.hometrack.com/
+- type: Console
+  url: https://developer.hometrack.com/apis
+- type: Lifecycle
+  url: lifecycle/hometrack-lifecycle.yml
+- type: Conventions
+  url: conventions/hometrack-conventions.yml
+- type: ErrorCatalog
+  url: errors/hometrack-problem-types.yml
+- type: Conformance
+  url: conformance/hometrack-conformance.yml
+- type: WellKnown
+  url: well-known/hometrack-well-known.yml
+- type: OAuthScopes
+  url: scopes/hometrack-scopes.yml
+- type: DataModel
+  url: data-model/hometrack-data-model.yml
+- type: Components
+  url: components/hometrack-components.yml
+- type: Sandbox
+  url: sandbox/hometrack-sandbox.yml
+- type: Packages
+  url: packages/hometrack-packages.yml
+- type: MCPServer
+  url: mcp/hometrack-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/hometrack-tool-crosswalk.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/hometrack-llms.txt
+- type: AgenticAccess
+  url: agentic-access/hometrack-agentic-access.yml
+- type: DomainSecurity
+  url: security/hometrack-domain-security.yml
+- type: Authentication
+  url: authentication/hometrack-authentication.yml
 - type: Website
   url: https://www.hometrack.com/
 - type: DeveloperPortal
@@ -287,7 +343,7 @@ common:
   url: https://www.hometrack.com/terms/
 - type: PrivacyPolicy
   url: https://www.hometrack.com/privacy/
-- type: Security
+- type: Compliance
   url: https://www.hometrack.com/iso-27001/
 - type: GitHubOrganization
   url: https://github.com/Hometrack

@@ -1,0 +1,33 @@
+generated: '2026-07-26'
+method: searched
+source: https://developer.hometrack.com/api-changelog
+summary: >-
+  Hometrack publishes a dedicated changelog page on its developer portal, but it
+  is empty. The page is a stock Azure API Management "api-history" widget bound
+  to the portal's API catalogue; the widget renders per-API releases, and the
+  anonymous data plane confirms every one of the six published APIs has an empty
+  releases collection
+  (GET /developer/apis/{apiId}/releases?api-version=2022-04-01-preview returns
+  {"value": [], "nextLink": null} for prd-core-api-v2-0, broker-avm-api,
+  climate-api-v2, climate-api-graphql, hometrack-api-public and
+  realtime-proxy-api). So the change-communication surface exists structurally
+  and carries no entries — change is communicated to customers through the
+  commercial relationship, not through the portal.
+url: https://developer.hometrack.com/api-changelog
+scheme: per-api-releases
+mechanism:
+  platform: Azure API Management developer portal
+  widget: api-history
+  data_plane: /developer/apis/{apiId}/releases?api-version=2022-04-01-preview
+current_version: null
+entries: []
+releases_by_api:
+- {api: prd-core-api-v2-0, name: '(PRH) - Core External Client API v2.0', releases: 0}
+- {api: broker-avm-api, name: Broker Avm API, releases: 0}
+- {api: climate-api-v2, name: Climate API (v2), releases: 0}
+- {api: climate-api-graphql, name: Climate GraphQL, releases: 0}
+- {api: hometrack-api-public, name: Hometrack API Public, releases: 0}
+- {api: realtime-proxy-api, name: Valuation API, releases: 0}
+observed: '2026-07-26'
+cross_links:
+  lifecycle: lifecycle/hometrack-lifecycle.yml

@@ -1,0 +1,85 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  https://developer.hometrack.com/ ("About Versioning" section, quoted verbatim
+  below) + the anonymous Azure API Management data plane
+  (/developer/apiVersionSets and /developer/apis, api-version=2022-04-01-preview)
+  + the six harvested OpenAPI documents in openapi/.
+summary: >-
+  Hometrack publishes a real, written versioning and deprecation policy on the
+  front page of its developer portal — a three-version support window with two
+  named deprecation warning stages and an optional public beta. It publishes no
+  status page, no SLA and no uptime target; the closest thing to an availability
+  signal is a machine endpoint, GET /status on the Valuation API, which is the
+  one operation in the entire published surface that answers an anonymous
+  request (HTTP 200, zero-byte body).
+versioning:
+  scheme: uri-path
+  apim_versioning_scheme: Segment
+  docs: https://developer.hometrack.com/
+  policy_verbatim: >-
+    "Over time new features will come along and others will be removed. To
+    foresee and avoid potential compatibility issues, the API handles this by
+    having multiple versions available at the same time. There is however a
+    limit in terms of backward compability and at any time only the three newest
+    versions will be available. In addition, a beta/preview version might also be
+    available."
+  supported_versions: 3
+  beta_channel: true
+  lifecycle_example_verbatim: >-
+    "v11b: Public beta/preview version | v10: Latest version | v9: Deprecated
+    version - first warning | v8: Deprecated version - last warning"
+  version_sets:
+  - {id: prd-core-api-versions, name: (PRH) - Core External Client API, scheme: Segment, current: v2.0}
+  - {id: climate-api-versionset, name: Climate API, scheme: Segment, current: v2}
+  unversioned_apis:
+  - {api: Broker Avm API, note: 'no version set; v1 and v2 paths served side by side under /valuation/v2 (…/broker/… and …/broker/v2/…)'}
+  - {api: Hometrack API Public, note: mounted at the gateway root with no version segment}
+  - {api: Valuation API, note: version pinned in the base path (/valuation-api/v1)}
+deprecation:
+  policy: true
+  policy_url: https://developer.hometrack.com/
+  model: >-
+    Rolling three-version support window. A version leaving the window is marked
+    "Deprecated version - first warning" and then "Deprecated version - last
+    warning" before removal.
+  stages: [public beta/preview, latest, deprecated - first warning, deprecated - last warning]
+  sunset_header: unknown
+  deprecation_header: unknown
+  note: >-
+    RFC 8594 Sunset / Deprecation header support could not be verified: every
+    data-plane path except GET /valuation-api/v1/status returns HTTP 401 to an
+    anonymous caller, so response headers for a successful call are not
+    observable without a commercial key.
+deprecated_operations: []
+deprecated_operations_note: >-
+  No operation in any of the six harvested OpenAPI documents carries
+  `deprecated: true`. The Broker AVM API instead ships v1 and v2 of every
+  operation side by side (FindValuationById-Spec / FindValuationByIdV2-Spec,
+  GetValuationOrderById-Spec / GetValuationOrderByIdV2-Spec, etc.), which is the
+  three-version window in practice.
+status_page: null
+status_endpoint:
+  url: https://api.hometrack.com/valuation-api/v1/status
+  operationId: status
+  spec: openapi/hometrack-valuation-api-v1-openapi.yml
+  description: >-
+    "Retrieves the status of the Valuation API, whether it is available or not."
+    Responds 200 when available and 503 when not. Probed anonymously
+    2026-07-26: HTTP 200 with a zero-byte body — the only anonymously reachable
+    operation Hometrack publishes.
+sla:
+  published: false
+  uptime_target: null
+support:
+  self_service: false
+  channel: https://www.hometrack.com/uk/#contactus
+  note: >-
+    Portal states "To interact with any of our APIs you will need to have a valid
+    API Key for that respective product. If you do not yet have an API Key,
+    please contact us." The link is a marketing contact form.
+changelog: changelog/hometrack-changelog.yml
+cross_links:
+  conventions: conventions/hometrack-conventions.yml
+  errors: errors/hometrack-problem-types.yml
+  authentication: authentication/hometrack-authentication.yml

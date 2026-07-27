@@ -1,0 +1,83 @@
+generated: '2026-07-26'
+method: derived
+source: >-
+  openapi/hometrack-api-public-openapi.yml (the pvrplugin and brands operation
+  families, with their published summaries and descriptions quoted verbatim).
+summary: >-
+  Hometrack ships one embeddable client-side surface: the PVR plugin — a
+  Property Valuation Report widget partners embed on their own websites. It is
+  not documented as a component library on the developer portal; its existence
+  is established entirely by the operations that serve it, which are published
+  in the Hometrack API Public contract. The plugin is resolved and authorised by
+  the HOST DOMAIN it is embedded on (GET /api/pvrplugin/{domain}), which is an
+  unusual and revealing design: the domain is the credential. A companion
+  branding API supplies the co-branding configuration the plugin and the
+  generated PDF report render with. No loader script URL, no npm package and no
+  integration guide is published — an embedding partner is onboarded by
+  Hometrack, not self-serve.
+components:
+- family: pvr-plugin
+  name: Property Valuation Report plugin
+  kind: embedded-widget
+  hosted_by: partner website
+  official: true
+  documented_publicly: false
+  evidence_spec: openapi/hometrack-api-public-openapi.yml
+  operations:
+  - operationId: PvrPluginApi_GetConfiguration
+    method: GET
+    path: /api/pvrplugin/{domain}
+    summary: >-
+      "Returns the requirements for pvr plugin. This method calls an account
+      service to resolve and authenticate domain. Also it checks if XML
+      configuration is set and brandcode is specified. It also checks if Brand
+      exists in umbraco and Partner associated with it."
+    media_types: [application/json, text/json, application/xml, text/xml]
+  - operationId: PvrPluginApi_GetConfigurationByPartnerId
+    method: GET
+    path: /api/pvrplugin/{domain}/{partnerid}
+    summary: Same configuration lookup, scoped to a specific partner id.
+    media_types: [application/json, text/json, application/xml, text/xml]
+  - operationId: PvrPluginApi_StoreEnquiry
+    method: POST
+    path: /api/pvrplugin/enquiry/{token}
+    summary: '"Checks if email or it''s domain is blacklisted and sends verification code if set in umbraco"'
+    note: The lead-capture step — the consumer enters an email, the plugin verifies it.
+  - operationId: PvrPluginApi_GenerateOrder
+    method: POST
+    path: /api/pvrplugin/order/{token}
+    summary: '"Creates a report for pvr plugin"'
+  schemas: [PvrConfigModel, PvrConfigsResponse, Enquiry, CreatedReportModel, GratisOrder]
+  notes:
+  - Configuration is served per embedding domain, and per partner id where one partner runs several domains.
+  - The description names Umbraco as the CMS holding brand and verification configuration — the plugin's content is CMS-driven.
+  - Serves both JSON and XML, which dates the surface.
+- family: report-branding
+  name: Co-branding configuration
+  kind: configuration-api
+  official: true
+  documented_publicly: false
+  evidence_spec: openapi/hometrack-api-public-openapi.yml
+  operations:
+  - operationId: BrandsApi_Get
+    method: GET
+    path: /api/brands/{token}/{targetAccountApiKey}
+    summary: >-
+      "Retrieves the branding configuration associated to a given account. If a
+      brand for the specific target account is not found, the default Hometrack
+      brand configuration is returned."
+  - operationId: BrandsApi_Put
+    method: PUT
+    path: /api/brands/{token}/{targetAccountApiKey}
+    summary: '"Creates or updates the branding configuration for an account, based on the account''s API key"'
+  schemas: [BrandApiModel]
+  notes:
+  - Drives the white-labelled look of the Property Valuation Report and the embedded plugin.
+  - Requires the "update the account's branding" right; a token without it gets HTTP 403.
+not_found:
+- No JavaScript loader library, CDN script tag or npm package is published for the plugin.
+- No web components, no element library, no embedded dashboard, no hosted checkout-style surface.
+- No integration guide on developer.hometrack.com — the plugin is not mentioned in the portal at all.
+cross_links:
+  data_model: data-model/hometrack-data-model.yml
+  authentication: authentication/hometrack-authentication.yml

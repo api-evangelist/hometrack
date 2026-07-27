@@ -1,0 +1,53 @@
+generated: '2026-07-26'
+method: searched
+docs: https://developer.hometrack.com/api-authentication
+source: >-
+  https://developer.hometrack.com/api-authentication (worked token-response
+  example) + well-known/hometrack-auth0-openid-configuration.json.
+summary: >-
+  Hometrack documents OAuth 2.0 client credentials but publishes no scope
+  reference page. The only scopes visible anywhere on its public surface are the
+  two shown in the worked token-response example on the authentication page:
+  read:valuations and write:valuations. No harvested OpenAPI declares an oauth2
+  security scheme, so nothing further can be derived — the running derivation
+  (0-working/derive-oauth-scopes.py) correctly returns zero. Any additional
+  scopes (climate, PRH case management, reporting) exist only inside the
+  commercial agreement and are not published.
+schemes:
+- name: OAuth2ClientCredentials
+  source: https://developer.hometrack.com/api-authentication
+  provider: Auth0
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://hometrack-prod.eu.auth0.com/oauth/token
+    audience: https://api.hometrack.com
+scopes:
+- scope: read:valuations
+  description: >-
+    Read access to valuations. Named verbatim in the token-response example on
+    Hometrack's API authentication page; no separate scope reference documents
+    what it covers.
+  flows: [clientCredentials]
+  sources: [https://developer.hometrack.com/api-authentication]
+- scope: write:valuations
+  description: >-
+    Write access to valuations (ordering / instructing a valuation). Named
+    verbatim in the same token-response example.
+  flows: [clientCredentials]
+  sources: [https://developer.hometrack.com/api-authentication]
+scope_reference_page: null
+idp_scopes_supported:
+  source: well-known/hometrack-auth0-openid-configuration.json
+  note: >-
+    The Auth0 tenant's scopes_supported list (openid, profile, offline_access,
+    name, given_name, family_name, nickname, email, email_verified, picture,
+    created_at, identities, phone, address) is the standard OIDC user-profile
+    set advertised by every Auth0 tenant. It is NOT Hometrack's API permission
+    model and is recorded here only so it is not mistaken for one.
+gaps:
+- No published scope-to-operation mapping.
+- No scopes documented for the Climate, PRH Core External Client, Broker AVM or Public APIs.
+- OpenAPI documents declare only APIM subscription-key schemes, so scopes cannot be derived from the specs.
+cross_links:
+  authentication: authentication/hometrack-authentication.yml
+  well_known: well-known/hometrack-well-known.yml

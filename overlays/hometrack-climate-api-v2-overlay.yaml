@@ -1,0 +1,38 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Hometrack Climate API (v2)
+  version: 1.0.0
+extends: openapi/hometrack-climate-api-v2-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: hometrack
+    x-apievangelist-generated: '2026-07-26'
+    x-apievangelist-source: https://developer.hometrack.com/apis (Azure API Management OpenAPI export)
+    x-apievangelist-operations: 5
+    x-apievangelist-access:
+      pricing: paid
+      onboarding: partner
+      public: false
+      trial: false
+      note: Contracts are public; the data plane returns HTTP 401 without a Hometrack-issued credential.
+    x-apievangelist-notes: 'Every path is keyed on the UPRN, the UK''s government-issued Unique Property
+      Reference Number (GeoPlace / Ordnance Survey). Suppliers are visible in the path segments: Twinn
+      for flood, subsidence and coastal erosion; Terrafirma for ground. A 404 means no data for that UPRN,
+      not a bad request.'
+- target: $.components.securitySchemes
+  update:
+    OAuth2ClientCredentials:
+      type: oauth2
+      description: Documented on https://developer.hometrack.com/api-authentication but absent from the
+        Azure API Management export. Added here as an overlay, not a change to the harvested spec.
+      flows:
+        clientCredentials:
+          tokenUrl: https://hometrack-prod.eu.auth0.com/oauth/token
+          scopes:
+            read:valuations: Read access to valuations.
+            write:valuations: Write access to valuations.
+- target: $.servers
+  update:
+    x-apievangelist-server-note: The second declared server, api.hometrack.local, is an internal development
+      hostname that does not resolve publicly. Only https://api.hometrack.com is usable.

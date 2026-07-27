@@ -1,0 +1,33 @@
+generated: '2026-07-26'
+method: generated
+source: >-
+  Generated from the operationIds published in the six OpenAPI documents under
+  openapi/, grounded in the conventions, error and lifecycle artifacts in this
+  repo. Hometrack publishes no skills or AGENTS.md of its own.
+note: >-
+  Every skill below requires a Hometrack-issued credential under a commercial
+  agreement. Only GET /valuation-api/v1/status is callable anonymously. No skill
+  should be run speculatively: Hometrack's write operations create billable
+  valuations, reports and surveyor instructions and there is no idempotency key
+  anywhere in the surface.
+skills:
+- file: hometrack-realtime-valuation.md
+  name: Value a UK property with the Hometrack Valuation API
+  api: openapi/hometrack-valuation-api-v1-openapi.yml
+  operations: [status, authentication, valuation]
+- file: hometrack-broker-avm-order.md
+  name: Order a broker AVM valuation and collect the result
+  api: openapi/hometrack-broker-avm-api-openapi.yml
+  operations: [ValuePropertyBrokerV2-Spec, ValuePropertyBroker-Spec, GetValuationOrderByIdV2-Spec, GetValuationStatusByIdV2-Spec, FindValuationByIdV2-Spec, GetValuationInputByIdV2-Spec, GetRawValuationByIdV2-Spec]
+- file: hometrack-climate-risk-by-uprn.md
+  name: Assemble a property climate-risk profile by UPRN
+  api: openapi/hometrack-climate-api-v2-openapi.yml
+  operations: [Epc, Flood, Ground, SubsidenceScoreData, CoastalErosionData]
+- file: hometrack-prh-instruction-to-report.md
+  name: Instruct a property-risk case and collect its report
+  api: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
+  operations: [post-organisation-orgid-instruction, put-organisation-orgid-instruction, get-organisation-orgid-case, get-organisation-orgid-case-caseid, get-organisation-orgid-case-caseid-status, get-organisation-orgid-case-caseid-status-latest, post-organisation-orgid-case-caseid-status, get-organisation-orgid-case-caseid-documents, post-organisation-orgid-case-caseid-documents, get-organisation-orgid-case-caseid-documents-documentreference, get-organisation-orgid-case-caseid-documents-documentreference-verify, get-organisation-orgid-case-caseid-report-latest, get-organisation-orgid-case-caseid-report-revision, get-organisation-orgid-property-repository, get-organisation-orgid-property-postalcode-postalcode]
+- file: hometrack-property-valuation-report.md
+  name: Request and download a Property Valuation Report
+  api: openapi/hometrack-api-public-openapi.yml
+  operations: [AuthenticationApi_Post, LicencesApi_Licences, ReportingApi_RequestPropertyValuationReport, ReportingApi_RetrievePropertyValuationReport, BrandsApi_Get]

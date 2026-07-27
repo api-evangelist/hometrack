@@ -1,0 +1,246 @@
+generated: '2026-07-26'
+method: derived
+source: >-
+  Derived from the schema $ref graph and id-reference fields across the six
+  OpenAPI documents in openapi/ (381 component schemas), plus the worked JSON
+  examples embedded in the PRH contract.
+summary: >-
+  Hometrack's published surface describes one domain — a UK property, valued and
+  risk-assessed — projected through four independent data models that do not
+  share identifiers. The Climate API keys everything off the UPRN (the national
+  identifier). The Broker AVM API keys off its own orderId / valuationId pair.
+  The PRH case-management API keys off CaseId / InstructionReference and carries
+  UPRN only as a field on an Address. The Public API keys off account API keys
+  and transactionReference. There is no cross-API join key published: a caller
+  holding a Broker valuationId cannot look up the matching PRH case, and only
+  the Climate API can be addressed by UPRN. That fragmentation is the single
+  most important structural fact about this data model.
+notation: >-
+  Relationships use has_one / has_many / belongs_to with the reference field
+  name in `via`; direction is from the entity that owns the reference field.
+domains:
+- {id: valuation, apis: [Broker AVM API, Valuation API], key: valuationId}
+- {id: case-management, apis: [PRH Core External Client API v2.0], key: CaseId}
+- {id: climate-risk, apis: [Climate API (v2)], key: uprn}
+- {id: account-and-reporting, apis: [Hometrack API Public], key: apiKey/token}
+entities:
+- name: ValuationOrder
+  domain: valuation
+  schema: order / orderApi / valuationOrderResponse
+  spec: openapi/hometrack-broker-avm-api-openapi.yml
+  id_field: orderId
+  fields: [accountId, orderReference, userId, valuationType]
+  description: >-
+    A broker's request to value one or more properties. Created by
+    ValuePropertyBroker-Spec (POST /broker/order) or its v2 variant, which
+    "creates the valuation order with climate data for the property".
+- name: Valuation
+  domain: valuation
+  schema: apiValuationResponseBroker / valuationListResponse
+  spec: openapi/hometrack-broker-avm-api-openapi.yml
+  id_field: valuationId
+  fields: [order, valuationId, reference, avm]
+  description: One valued property within an order; carries the AVM result.
+- name: ValuationStatus
+  domain: valuation
+  schema: valuationStatusResponse
+  spec: openapi/hometrack-broker-avm-api-openapi.yml
+  fields: [valuationId, reference, status, valuationType]
+  description: 'Progress of a valuation; `status` is an untyped integer enum (0-3) with no published meaning — a real contract gap.'
+- name: AvmValuation
+  domain: valuation
+  schema: avmValuationBroker
+  spec: openapi/hometrack-broker-avm-api-openapi.yml
+  fields: [valuationDate, effectiveDate, result, capital, rental, property, additionalAttributes, address]
+  description: The automated valuation itself, split into a capital value (cavmCapital) and a rental value (cavmRental).
+- name: CapitalValue
+  domain: valuation
+  schema: cavmCapital
+  spec: openapi/hometrack-broker-avm-api-openapi.yml
+- name: RentalValue
+  domain: valuation
+  schema: cavmRental
+  spec: openapi/hometrack-broker-avm-api-openapi.yml
+- name: Loan
+  domain: valuation
+  schema: loan
+  spec: openapi/hometrack-broker-avm-api-openapi.yml
+  fields: [repaymentType, loanAmount, outstandingLoanAmount, additionalLoanAmount, remainingTerm, minimumRentalIncome, existingMortgage, instructionType]
+  description: The lending context supplied with a valuation request — this is what makes the Broker AVM a mortgage-origination API rather than a property-data API.
+- name: PropertyAttributes
+  domain: valuation
+  schema: property / propertyAttributesUsedBroker
+  spec: openapi/hometrack-broker-avm-api-openapi.yml
+  fields: [bedrooms, receptions, propertyType, propertyStyle, constructionType, constructionPeriod, yearBuilt, floorArea, parking, exLocalAuthority, visibleFromRoad]
+  description: Caller-asserted property characteristics on the request; the response echoes back which attributes the model actually used.
+- name: Address
+  domain: shared
+  schema: addressRequestBroker / addressResponse (Broker) · Address (PRH)
+  spec: [openapi/hometrack-broker-avm-api-openapi.yml, openapi/hometrack-prh-core-external-client-api-v2-openapi.yml]
+  fields: [Company, BuildingName, BuildingNumber, SubBuilding, Line1, Line2, Line3, Line4, City, Province, PostalCode, Uprn, Latitude, Longitude, TitleDeedNumber]
+  description: >-
+    The only structure that appears in more than one Hometrack API — and even
+    then in two incompatible shapes. The PRH Address is the richer one and is the
+    only place outside the Climate API where a UPRN appears.
+- name: Instruction
+  domain: case-management
+  schema: 'Generated ("PRH - External Client API - Create Instruction - JSON schema")'
+  spec: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
+  id_field: InstructionReference
+  fields: [Brand, ProcessCode, IsPortfolio, InstructionReference, AllowDuplicate, UpdateCaseOnly, AdditionalReferences, InstructionComment, InstructionDate, ExcludeFromBilling, Properties, Contacts, CustomAttributes]
+  description: >-
+    A lender's instruction to run a property-risk process. POST creates it; PUT
+    (schema Generated-1, which adds CaseId and ProcessDataItems) reinstructs or
+    reprocesses an existing case.
+- name: Case
+  domain: case-management
+  schema: PRISM - External Client API - Retrieve Cases response
+  spec: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
+  id_field: CaseId
+  fields: [CaseId, InstructionReference, CaseReference, CaseStatus, riskClassification, fullAddress, reportRevision]
+  status_enum: [Instructed, PropertyVerified, ValuationRetrieved, PropertyRisksRetrieved, PropertyRiskAssessed, PropertyRiskComplete, ValuationRequested, ValuationComplete, ConveyancingStarted, ConveyancingComplete, WaitingForManualReferral, WaitingForAVMPlusReport, WaitingForPRIMReport, WaitingForResolution, NotResolved, PhysicalValuationRequested, PhysicalValuationCompleted, WaitingForManualRepanel, WaitingForUnderwriterAssessment, OnHold, WaitingForUnderwriterVerification, PRAAssessmentStarted, PRAAssessmentCompleted, Cancelled, WaitingForAllocation]
+  description: >-
+    The unit of work in Hometrack's Property Risk Hub (internally "Prism"/PRISM
+    in the schema titles). The 25-value status enum is effectively the published
+    state machine of UK mortgage property-risk decisioning.
+- name: CaseProcess
+  domain: case-management
+  spec: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
+  id_field: caseProcessId
+  description: One process run against a case; retrievable filtered (…/process/{caseProcessId}) and with its own status (…/process/{caseProcessId}/status).
+- name: CaseStatusUpdate
+  domain: case-management
+  schema: Generated-2
+  spec: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
+  fields: [InstructionReference, StatusCode, StatusDate, StatusMessage, StatusReason, Notes, Contacts, StatusDataItems]
+  provider_status_enum: [Pending, Completed, Failed, Timeout, NotRequired, AppointmentBooked, Cancelled, NotApplicable, TimedOut, PRIMDataReceived, Created, Offer, AppointmentOffered, AppointmentCleared, OnHold]
+  description: >-
+    A data-provider status posted onto a case (POST …/case/{caseId}/status) or
+    read back (GET …/status, …/status/latest). This is how a surveyor or data
+    supplier reports progress — the inbound half of an event model that has no
+    webhook counterpart.
+- name: CaseDocument
+  domain: case-management
+  spec: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
+  id_field: documentReference
+  description: A file attached to a case; listed, posted (202), retrieved and verified (…/documents/{documentReference}/verify).
+- name: ValuationReport
+  domain: case-management
+  spec: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
+  id_field: revision
+  description: The valuation report attached to a case, addressable by revision or via the /report/latest shortcut. Case.reportRevision points at the current revision.
+- name: PropertyRepositoryEntry
+  domain: case-management
+  spec: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
+  id_field: repositoryId
+  lookup_keys: [externalReference, instructionReference, uprn]
+  description: The organisation's property valuation repository — the one PRH surface that can be searched by UPRN.
+- name: Contact
+  domain: case-management
+  spec: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
+  description: People attached to an instruction or a status update (applicant, broker, occupier).
+- name: ClimateProperty
+  domain: climate-risk
+  spec: openapi/hometrack-climate-api-v2-openapi.yml
+  id_field: uprn
+  description: A property addressed solely by UPRN; every Climate path is /<dataset>/{uprn}.
+- name: EnergyCertificate
+  domain: climate-risk
+  schema: EnergyCertificateResponseModelV2 / EnergyRating
+  operation: Epc
+  supplier: Hometrack
+- name: FloodScore
+  domain: climate-risk
+  schema: FloodScoreResponseModelV2 / ClimateChangeDataWithVersionResponseFloodScoreDataModel
+  operation: Flood
+  supplier: Twinn
+- name: GroundScore
+  domain: climate-risk
+  schema: GroundScoreResponseModelV2 / ClimateChangeDataWithVersionResponseGroundRiskCurrentModel / …FutureModel
+  operation: Ground
+  supplier: Terrafirma
+- name: SubsidenceScore
+  domain: climate-risk
+  schema: SubsidenceScoreResponseModelV2 / SubsidenceScoreCurrentModel / SubsidenceScoreFutureModel
+  operation: SubsidenceScoreData
+  supplier: Twinn
+- name: CoastalErosionScore
+  domain: climate-risk
+  schema: CoastalErosionScoreResponseModelV2 / ErosionCurrentScoreModel / ErosionFuturesScoreModel / ErosionManagementPlanModel
+  operation: CoastalErosionData
+  supplier: Twinn
+- name: Account
+  domain: account-and-reporting
+  spec: openapi/hometrack-api-public-openapi.yml
+  id_field: apiKey
+  description: The commercial account; its API key is exchanged for a token and is also the target of branding and licence lookups.
+- name: Token
+  domain: account-and-reporting
+  schema: Token
+  spec: openapi/hometrack-api-public-openapi.yml
+  description: A GUID exchanged from an API key and then carried as a URL path segment on nearly every Public API operation.
+- name: Licence
+  domain: account-and-reporting
+  schema: Licence / LicenceArray / Product
+  spec: openapi/hometrack-api-public-openapi.yml
+  description: Product entitlements held by an account; a lapsed licence surfaces as HTTP 402.
+- name: PropertyValuationReport
+  domain: account-and-reporting
+  schema: PropertyValuationReportRequest / CreatedReportModel
+  spec: openapi/hometrack-api-public-openapi.yml
+  id_field: transactionReference
+  description: Requested asynchronously (201) then downloaded as PDF or XML (200/202) by transactionReference.
+- name: Brand
+  domain: account-and-reporting
+  schema: BrandApiModel
+  spec: openapi/hometrack-api-public-openapi.yml
+  description: Co-branding configuration for reports and the PVR plugin; falls back to the default Hometrack brand.
+- name: Partner
+  domain: account-and-reporting
+  schema: PartnerCreateRequest / PartnerResponse / Partnerid / ZooplaPartnerCreateRequest
+  spec: openapi/hometrack-api-public-openapi.yml
+  description: 'Partner-to-account mapping, with a dedicated Zoopla variant — the only place the sibling Houseful brand appears in the API surface.'
+- name: Trial
+  domain: account-and-reporting
+  schema: Trial / TrialRequest
+  spec: openapi/hometrack-api-public-openapi.yml
+  description: A trial licence issued to an existing account, not a developer trial.
+relationships:
+- {from: ValuationOrder, to: Valuation, kind: has_many, via: valuations}
+- {from: Valuation, to: ValuationOrder, kind: belongs_to, via: order}
+- {from: Valuation, to: AvmValuation, kind: has_one, via: avm}
+- {from: AvmValuation, to: CapitalValue, kind: has_one, via: capital}
+- {from: AvmValuation, to: RentalValue, kind: has_one, via: rental}
+- {from: AvmValuation, to: PropertyAttributes, kind: has_one, via: property}
+- {from: AvmValuation, to: Address, kind: has_one, via: address}
+- {from: ValuationOrder, to: Loan, kind: has_one, via: 'valuations[].loan'}
+- {from: ValuationOrder, to: Address, kind: has_one, via: 'valuations[].address'}
+- {from: ValuationStatus, to: Valuation, kind: belongs_to, via: valuationId}
+- {from: Instruction, to: Case, kind: has_many, via: 'Properties (one case per property; IsPortfolio marks a multi-property instruction)'}
+- {from: Instruction, to: Contact, kind: has_many, via: Contacts}
+- {from: Case, to: Instruction, kind: belongs_to, via: InstructionReference}
+- {from: Case, to: CaseProcess, kind: has_many, via: caseProcessId}
+- {from: Case, to: CaseStatusUpdate, kind: has_many, via: 'case/{caseId}/status'}
+- {from: Case, to: CaseDocument, kind: has_many, via: documentReference}
+- {from: Case, to: ValuationReport, kind: has_many, via: 'revision (Case.reportRevision -> latest)'}
+- {from: Case, to: Address, kind: has_one, via: fullAddress}
+- {from: PropertyRepositoryEntry, to: Address, kind: has_one, via: uprn}
+- {from: ClimateProperty, to: EnergyCertificate, kind: has_one, via: uprn}
+- {from: ClimateProperty, to: FloodScore, kind: has_one, via: uprn}
+- {from: ClimateProperty, to: GroundScore, kind: has_one, via: uprn}
+- {from: ClimateProperty, to: SubsidenceScore, kind: has_one, via: uprn}
+- {from: ClimateProperty, to: CoastalErosionScore, kind: has_one, via: uprn}
+- {from: Account, to: Token, kind: has_many, via: apiKey}
+- {from: Account, to: Licence, kind: has_many, via: 'licences/{token}/{product}'}
+- {from: Account, to: Brand, kind: has_one, via: targetAccountApiKey}
+- {from: Account, to: PropertyValuationReport, kind: has_many, via: transactionReference}
+- {from: Account, to: Partner, kind: has_many, via: partnerType/id}
+- {from: Account, to: Trial, kind: has_many, via: apikey}
+gaps:
+- No published join key between the valuation, case-management and climate domains.
+- valuationStatusResponse.status and order.valuationType are bare integer enums (0-3 / 0-2) with no documented meaning.
+- The PRH schema component names are machine-generated (OrganisationOrgIdCase…Get200ApplicationJsonResponse, Generated, Generated-1) rather than domain names — 257 schemas, most of them per-operation response wrappers.
+cross_links:
+  conventions: conventions/hometrack-conventions.yml
+  errors: errors/hometrack-problem-types.yml
+  components: components/hometrack-components.yml

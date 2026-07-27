@@ -1,0 +1,725 @@
+generated: '2026-07-26'
+method: generated
+source: openapi/hometrack-api-public-openapi.yml, openapi/hometrack-broker-avm-api-openapi.yml,
+  openapi/hometrack-climate-api-v2-openapi.yml, openapi/hometrack-prh-core-external-client-api-v2-openapi.yml,
+  openapi/hometrack-valuation-api-v1-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 59
+  by_action_class:
+    acting: 18
+    connected: 41
+  by_consequence:
+    write: 14
+    read: 41
+    physical: 4
+  human_in_the_loop_required: 0
+operations:
+- path: /api/authentication/{apiKey}
+  method: post
+  operationId: AuthenticationApi_Post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/reporting/moveToBlobStorage
+  method: get
+  operationId: ReportingApi_MoveToBlobStorage
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/pvrplugin/enquiry/{token}
+  method: post
+  operationId: PvrPluginApi_StoreEnquiry
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/zoopla/partners/{token}
+  method: post
+  operationId: ZooplaPartnersApi_CreateZooplaPartner
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/partners/{token}
+  method: post
+  operationId: PartnersApi_Post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/pvrplugin/order/{token}
+  method: post
+  operationId: PvrPluginApi_GenerateOrder
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/brands/{token}/{targetAccountApiKey}
+  method: put
+  operationId: BrandsApi_Put
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/brands/{token}/{targetAccountApiKey}
+  method: get
+  operationId: BrandsApi_Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/reporting/PropertyValuation/{token}/{transactionReference}
+  method: get
+  operationId: ReportingApi_RetrievePropertyValuationReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/reporting/TestGet
+  method: get
+  operationId: ReportingApi_TestGet
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/reporting/TestPost
+  method: post
+  operationId: ReportingApi_TestPost
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/reporting/PropertyValuation
+  method: post
+  operationId: ReportingApi_RequestPropertyValuationReport
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/reporting/PropertyValuation/config/{token}
+  method: get
+  operationId: ReportingApi_GetPvrConfigurations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/partners/{token}/{partnerType}/{id}
+  method: get
+  operationId: PartnersApi_Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/licences/{token}/{product}
+  method: get
+  operationId: LicencesApi_Licences
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/pvrplugin/{domain}
+  method: get
+  operationId: PvrPluginApi_GetConfiguration
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/pvrplugin/{domain}/{partnerid}
+  method: get
+  operationId: PvrPluginApi_GetConfigurationByPartnerId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/trial/{apikey}/{token}
+  method: get
+  operationId: TrialApi_Trial
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/reporting/{token}
+  method: post
+  operationId: ReportingApi_ProcessPropertyValuation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/trial/{token}
+  method: post
+  operationId: TrialApi_NewTrial
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /broker/valuation/{valuationId}
+  method: get
+  operationId: FindValuationById-Spec
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /broker/v2/valuation/{valuationId}
+  method: get
+  operationId: FindValuationByIdV2-Spec
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /internal/valuation/{valuationId}/raw
+  method: get
+  operationId: GetRawValuationById-Spec
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /internal/v2/valuation/{valuationId}/raw
+  method: get
+  operationId: GetRawValuationByIdV2-Spec
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /broker/valuation/{valuationId}/input
+  method: get
+  operationId: GetValuationInputById-Spec
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /broker/v2/valuation/{valuationId}/input
+  method: get
+  operationId: GetValuationInputByIdV2-Spec
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /broker/order/{orderId}
+  method: get
+  operationId: GetValuationOrderById-Spec
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /broker/v2/order/{orderId}
+  method: get
+  operationId: GetValuationOrderByIdV2-Spec
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /broker/order/{orderId}/status
+  method: get
+  operationId: GetValuationStatusById-Spec
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /broker/v2/order/{orderId}/status
+  method: get
+  operationId: GetValuationStatusByIdV2-Spec
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /broker/order
+  method: post
+  operationId: ValuePropertyBroker-Spec
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /broker/v2/order
+  method: post
+  operationId: ValuePropertyBrokerV2-Spec
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /ground-coastalerosion-twinn/{uprn}
+  method: get
+  operationId: CoastalErosionData
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /epc-hometrack/{uprn}
+  method: get
+  operationId: Epc
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /flood-twinn/{uprn}
+  method: get
+  operationId: Flood
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ground-terrafirma/{uprn}
+  method: get
+  operationId: Ground
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ground-subsidence-twinn/{uprn}
+  method: get
+  operationId: SubsidenceScoreData
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organisation/{orgId}/case
+  method: get
+  operationId: get-organisation-orgid-case
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organisation/{orgId}/case/{caseId}
+  method: get
+  operationId: get-organisation-orgid-case-caseid
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organisation/{orgId}/case/{caseId}/documents
+  method: get
+  operationId: get-organisation-orgid-case-caseid-documents
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organisation/{orgId}/case/{caseId}/documents
+  method: post
+  operationId: post-organisation-orgid-case-caseid-documents
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /organisation/{orgId}/case/{caseId}/documents/{documentReference}
+  method: get
+  operationId: get-organisation-orgid-case-caseid-documents-documentreference
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organisation/{orgId}/case/{caseId}/documents/{documentReference}/verify
+  method: get
+  operationId: get-organisation-orgid-case-caseid-documents-documentreference-verify
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organisation/{orgId}/case/{caseId}/process/{caseProcessId}
+  method: get
+  operationId: get-organisation-orgid-case-caseid-process-caseprocessid
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organisation/{orgId}/case/{caseId}/process/{caseProcessId}/status
+  method: get
+  operationId: get-organisation-orgid-case-caseid-process-caseprocessid-status
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organisation/{orgId}/case/{caseId}/report
+  method: get
+  operationId: get-organisation-orgid-case-caseid-report
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organisation/{orgId}/case/{caseId}/report/{revision}
+  method: get
+  operationId: get-organisation-orgid-case-caseid-report-revision
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organisation/{orgId}/case/{caseId}/report/latest
+  method: get
+  operationId: get-organisation-orgid-case-caseid-report-latest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organisation/{orgId}/case/{caseId}/status
+  method: get
+  operationId: get-organisation-orgid-case-caseid-status
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organisation/{orgId}/case/{caseId}/status
+  method: post
+  operationId: post-organisation-orgid-case-caseid-status
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /organisation/{orgId}/case/{caseId}/status/latest
+  method: get
+  operationId: get-organisation-orgid-case-caseid-status-latest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organisation/{orgId}/instruction
+  method: post
+  operationId: post-organisation-orgid-instruction
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /organisation/{orgId}/instruction
+  method: put
+  operationId: put-organisation-orgid-instruction
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /organisation/{orgId}/property/repository
+  method: get
+  operationId: get-organisation-orgid-property-repository
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organisation/{orgId}/property/repository/{repositoryId}
+  method: get
+  operationId: get-organisation-orgid-property-repository-repositoryid
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organisation/{orgId}/property
+  method: get
+  operationId: get-organisation-orgid-property-postalcode-postalcode
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /authentication/{apiKey}
+  method: post
+  operationId: authentication
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /status
+  method: get
+  operationId: status
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /valuation/{accountId}
+  method: post
+  operationId: valuation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required

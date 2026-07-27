@@ -1,0 +1,78 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  Live anonymous probes of every host in apis.yml (www.hometrack.com,
+  developer.hometrack.com, api.hometrack.com — the single host behind every
+  OpenAPI servers[] entry) plus the Auth0 tenant that issues Hometrack API
+  tokens (hometrack-prod.eu.auth0.com, named in
+  https://developer.hometrack.com/api-authentication).
+summary: >-
+  Hometrack publishes no /.well-known/ documents on any of its own hosts. The
+  API gateway host answers every /.well-known/ path with a blanket HTTP 301 to
+  the developer portal (Microsoft-Azure-Application-Gateway/v2), so a naive
+  redirect-following probe reports a false 200 — the redirect target is the
+  portal home page, not a discovery document. The portal itself and the
+  marketing site both return 404. The only real discovery surface in Hometrack's
+  stack belongs to its identity provider: the Auth0 tenant
+  hometrack-prod.eu.auth0.com serves a full OIDC discovery document, an RFC 8414
+  authorization-server metadata document and a JWKS, all anonymously. Those are
+  saved here because they are the machine-readable half of Hometrack's
+  documented OAuth 2.0 client-credentials flow.
+hosts:
+- host: https://api.hometrack.com
+  note: >-
+    API gateway (Azure API Management). All /.well-known/ paths and all root
+    spec paths return 301 -> https://developer.hometrack.com (no body).
+  documents:
+  - {path: /.well-known/security.txt, status: 301, redirect: https://developer.hometrack.com}
+  - {path: /.well-known/openid-configuration, status: 301, redirect: https://developer.hometrack.com}
+  - {path: /.well-known/oauth-authorization-server, status: 301, redirect: https://developer.hometrack.com}
+  - {path: /.well-known/oauth-protected-resource, status: 301, redirect: https://developer.hometrack.com}
+  - {path: /.well-known/api-catalog, status: 301, redirect: https://developer.hometrack.com}
+  - {path: /.well-known/ai-plugin.json, status: 301, redirect: https://developer.hometrack.com}
+  - {path: /openapi.json, status: 301, redirect: https://developer.hometrack.com}
+  - {path: /swagger.json, status: 301, redirect: https://developer.hometrack.com}
+- host: https://developer.hometrack.com
+  note: Azure API Management developer portal (also served at api.docs.hometrack.com).
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /llms.txt, status: 404}
+- host: https://www.hometrack.com
+  note: Marketing site (WordPress).
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /security.txt, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /llms.txt, status: 404}
+  - {path: /robots.txt, status: 200, note: 'User-agent: * / Disallow: /wp-admin/ / Crawl-delay: 10 — no AI-specific directives.'}
+- host: https://hometrack-prod.eu.auth0.com
+  note: >-
+    Hometrack's Auth0 tenant — the authorization server named in the published
+    API authentication guide. Anonymous, and the only working discovery surface.
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: hometrack-auth0-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: hometrack-auth0-oauth-authorization-server.json
+    note: RFC 8414 authorization-server metadata (identical payload to the OIDC document).
+  - path: /.well-known/jwks.json
+    status: 200
+    file: hometrack-auth0-jwks.json
+findings:
+  security_txt: false
+  api_catalog: false
+  ai_plugin: false
+  oidc_discovery: true
+  oauth_authorization_server_metadata: true
+  jwks: true
+cross_links:
+  authentication: authentication/hometrack-authentication.yml
+  scopes: scopes/hometrack-scopes.yml
+  conformance: conformance/hometrack-conformance.yml

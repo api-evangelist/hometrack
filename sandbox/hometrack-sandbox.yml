@@ -1,0 +1,63 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  https://developer.hometrack.com/ + https://developer.hometrack.com/apis +
+  the six OpenAPI documents in openapi/ + live anonymous gateway probes.
+summary: >-
+  Hometrack publishes an interactive API console but no sandbox. The Azure API
+  Management developer portal ships the stock try-it console on every operation
+  ("The API Console allows you to directly interact with the API right here in
+  the developer portal") and it is reachable anonymously — but every call it
+  makes goes to the production gateway, and every call without a
+  Hometrack-issued key returns HTTP 401. There is no test environment, no test
+  key, no magic test values, no fixture data and no time simulation. The one
+  operation anyone can execute is the availability check.
+sandbox:
+  exists: false
+  test_environment: null
+  test_credentials: false
+  test_data: false
+  test_clock: false
+  fixtures: false
+console:
+  exists: true
+  url: https://developer.hometrack.com/apis
+  kind: azure-api-management-try-it
+  anonymous_access: true
+  executes_against: production (https://api.hometrack.com)
+  verbatim: >-
+    "The API Documentation describes how to use the APIs and includes code
+    samples in multiple languages. The API Console allows you to directly
+    interact with the API right here in the developer portal. To interact with
+    any of our APIs you will need to have a valid API Key for that respective
+    product. If you do not yet have an API Key, please contact us."
+anonymously_executable:
+- operation: status
+  api: Hometrack Valuation API
+  url: https://api.hometrack.com/valuation-api/v1/status
+  observed: {status: 200, body: '(zero bytes)', date: '2026-07-26'}
+  note: The only operation in Hometrack's published surface that answers an unauthenticated caller.
+non_production_hosts_in_specs:
+- host: https://api.hometrack.local
+  note: >-
+    Every harvested OpenAPI declares a second server, api.hometrack.local (and
+    its per-API base paths). This is Hometrack's INTERNAL development hostname
+    leaking into the published contract — it does not resolve publicly and is
+    not a sandbox. Recorded so nobody mistakes it for one.
+trial_surface:
+  exists_in_api: true
+  operations: [TrialApi_Trial, TrialApi_NewTrial]
+  spec: openapi/hometrack-api-public-openapi.yml
+  self_service: false
+  note: >-
+    The Public API carries POST /api/trial/{token} ("issues a trial licence") and
+    GET /api/trial/{apikey}/{token}. These are trial LICENCES issued by
+    Hometrack to an existing account holder, not a developer trial — calling
+    them still requires a Hometrack-issued key, and no trial is offered on the
+    portal.
+onboarding:
+  self_service: false
+  contact: https://www.hometrack.com/uk/#contactus
+cross_links:
+  authentication: authentication/hometrack-authentication.yml
+  conventions: conventions/hometrack-conventions.yml

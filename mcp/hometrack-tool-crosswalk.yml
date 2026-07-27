@@ -1,0 +1,109 @@
+generated: '2026-07-26'
+method: derived
+source: >-
+  Derived by aligning the candidate MCP tool set (mcp/hometrack-mcp.yml) and
+  Hometrack's registered GraphQL surface with the operationIds in the six
+  harvested OpenAPI documents under openapi/.
+purpose: >-
+  Bind every agent-facing tool to the REST operation that would back it, so each
+  tool inherits a REAL input schema (that operation's parameters + requestBody)
+  instead of a guessed one — and record where Hometrack's surfaces diverge.
+  Hometrack is an unusual case for this artifact: there is no published MCP
+  server, and its GraphQL API is registered but schema-gated, so the crosswalk
+  documents an intended binding plus one genuinely unmappable surface.
+surfaces:
+  rest_openapi: openapi/    # 6 documents, 55 paths, 59 operations, 381 component schemas — anonymously harvestable
+  graphql:
+    endpoint: https://api.hometrack.com/climate/graphql
+    registered_as: 'APIM api id climate-api-graphql, type "graphql"'
+    introspection: gated
+    note: >-
+      POST {__schema{queryType{name}}} returns HTTP 401
+      {"statusCode": 401, "message": "Unauthorized. Access token is missing or
+      invalid."}; the APIM schemas collection
+      (/developer/apis/climate-api-graphql/schemas) returns an empty array to an
+      anonymous caller. No SDL could be captured, so no GraphQL field can be
+      crosswalked. The OpenAPI export for it is a stub with servers and security
+      schemes and zero paths.
+  mcp:
+    url: null
+    status: none-published
+    note: Tools below are candidates derived from OpenAPI, not a published tools/list.
+crosswalk:
+- {tool: get_valuation_api_status, category: valuation, rest: [status], binding: rest, confidence: high}
+- {tool: value_property, category: valuation, rest: [valuation], binding: rest, confidence: high}
+- {tool: exchange_valuation_api_key, category: auth, rest: [authentication], binding: rest, confidence: high, note: Transport-level credential exchange; an MCP server would absorb this rather than expose it.}
+- {tool: order_broker_valuation, category: broker-avm, rest: [ValuePropertyBroker-Spec], binding: rest, confidence: high}
+- {tool: order_broker_valuation_with_climate, category: broker-avm, rest: [ValuePropertyBrokerV2-Spec], binding: rest, confidence: high}
+- {tool: get_broker_order, category: broker-avm, rest: [GetValuationOrderById-Spec, GetValuationOrderByIdV2-Spec], binding: rest, confidence: high, note: v1 and v2 served side by side; a tool would target v2.}
+- {tool: get_broker_order_status, category: broker-avm, rest: [GetValuationStatusById-Spec, GetValuationStatusByIdV2-Spec], binding: rest, confidence: high}
+- {tool: get_broker_valuation, category: broker-avm, rest: [FindValuationById-Spec, FindValuationByIdV2-Spec], binding: rest, confidence: high, note: Returns 202 while the valuation is still being produced — the tool must poll.}
+- {tool: get_broker_valuation_input, category: broker-avm, rest: [GetValuationInputById-Spec, GetValuationInputByIdV2-Spec], binding: rest, confidence: high}
+- {tool: get_raw_broker_valuation, category: broker-avm, rest: [GetRawValuationById-Spec, GetRawValuationByIdV2-Spec], binding: rest, confidence: high, note: '/internal/ path — published in the contract but named as an internal projection.'}
+- {tool: get_property_epc, category: climate, rest: [Epc], binding: rest, confidence: high}
+- {tool: get_property_flood_risk, category: climate, rest: [Flood], binding: rest, confidence: high}
+- {tool: get_property_ground_risk, category: climate, rest: [Ground], binding: rest, confidence: high}
+- {tool: get_property_subsidence_risk, category: climate, rest: [SubsidenceScoreData], binding: rest, confidence: high}
+- {tool: get_property_coastal_erosion_risk, category: climate, rest: [CoastalErosionData], binding: rest, confidence: high}
+- {tool: create_prh_instruction, category: property-risk-hub, rest: [post-organisation-orgid-instruction], binding: rest, confidence: high}
+- {tool: reinstruct_prh_case, category: property-risk-hub, rest: [put-organisation-orgid-instruction], binding: rest, confidence: high}
+- {tool: list_prh_cases, category: property-risk-hub, rest: [get-organisation-orgid-case], binding: rest, confidence: high, note: 'Rich filter set (caseStatus, lenderRef, instructionRef, date ranges, hasReport, reportAcceptable) plus page/pageSize/orderBy.'}
+- {tool: get_prh_case, category: property-risk-hub, rest: [get-organisation-orgid-case-caseid], binding: rest, confidence: high}
+- {tool: get_prh_case_process, category: property-risk-hub, rest: [get-organisation-orgid-case-caseid-process-caseprocessid, get-organisation-orgid-case-caseid-process-caseprocessid-status], binding: rest, confidence: high}
+- {tool: get_prh_case_status, category: property-risk-hub, rest: [get-organisation-orgid-case-caseid-status, get-organisation-orgid-case-caseid-status-latest], binding: rest, confidence: high}
+- {tool: post_prh_case_status, category: property-risk-hub, rest: [post-organisation-orgid-case-caseid-status], binding: rest, confidence: high}
+- {tool: list_prh_case_documents, category: property-risk-hub, rest: [get-organisation-orgid-case-caseid-documents], binding: rest, confidence: high}
+- {tool: attach_prh_case_document, category: property-risk-hub, rest: [post-organisation-orgid-case-caseid-documents], binding: rest, confidence: high}
+- {tool: get_prh_case_document, category: property-risk-hub, rest: [get-organisation-orgid-case-caseid-documents-documentreference, get-organisation-orgid-case-caseid-documents-documentreference-verify], binding: rest, confidence: high}
+- {tool: get_prh_case_report, category: property-risk-hub, rest: [get-organisation-orgid-case-caseid-report, get-organisation-orgid-case-caseid-report-revision, get-organisation-orgid-case-caseid-report-latest], binding: rest, confidence: high}
+- {tool: search_prh_property_repository, category: property-risk-hub, rest: [get-organisation-orgid-property-repository, get-organisation-orgid-property-repository-repositoryid], binding: rest, confidence: high}
+- {tool: search_prh_properties_by_postcode, category: property-risk-hub, rest: [get-organisation-orgid-property-postalcode-postalcode], binding: rest, confidence: high}
+- {tool: request_property_valuation_report, category: reporting, rest: [ReportingApi_RequestPropertyValuationReport], binding: rest, confidence: high}
+- {tool: download_property_valuation_report, category: reporting, rest: [ReportingApi_RetrievePropertyValuationReport], binding: rest, confidence: high}
+- {tool: get_account_licences, category: account, rest: [LicencesApi_Licences], binding: rest, confidence: high}
+- {tool: get_report_branding, category: account, rest: [BrandsApi_Get], binding: rest, confidence: high}
+mcp_only: []
+mcp_only_note: >-
+  There is no published MCP server, so there are no MCP-only capabilities. Every
+  candidate tool is REST-backed by construction.
+graphql_only:
+- surface: Climate GraphQL API
+  endpoint: https://api.hometrack.com/climate/graphql
+  reason: >-
+    Registered in APIM against the same climate backend
+    (web-uks-prod-data-api.azurewebsites.net) as the REST Climate API, but its
+    schema is auth-gated, so it is impossible to say from public evidence
+    whether it exposes fields the five REST operations do not. This is a real
+    surface divergence that cannot be resolved anonymously — recording it as
+    unknown rather than assuming parity.
+rest_only:
+- capability: PVR plugin serving
+  operations: [PvrPluginApi_GetConfiguration, PvrPluginApi_GetConfigurationByPartnerId, PvrPluginApi_StoreEnquiry, PvrPluginApi_GenerateOrder]
+  reason: Serves an embedded partner widget; see components/hometrack-components.yml.
+- capability: Partner administration
+  operations: [PartnersApi_Post, PartnersApi_Get, ZooplaPartnersApi_CreateZooplaPartner]
+  reason: Administrative account plumbing, not an agent capability.
+- capability: Branding write
+  operations: [BrandsApi_Put]
+  reason: Administrative write behind a specific permission.
+- capability: Trial licensing
+  operations: [TrialApi_Trial, TrialApi_NewTrial]
+  reason: Commercial licence administration.
+- capability: Internal reporting plumbing
+  operations: [ReportingApi_MoveToBlobStorage, ReportingApi_ProcessPropertyValuation, ReportingApi_GetPvrConfigurations, ReportingApi_TestGet, ReportingApi_TestPost]
+  reason: 'Scheduled tasks, CMS configuration reads and two endpoints Hometrack itself labels "For test purpose" — internal surface published to the catalogue as-is.'
+- capability: Public API credential exchange
+  operations: [AuthenticationApi_Post]
+  reason: Transport-level credential exchange.
+coverage:
+  tools_named: 32
+  tools_bound: 32
+  mcp_only: 0
+  graphql_surfaces_unresolvable: 1
+  rest_operations_total: 59
+  rest_operations_with_a_tool: 43
+  rest_operations_without_a_tool: 16
+cross_links:
+  mcp: mcp/hometrack-mcp.yml
+  agentic_access: agentic-access/hometrack-agentic-access.yml
+  data_model: data-model/hometrack-data-model.yml

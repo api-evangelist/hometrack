@@ -1,0 +1,167 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  https://developer.hometrack.com/ + https://developer.hometrack.com/api-authentication
+  + the six OpenAPI documents in openapi/ (55 paths, 59 operations, 381 component
+  schemas) + live anonymous gateway probes.
+summary: >-
+  Hometrack has no single cross-cutting API style. Its six published APIs come
+  from at least three different engineering generations and each carries its own
+  conventions — an RAML/AMF-generated case-management API with an exhaustive and
+  uniform HTTP status vocabulary (PRH), a modern UPRN-keyed read API with
+  explicit correlation headers (Climate), and two legacy .NET APIs that put
+  exchange tokens in the URL path (Valuation API, API Public). The one thing
+  they share is the Azure API Management envelope in front of them: the same
+  subscription-key schemes, the same {"statusCode","message"} gateway error, and
+  the same 401 for every anonymous caller.
+authentication:
+  styles: [oauth2_client_credentials_bearer, apim_subscription_key, exchange_token_header, exchange_token_path]
+  primary: 'OAuth 2.0 client credentials (Auth0) -> Authorization: Bearer <token>, 24h'
+  see: authentication/hometrack-authentication.yml
+idempotency:
+  documented: false
+  header: null
+  notes: >-
+    No idempotency key, no request-deduplication header and no retry-safety
+    contract appears anywhere in the docs or in any of the six OpenAPI
+    documents. This matters for the write path: POST /broker/order and POST
+    /broker/v2/order create billable valuation orders, and POST
+    /organisation/{orgId}/instruction creates a surveyor instruction. The only
+    duplicate-protection signal in the whole surface is application-level and
+    partial — the Public API returns HTTP 409 "Conflict - non-unique transaction
+    ID is provided" on report requests, and the Broker order request carries a
+    client-supplied `orderReference`, which a caller can use as a natural
+    business key but which the API does not document as an idempotency
+    guarantee. NO Idempotency pointer is wired in apis.yml, because Hometrack
+    does not offer an idempotency contract.
+  application_level_signals:
+  - {api: Hometrack API Public, signal: 'HTTP 409 Conflict - non-unique transaction ID is provided', operation: ReportingApi_RequestPropertyValuationReport}
+  - {api: Broker AVM API, signal: 'client-supplied order.orderReference in the request body', operation: ValuePropertyBroker-Spec}
+pagination:
+  documented: true
+  scope: PRH Core External Client API only
+  style: zero-indexed page number
+  request_params:
+  - {name: page, in: query, type: integer, note: 'The zero-indexed page number to return, if paging is on.'}
+  - {name: pageSize, in: query, type: integer, note: The page size returned.}
+  - {name: pageResults, in: query, type: boolean, note: 'Turn paging on or off (on by default). 5000 result limit when off.'}
+  response_fields: [TotalCount, PageCount, Page, PageSize]
+  sorting: {param: orderBy, note: 'Specifies how the response should be sorted, as a SQL ORDER BY string — an unusual and leaky choice for a public contract.'}
+  applies_to:
+  - get-organisation-orgid-case
+  - get-organisation-orgid-property-postalcode-postalcode
+  notes: >-
+    Paging exists in exactly one of the six APIs. Everywhere else, collection
+    reads are single-shot or identifier-scoped: the property repository search
+    (get-organisation-orgid-property-repository) filters by externalReference,
+    instructionReference or uprn with no paging, and the Climate, Broker AVM,
+    Valuation and Public APIs return single objects.
+field_expansion:
+  supported: partial
+  notes: >-
+    Not a general expansion/sparse-fieldset mechanism. Two forms of
+    representation choice exist: the Broker AVM API exposes a parallel
+    /internal/... "raw" projection of a valuation ("returns the raw valuation
+    response with all data, audit traces etc"), and the PRH report endpoints
+    expose /report, /report/{revision} and /report/latest as different views of
+    the same artifact.
+versioning:
+  style: uri-path-segment
+  see: lifecycle/hometrack-lifecycle.yml
+  notes: >-
+    APIM version sets use the Segment scheme. Broker AVM serves v1 and v2 paths
+    concurrently rather than versioning the base path.
+request_tracing:
+  supported: true
+  scope: Climate API only
+  headers:
+  - {name: X-Client-ID, in: header, note: caller identifier}
+  - {name: X-Client-Reference, in: header, note: caller's own reference for the request}
+  - {name: X-Correlation-ID, in: header, note: correlation identifier for tracing a request across services}
+  notes: >-
+    All five Climate operations accept these three tracking headers. No other
+    Hometrack API declares a request-id or correlation header, and no API
+    documents a response-side request identifier.
+error_envelope:
+  gateway:
+    shape: '{"statusCode": <int>, "message": "<string>"}'
+    example: '{"statusCode": 401, "message": "Unauthorized. Access token is missing or invalid."}'
+    source: live probe of api.hometrack.com (Azure API Management)
+  prh:
+    shape: '{"message": "<string>", "reason": "<string>"}'
+    required: [message]
+    example: '{"message": "Bad request", "reason": "Further error information"}'
+    source: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
+  legacy:
+    shape: plain string body
+    note: >-
+      The Public API, Broker AVM API and Valuation API declare error bodies as
+      bare strings (or no body at all) rather than a structured envelope.
+  rfc9457: false
+  see: errors/hometrack-problem-types.yml
+rate_limiting:
+  documented: false
+  published_limits: null
+  signals:
+  - {api: Valuation API, status: 429, description: 'Rate limit is exceeded. The response body will tell you when you can try again.', example_message: 'Rate limit is exceeded. Try again in 60 seconds.'}
+  - {api: PRH Core External Client API, status: 429, description: 'Status 429 - Too Many Requests. The request has been submitted too many times within a given time window.', example_message: 'Request limit exceeded. Try again later.'}
+  headers: unknown
+  notes: >-
+    Rate limits exist and are surfaced as 429 with a human-readable retry hint in
+    the body, but no numeric quota is published and no Retry-After or
+    X-RateLimit-* header is declared in any spec. Quotas are set per APIM product
+    subscription under the commercial agreement.
+content_negotiation:
+  json: true
+  xml: true
+  pdf: true
+  notes: >-
+    The Public API is unusually polyglot for a modern API: report operations
+    return application/pdf and application/xml alongside JSON, and the PVR plugin
+    configuration endpoints serve application/json, text/json, application/xml
+    and text/xml from the same operation.
+identifiers:
+  uprn:
+    used_by: [Climate API]
+    description: >-
+      The Climate API keys every property off the UPRN, the Unique Property
+      Reference Number issued by GeoPlace and distributed by Ordnance Survey —
+      the UK's national property identifier. Every Climate path is
+      /<dataset>/{uprn}.
+  postcode: {used_by: [Broker AVM API, PRH Core External Client API], description: UK postcode plus address lines identify a property on the valuation and case paths.}
+  order_reference: {used_by: [Broker AVM API], description: Client-supplied order reference carried on the valuation order.}
+  transaction_reference: {used_by: [Hometrack API Public], description: Identifies a requested Property Valuation Report for later retrieval.}
+async_patterns:
+  supported: true
+  style: request-then-poll
+  notes: >-
+    Long-running work is modelled as 202 + poll, never as a callback. Broker AVM
+    returns 202 on GET /broker/valuation/{valuationId} while the valuation is
+    still being produced; the Public API returns 202 on GET
+    /api/reporting/PropertyValuation/{token}/{transactionReference} while the
+    report is being generated; PRH returns 202 on document upload and document
+    verify. There are NO webhooks, callbacks or events anywhere in the surface —
+    see asyncapi note below.
+events:
+  webhooks: false
+  asyncapi: false
+  notes: >-
+    No webhook registration endpoint, no `callbacks` block in any OpenAPI, no
+    event catalogue and no streaming surface. Hometrack's integration model is
+    poll-based. No AsyncAPI or Webhooks pointer is wired, because there is no
+    event surface to describe.
+graphql:
+  endpoint: https://api.hometrack.com/climate/graphql
+  introspection: gated
+  notes: >-
+    Registered in APIM as type "graphql" but the schema is not anonymously
+    retrievable: the APIM schemas collection returns an empty array and a POST
+    of {__schema{queryType{name}}} returns HTTP 401. SDL requires an
+    authenticated introspection.
+cross_links:
+  authentication: authentication/hometrack-authentication.yml
+  scopes: scopes/hometrack-scopes.yml
+  errors: errors/hometrack-problem-types.yml
+  lifecycle: lifecycle/hometrack-lifecycle.yml
+  data_model: data-model/hometrack-data-model.yml
+  conformance: conformance/hometrack-conformance.yml
