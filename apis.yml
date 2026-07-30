@@ -70,56 +70,21 @@ created: '2026-07-26'
 modified: '2026-07-26'
 specificationVersion: '0.19'
 apis:
-- aid: hometrack:hometrack-valuation-api
-  name: Hometrack Valuation API
-  description: >-
-    Described in Hometrack's own Azure API Management catalogue as the "Generally
-    available version of the Valuation API". Three operations: POST
-    /authentication/{apiKey} exchanges an API key for a temporary token valid for
-    five minutes, GET /status reports whether the Valuation API is currently
-    available, and POST /valuation/{accountId} runs a valuation on a given
-    property. The valuation endpoint uses token-based authorization with an
-    Authorization header of the form 'Token token="<guid>"' (Hometrack documents
-    that it also accepts looser variants without the quotes or the token= prefix).
-    GET /status is the one operation in Hometrack's entire published surface that
-    answered an anonymous probe with HTTP 200 — it returned a zero-byte body,
-    confirming the gateway is live.
-  humanURL: https://developer.hometrack.com/apis
-  baseURL: https://api.hometrack.com/valuation-api/v1
-  tags:
-  - Valuation
-  - AVM
-  - Real Estate
-  - United Kingdom
-  properties:
-  - type: OpenAPI
-    url: openapi/hometrack-valuation-api-v1-openapi.yml
-  - type: Overlay
-    url: overlays/hometrack-valuation-api-v1-overlay.yaml
-  - type: Documentation
-    url: https://developer.hometrack.com/apis
-  - type: Authentication
-    url: https://developer.hometrack.com/api-authentication
-  - type: Authentication
-    url: authentication/hometrack-auth0-openid-configuration.json
 - aid: hometrack:hometrack-broker-avm-api
   name: Hometrack Broker AVM API
   description: >-
-    Hometrack's own catalogue description is "This API provides access to the
-    Broker AVM service." Twelve operations across two revisions (v1 and v2 paths
-    served side by side): POST /broker/order creates a valuation order for a
-    property, POST /broker/v2/order "creates the valuation order with climate data
-    for the property", and GET operations retrieve the order, the order status,
-    the valuation, the valuation input supplied at inception, and — on
-    /internal/... paths — the raw valuation response "with all data, audit traces
-    etc". The harvested request schema for a broker order is detailed and real:
-    an order block with accountId, orderReference, userId and valuationType, and a
-    valuations array carrying address (postcode, address, uprn), effectiveDate, a
-    loan block (repaymentType, loanAmount, outstandingLoanAmount, additionalLoanAmount,
-    remainingTerm, minimumRentalIncome, existingMortgage, instructionType) and a
-    property block (bedrooms, receptions, propertyType, propertyStyle,
-    constructionType, constructionPeriod, yearBuilt, floorArea, parking,
-    exLocalAuthority, visibleFromRoad). Anonymous GET on this path returns HTTP 401.
+    Hometrack's own catalogue description is "This API provides access to the Broker AVM service." Twelve
+    operations across two revisions (v1 and v2 paths served side by side): POST /broker/order creates
+    a valuation order for a property, POST /broker/v2/order "creates the valuation order with climate
+    data for the property", and GET operations retrieve the order, the order status, the valuation, the
+    valuation input supplied at inception, and — on /internal/... paths — the raw valuation response "with
+    all data, audit traces etc". The harvested request schema for a broker order is detailed and real:
+    an order block with accountId, orderReference, userId and valuationType, and a valuations array carrying
+    address (postcode, address, uprn), effectiveDate, a loan block (repaymentType, loanAmount, outstandingLoanAmount,
+    additionalLoanAmount, remainingTerm, minimumRentalIncome, existingMortgage, instructionType) and a
+    property block (bedrooms, receptions, propertyType, propertyStyle, constructionType, constructionPeriod,
+    yearBuilt, floorArea, parking, exLocalAuthority, visibleFromRoad). Anonymous GET on this path returns
+    HTTP 401.
   humanURL: https://developer.hometrack.com/apis
   baseURL: https://api.hometrack.com/valuation/v2
   tags:
@@ -137,87 +102,15 @@ apis:
     url: https://developer.hometrack.com/apis
   - type: Authentication
     url: https://developer.hometrack.com/api-authentication
-- aid: hometrack:hometrack-prh-core-external-client-api
-  name: Hometrack PRH Core External Client API v2.0
-  description: >-
-    Catalogued by Hometrack as "(PRH) - Core External Client API v2.0 — Our PRH
-    'Core' API offering to all customers who want it." PRH is Hometrack's Property
-    Risk Hub, the case-management and surveyor-instruction platform sold to
-    mortgage lenders. Nineteen operations under /organisation/{orgId}: create an
-    instruction (POST /instruction) and reinstruct or reprocess an existing one
-    (PUT /instruction); list and retrieve cases; retrieve a case filtered to a
-    specific case process and that process's status; list, attach, retrieve and
-    verify case documents; list and retrieve valuation reports attached to a case,
-    including a /report/latest shortcut; read and post data-provider status updates
-    on a case; and search the property valuation repository by postal code or
-    repository id. The harvested schema document is the richest in Hometrack's
-    catalogue at 257 component schemas, including a full "PRH - External Client
-    API - Create Instruction - JSON schema" with a worked example.
-  humanURL: https://developer.hometrack.com/apis
-  baseURL: https://api.hometrack.com/prh
-  tags:
-  - Property Risk
-  - Case Management
-  - Surveying
-  - Mortgage
-  - Real Estate
-  - United Kingdom
-  properties:
-  - type: OpenAPI
-    url: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
-  - type: Overlay
-    url: overlays/hometrack-prh-core-external-client-api-v2-overlay.yaml
-  - type: Documentation
-    url: https://developer.hometrack.com/apis
-  - type: Authentication
-    url: https://developer.hometrack.com/api-authentication
-- aid: hometrack:hometrack-climate-api
-  name: Hometrack Climate API (v2)
-  description: >-
-    Five GET operations returning climate and energy risk data for a single
-    property, keyed on UPRN — the Unique Property Reference Number, the UK's
-    government-issued national property identifier: /epc-hometrack/{uprn} returns
-    EPC (energy performance) data, /flood-twinn/{uprn} returns flood data,
-    /ground-terrafirma/{uprn} returns ground data, /ground-subsidence-twinn/{uprn}
-    returns subsidence score data and /ground-coastalerosion-twinn/{uprn} returns
-    coastal erosion data. Four of the five take a dataVersion parameter, and the
-    supplier is visible in the path segments — Twinn for flood, subsidence and
-    coastal erosion, Terrafirma for ground. Every operation accepts X-Client-ID,
-    X-Client-Reference and X-Correlation-ID tracking headers. The harvested schema
-    document carries 35 component schemas covering the response models
-    (FloodScoreResponseModelV2, SubsidenceScoreResponseModelV2,
-    CoastalErosionScoreResponseModelV2, GroundScoreResponseModelV2,
-    EnergyCertificateResponseModelV2 and their sub-models). The APIM contract
-    records the backend as web-uks-prod-data-api.azurewebsites.net/v2.
-  humanURL: https://developer.hometrack.com/apis
-  baseURL: https://api.hometrack.com/climate
-  tags:
-  - Climate Risk
-  - Property Data
-  - EPC
-  - Flood
-  - Real Estate
-  - United Kingdom
-  properties:
-  - type: OpenAPI
-    url: openapi/hometrack-climate-api-v2-openapi.yml
-  - type: Overlay
-    url: overlays/hometrack-climate-api-v2-overlay.yaml
-  - type: Documentation
-    url: https://developer.hometrack.com/apis
-  - type: Authentication
-    url: https://developer.hometrack.com/api-authentication
 - aid: hometrack:hometrack-climate-graphql-api
   name: Hometrack Climate GraphQL API
   description: >-
-    A GraphQL API registered in Hometrack's API Management catalogue with
-    type "graphql" and path /climate/graphql, fronting the same climate data
-    backend (web-uks-prod-data-api.azurewebsites.net/graphql). It is a real,
-    listed API but its contract is not anonymously retrievable: the operations
-    collection and the schema collection both returned empty arrays to an
-    unauthenticated caller, so no GraphQL SDL could be harvested, and the
-    OpenAPI export for it is a stub with servers and security schemes but no
-    paths. Recorded here because absence of the schema is itself the finding.
+    A GraphQL API registered in Hometrack's API Management catalogue with type "graphql" and path /climate/graphql,
+    fronting the same climate data backend (web-uks-prod-data-api.azurewebsites.net/graphql). It is a
+    real, listed API but its contract is not anonymously retrievable: the operations collection and the
+    schema collection both returned empty arrays to an unauthenticated caller, so no GraphQL SDL could
+    be harvested, and the OpenAPI export for it is a stub with servers and security schemes but no paths.
+    Recorded here because absence of the schema is itself the finding.
   humanURL: https://developer.hometrack.com/apis
   baseURL: https://api.hometrack.com/climate/graphql
   tags:
@@ -233,41 +126,39 @@ apis:
     url: overlays/hometrack-climate-graphql-api-overlay.yaml
   - type: Documentation
     url: https://developer.hometrack.com/apis
-- aid: hometrack:hometrack-api-public
+- aid: hometrack:hometrack-api-public-openapi
   name: Hometrack API Public
-  description: >-
-    Catalogued by Hometrack as "Hometrack API for public consumption" and mounted
-    at the gateway root. Twenty operations that are mostly account, licensing,
-    branding and report-generation plumbing rather than a property data product:
-    POST /api/authentication/{apiKey} exchanges an API key for a plain-text GUID
-    token; /api/reporting/PropertyValuation requests and then downloads a Property
-    Valuation Report; /api/brands/{token}/{targetAccountApiKey} reads and writes
-    the co-branding configuration used on those reports; /api/licences/{token}/{product}
-    returns the product licences belonging to the authenticated account;
-    /api/partners and /api/zoopla/partners create and read partner-to-account
-    entries under "partner.create" and "partner.modify" permissions; /api/pvrplugin
-    endpoints serve the Property Valuation Report plugin; and /api/trial endpoints
-    issue trial licences. The name is misleading — nothing here is callable without
-    a Hometrack-issued API key, and the presence of a scheduled-task endpoint
-    (GET /api/reporting/moveToBlobStorage) and two "For test purpose" endpoints
-    suggests an internal API that has been published to the catalogue as-is.
+  description: Hometrack API Public from Hometrack — 19 path(s) described in OpenAPI.
   humanURL: https://developer.hometrack.com/apis
-  baseURL: https://api.hometrack.com
-  tags:
-  - Reporting
-  - Accounts
-  - Licensing
-  - Real Estate
-  - United Kingdom
+  baseURL: https://api.hometrack.com/valuation/v2
   properties:
   - type: OpenAPI
     url: openapi/hometrack-api-public-openapi.yml
-  - type: Overlay
-    url: overlays/hometrack-api-public-overlay.yaml
-  - type: Documentation
-    url: https://developer.hometrack.com/apis
-  - type: Authentication
-    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-climate-api-v2-openapi
+  name: Hometrack Climate API (v2)
+  description: Hometrack Climate API (v2) from Hometrack — 5 path(s) described in OpenAPI.
+  humanURL: https://developer.hometrack.com/apis
+  baseURL: https://api.hometrack.com/valuation/v2
+  properties:
+  - type: OpenAPI
+    url: openapi/hometrack-climate-api-v2-openapi.yml
+- aid: hometrack:hometrack-prh-core-external-client-api-v2-openapi
+  name: Hometrack (PRH) - Core External Client API v2.0
+  description: >-
+    Hometrack (PRH) - Core External Client API v2.0 from Hometrack — 16 path(s) described in OpenAPI.
+  humanURL: https://developer.hometrack.com/apis
+  baseURL: https://api.hometrack.com/valuation/v2
+  properties:
+  - type: OpenAPI
+    url: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
+- aid: hometrack:hometrack-valuation-api-v1-openapi
+  name: Hometrack Valuation API
+  description: Hometrack Valuation API from Hometrack — 3 path(s) described in OpenAPI.
+  humanURL: https://developer.hometrack.com/apis
+  baseURL: https://api.hometrack.com/valuation/v2
+  properties:
+  - type: OpenAPI
+    url: openapi/hometrack-valuation-api-v1-openapi.yml
 common:
 - type: APIReference
   url: https://developer.hometrack.com/apis
