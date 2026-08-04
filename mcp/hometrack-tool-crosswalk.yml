@@ -27,7 +27,8 @@ surfaces:
       schemes and zero paths.
   mcp:
     url: null
-    status: none-published
+    status: none
+    status_raw: none-published
     note: Tools below are candidates derived from OpenAPI, not a published tools/list.
 crosswalk:
 - {tool: get_valuation_api_status, category: valuation, rest: [status], binding: rest, confidence: high}
