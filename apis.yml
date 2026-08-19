@@ -68,7 +68,7 @@ tags:
 - Surveying
 created: '2026-07-26'
 modified: '2026-07-26'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: hometrack:hometrack-broker-avm-api
   name: Hometrack Broker AVM API
