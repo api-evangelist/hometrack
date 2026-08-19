@@ -1,0 +1,230 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Broker Avm API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FindValuationById-Spec",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/valuation/v2/broker/valuation/:valuationId",
+        "params": [
+          {
+            "name": "valuationId",
+            "value": "",
+            "type": "path",
+            "description": "ID of valuation to return"
+          }
+        ]
+      },
+      "docs": "Find a valuation by ID"
+    },
+    {
+      "info": {
+        "name": "FindValuationByIdV2-Spec",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/valuation/v2/broker/v2/valuation/:valuationId",
+        "params": [
+          {
+            "name": "valuationId",
+            "value": "",
+            "type": "path",
+            "description": "ID of valuation to return"
+          }
+        ]
+      },
+      "docs": "Find a valuation by ID"
+    },
+    {
+      "info": {
+        "name": "GetRawValuationById-Spec",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/valuation/v2/internal/valuation/:valuationId/raw",
+        "params": [
+          {
+            "name": "valuationId",
+            "value": "",
+            "type": "path",
+            "description": "ID of valuation to return"
+          }
+        ]
+      },
+      "docs": "Returns a single valuation response in raw format - with all data, audit traces etc"
+    },
+    {
+      "info": {
+        "name": "GetRawValuationByIdV2-Spec",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/valuation/v2/internal/v2/valuation/:valuationId/raw",
+        "params": [
+          {
+            "name": "valuationId",
+            "value": "",
+            "type": "path",
+            "description": "ID of valuation to return"
+          }
+        ]
+      },
+      "docs": "Returns a single valuation response in raw format - with all data, audit traces etc"
+    },
+    {
+      "info": {
+        "name": "GetValuationInputById-Spec",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/valuation/v2/broker/valuation/:valuationId/input",
+        "params": [
+          {
+            "name": "valuationId",
+            "value": "",
+            "type": "path",
+            "description": "ID of valuation to return"
+          }
+        ]
+      },
+      "docs": "Gets the input supplied at inception to request a valuation"
+    },
+    {
+      "info": {
+        "name": "GetValuationInputByIdV2-Spec",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/valuation/v2/broker/v2/valuation/:valuationId/input",
+        "params": [
+          {
+            "name": "valuationId",
+            "value": "",
+            "type": "path",
+            "description": "ID of valuation to return"
+          }
+        ]
+      },
+      "docs": "Gets the input supplied at inception to request a valuation"
+    },
+    {
+      "info": {
+        "name": "GetValuationOrderById-Spec",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/valuation/v2/broker/order/:orderId",
+        "params": [
+          {
+            "name": "orderId",
+            "value": "",
+            "type": "path",
+            "description": "ID of order to return"
+          }
+        ]
+      },
+      "docs": "Find a valuation order by ID"
+    },
+    {
+      "info": {
+        "name": "GetValuationOrderByIdV2-Spec",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/valuation/v2/broker/v2/order/:orderId",
+        "params": [
+          {
+            "name": "orderId",
+            "value": "",
+            "type": "path",
+            "description": "ID of order to return"
+          }
+        ]
+      },
+      "docs": "Find a valuation order by ID"
+    },
+    {
+      "info": {
+        "name": "GetValuationStatusById-Spec",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/valuation/v2/broker/order/:orderId/status",
+        "params": [
+          {
+            "name": "orderId",
+            "value": "",
+            "type": "path",
+            "description": "ID of order to return"
+          }
+        ]
+      },
+      "docs": "Get the status of a valuation order by order ID"
+    },
+    {
+      "info": {
+        "name": "GetValuationStatusByIdV2-Spec",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/valuation/v2/broker/v2/order/:orderId/status",
+        "params": [
+          {
+            "name": "orderId",
+            "value": "",
+            "type": "path",
+            "description": "ID of order to return"
+          }
+        ]
+      },
+      "docs": "Get the status of a valuation order by order ID"
+    },
+    {
+      "info": {
+        "name": "ValuePropertyBroker-Spec",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/valuation/v2/broker/order",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Creates the valuation order for the property"
+    },
+    {
+      "info": {
+        "name": "ValuePropertyBrokerV2-Spec",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/valuation/v2/broker/v2/order",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Creates the valuation order with climate data for the property"
+    }
+  ],
+  "bundled": true
+}

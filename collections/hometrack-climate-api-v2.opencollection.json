@@ -1,0 +1,185 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Climate API (v2)",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Returns CoastalErosionData data for a given property",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/climate/ground-coastalerosion-twinn/:uprn",
+        "headers": [
+          {
+            "name": "X-Client-ID",
+            "value": ""
+          },
+          {
+            "name": "X-Client-Reference",
+            "value": ""
+          },
+          {
+            "name": "X-Correlation-ID",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "dataVersion",
+            "value": "",
+            "type": "query",
+            "description": "Data Version Number"
+          },
+          {
+            "name": "uprn",
+            "value": "",
+            "type": "path",
+            "description": "Format - int64. Data Version Number"
+          }
+        ]
+      },
+      "docs": "Returns CoastalErosionData data for a given property"
+    },
+    {
+      "info": {
+        "name": "Returns EPC data for a given property",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/climate/epc-hometrack/:uprn",
+        "params": [
+          {
+            "name": "uprn",
+            "value": "",
+            "type": "path",
+            "description": "Format - int64."
+          }
+        ]
+      },
+      "docs": "Returns EPC data for a given property"
+    },
+    {
+      "info": {
+        "name": "Returns Flood data for a given property",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/climate/flood-twinn/:uprn",
+        "headers": [
+          {
+            "name": "X-Client-ID",
+            "value": ""
+          },
+          {
+            "name": "X-Client-Reference",
+            "value": ""
+          },
+          {
+            "name": "X-Correlation-ID",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "dataVersion",
+            "value": "",
+            "type": "query",
+            "description": "Data Version Number"
+          },
+          {
+            "name": "uprn",
+            "value": "",
+            "type": "path",
+            "description": "Format - int64. Data Version Number"
+          }
+        ]
+      },
+      "docs": "Returns Flood data for a given property"
+    },
+    {
+      "info": {
+        "name": "Returns Ground data for a given property",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/climate/ground-terrafirma/:uprn",
+        "headers": [
+          {
+            "name": "X-Client-ID",
+            "value": ""
+          },
+          {
+            "name": "X-Client-Reference",
+            "value": ""
+          },
+          {
+            "name": "X-Correlation-ID",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "dataVersion",
+            "value": "",
+            "type": "query",
+            "description": "Data Version Number"
+          },
+          {
+            "name": "uprn",
+            "value": "",
+            "type": "path",
+            "description": "Format - int64. Data Version Number"
+          }
+        ]
+      },
+      "docs": "Returns Ground data for a given property"
+    },
+    {
+      "info": {
+        "name": "Returns SubsidenceScoreData data for a given property",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/climate/ground-subsidence-twinn/:uprn",
+        "headers": [
+          {
+            "name": "X-Client-ID",
+            "value": ""
+          },
+          {
+            "name": "X-Client-Reference",
+            "value": ""
+          },
+          {
+            "name": "X-Correlation-ID",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "dataVersion",
+            "value": "",
+            "type": "query",
+            "description": "Data Version Number"
+          },
+          {
+            "name": "uprn",
+            "value": "",
+            "type": "path",
+            "description": "Format - int64. Data Version Number"
+          }
+        ]
+      },
+      "docs": "Returns SubsidenceScoreData data for a given property"
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2250 @@
+{
+  "item": [
+    {
+      "id": "ed4b9d35-af10-4cb1-ba65-92226e0367ed",
+      "name": "FindValuationById-Spec",
+      "request": {
+        "name": "FindValuationById-Spec",
+        "description": {
+          "content": "Find a valuation by ID",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "broker",
+            "valuation",
+            ":valuationId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "valuationId",
+              "description": "(Required) ID of valuation to return"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3e71bff6-8024-4e1b-bf79-fecaedf277c9",
+          "name": "Valuation response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "valuation",
+                ":valuationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"order\": {\n    \"orderReference\": \"string\",\n    \"orderId\": \"string\"\n  },\n  \"valuationId\": \"string\",\n  \"reference\": \"string\",\n  \"avm\": {\n    \"valuationDate\": \"string\",\n    \"effectiveDate\": \"string\",\n    \"result\": 0,\n    \"capital\": {\n      \"capitalAmount\": 0,\n      \"confidenceBand\": \"string\",\n      \"lowerCapitalAmount\": 0,\n      \"upperCapitalAmount\": 0\n    },\n    \"rental\": {\n      \"rentalAmount\": 0,\n      \"confidenceBand\": \"string\",\n      \"lowerRentalAmount\": 0,\n      \"upperRentalAmount\": 0\n    },\n    \"property\": {\n      \"yearBuilt\": 0,\n      \"floorArea\": 0,\n      \"receptions\": 0,\n      \"knownValueDate\": \"string\",\n      \"knownValue\": 0,\n      \"bedrooms\": 0,\n      \"propertyType\": 0\n    },\n    \"additionalAttributes\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"address\": {\n      \"postcode\": \"string\",\n      \"postTown\": \"string\",\n      \"uprn\": 0,\n      \"udprn\": 0,\n      \"building\": \"string\",\n      \"thoroughfare\": \"string\",\n      \"dependentLocality\": \"string\",\n      \"buildingNumber\": 0,\n      \"dependantThoroughfare\": \"string\",\n      \"subBuilding\": \"string\"\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "a3c2fc9a-2a1b-4321-9769-cbd185d928b5",
+          "name": "Valuation order in progress",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "valuation",
+                ":valuationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Accepted",
+          "code": 202,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "c8384f13-01ec-4224-ae8c-12bdb7421e46",
+          "name": "Unauthorised request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "valuation",
+                ":valuationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "7abee9e5-2f02-4e67-b961-ff44f06237a9",
+          "name": "Valuation order not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "valuation",
+                ":valuationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "51052ec8-9df9-4e4a-9692-8c004b06f15b",
+      "name": "FindValuationByIdV2-Spec",
+      "request": {
+        "name": "FindValuationByIdV2-Spec",
+        "description": {
+          "content": "Find a valuation by ID",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "broker",
+            "v2",
+            "valuation",
+            ":valuationId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "valuationId",
+              "description": "(Required) ID of valuation to return"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "9162b608-82fb-4f82-81d9-7bdb84e8e42d",
+          "name": "Valuation response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "valuation",
+                ":valuationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"order\": {\n    \"orderReference\": \"string\",\n    \"orderId\": \"string\"\n  },\n  \"valuationId\": \"string\",\n  \"reference\": \"string\",\n  \"avm\": {\n    \"valuationDate\": \"string\",\n    \"effectiveDate\": \"string\",\n    \"result\": 0,\n    \"capital\": {\n      \"capitalAmount\": 0,\n      \"confidenceBand\": \"string\",\n      \"lowerCapitalAmount\": 0,\n      \"upperCapitalAmount\": 0\n    },\n    \"rental\": {\n      \"rentalAmount\": 0,\n      \"confidenceBand\": \"string\",\n      \"lowerRentalAmount\": 0,\n      \"upperRentalAmount\": 0\n    },\n    \"property\": {\n      \"yearBuilt\": 0,\n      \"floorArea\": 0,\n      \"receptions\": 0,\n      \"knownValueDate\": \"string\",\n      \"knownValue\": 0,\n      \"bedrooms\": 0,\n      \"propertyType\": 0\n    },\n    \"additionalAttributes\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"address\": {\n      \"postcode\": \"string\",\n      \"postTown\": \"string\",\n      \"uprn\": 0,\n      \"udprn\": 0,\n      \"building\": \"string\",\n      \"thoroughfare\": \"string\",\n      \"dependentLocality\": \"string\",\n      \"buildingNumber\": 0,\n      \"dependantThoroughfare\": \"string\",\n      \"subBuilding\": \"string\"\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "497cf7d3-6e7b-41b0-a9aa-3fc7342f2fc1",
+          "name": "Valuation order in progress",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "valuation",
+                ":valuationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Accepted",
+          "code": 202,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "8907b9ca-7a36-4bde-9f1b-3752b6cac9c6",
+          "name": "Unauthorised request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "valuation",
+                ":valuationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "b0c7e1d3-bdd3-4d09-9ae6-608c5895dd56",
+          "name": "Valuation order not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "valuation",
+                ":valuationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6223cf2b-d1eb-4450-bfbb-74446bc1f397",
+      "name": "GetRawValuationById-Spec",
+      "request": {
+        "name": "GetRawValuationById-Spec",
+        "description": {
+          "content": "Returns a single valuation response in raw format - with all data, audit traces etc",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "internal",
+            "valuation",
+            ":valuationId",
+            "raw"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "valuationId",
+              "description": "(Required) ID of valuation to return"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "a5f872d8-ad4d-478c-bcc0-4f9124b89c42",
+          "name": "Valuation response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "internal",
+                "valuation",
+                ":valuationId",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"order\": {\n    \"orderReference\": \"string\",\n    \"orderId\": \"string\"\n  },\n  \"valuationId\": \"string\",\n  \"reference\": \"string\",\n  \"avm\": {\n    \"valuationDate\": \"string\",\n    \"effectiveDate\": \"string\",\n    \"result\": 0,\n    \"capital\": {\n      \"capitalAmount\": 0,\n      \"confidenceBand\": \"string\",\n      \"lowerCapitalAmount\": 0,\n      \"upperCapitalAmount\": 0\n    },\n    \"rental\": {\n      \"rentalAmount\": 0,\n      \"confidenceBand\": \"string\",\n      \"lowerRentalAmount\": 0,\n      \"upperRentalAmount\": 0\n    },\n    \"property\": {\n      \"yearBuilt\": 0,\n      \"floorArea\": 0,\n      \"receptions\": 0,\n      \"knownValueDate\": \"string\",\n      \"knownValue\": 0,\n      \"bedrooms\": 0,\n      \"propertyType\": 0\n    },\n    \"additionalAttributes\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"address\": {\n      \"postcode\": \"string\",\n      \"postTown\": \"string\",\n      \"uprn\": 0,\n      \"udprn\": 0,\n      \"building\": \"string\",\n      \"thoroughfare\": \"string\",\n      \"dependentLocality\": \"string\",\n      \"buildingNumber\": 0,\n      \"dependantThoroughfare\": \"string\",\n      \"subBuilding\": \"string\"\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "09775a22-9b50-46db-b66c-8a9745352192",
+          "name": "Valuation order in progress",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "internal",
+                "valuation",
+                ":valuationId",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Accepted",
+          "code": 202,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "0189fc42-826e-4862-9499-cc3bea87d441",
+          "name": "Unauthorised request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "internal",
+                "valuation",
+                ":valuationId",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "6174618a-9b97-4eca-b35f-335f5a5d5ea7",
+          "name": "Valuation order not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "internal",
+                "valuation",
+                ":valuationId",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "cda13a5a-5e64-4f99-a733-e22068a0c466",
+      "name": "GetRawValuationByIdV2-Spec",
+      "request": {
+        "name": "GetRawValuationByIdV2-Spec",
+        "description": {
+          "content": "Returns a single valuation response in raw format - with all data, audit traces etc",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "internal",
+            "v2",
+            "valuation",
+            ":valuationId",
+            "raw"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "valuationId",
+              "description": "(Required) ID of valuation to return"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "f694b88e-2586-4a8c-937f-800cd985b4eb",
+          "name": "Valuation response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "internal",
+                "v2",
+                "valuation",
+                ":valuationId",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"order\": {\n    \"orderReference\": \"string\",\n    \"orderId\": \"string\"\n  },\n  \"valuationId\": \"string\",\n  \"reference\": \"string\",\n  \"avm\": {\n    \"valuationDate\": \"string\",\n    \"effectiveDate\": \"string\",\n    \"result\": 0,\n    \"capital\": {\n      \"capitalAmount\": 0,\n      \"confidenceBand\": \"string\",\n      \"lowerCapitalAmount\": 0,\n      \"upperCapitalAmount\": 0\n    },\n    \"rental\": {\n      \"rentalAmount\": 0,\n      \"confidenceBand\": \"string\",\n      \"lowerRentalAmount\": 0,\n      \"upperRentalAmount\": 0\n    },\n    \"property\": {\n      \"yearBuilt\": 0,\n      \"floorArea\": 0,\n      \"receptions\": 0,\n      \"knownValueDate\": \"string\",\n      \"knownValue\": 0,\n      \"bedrooms\": 0,\n      \"propertyType\": 0\n    },\n    \"additionalAttributes\": [\n      {\n        \"name\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"address\": {\n      \"postcode\": \"string\",\n      \"postTown\": \"string\",\n      \"uprn\": 0,\n      \"udprn\": 0,\n      \"building\": \"string\",\n      \"thoroughfare\": \"string\",\n      \"dependentLocality\": \"string\",\n      \"buildingNumber\": 0,\n      \"dependantThoroughfare\": \"string\",\n      \"subBuilding\": \"string\"\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "dec65452-86cd-405d-94a1-d59cc02cf466",
+          "name": "Valuation order in progress",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "internal",
+                "v2",
+                "valuation",
+                ":valuationId",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Accepted",
+          "code": 202,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "9c795f52-631c-4acb-85a0-97757bcf687d",
+          "name": "Unauthorised request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "internal",
+                "v2",
+                "valuation",
+                ":valuationId",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "2ad8e430-03bf-4fb8-9e6d-a024f3043796",
+          "name": "Valuation order not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "internal",
+                "v2",
+                "valuation",
+                ":valuationId",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "5b1b4090-c147-4d3c-83c2-a8cc722c11f8",
+      "name": "GetValuationInputById-Spec",
+      "request": {
+        "name": "GetValuationInputById-Spec",
+        "description": {
+          "content": "Gets the input supplied at inception to request a valuation",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "broker",
+            "valuation",
+            ":valuationId",
+            "input"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "valuationId",
+              "description": "(Required) ID of valuation to return"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "6fde4fa8-6313-4c58-adce-ce36a4f38c04",
+          "name": "Valuation Input",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "valuation",
+                ":valuationId",
+                "input"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"address\": {\n    \"postcode\": \"string\",\n    \"address\": \"string\",\n    \"uprn\": 0\n  },\n  \"effectiveDate\": \"string\",\n  \"loan\": {\n    \"repaymentType\": 0,\n    \"minimumRentalIncome\": 0,\n    \"additionalLoanAmount\": 0,\n    \"outstandingLoanAmount\": 0,\n    \"loanAmount\": 0,\n    \"remainingTerm\": 0,\n    \"existingMortgage\": 0,\n    \"instructionType\": 1\n  },\n  \"property\": {\n    \"receptions\": 0,\n    \"bedrooms\": 0,\n    \"propertyStyle\": \"string\",\n    \"propertyType\": 0,\n    \"visibleFromRoad\": true,\n    \"constructionPeriod\": \"string\",\n    \"constructionType\": 0,\n    \"exLocalAuthority\": true,\n    \"parking\": true,\n    \"floorArea\": 0,\n    \"yearBuilt\": 0\n  },\n  \"reference\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "6f17b528-0a35-4f0b-81db-f68dc5b2a51c",
+          "name": "Unauthorised request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "valuation",
+                ":valuationId",
+                "input"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "029cba5d-3f26-454b-abc0-62d236a68329",
+          "name": "Valuation order not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "valuation",
+                ":valuationId",
+                "input"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "db7d89bb-b0c6-4898-a98a-4434a70f949b",
+      "name": "GetValuationInputByIdV2-Spec",
+      "request": {
+        "name": "GetValuationInputByIdV2-Spec",
+        "description": {
+          "content": "Gets the input supplied at inception to request a valuation",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "broker",
+            "v2",
+            "valuation",
+            ":valuationId",
+            "input"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "valuationId",
+              "description": "(Required) ID of valuation to return"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "1fd924d2-93c3-49ff-b800-569143a92116",
+          "name": "Valuation Input",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "valuation",
+                ":valuationId",
+                "input"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"address\": {\n    \"postcode\": \"string\",\n    \"address\": \"string\",\n    \"uprn\": 0\n  },\n  \"effectiveDate\": \"string\",\n  \"loan\": {\n    \"repaymentType\": 0,\n    \"minimumRentalIncome\": 0,\n    \"additionalLoanAmount\": 0,\n    \"outstandingLoanAmount\": 0,\n    \"loanAmount\": 0,\n    \"remainingTerm\": 0,\n    \"existingMortgage\": 0,\n    \"instructionType\": 1\n  },\n  \"property\": {\n    \"receptions\": 0,\n    \"bedrooms\": 0,\n    \"propertyStyle\": \"string\",\n    \"propertyType\": 0,\n    \"visibleFromRoad\": true,\n    \"constructionPeriod\": \"string\",\n    \"constructionType\": 0,\n    \"exLocalAuthority\": true,\n    \"parking\": true,\n    \"floorArea\": 0,\n    \"yearBuilt\": 0\n  },\n  \"reference\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "90eb3339-3df7-428f-9c6c-6e31f21c9e42",
+          "name": "Unauthorised request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "valuation",
+                ":valuationId",
+                "input"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "d4c65da0-c3e7-4c1c-bafd-e42f44d8f349",
+          "name": "Valuation order not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "valuation",
+                ":valuationId",
+                "input"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "valuationId",
+                  "description": "(Required) ID of valuation to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "abd526e8-e1bf-4b33-9a8a-6144893a7b8c",
+      "name": "GetValuationOrderById-Spec",
+      "request": {
+        "name": "GetValuationOrderById-Spec",
+        "description": {
+          "content": "Find a valuation order by ID",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "broker",
+            "order",
+            ":orderId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "orderId",
+              "description": "(Required) ID of order to return"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "570aaa56-8cc5-43b6-b5fc-d6ebce28480c",
+          "name": "Valuation order response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "order",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) ID of order to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"orderId\": \"string\",\n  \"orderReference\": \"string\",\n  \"valuations\": [\n    {\n      \"valuationId\": \"string\",\n      \"reference\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ca37905e-48ca-4344-8545-f490d28c35c0",
+          "name": "Unauthorised request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "order",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) ID of order to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "63559127-3686-4a77-b6bd-aa6dfd54a91b",
+          "name": "Valuation order not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "order",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) ID of order to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c6c03f26-7116-4128-90cc-34310d5654a7",
+      "name": "GetValuationOrderByIdV2-Spec",
+      "request": {
+        "name": "GetValuationOrderByIdV2-Spec",
+        "description": {
+          "content": "Find a valuation order by ID",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "broker",
+            "v2",
+            "order",
+            ":orderId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "orderId",
+              "description": "(Required) ID of order to return"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3223fbc6-ad01-4b27-9f40-bc3fdf765ee5",
+          "name": "Valuation order response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "order",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) ID of order to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"orderId\": \"string\",\n  \"orderReference\": \"string\",\n  \"valuations\": [\n    {\n      \"valuationId\": \"string\",\n      \"reference\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "5111334b-3c55-4a7d-bf43-0d5c085b4ae4",
+          "name": "Unauthorised request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "order",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) ID of order to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "8b4d3433-9f17-45c6-8980-277d506cb1c6",
+          "name": "Valuation order not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "order",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) ID of order to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d07ea584-7540-4b65-af88-d53bc4f8acb5",
+      "name": "GetValuationStatusById-Spec",
+      "request": {
+        "name": "GetValuationStatusById-Spec",
+        "description": {
+          "content": "Get the status of a valuation order by order ID",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "broker",
+            "order",
+            ":orderId",
+            "status"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "orderId",
+              "description": "(Required) ID of order to return"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "5adca845-0284-41ab-9ba6-d86ef5d727da",
+          "name": "Valuation order status",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "order",
+                ":orderId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) ID of order to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"orderId\": \"string\",\n  \"orderReference\": \"string\",\n  \"status\": 0,\n  \"valuations\": [\n    {\n      \"valuationId\": \"string\",\n      \"reference\": \"string\",\n      \"status\": 0,\n      \"valuationType\": 0\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ff8c83b3-fc7d-4c40-9461-db650553756b",
+          "name": "Unauthorised request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "order",
+                ":orderId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) ID of order to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "22ea7094-5556-4165-9dad-025772c6fbad",
+          "name": "Valuation order not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "order",
+                ":orderId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) ID of order to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bb1a5744-ad1c-4aff-9ed6-50098d252939",
+      "name": "GetValuationStatusByIdV2-Spec",
+      "request": {
+        "name": "GetValuationStatusByIdV2-Spec",
+        "description": {
+          "content": "Get the status of a valuation order by order ID",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "broker",
+            "v2",
+            "order",
+            ":orderId",
+            "status"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "orderId",
+              "description": "(Required) ID of order to return"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "f531f67a-573b-4cc6-9e8e-389d3d88edbd",
+          "name": "Valuation order status",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "order",
+                ":orderId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) ID of order to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"orderId\": \"string\",\n  \"orderReference\": \"string\",\n  \"status\": 0,\n  \"valuations\": [\n    {\n      \"valuationId\": \"string\",\n      \"reference\": \"string\",\n      \"status\": 0,\n      \"valuationType\": 0\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "de77b0ee-f29d-4c7a-b3de-2de15a546b9a",
+          "name": "Unauthorised request",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "order",
+                ":orderId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) ID of order to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "0d28908a-95ca-49c0-94bc-847523a3db8a",
+          "name": "Valuation order not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "order",
+                ":orderId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) ID of order to return"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d0f0b499-92bb-42db-8d20-bb8d5ad9910c",
+      "name": "ValuePropertyBroker-Spec",
+      "request": {
+        "name": "ValuePropertyBroker-Spec",
+        "description": {
+          "content": "Creates the valuation order for the property",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "broker",
+            "order"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "plain/text"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"order\": {\n    \"accountId\": \"<integer>\",\n    \"orderReference\": \"<string>\",\n    \"userId\": \"<integer>\",\n    \"valuationType\": 0\n  },\n  \"valuations\": [\n    {\n      \"address\": {\n        \"postcode\": \"<string>\",\n        \"address\": \"<string>\",\n        \"uprn\": \"<long>\"\n      },\n      \"effectiveDate\": \"<dateTime>\",\n      \"loan\": {\n        \"repaymentType\": \"<integer>\",\n        \"minimumRentalIncome\": \"<integer>\",\n        \"additionalLoanAmount\": \"<integer>\",\n        \"outstandingLoanAmount\": \"<integer>\",\n        \"loanAmount\": \"<integer>\",\n        \"remainingTerm\": \"<integer>\",\n        \"existingMortgage\": \"<integer>\",\n        \"instructionType\": 1\n      },\n      \"property\": {\n        \"receptions\": \"<integer>\",\n        \"bedrooms\": \"<integer>\",\n        \"propertyStyle\": \"<string>\",\n        \"propertyType\": \"<integer>\",\n        \"visibleFromRoad\": \"<boolean>\",\n        \"constructionPeriod\": \"<string>\",\n        \"constructionType\": \"<integer>\",\n        \"exLocalAuthority\": \"<boolean>\",\n        \"parking\": \"<boolean>\",\n        \"floorArea\": \"<integer>\",\n        \"yearBuilt\": \"<integer>\"\n      },\n      \"reference\": \"<string>\"\n    },\n    {\n      \"address\": {\n        \"postcode\": \"<string>\",\n        \"address\": \"<string>\",\n        \"uprn\": \"<long>\"\n      },\n      \"effectiveDate\": \"<dateTime>\",\n      \"loan\": {\n        \"repaymentType\": \"<integer>\",\n        \"minimumRentalIncome\": \"<integer>\",\n        \"additionalLoanAmount\": \"<integer>\",\n        \"outstandingLoanAmount\": \"<integer>\",\n        \"loanAmount\": \"<integer>\",\n        \"remainingTerm\": \"<integer>\",\n        \"existingMortgage\": \"<integer>\",\n        \"instructionType\": 1\n      },\n      \"property\": {\n        \"receptions\": \"<integer>\",\n        \"bedrooms\": \"<integer>\",\n        \"propertyStyle\": \"<string>\",\n        \"propertyType\": \"<integer>\",\n        \"visibleFromRoad\": \"<boolean>\",\n        \"constructionPeriod\": \"<string>\",\n        \"constructionType\": \"<integer>\",\n        \"exLocalAuthority\": \"<boolean>\",\n        \"parking\": \"<boolean>\",\n        \"floorArea\": \"<integer>\",\n        \"yearBuilt\": \"<integer>\"\n      },\n      \"reference\": \"<string>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "a0bfdac4-2f84-4b46-b423-d745adc578d6",
+          "name": "Valuation order ID",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "plain/text"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"accountId\": 0,\n    \"orderReference\": \"string\",\n    \"userId\": 0,\n    \"valuationType\": 0\n  },\n  \"valuations\": [\n    {\n      \"address\": {\n        \"postcode\": \"string\",\n        \"address\": \"string\",\n        \"uprn\": 0\n      },\n      \"effectiveDate\": \"string\",\n      \"loan\": {\n        \"repaymentType\": 0,\n        \"minimumRentalIncome\": 0,\n        \"additionalLoanAmount\": 0,\n        \"outstandingLoanAmount\": 0,\n        \"loanAmount\": 0,\n        \"remainingTerm\": 0,\n        \"existingMortgage\": 0,\n        \"instructionType\": 1\n      },\n      \"property\": {\n        \"receptions\": 0,\n        \"bedrooms\": 0,\n        \"propertyStyle\": \"string\",\n        \"propertyType\": 0,\n        \"visibleFromRoad\": true,\n        \"constructionPeriod\": \"string\",\n        \"constructionType\": 0,\n        \"exLocalAuthority\": true,\n        \"parking\": true,\n        \"floorArea\": 0,\n        \"yearBuilt\": 0\n      },\n      \"reference\": \"string\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "plain/text"
+            }
+          ],
+          "body": "string",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "d101bb1c-d057-4fea-9a71-2a5ffb5106c7",
+          "name": "Incorrect input data submitted",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"accountId\": 0,\n    \"orderReference\": \"string\",\n    \"userId\": 0,\n    \"valuationType\": 0\n  },\n  \"valuations\": [\n    {\n      \"address\": {\n        \"postcode\": \"string\",\n        \"address\": \"string\",\n        \"uprn\": 0\n      },\n      \"effectiveDate\": \"string\",\n      \"loan\": {\n        \"repaymentType\": 0,\n        \"minimumRentalIncome\": 0,\n        \"additionalLoanAmount\": 0,\n        \"outstandingLoanAmount\": 0,\n        \"loanAmount\": 0,\n        \"remainingTerm\": 0,\n        \"existingMortgage\": 0,\n        \"instructionType\": 1\n      },\n      \"property\": {\n        \"receptions\": 0,\n        \"bedrooms\": 0,\n        \"propertyStyle\": \"string\",\n        \"propertyType\": 0,\n        \"visibleFromRoad\": true,\n        \"constructionPeriod\": \"string\",\n        \"constructionType\": 0,\n        \"exLocalAuthority\": true,\n        \"parking\": true,\n        \"floorArea\": 0,\n        \"yearBuilt\": 0\n      },\n      \"reference\": \"string\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "25cd6652-e47b-44b4-9081-01ff56a89254",
+          "name": "Operation forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"accountId\": 0,\n    \"orderReference\": \"string\",\n    \"userId\": 0,\n    \"valuationType\": 0\n  },\n  \"valuations\": [\n    {\n      \"address\": {\n        \"postcode\": \"string\",\n        \"address\": \"string\",\n        \"uprn\": 0\n      },\n      \"effectiveDate\": \"string\",\n      \"loan\": {\n        \"repaymentType\": 0,\n        \"minimumRentalIncome\": 0,\n        \"additionalLoanAmount\": 0,\n        \"outstandingLoanAmount\": 0,\n        \"loanAmount\": 0,\n        \"remainingTerm\": 0,\n        \"existingMortgage\": 0,\n        \"instructionType\": 1\n      },\n      \"property\": {\n        \"receptions\": 0,\n        \"bedrooms\": 0,\n        \"propertyStyle\": \"string\",\n        \"propertyType\": 0,\n        \"visibleFromRoad\": true,\n        \"constructionPeriod\": \"string\",\n        \"constructionType\": 0,\n        \"exLocalAuthority\": true,\n        \"parking\": true,\n        \"floorArea\": 0,\n        \"yearBuilt\": 0\n      },\n      \"reference\": \"string\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "76372806-b27c-4b5d-85a5-7bdbde4e4c9d",
+      "name": "ValuePropertyBrokerV2-Spec",
+      "request": {
+        "name": "ValuePropertyBrokerV2-Spec",
+        "description": {
+          "content": "Creates the valuation order with climate data for the property",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "broker",
+            "v2",
+            "order"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "plain/text"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"order\": {\n    \"accountId\": \"<integer>\",\n    \"orderReference\": \"<string>\",\n    \"userId\": \"<integer>\",\n    \"valuationType\": 0\n  },\n  \"valuations\": [\n    {\n      \"address\": {\n        \"postcode\": \"<string>\",\n        \"address\": \"<string>\",\n        \"uprn\": \"<long>\"\n      },\n      \"effectiveDate\": \"<dateTime>\",\n      \"loan\": {\n        \"repaymentType\": \"<integer>\",\n        \"minimumRentalIncome\": \"<integer>\",\n        \"additionalLoanAmount\": \"<integer>\",\n        \"outstandingLoanAmount\": \"<integer>\",\n        \"loanAmount\": \"<integer>\",\n        \"remainingTerm\": \"<integer>\",\n        \"existingMortgage\": \"<integer>\",\n        \"instructionType\": 1\n      },\n      \"property\": {\n        \"receptions\": \"<integer>\",\n        \"bedrooms\": \"<integer>\",\n        \"propertyStyle\": \"<string>\",\n        \"propertyType\": \"<integer>\",\n        \"visibleFromRoad\": \"<boolean>\",\n        \"constructionPeriod\": \"<string>\",\n        \"constructionType\": \"<integer>\",\n        \"exLocalAuthority\": \"<boolean>\",\n        \"parking\": \"<boolean>\",\n        \"floorArea\": \"<integer>\",\n        \"yearBuilt\": \"<integer>\"\n      },\n      \"reference\": \"<string>\"\n    },\n    {\n      \"address\": {\n        \"postcode\": \"<string>\",\n        \"address\": \"<string>\",\n        \"uprn\": \"<long>\"\n      },\n      \"effectiveDate\": \"<dateTime>\",\n      \"loan\": {\n        \"repaymentType\": \"<integer>\",\n        \"minimumRentalIncome\": \"<integer>\",\n        \"additionalLoanAmount\": \"<integer>\",\n        \"outstandingLoanAmount\": \"<integer>\",\n        \"loanAmount\": \"<integer>\",\n        \"remainingTerm\": \"<integer>\",\n        \"existingMortgage\": \"<integer>\",\n        \"instructionType\": 1\n      },\n      \"property\": {\n        \"receptions\": \"<integer>\",\n        \"bedrooms\": \"<integer>\",\n        \"propertyStyle\": \"<string>\",\n        \"propertyType\": \"<integer>\",\n        \"visibleFromRoad\": \"<boolean>\",\n        \"constructionPeriod\": \"<string>\",\n        \"constructionType\": \"<integer>\",\n        \"exLocalAuthority\": \"<boolean>\",\n        \"parking\": \"<boolean>\",\n        \"floorArea\": \"<integer>\",\n        \"yearBuilt\": \"<integer>\"\n      },\n      \"reference\": \"<string>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "df344947-80b2-4c32-81ca-d29c9652e9f6",
+          "name": "Valuation order ID",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "plain/text"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"accountId\": 0,\n    \"orderReference\": \"string\",\n    \"userId\": 0,\n    \"valuationType\": 0\n  },\n  \"valuations\": [\n    {\n      \"address\": {\n        \"postcode\": \"string\",\n        \"address\": \"string\",\n        \"uprn\": 0\n      },\n      \"effectiveDate\": \"string\",\n      \"loan\": {\n        \"repaymentType\": 0,\n        \"minimumRentalIncome\": 0,\n        \"additionalLoanAmount\": 0,\n        \"outstandingLoanAmount\": 0,\n        \"loanAmount\": 0,\n        \"remainingTerm\": 0,\n        \"existingMortgage\": 0,\n        \"instructionType\": 1\n      },\n      \"property\": {\n        \"receptions\": 0,\n        \"bedrooms\": 0,\n        \"propertyStyle\": \"string\",\n        \"propertyType\": 0,\n        \"visibleFromRoad\": true,\n        \"constructionPeriod\": \"string\",\n        \"constructionType\": 0,\n        \"exLocalAuthority\": true,\n        \"parking\": true,\n        \"floorArea\": 0,\n        \"yearBuilt\": 0\n      },\n      \"reference\": \"string\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "plain/text"
+            }
+          ],
+          "body": "string",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "5c593d1a-3641-4421-a0ee-13b2ce140fed",
+          "name": "Incorrect input data submitted",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"accountId\": 0,\n    \"orderReference\": \"string\",\n    \"userId\": 0,\n    \"valuationType\": 0\n  },\n  \"valuations\": [\n    {\n      \"address\": {\n        \"postcode\": \"string\",\n        \"address\": \"string\",\n        \"uprn\": 0\n      },\n      \"effectiveDate\": \"string\",\n      \"loan\": {\n        \"repaymentType\": 0,\n        \"minimumRentalIncome\": 0,\n        \"additionalLoanAmount\": 0,\n        \"outstandingLoanAmount\": 0,\n        \"loanAmount\": 0,\n        \"remainingTerm\": 0,\n        \"existingMortgage\": 0,\n        \"instructionType\": 1\n      },\n      \"property\": {\n        \"receptions\": 0,\n        \"bedrooms\": 0,\n        \"propertyStyle\": \"string\",\n        \"propertyType\": 0,\n        \"visibleFromRoad\": true,\n        \"constructionPeriod\": \"string\",\n        \"constructionType\": 0,\n        \"exLocalAuthority\": true,\n        \"parking\": true,\n        \"floorArea\": 0,\n        \"yearBuilt\": 0\n      },\n      \"reference\": \"string\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "be091679-4e3e-4e83-ae17-0b53ca40c9f3",
+          "name": "Operation forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "broker",
+                "v2",
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"accountId\": 0,\n    \"orderReference\": \"string\",\n    \"userId\": 0,\n    \"valuationType\": 0\n  },\n  \"valuations\": [\n    {\n      \"address\": {\n        \"postcode\": \"string\",\n        \"address\": \"string\",\n        \"uprn\": 0\n      },\n      \"effectiveDate\": \"string\",\n      \"loan\": {\n        \"repaymentType\": 0,\n        \"minimumRentalIncome\": 0,\n        \"additionalLoanAmount\": 0,\n        \"outstandingLoanAmount\": 0,\n        \"loanAmount\": 0,\n        \"remainingTerm\": 0,\n        \"existingMortgage\": 0,\n        \"instructionType\": 1\n      },\n      \"property\": {\n        \"receptions\": 0,\n        \"bedrooms\": 0,\n        \"propertyStyle\": \"string\",\n        \"propertyType\": 0,\n        \"visibleFromRoad\": true,\n        \"constructionPeriod\": \"string\",\n        \"constructionType\": 0,\n        \"exLocalAuthority\": true,\n        \"parking\": true,\n        \"floorArea\": 0,\n        \"yearBuilt\": 0\n      },\n      \"reference\": \"string\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hometrack.com/valuation/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "fc5f12d8-f4a7-4e77-b8ce-2d7f4e939635",
+    "name": "Broker Avm API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API provides access to the Broker AVM service.",
+      "type": "text/plain"
+    }
+  }
+}

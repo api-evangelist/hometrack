@@ -1,23 +1,17 @@
 generated: '2026-07-26'
 method: derived
 status: candidate
-source: >-
-  openapi/hometrack-valuation-api-v1-openapi.yml,
-  openapi/hometrack-broker-avm-api-openapi.yml,
-  openapi/hometrack-climate-api-v2-openapi.yml,
-  openapi/hometrack-prh-core-external-client-api-v2-openapi.yml,
+source: openapi/hometrack-valuation-api-v1-openapi.yml, openapi/hometrack-broker-avm-api-openapi.yml,
+  openapi/hometrack-climate-api-v2-openapi.yml, openapi/hometrack-prh-core-external-client-api-v2-openapi.yml,
   openapi/hometrack-api-public-openapi.yml
-summary: >-
-  No official hosted or remote Model Context Protocol server was found for
-  Hometrack — nothing in the developer portal, nothing in the MCP registries,
-  and the GitHub organisation has zero public repositories. The tool set below
-  is DERIVED from the 59 operations Hometrack publishes, as a proposal for what
-  an agent-facing surface would look like. It is not published by Hometrack.
-  Every candidate tool names the real operationId it would bind to, so its input
-  schema is the operation's parameters + requestBody in the referenced OpenAPI
-  — nothing here is invented. Note the access reality: every one of these tools
-  would require an OAuth 2.0 client-credentials token issued under a Hometrack
-  commercial agreement; only `get_valuation_api_status` is anonymously callable.
+summary: 'No official hosted or remote Model Context Protocol server was found for Hometrack — nothing
+  in the developer portal, nothing in the MCP registries, and the GitHub organisation has zero public
+  repositories. The tool set below is DERIVED from the 59 operations Hometrack publishes, as a proposal
+  for what an agent-facing surface would look like. It is not published by Hometrack. Every candidate
+  tool names the real operationId it would bind to, so its input schema is the operation''s parameters
+  + requestBody in the referenced OpenAPI — nothing here is invented. Note the access reality: every one
+  of these tools would require an OAuth 2.0 client-credentials token issued under a Hometrack commercial
+  agreement; only `get_valuation_api_status` is anonymously callable.'
 server: null
 transport: null
 url: null
@@ -30,7 +24,8 @@ auth:
 candidate_tools:
 - name: get_valuation_api_status
   category: valuation
-  description: Check whether the Valuation API is currently available. The only anonymously callable operation Hometrack publishes.
+  description: Check whether the Valuation API is currently available. The only anonymously callable operation
+    Hometrack publishes.
   source_operation: openapi/hometrack-valuation-api-v1-openapi.yml#status
   maps_to: GET /valuation-api/v1/status
   read_only: true
@@ -81,7 +76,8 @@ candidate_tools:
   read_only: true
 - name: get_broker_valuation_input
   category: broker-avm
-  description: Retrieve the valuation input supplied at inception — what the caller asserted about the property.
+  description: Retrieve the valuation input supplied at inception — what the caller asserted about the
+    property.
   source_operation: openapi/hometrack-broker-avm-api-openapi.yml#GetValuationInputById-Spec
   maps_to: GET /valuation/v2/broker/valuation/{valuationId}/input
   v2_variant: GetValuationInputByIdV2-Spec
@@ -137,7 +133,8 @@ candidate_tools:
   read_only: false
 - name: list_prh_cases
   category: property-risk-hub
-  description: List and filter cases (status, lender reference, instruction reference, date ranges, has-report), paged.
+  description: List and filter cases (status, lender reference, instruction reference, date ranges, has-report),
+    paged.
   source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#get-organisation-orgid-case
   maps_to: GET /prh/organisation/{orgId}/case
   read_only: true
@@ -151,13 +148,15 @@ candidate_tools:
   category: property-risk-hub
   description: Retrieve a case filtered to a specific case process, and that process's status.
   source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#get-organisation-orgid-case-caseid-process-caseprocessid
-  related: [get-organisation-orgid-case-caseid-process-caseprocessid-status]
+  related:
+  - get-organisation-orgid-case-caseid-process-caseprocessid-status
   read_only: true
 - name: get_prh_case_status
   category: property-risk-hub
   description: Read data-provider status updates on a case, or the latest one.
   source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#get-organisation-orgid-case-caseid-status
-  related: [get-organisation-orgid-case-caseid-status-latest]
+  related:
+  - get-organisation-orgid-case-caseid-status-latest
   read_only: true
 - name: post_prh_case_status
   category: property-risk-hub
@@ -179,19 +178,24 @@ candidate_tools:
   category: property-risk-hub
   description: Retrieve a case document, and verify it.
   source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#get-organisation-orgid-case-caseid-documents-documentreference
-  related: [get-organisation-orgid-case-caseid-documents-documentreference-verify]
+  related:
+  - get-organisation-orgid-case-caseid-documents-documentreference-verify
   read_only: true
 - name: get_prh_case_report
   category: property-risk-hub
   description: Retrieve the valuation reports attached to a case — all, a specific revision, or the latest.
   source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#get-organisation-orgid-case-caseid-report
-  related: [get-organisation-orgid-case-caseid-report-revision, get-organisation-orgid-case-caseid-report-latest]
+  related:
+  - get-organisation-orgid-case-caseid-report-revision
+  - get-organisation-orgid-case-caseid-report-latest
   read_only: true
 - name: search_prh_property_repository
   category: property-risk-hub
-  description: Search the organisation's property valuation repository by external reference, instruction reference or UPRN; or fetch by repository id.
+  description: Search the organisation's property valuation repository by external reference, instruction
+    reference or UPRN; or fetch by repository id.
   source_operation: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml#get-organisation-orgid-property-repository
-  related: [get-organisation-orgid-property-repository-repositoryid]
+  related:
+  - get-organisation-orgid-property-repository-repositoryid
   read_only: true
 - name: search_prh_properties_by_postcode
   category: property-risk-hub
@@ -219,22 +223,41 @@ candidate_tools:
   source_operation: openapi/hometrack-api-public-openapi.yml#BrandsApi_Get
   read_only: true
 excluded_from_candidate_surface:
-- {operation: ReportingApi_MoveToBlobStorage, reason: 'Scheduled-task plumbing ("Called via a scheduled task, this method uploads all files from the report directory") — internal, not an agent capability.'}
-- {operation: ReportingApi_TestGet, reason: '"For test purpose" — internal.'}
-- {operation: ReportingApi_TestPost, reason: '"For test purpose" — internal.'}
-- {operation: ReportingApi_ProcessPropertyValuation, reason: Internal report-processing entry point.}
-- {operation: PartnersApi_Post, reason: Partner administration under a "partner.modify" permission — administrative, not an agent capability.}
-- {operation: PartnersApi_Get, reason: Partner administration.}
-- {operation: ZooplaPartnersApi_CreateZooplaPartner, reason: Partner administration under a "partner.create" permission.}
-- {operation: BrandsApi_Put, reason: Writes account branding — administrative.}
-- {operation: PvrPluginApi_GetConfiguration, reason: Serves the embedded PVR plugin; see components/hometrack-components.yml.}
-- {operation: PvrPluginApi_GetConfigurationByPartnerId, reason: Serves the embedded PVR plugin.}
-- {operation: PvrPluginApi_StoreEnquiry, reason: Consumer lead capture from the embedded plugin.}
-- {operation: PvrPluginApi_GenerateOrder, reason: Report generation from the embedded plugin.}
-- {operation: ReportingApi_GetPvrConfigurations, reason: Reads Umbraco CMS node ids — internal configuration.}
-- {operation: TrialApi_Trial, reason: Commercial trial-licence administration.}
-- {operation: TrialApi_NewTrial, reason: Creates a user and trial licence — account administration.}
-- {operation: AuthenticationApi_Post, reason: Credential exchange; belongs in the transport layer, not the tool list.}
+- operation: ReportingApi_MoveToBlobStorage
+  reason: Scheduled-task plumbing ("Called via a scheduled task, this method uploads all files from the
+    report directory") — internal, not an agent capability.
+- operation: ReportingApi_TestGet
+  reason: '"For test purpose" — internal.'
+- operation: ReportingApi_TestPost
+  reason: '"For test purpose" — internal.'
+- operation: ReportingApi_ProcessPropertyValuation
+  reason: Internal report-processing entry point.
+- operation: PartnersApi_Post
+  reason: Partner administration under a "partner.modify" permission — administrative
+  not an agent capability.: null
+- operation: PartnersApi_Get
+  reason: Partner administration.
+- operation: ZooplaPartnersApi_CreateZooplaPartner
+  reason: Partner administration under a "partner.create" permission.
+- operation: BrandsApi_Put
+  reason: Writes account branding — administrative.
+- operation: PvrPluginApi_GetConfiguration
+  reason: Serves the embedded PVR plugin; see components/hometrack-components.yml.
+- operation: PvrPluginApi_GetConfigurationByPartnerId
+  reason: Serves the embedded PVR plugin.
+- operation: PvrPluginApi_StoreEnquiry
+  reason: Consumer lead capture from the embedded plugin.
+- operation: PvrPluginApi_GenerateOrder
+  reason: Report generation from the embedded plugin.
+- operation: ReportingApi_GetPvrConfigurations
+  reason: Reads Umbraco CMS node ids — internal configuration.
+- operation: TrialApi_Trial
+  reason: Commercial trial-licence administration.
+- operation: TrialApi_NewTrial
+  reason: Creates a user and trial licence — account administration.
+- operation: AuthenticationApi_Post
+  reason: Credential exchange; belongs in the transport layer
+  not the tool list.: null
 coverage:
   operations_published: 59
   candidate_tools: 32
@@ -244,3 +267,8 @@ cross_links:
   crosswalk: mcp/hometrack-tool-crosswalk.yml
   agentic_access: agentic-access/hometrack-agentic-access.yml
   authentication: authentication/hometrack-authentication.yml
+deployment:
+  mode: none
+  verified: derived
+  checked: '2026-08-12'
+  source: catalog MCP census

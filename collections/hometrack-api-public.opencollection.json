@@ -1,0 +1,432 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hometrack API Public",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authenticates the user by exchanging an API key with a temporary token",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/api/authentication/:apiKey",
+        "params": [
+          {
+            "name": "apiKey",
+            "value": "",
+            "type": "path",
+            "description": "The API key"
+          }
+        ]
+      },
+      "docs": "The resulting token will be a plain text GUID. e.g. 64e12ae6-f941-4851-aa4f-86439104056d"
+    },
+    {
+      "info": {
+        "name": "Called via a scheduled task, this method uploads all files from the report directory\r\nto blob storage and then deletes them.",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/api/reporting/moveToBlobStorage"
+      },
+      "docs": "Called via a scheduled task, this method uploads all files from the report directory\r\nto blob storage and then deletes them."
+    },
+    {
+      "info": {
+        "name": "Checks if email or it's domain is blacklisted and sends verification code if set in umbraco",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/api/pvrplugin/enquiry/:token",
+        "params": [
+          {
+            "name": "token",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Checks if email or it's domain is blacklisted and sends verification code if set in umbraco"
+    },
+    {
+      "info": {
+        "name": "Creates a new Zoopla partner. This requires a \"partner.create\" permission",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/api/zoopla/partners/:token",
+        "params": [
+          {
+            "name": "token",
+            "value": "",
+            "type": "path",
+            "description": "Format - uuid. The authentication token"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Creates a new Zoopla partner. This requires a \"partner.create\" permission"
+    },
+    {
+      "info": {
+        "name": "Creates a Partner-to-Account entry. Requires the \"partner.modify\" permission",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/api/partners/:token",
+        "params": [
+          {
+            "name": "token",
+            "value": "",
+            "type": "path",
+            "description": "Format - uuid. The authentication token"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Creates a Partner-to-Account entry. Requires the \"partner.modify\" permission"
+    },
+    {
+      "info": {
+        "name": "Creates a report for pvr plugin",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/api/pvrplugin/order/:token",
+        "params": [
+          {
+            "name": "token",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Creates a report for pvr plugin"
+    },
+    {
+      "info": {
+        "name": "Retrieves the branding configuration associated to a given account",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/api/brands/:token/:targetAccountApiKey",
+        "params": [
+          {
+            "name": "token",
+            "value": "",
+            "type": "path",
+            "description": "The authentication token"
+          },
+          {
+            "name": "targetAccountApiKey",
+            "value": "",
+            "type": "path",
+            "description": "The API Key for the target account for which you want to retrieve the branding"
+          }
+        ]
+      },
+      "docs": "If a brand for the specific target account is not found, the default Hometrack brand configuration is returned"
+    },
+    {
+      "info": {
+        "name": "Creates or updates the branding configuration for an account, based on the account's API key",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://api.hometrack.com/api/brands/:token/:targetAccountApiKey",
+        "params": [
+          {
+            "name": "token",
+            "value": "",
+            "type": "path",
+            "description": "The authentication token"
+          },
+          {
+            "name": "targetAccountApiKey",
+            "value": "",
+            "type": "path",
+            "description": "The API Key for the target account for which you want to update the branding"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Creates or updates the branding configuration for an account, based on the account's API key"
+    },
+    {
+      "info": {
+        "name": "Downloads the previously generated Property Valuation Report file",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/api/reporting/PropertyValuation/:token/:transactionReference",
+        "params": [
+          {
+            "name": "token",
+            "value": "",
+            "type": "path",
+            "description": "Client's authentication token"
+          },
+          {
+            "name": "transactionReference",
+            "value": "",
+            "type": "path",
+            "description": "The report's transaction ID"
+          }
+        ]
+      },
+      "docs": "Downloads the previously generated Property Valuation Report file"
+    },
+    {
+      "info": {
+        "name": "For test purpose",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/api/reporting/TestGet"
+      },
+      "docs": "For test purpose"
+    },
+    {
+      "info": {
+        "name": "For test purpose",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/api/reporting/TestPost"
+      },
+      "docs": "For test purpose"
+    },
+    {
+      "info": {
+        "name": "Requests a Property Valuation Report",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/api/reporting/PropertyValuation",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Requests a Property Valuation Report"
+    },
+    {
+      "info": {
+        "name": "Retrieves IDs and Names of PVR Configuration Umbraco nodes",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/api/reporting/PropertyValuation/config/:token",
+        "params": [
+          {
+            "name": "token",
+            "value": "",
+            "type": "path",
+            "description": "Client's authentication token"
+          }
+        ]
+      },
+      "docs": "Requires a PVR account type with permission: pvr.configuration.list"
+    },
+    {
+      "info": {
+        "name": "Retrieves the name and API key of the associated account",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/api/partners/:token/:partnerType/:id",
+        "params": [
+          {
+            "name": "token",
+            "value": "",
+            "type": "path",
+            "description": "Format - uuid. The authentication token"
+          },
+          {
+            "name": "partnerType",
+            "value": "",
+            "type": "path",
+            "description": "Accepted values: \"zooplaBranch\" or \"PSG\""
+          },
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The Partner ID"
+          }
+        ]
+      },
+      "docs": "Retrieves the name and API key of the associated account"
+    },
+    {
+      "info": {
+        "name": "Returns all the product licences (valid, expired, blocked, etc...) which belong to the authenticated client",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/api/licences/:token/:product",
+        "params": [
+          {
+            "name": "token",
+            "value": "",
+            "type": "path",
+            "description": "Client's authentication token"
+          },
+          {
+            "name": "product",
+            "value": "",
+            "type": "path",
+            "description": "The product code"
+          }
+        ]
+      },
+      "docs": "Returns all the product licences (valid, expired, blocked, etc...) which belong to the authenticated client"
+    },
+    {
+      "info": {
+        "name": "Returns the requirements for pvr plugin.\r\nThis method calls an account service to resolve and authenticate domain.\r\nAlso it checks if XML configuration is set and brandcode is specified.\r\nIt also checks if Brand exists in umbraco and Partner associated with it.",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/api/pvrplugin/:domain",
+        "params": [
+          {
+            "name": "domain",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Returns the requirements for pvr plugin.\r\nThis method calls an account service to resolve and authenticate domain.\r\nAlso it checks if XML configuration is set and brandcode is specified.\r\nIt also checks if Brand exists in umbraco and Partner associated with it."
+    },
+    {
+      "info": {
+        "name": "Returns the requirements for pvr plugin.\r\nThis method calls an account service to resolve and authenticate domain.\r\nAlso it checks if XML configuration is set and brandcode is specified.\r\nIt also checks if Brand exists in umbraco and Partner associated with it.",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/api/pvrplugin/:domain/:partnerid",
+        "params": [
+          {
+            "name": "partnerid",
+            "value": "",
+            "type": "path",
+            "description": "Format - int32."
+          },
+          {
+            "name": "domain",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Returns the requirements for pvr plugin.\r\nThis method calls an account service to resolve and authenticate domain.\r\nAlso it checks if XML configuration is set and brandcode is specified.\r\nIt also checks if Brand exists in umbraco and Partner associated with it."
+    },
+    {
+      "info": {
+        "name": "Returns trial licence for the ApiKey",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/api/trial/:apikey/:token",
+        "params": [
+          {
+            "name": "apikey",
+            "value": "",
+            "type": "path",
+            "description": "The customers ApiKey"
+          },
+          {
+            "name": "token",
+            "value": "",
+            "type": "path",
+            "description": "Authentication token with the licence.list rights"
+          }
+        ]
+      },
+      "docs": "Returns trial licence for the ApiKey"
+    },
+    {
+      "info": {
+        "name": "The main report processing endpoint. \r\nReport Processor calls this method with the message body from *-Created queues",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/api/reporting/:token",
+        "params": [
+          {
+            "name": "token",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "The main report processing endpoint. \r\nReport Processor calls this method with the message body from *-Created queues"
+    },
+    {
+      "info": {
+        "name": "This method will create a new user with the trial account and licence",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/api/trial/:token",
+        "params": [
+          {
+            "name": "token",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "This method will create a new user with the trial account and licence"
+    }
+  ],
+  "bundled": true
+}

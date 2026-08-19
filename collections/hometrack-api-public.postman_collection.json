@@ -1,0 +1,5427 @@
+{
+  "item": [
+    {
+      "id": "7591de3b-a2c9-4a51-9bf3-1a8157f3d7ad",
+      "name": "Authenticates the user by exchanging an API key with a temporary token",
+      "request": {
+        "name": "Authenticates the user by exchanging an API key with a temporary token",
+        "description": {
+          "content": "The resulting token will be a plain text GUID. e.g. 64e12ae6-f941-4851-aa4f-86439104056d",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "authentication",
+            ":apiKey"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "apiKey",
+              "description": "(Required) The API key"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "text/plain"
+          }
+        ],
+        "method": "POST",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "c9b09819-b49e-48e3-9b91-ef5146b7cc94",
+          "name": "Created - authentication was successful",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "authentication",
+                ":apiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiKey",
+                  "description": "(Required) The API key"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "string",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "1f093f52-61a9-4e04-8f24-ae10d66ccdbb",
+          "name": "Bad Request - the apiKey is missing",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "authentication",
+                ":apiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiKey",
+                  "description": "(Required) The API key"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "string",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "bc8d4781-78e9-44e9-bae3-f09aeb426c46",
+          "name": "Forbidden - the apiKey could not be authenticated",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "authentication",
+                ":apiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiKey",
+                  "description": "(Required) The API key"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "string",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "f4daf5dc-c7f0-492d-9680-81f958b78911",
+          "name": "Internal Server Error - an unexpected error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "authentication",
+                ":apiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiKey",
+                  "description": "(Required) The API key"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "string",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "7288e7b2-907a-45cd-9471-08726f817e2b",
+          "name": "Service Unavailable - unable to authenticate at this time",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "authentication",
+                ":apiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiKey",
+                  "description": "(Required) The API key"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "string",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "76c6d2d6-f16f-4d15-b1ee-718832bbb3d7",
+      "name": "Called via a scheduled task, this method uploads all files from the report directory\r\nto blob storage and then deletes them.",
+      "request": {
+        "name": "Called via a scheduled task, this method uploads all files from the report directory\r\nto blob storage and then deletes them.",
+        "description": {
+          "content": "Called via a scheduled task, this method uploads all files from the report directory\r\nto blob storage and then deletes them.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "reporting",
+            "moveToBlobStorage"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/xml"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "d0ba50a0-ce7e-477a-b9cf-ee7946c65d0b",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "moveToBlobStorage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c20d7aa7-4ef7-44c4-84ab-e4d35ef02c99",
+      "name": "Checks if email or it's domain is blacklisted and sends verification code if set in umbraco",
+      "request": {
+        "name": "Checks if email or it's domain is blacklisted and sends verification code if set in umbraco",
+        "description": {
+          "content": "Checks if email or it's domain is blacklisted and sends verification code if set in umbraco",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "pvrplugin",
+            "enquiry",
+            ":token"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "token",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "disabled": false,
+              "key": "0",
+              "value": "<"
+            },
+            {
+              "disabled": false,
+              "key": "1",
+              "value": "s"
+            },
+            {
+              "disabled": false,
+              "key": "2",
+              "value": "t"
+            },
+            {
+              "disabled": false,
+              "key": "3",
+              "value": "r"
+            },
+            {
+              "disabled": false,
+              "key": "4",
+              "value": "i"
+            },
+            {
+              "disabled": false,
+              "key": "5",
+              "value": "n"
+            },
+            {
+              "disabled": false,
+              "key": "6",
+              "value": "g"
+            },
+            {
+              "disabled": false,
+              "key": "7",
+              "value": ">"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "d20e0ac1-e27c-4828-8d6c-90572c08b597",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "pvrplugin",
+                "enquiry",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "0",
+                  "value": "<"
+                },
+                {
+                  "disabled": false,
+                  "key": "1",
+                  "value": "s"
+                },
+                {
+                  "disabled": false,
+                  "key": "2",
+                  "value": "t"
+                },
+                {
+                  "disabled": false,
+                  "key": "3",
+                  "value": "r"
+                },
+                {
+                  "disabled": false,
+                  "key": "4",
+                  "value": "i"
+                },
+                {
+                  "disabled": false,
+                  "key": "5",
+                  "value": "n"
+                },
+                {
+                  "disabled": false,
+                  "key": "6",
+                  "value": "g"
+                },
+                {
+                  "disabled": false,
+                  "key": "7",
+                  "value": ">"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e40488a9-c591-471c-b6d2-5c18f853d3ea",
+      "name": "Creates a new Zoopla partner. This requires a \"partner.create\" permission",
+      "request": {
+        "name": "Creates a new Zoopla partner. This requires a \"partner.create\" permission",
+        "description": {
+          "content": "Creates a new Zoopla partner. This requires a \"partner.create\" permission",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "zoopla",
+            "partners",
+            ":token"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "",
+              "key": "token",
+              "description": "(Required) Format - uuid. The authentication token"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"BranchId\": \"<string>\",\n  \"Name\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "ab91ee49-cbb5-4a2b-a3b0-7ca116ae0c29",
+          "name": "Created - the partner was created",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "zoopla",
+                "partners",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BranchId\": \"string\",\n  \"Name\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "5f23f7aa-e9bf-436e-8b2f-08a7f8139e6f",
+          "name": "Bad Request - request parameters do not pass the validation",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "zoopla",
+                "partners",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BranchId\": \"string\",\n  \"Name\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "55d8ce47-487f-4aff-b9eb-23d4fa8d9752",
+          "name": "Unauthorized - token is invalid or expired",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "zoopla",
+                "partners",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BranchId\": \"string\",\n  \"Name\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "3d224160-9fe3-48be-81b5-08b99bfed957",
+          "name": "Forbidden - the authentication token is invalid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "zoopla",
+                "partners",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BranchId\": \"string\",\n  \"Name\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "e4e89fcc-7378-49b9-9a5f-de27fe4ad199",
+          "name": "Not Found - the principal could not be found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "zoopla",
+                "partners",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BranchId\": \"string\",\n  \"Name\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "06d2a226-8069-4952-bfd0-5d8c1ff96406",
+          "name": "Conflict - partner already exists",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "zoopla",
+                "partners",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BranchId\": \"string\",\n  \"Name\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "b7024b92-eca0-45f0-bac7-395b600b6ae1",
+          "name": "Internal Server Error - an unexpected error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "zoopla",
+                "partners",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BranchId\": \"string\",\n  \"Name\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "3d8ac338-4b9e-49c2-a1ca-962b967bf9d3",
+          "name": "Service Unavailable - this or a dependent service is unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "zoopla",
+                "partners",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BranchId\": \"string\",\n  \"Name\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "aea1a8fd-4da9-480e-aaa1-10dc24ba3a5d",
+      "name": "Creates a Partner-to-Account entry. Requires the \"partner.modify\" permission",
+      "request": {
+        "name": "Creates a Partner-to-Account entry. Requires the \"partner.modify\" permission",
+        "description": {
+          "content": "Creates a Partner-to-Account entry. Requires the \"partner.modify\" permission",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "partners",
+            ":token"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "",
+              "key": "token",
+              "description": "(Required) Format - uuid. The authentication token"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountApiKey\": \"<string>\",\n  \"partnerId\": \"<string>\",\n  \"partnerType\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "3c43e2ce-d4ae-47bb-a969-7e0039e02d64",
+          "name": "Created - the entry was created",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "partners",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountApiKey\": \"string\",\n  \"partnerId\": \"string\",\n  \"partnerType\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "d0da0c10-1a17-40b5-a517-8af434ecc4e1",
+          "name": "Bad Request - the request parameters are not provided or are malformed",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "partners",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountApiKey\": \"string\",\n  \"partnerId\": \"string\",\n  \"partnerType\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "32a689c6-8d0e-44dd-aa5f-f29535763edf",
+          "name": "Unauthorized - token is invalid or expired",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "partners",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountApiKey\": \"string\",\n  \"partnerId\": \"string\",\n  \"partnerType\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "24fc9693-3df0-4ecc-b9f9-357764db0875",
+          "name": "Forbidden - the authentication token doe not have enough rights to update the account's branding",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "partners",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountApiKey\": \"string\",\n  \"partnerId\": \"string\",\n  \"partnerType\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "56a37044-74c1-40a2-9f4b-f3b81c328210",
+          "name": "Conflict - a Partner with the same Partner ID and Type already exists",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "partners",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountApiKey\": \"string\",\n  \"partnerId\": \"string\",\n  \"partnerType\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "2e7f80dc-083e-4725-9c05-9b2307c26526",
+          "name": "Internal Server Error - an unexpected error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "partners",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountApiKey\": \"string\",\n  \"partnerId\": \"string\",\n  \"partnerType\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "64eb1533-686c-4a06-9b3b-8e5d521ef06a",
+      "name": "Creates a report for pvr plugin",
+      "request": {
+        "name": "Creates a report for pvr plugin",
+        "description": {
+          "content": "Creates a report for pvr plugin",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "pvrplugin",
+            "order",
+            ":token"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "token",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "disabled": false,
+              "key": "0",
+              "value": "<"
+            },
+            {
+              "disabled": false,
+              "key": "1",
+              "value": "s"
+            },
+            {
+              "disabled": false,
+              "key": "2",
+              "value": "t"
+            },
+            {
+              "disabled": false,
+              "key": "3",
+              "value": "r"
+            },
+            {
+              "disabled": false,
+              "key": "4",
+              "value": "i"
+            },
+            {
+              "disabled": false,
+              "key": "5",
+              "value": "n"
+            },
+            {
+              "disabled": false,
+              "key": "6",
+              "value": "g"
+            },
+            {
+              "disabled": false,
+              "key": "7",
+              "value": ">"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "14bf6fdb-11a8-42b2-97a7-ae6f38913916",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "pvrplugin",
+                "order",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "0",
+                  "value": "<"
+                },
+                {
+                  "disabled": false,
+                  "key": "1",
+                  "value": "s"
+                },
+                {
+                  "disabled": false,
+                  "key": "2",
+                  "value": "t"
+                },
+                {
+                  "disabled": false,
+                  "key": "3",
+                  "value": "r"
+                },
+                {
+                  "disabled": false,
+                  "key": "4",
+                  "value": "i"
+                },
+                {
+                  "disabled": false,
+                  "key": "5",
+                  "value": "n"
+                },
+                {
+                  "disabled": false,
+                  "key": "6",
+                  "value": "g"
+                },
+                {
+                  "disabled": false,
+                  "key": "7",
+                  "value": ">"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "3e01c405-1398-4f35-9f9e-d123e1a43736",
+      "name": "Creates or updates the branding configuration for an account, based on the account's API key",
+      "request": {
+        "name": "Creates or updates the branding configuration for an account, based on the account's API key",
+        "description": {
+          "content": "Creates or updates the branding configuration for an account, based on the account's API key",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "brands",
+            ":token",
+            ":targetAccountApiKey"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "token",
+              "description": "(Required) The authentication token"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "targetAccountApiKey",
+              "description": "(Required) The API Key for the target account for which you want to update the branding"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"brandName\": \"<string>\",\n  \"branchName\": \"<string>\",\n  \"branchAddress\": \"<string>\",\n  \"branchPostcode\": \"<string>\",\n  \"branchTelephoneNumber\": \"<string>\",\n  \"branchEmailAddress\": \"<string>\",\n  \"branchWebsite\": \"<string>\",\n  \"reportName\": \"<string>\",\n  \"hometrackLogoType\": \"<integer>\",\n  \"reportHeading\": \"<string>\",\n  \"reportText\": \"<string>\",\n  \"terms\": \"<string>\",\n  \"showValueRangeOnly\": \"<boolean>\",\n  \"defaultContactDetails\": \"<string>\",\n  \"frontPageComments\": \"<string>\",\n  \"customerPVRConfiguration\": \"<integer>\",\n  \"agentPVRConfiguration\": \"<integer>\",\n  \"minimumConfidenceBand\": \"<string>\",\n  \"brandLogoColour\": \"<string>\",\n  \"highlightColour\": \"<string>\",\n  \"accentColourIcons\": \"<boolean>\",\n  \"logo\": \"<string>\",\n  \"branchPhoto\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "37a77efc-59ee-4857-8363-14c06eb59b55",
+          "name": "OK - the account's branding configuration has been updated",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "brands",
+                ":token",
+                ":targetAccountApiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetAccountApiKey",
+                  "description": "(Required) The API Key for the target account for which you want to update the branding"
+                }
+              ]
+            },
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"brandName\": \"string\",\n  \"branchName\": \"string\",\n  \"branchAddress\": \"string\",\n  \"branchPostcode\": \"string\",\n  \"branchTelephoneNumber\": \"string\",\n  \"branchEmailAddress\": \"string\",\n  \"branchWebsite\": \"string\",\n  \"reportName\": \"string\",\n  \"hometrackLogoType\": 0,\n  \"reportHeading\": \"string\",\n  \"reportText\": \"string\",\n  \"terms\": \"string\",\n  \"showValueRangeOnly\": true,\n  \"defaultContactDetails\": \"string\",\n  \"frontPageComments\": \"string\",\n  \"customerPVRConfiguration\": 0,\n  \"agentPVRConfiguration\": 0,\n  \"minimumConfidenceBand\": \"string\",\n  \"brandLogoColour\": \"string\",\n  \"highlightColour\": \"string\",\n  \"accentColourIcons\": true,\n  \"logo\": \"string\",\n  \"branchPhoto\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "9cd4a06c-d987-488d-899e-260c319a881b",
+          "name": "Bad Request - request parameters do not pass the validation",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "brands",
+                ":token",
+                ":targetAccountApiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetAccountApiKey",
+                  "description": "(Required) The API Key for the target account for which you want to update the branding"
+                }
+              ]
+            },
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"brandName\": \"string\",\n  \"branchName\": \"string\",\n  \"branchAddress\": \"string\",\n  \"branchPostcode\": \"string\",\n  \"branchTelephoneNumber\": \"string\",\n  \"branchEmailAddress\": \"string\",\n  \"branchWebsite\": \"string\",\n  \"reportName\": \"string\",\n  \"hometrackLogoType\": 0,\n  \"reportHeading\": \"string\",\n  \"reportText\": \"string\",\n  \"terms\": \"string\",\n  \"showValueRangeOnly\": true,\n  \"defaultContactDetails\": \"string\",\n  \"frontPageComments\": \"string\",\n  \"customerPVRConfiguration\": 0,\n  \"agentPVRConfiguration\": 0,\n  \"minimumConfidenceBand\": \"string\",\n  \"brandLogoColour\": \"string\",\n  \"highlightColour\": \"string\",\n  \"accentColourIcons\": true,\n  \"logo\": \"string\",\n  \"branchPhoto\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "76133f60-7ad4-45fc-8553-cd1b2825b41a",
+          "name": "Unauthorized - token is invalid or expired",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "brands",
+                ":token",
+                ":targetAccountApiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetAccountApiKey",
+                  "description": "(Required) The API Key for the target account for which you want to update the branding"
+                }
+              ]
+            },
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"brandName\": \"string\",\n  \"branchName\": \"string\",\n  \"branchAddress\": \"string\",\n  \"branchPostcode\": \"string\",\n  \"branchTelephoneNumber\": \"string\",\n  \"branchEmailAddress\": \"string\",\n  \"branchWebsite\": \"string\",\n  \"reportName\": \"string\",\n  \"hometrackLogoType\": 0,\n  \"reportHeading\": \"string\",\n  \"reportText\": \"string\",\n  \"terms\": \"string\",\n  \"showValueRangeOnly\": true,\n  \"defaultContactDetails\": \"string\",\n  \"frontPageComments\": \"string\",\n  \"customerPVRConfiguration\": 0,\n  \"agentPVRConfiguration\": 0,\n  \"minimumConfidenceBand\": \"string\",\n  \"brandLogoColour\": \"string\",\n  \"highlightColour\": \"string\",\n  \"accentColourIcons\": true,\n  \"logo\": \"string\",\n  \"branchPhoto\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "96de95b1-4c90-4d63-9cfb-4440b140f4dc",
+          "name": "Forbidden - the token does not have enough rights to update the account's branding",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "brands",
+                ":token",
+                ":targetAccountApiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetAccountApiKey",
+                  "description": "(Required) The API Key for the target account for which you want to update the branding"
+                }
+              ]
+            },
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"brandName\": \"string\",\n  \"branchName\": \"string\",\n  \"branchAddress\": \"string\",\n  \"branchPostcode\": \"string\",\n  \"branchTelephoneNumber\": \"string\",\n  \"branchEmailAddress\": \"string\",\n  \"branchWebsite\": \"string\",\n  \"reportName\": \"string\",\n  \"hometrackLogoType\": 0,\n  \"reportHeading\": \"string\",\n  \"reportText\": \"string\",\n  \"terms\": \"string\",\n  \"showValueRangeOnly\": true,\n  \"defaultContactDetails\": \"string\",\n  \"frontPageComments\": \"string\",\n  \"customerPVRConfiguration\": 0,\n  \"agentPVRConfiguration\": 0,\n  \"minimumConfidenceBand\": \"string\",\n  \"brandLogoColour\": \"string\",\n  \"highlightColour\": \"string\",\n  \"accentColourIcons\": true,\n  \"logo\": \"string\",\n  \"branchPhoto\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "3d8007d8-1eeb-4bf4-942c-ef0f75189e5c",
+          "name": "Not Found - the target account was not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "brands",
+                ":token",
+                ":targetAccountApiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetAccountApiKey",
+                  "description": "(Required) The API Key for the target account for which you want to update the branding"
+                }
+              ]
+            },
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"brandName\": \"string\",\n  \"branchName\": \"string\",\n  \"branchAddress\": \"string\",\n  \"branchPostcode\": \"string\",\n  \"branchTelephoneNumber\": \"string\",\n  \"branchEmailAddress\": \"string\",\n  \"branchWebsite\": \"string\",\n  \"reportName\": \"string\",\n  \"hometrackLogoType\": 0,\n  \"reportHeading\": \"string\",\n  \"reportText\": \"string\",\n  \"terms\": \"string\",\n  \"showValueRangeOnly\": true,\n  \"defaultContactDetails\": \"string\",\n  \"frontPageComments\": \"string\",\n  \"customerPVRConfiguration\": 0,\n  \"agentPVRConfiguration\": 0,\n  \"minimumConfidenceBand\": \"string\",\n  \"brandLogoColour\": \"string\",\n  \"highlightColour\": \"string\",\n  \"accentColourIcons\": true,\n  \"logo\": \"string\",\n  \"branchPhoto\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "3c473209-4632-4e11-ad37-3efc4b3acb7b",
+          "name": "Internal Server Error - an unexpected error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "brands",
+                ":token",
+                ":targetAccountApiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetAccountApiKey",
+                  "description": "(Required) The API Key for the target account for which you want to update the branding"
+                }
+              ]
+            },
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"brandName\": \"string\",\n  \"branchName\": \"string\",\n  \"branchAddress\": \"string\",\n  \"branchPostcode\": \"string\",\n  \"branchTelephoneNumber\": \"string\",\n  \"branchEmailAddress\": \"string\",\n  \"branchWebsite\": \"string\",\n  \"reportName\": \"string\",\n  \"hometrackLogoType\": 0,\n  \"reportHeading\": \"string\",\n  \"reportText\": \"string\",\n  \"terms\": \"string\",\n  \"showValueRangeOnly\": true,\n  \"defaultContactDetails\": \"string\",\n  \"frontPageComments\": \"string\",\n  \"customerPVRConfiguration\": 0,\n  \"agentPVRConfiguration\": 0,\n  \"minimumConfidenceBand\": \"string\",\n  \"brandLogoColour\": \"string\",\n  \"highlightColour\": \"string\",\n  \"accentColourIcons\": true,\n  \"logo\": \"string\",\n  \"branchPhoto\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "60105cc7-f269-4fff-82ef-3c13f7009b18",
+      "name": "Retrieves the branding configuration associated to a given account",
+      "request": {
+        "name": "Retrieves the branding configuration associated to a given account",
+        "description": {
+          "content": "If a brand for the specific target account is not found, the default Hometrack brand configuration is returned",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "brands",
+            ":token",
+            ":targetAccountApiKey"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "token",
+              "description": "(Required) The authentication token"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "targetAccountApiKey",
+              "description": "(Required) The API Key for the target account for which you want to retrieve the branding"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "33c25543-a1cf-435c-8d5d-21255638bbea",
+          "name": "OK - request completed successfully, includes model containing the requested brand details",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "brands",
+                ":token",
+                ":targetAccountApiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetAccountApiKey",
+                  "description": "(Required) The API Key for the target account for which you want to retrieve the branding"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"brandName\": \"string\",\n  \"branchName\": \"string\",\n  \"branchAddress\": \"string\",\n  \"branchPostcode\": \"string\",\n  \"branchTelephoneNumber\": \"string\",\n  \"branchEmailAddress\": \"string\",\n  \"branchWebsite\": \"string\",\n  \"reportName\": \"string\",\n  \"hometrackLogoType\": 0,\n  \"reportHeading\": \"string\",\n  \"reportText\": \"string\",\n  \"terms\": \"string\",\n  \"showValueRangeOnly\": true,\n  \"defaultContactDetails\": \"string\",\n  \"frontPageComments\": \"string\",\n  \"customerPVRConfiguration\": 0,\n  \"agentPVRConfiguration\": 0,\n  \"minimumConfidenceBand\": \"string\",\n  \"brandLogoColour\": \"string\",\n  \"highlightColour\": \"string\",\n  \"accentColourIcons\": true,\n  \"logo\": \"string\",\n  \"branchPhoto\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "4d7e9847-6c9b-45da-8fdf-3bfb0275a4c9",
+          "name": "Bad Request - request parameters do not pass the validation",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "brands",
+                ":token",
+                ":targetAccountApiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetAccountApiKey",
+                  "description": "(Required) The API Key for the target account for which you want to retrieve the branding"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "e697ea36-5c2e-4359-90df-467b16de40e9",
+          "name": "Unauthorized - token is invalid or expired",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "brands",
+                ":token",
+                ":targetAccountApiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetAccountApiKey",
+                  "description": "(Required) The API Key for the target account for which you want to retrieve the branding"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ebe6a21e-a340-4eab-9f51-fc4f7fc47b05",
+          "name": "Forbidden - the token does not have enough rights to update the account's branding",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "brands",
+                ":token",
+                ":targetAccountApiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetAccountApiKey",
+                  "description": "(Required) The API Key for the target account for which you want to retrieve the branding"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "71c979c7-786e-4507-b332-980449869ddd",
+          "name": "Not Found - the brand could not be found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "brands",
+                ":token",
+                ":targetAccountApiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetAccountApiKey",
+                  "description": "(Required) The API Key for the target account for which you want to retrieve the branding"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "8841d076-f67c-4402-8e6b-15c167f9c7a2",
+          "name": "Internal Server Error - an unexpected error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "brands",
+                ":token",
+                ":targetAccountApiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetAccountApiKey",
+                  "description": "(Required) The API Key for the target account for which you want to retrieve the branding"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "cafe23e3-5621-4686-9635-251771f3c41c",
+      "name": "Downloads the previously generated Property Valuation Report file",
+      "request": {
+        "name": "Downloads the previously generated Property Valuation Report file",
+        "description": {
+          "content": "Downloads the previously generated Property Valuation Report file",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "reporting",
+            "PropertyValuation",
+            ":token",
+            ":transactionReference"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "token",
+              "description": "(Required) Client's authentication token"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "transactionReference",
+              "description": "(Required) The report's transaction ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/pdf"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "9f78c8e1-4dcc-493d-9a6f-341782324601",
+          "name": "OK - when the report is found and available, includes the binary file stream of the PDF",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation",
+                ":token",
+                ":transactionReference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionReference",
+                  "description": "(Required) The report's transaction ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            }
+          ],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+          "cookie": [],
+          "_postman_previewlanguage": "xml"
+        },
+        {
+          "id": "7616141d-a340-4427-b9c0-c05bb3c44de8",
+          "name": "Accepted - the report has not finished generating - try again later",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation",
+                ":token",
+                ":transactionReference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionReference",
+                  "description": "(Required) The report's transaction ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Accepted",
+          "code": 202,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            }
+          ],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+          "cookie": [],
+          "_postman_previewlanguage": "xml"
+        },
+        {
+          "id": "a1dc601c-c06d-4581-854c-08b73a878b2f",
+          "name": "Forbidden - the authentication token is invalid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation",
+                ":token",
+                ":transactionReference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionReference",
+                  "description": "(Required) The report's transaction ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            }
+          ],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+          "cookie": [],
+          "_postman_previewlanguage": "xml"
+        },
+        {
+          "id": "09d903c5-ae1d-4e7a-b7d8-a66b480d9a0e",
+          "name": "Not Found - no record of transactionId found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation",
+                ":token",
+                ":transactionReference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionReference",
+                  "description": "(Required) The report's transaction ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            }
+          ],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+          "cookie": [],
+          "_postman_previewlanguage": "xml"
+        },
+        {
+          "id": "9679e4f6-8b53-4b5c-9bfe-2c61974114e2",
+          "name": "Gone - the record for that transactionId was found, but the associated PDF file cannot be found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation",
+                ":token",
+                ":transactionReference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionReference",
+                  "description": "(Required) The report's transaction ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Gone",
+          "code": 410,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            }
+          ],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+          "cookie": [],
+          "_postman_previewlanguage": "xml"
+        },
+        {
+          "id": "c5d8877e-d949-410b-bc7c-2c1f51403e23",
+          "name": "Client Closed Request - production failed when the production of the report failed for an unknown reason - please contact our customer support",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation",
+                ":token",
+                ":transactionReference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionReference",
+                  "description": "(Required) The report's transaction ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Client Closed Request",
+          "code": 499,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            }
+          ],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+          "cookie": [],
+          "_postman_previewlanguage": "xml"
+        },
+        {
+          "id": "0612f3bc-2a5b-4919-8c0d-097a679281a8",
+          "name": "Internal Server Error - an unexpected error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation",
+                ":token",
+                ":transactionReference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionReference",
+                  "description": "(Required) The report's transaction ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            }
+          ],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+          "cookie": [],
+          "_postman_previewlanguage": "xml"
+        },
+        {
+          "id": "42a22e66-2e64-43b0-9ca0-8952a934b810",
+          "name": "Service Unavailable - this or a dependent service is unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation",
+                ":token",
+                ":transactionReference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionReference",
+                  "description": "(Required) The report's transaction ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            }
+          ],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+          "cookie": [],
+          "_postman_previewlanguage": "xml"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2fcf9813-e53e-47e0-8457-80194b227285",
+      "name": "For test purpose",
+      "request": {
+        "name": "For test purpose",
+        "description": {
+          "content": "For test purpose",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "reporting",
+            "TestGet"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/xml"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "e1ef1852-d390-421a-b5ca-d5ce3fa3ad8c",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "TestGet"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "46b325fc-3f4a-4cbd-a7ab-03bb0763733d",
+      "name": "For test purpose",
+      "request": {
+        "name": "For test purpose",
+        "description": {
+          "content": "For test purpose",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "reporting",
+            "TestPost"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/xml"
+          }
+        ],
+        "method": "POST",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "8dc5bc59-b058-40a4-9611-9703f916c10b",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "TestPost"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b0a59ec6-5e80-443d-acae-b6d3312ed735",
+      "name": "Requests a Property Valuation Report",
+      "request": {
+        "name": "Requests a Property Valuation Report",
+        "description": {
+          "content": "Requests a Property Valuation Report",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "reporting",
+            "PropertyValuation"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"Address\": \"<string>\",\n  \"Postcode\": \"<string>\",\n  \"Bedrooms\": \"<integer>\",\n  \"PropertyType\": \"<string>\",\n  \"Token\": \"<string>\",\n  \"TransactionId\": \"<string>\",\n  \"Receptions\": \"<integer>\",\n  \"YearBuilt\": \"<integer>\",\n  \"FloorArea\": \"<double>\",\n  \"ValuationDate\": \"<dateTime>\",\n  \"Bathrooms\": \"<integer>\",\n  \"BrandCode\": \"<string>\",\n  \"NoBill\": \"<boolean>\",\n  \"NoBillSecret\": \"<string>\",\n  \"PreparedFor\": \"<string>\",\n  \"BranchId\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "7cf172e1-ce1b-488d-888d-dd3bd348da8c",
+          "name": "Created - request accepted and property valuation processed",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Address\": \"string\",\n  \"Postcode\": \"string\",\n  \"Bedrooms\": 0,\n  \"PropertyType\": \"string\",\n  \"Receptions\": 0,\n  \"YearBuilt\": 0,\n  \"FloorArea\": 0,\n  \"ValuationDate\": \"string\",\n  \"Bathrooms\": 0,\n  \"BrandCode\": \"string\",\n  \"NoBill\": true,\n  \"NoBillSecret\": \"string\",\n  \"PreparedFor\": \"string\",\n  \"BranchId\": \"string\",\n  \"Token\": \"string\",\n  \"TransactionId\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "178790d8-9292-47e6-b207-495d34a4edb5",
+          "name": "Bad Request - request parameters do not pass the validation",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Address\": \"string\",\n  \"Postcode\": \"string\",\n  \"Bedrooms\": 0,\n  \"PropertyType\": \"string\",\n  \"Receptions\": 0,\n  \"YearBuilt\": 0,\n  \"FloorArea\": 0,\n  \"ValuationDate\": \"string\",\n  \"Bathrooms\": 0,\n  \"BrandCode\": \"string\",\n  \"NoBill\": true,\n  \"NoBillSecret\": \"string\",\n  \"PreparedFor\": \"string\",\n  \"BranchId\": \"string\",\n  \"Token\": \"string\",\n  \"TransactionId\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "5171ee0b-960c-4395-986d-9cce83800bc9",
+          "name": "Payment Required - the license has lapsed or the report volume has been used up",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Address\": \"string\",\n  \"Postcode\": \"string\",\n  \"Bedrooms\": 0,\n  \"PropertyType\": \"string\",\n  \"Receptions\": 0,\n  \"YearBuilt\": 0,\n  \"FloorArea\": 0,\n  \"ValuationDate\": \"string\",\n  \"Bathrooms\": 0,\n  \"BrandCode\": \"string\",\n  \"NoBill\": true,\n  \"NoBillSecret\": \"string\",\n  \"PreparedFor\": \"string\",\n  \"BranchId\": \"string\",\n  \"Token\": \"string\",\n  \"TransactionId\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Payment Required",
+          "code": 402,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "824363fb-6ca3-453b-af53-13b5aa348f06",
+          "name": "Forbidden - the authentication token is invalid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Address\": \"string\",\n  \"Postcode\": \"string\",\n  \"Bedrooms\": 0,\n  \"PropertyType\": \"string\",\n  \"Receptions\": 0,\n  \"YearBuilt\": 0,\n  \"FloorArea\": 0,\n  \"ValuationDate\": \"string\",\n  \"Bathrooms\": 0,\n  \"BrandCode\": \"string\",\n  \"NoBill\": true,\n  \"NoBillSecret\": \"string\",\n  \"PreparedFor\": \"string\",\n  \"BranchId\": \"string\",\n  \"Token\": \"string\",\n  \"TransactionId\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "abdd7581-086d-4b4c-a0c0-4df83e9b1564",
+          "name": "Conflict - non-unique transaction ID is provided",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Address\": \"string\",\n  \"Postcode\": \"string\",\n  \"Bedrooms\": 0,\n  \"PropertyType\": \"string\",\n  \"Receptions\": 0,\n  \"YearBuilt\": 0,\n  \"FloorArea\": 0,\n  \"ValuationDate\": \"string\",\n  \"Bathrooms\": 0,\n  \"BrandCode\": \"string\",\n  \"NoBill\": true,\n  \"NoBillSecret\": \"string\",\n  \"PreparedFor\": \"string\",\n  \"BranchId\": \"string\",\n  \"Token\": \"string\",\n  \"TransactionId\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "08eff6a8-5da1-42f5-9ac1-4dfa1b50ad2c",
+          "name": "Client Closed Request - production failed when the confidence level for the subject property was lower than the minimum level specified in configuration",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Address\": \"string\",\n  \"Postcode\": \"string\",\n  \"Bedrooms\": 0,\n  \"PropertyType\": \"string\",\n  \"Receptions\": 0,\n  \"YearBuilt\": 0,\n  \"FloorArea\": 0,\n  \"ValuationDate\": \"string\",\n  \"Bathrooms\": 0,\n  \"BrandCode\": \"string\",\n  \"NoBill\": true,\n  \"NoBillSecret\": \"string\",\n  \"PreparedFor\": \"string\",\n  \"BranchId\": \"string\",\n  \"Token\": \"string\",\n  \"TransactionId\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Client Closed Request",
+          "code": 499,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "4666f3f1-a9a3-4bb7-b1d2-8d314a2ff060",
+          "name": "Internal Server Error - an unexpected error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Address\": \"string\",\n  \"Postcode\": \"string\",\n  \"Bedrooms\": 0,\n  \"PropertyType\": \"string\",\n  \"Receptions\": 0,\n  \"YearBuilt\": 0,\n  \"FloorArea\": 0,\n  \"ValuationDate\": \"string\",\n  \"Bathrooms\": 0,\n  \"BrandCode\": \"string\",\n  \"NoBill\": true,\n  \"NoBillSecret\": \"string\",\n  \"PreparedFor\": \"string\",\n  \"BranchId\": \"string\",\n  \"Token\": \"string\",\n  \"TransactionId\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "0129674d-b3b6-494c-9b76-70809e84c2eb",
+          "name": "Service Unavailable - this or a dependent service is unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Address\": \"string\",\n  \"Postcode\": \"string\",\n  \"Bedrooms\": 0,\n  \"PropertyType\": \"string\",\n  \"Receptions\": 0,\n  \"YearBuilt\": 0,\n  \"FloorArea\": 0,\n  \"ValuationDate\": \"string\",\n  \"Bathrooms\": 0,\n  \"BrandCode\": \"string\",\n  \"NoBill\": true,\n  \"NoBillSecret\": \"string\",\n  \"PreparedFor\": \"string\",\n  \"BranchId\": \"string\",\n  \"Token\": \"string\",\n  \"TransactionId\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e830cc78-eede-4e18-a2f1-04f20c443c45",
+      "name": "Retrieves IDs and Names of PVR Configuration Umbraco nodes",
+      "request": {
+        "name": "Retrieves IDs and Names of PVR Configuration Umbraco nodes",
+        "description": {
+          "content": "Requires a PVR account type with permission: pvr.configuration.list",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "reporting",
+            "PropertyValuation",
+            "config",
+            ":token"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "token",
+              "description": "(Required) Client's authentication token"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "b57adadf-9121-406a-a38d-3b80ca3fcdeb",
+          "name": "OK - Returns PVR Configurations",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation",
+                "config",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"pvrConfigs\": [\n    {\n      \"name\": \"string\",\n      \"id\": 0\n    }\n  ],\n  \"pvrV2Configs\": [\n    {\n      \"name\": \"string\",\n      \"id\": 0\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "fafbe596-0a67-422b-ac44-888fe9d0d0f3",
+          "name": "Unauthorized - the authentication token is invalid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation",
+                "config",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "8a79e7d3-1208-408e-8dc3-07865121e89d",
+          "name": "Forbidden - the account does not have permission",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation",
+                "config",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "f0a5cc28-2dbc-4554-bbbe-815d27ce062c",
+          "name": "Internal Server Error - an unexpected error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                "PropertyValuation",
+                "config",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "fc7c533d-5066-45a8-b621-df2316623f9e",
+      "name": "Retrieves the name and API key of the associated account",
+      "request": {
+        "name": "Retrieves the name and API key of the associated account",
+        "description": {
+          "content": "Retrieves the name and API key of the associated account",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "partners",
+            ":token",
+            ":partnerType",
+            ":id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "",
+              "key": "token",
+              "description": "(Required) Format - uuid. The authentication token"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "partnerType",
+              "description": "(Required) Accepted values: \"zooplaBranch\" or \"PSG\""
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "id",
+              "description": "(Required) The Partner ID"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "e2957053-0c46-4bea-954c-e29b21389073",
+          "name": "OK - request completed successfully, includes the requested Partner details",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "partners",
+                ":token",
+                ":partnerType",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partnerType",
+                  "description": "(Required) Accepted values: \"zooplaBranch\" or \"PSG\""
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The Partner ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"partnerId\": \"string\",\n  \"partnerType\": \"string\",\n  \"apiKey\": \"string\",\n  \"principalName\": \"string\",\n  \"principalUniqueId\": \"00000000-0000-0000-0000-000000000000\",\n  \"createDate\": \"string\",\n  \"modifyDate\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "835cf036-d8b9-4fb6-895f-5c59c2ad3557",
+          "name": "Bad Request - the request parameters are not provided or are malformed",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "partners",
+                ":token",
+                ":partnerType",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partnerType",
+                  "description": "(Required) Accepted values: \"zooplaBranch\" or \"PSG\""
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The Partner ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "5d9db456-9019-406b-bf60-ebcfdd8cca82",
+          "name": "Unauthorized - token is invalid or expired",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "partners",
+                ":token",
+                ":partnerType",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partnerType",
+                  "description": "(Required) Accepted values: \"zooplaBranch\" or \"PSG\""
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The Partner ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "80de0c34-2e54-478c-9c3d-1e14aa46ffda",
+          "name": "Forbidden - the authentication token doe not have enough rights to retrieve partner details",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "partners",
+                ":token",
+                ":partnerType",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partnerType",
+                  "description": "(Required) Accepted values: \"zooplaBranch\" or \"PSG\""
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The Partner ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "62aecea7-6a75-4ed5-825d-68cb788ad8f3",
+          "name": "Not Found - the partner could not be found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "partners",
+                ":token",
+                ":partnerType",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partnerType",
+                  "description": "(Required) Accepted values: \"zooplaBranch\" or \"PSG\""
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The Partner ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "2f6cfe9f-dc47-4ea6-806c-9b78583ec864",
+          "name": "Internal Server Error - an unexpected error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "partners",
+                ":token",
+                ":partnerType",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "token",
+                  "description": "(Required) Format - uuid. The authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partnerType",
+                  "description": "(Required) Accepted values: \"zooplaBranch\" or \"PSG\""
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The Partner ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "a861e70b-5dd6-46ac-9758-5272467f71ed",
+      "name": "Returns all the product licences (valid, expired, blocked, etc...) which belong to the authenticated client",
+      "request": {
+        "name": "Returns all the product licences (valid, expired, blocked, etc...) which belong to the authenticated client",
+        "description": {
+          "content": "Returns all the product licences (valid, expired, blocked, etc...) which belong to the authenticated client",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "licences",
+            ":token",
+            ":product"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "token",
+              "description": "(Required) Client's authentication token"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "product",
+              "description": "(Required) The product code"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "12495ded-700e-45b7-be01-e52b61bd7a51",
+          "name": "OK - request completed successfully",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "licences",
+                ":token",
+                ":product"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product",
+                  "description": "(Required) The product code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"product\": \"string\",\n    \"status\": \"string\",\n    \"type\": \"string\",\n    \"startDate\": \"string\",\n    \"endDate\": \"string\",\n    \"volume\": 0,\n    \"remainingVolume\": 0\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "dbb5fbbd-1305-4045-9f40-bf59b16f9ee3",
+          "name": "Bad Request - an input parameter is missing",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "licences",
+                ":token",
+                ":product"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product",
+                  "description": "(Required) The product code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "df93dabf-b7e5-4f6e-b553-cd37222dbce9",
+          "name": "Forbidden - the authentication token is invalid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "licences",
+                ":token",
+                ":product"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product",
+                  "description": "(Required) The product code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "43b5c76c-d992-4b18-ace8-5c0f4c54bbf2",
+          "name": "Not Found - the account or licences could not be found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "licences",
+                ":token",
+                ":product"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product",
+                  "description": "(Required) The product code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "b91e4298-de43-4095-86f3-bbdde4f29199",
+          "name": "Internal Server Error - an unexpected error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "licences",
+                ":token",
+                ":product"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product",
+                  "description": "(Required) The product code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "c2e9da54-ca06-4ae3-91f9-4b12e58994a1",
+          "name": "Service Unavailable - this or a dependent service is unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "licences",
+                ":token",
+                ":product"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Client's authentication token"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product",
+                  "description": "(Required) The product code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "7a1b83dc-f67a-4f72-8ef8-3ef0e2905066",
+      "name": "Returns the requirements for pvr plugin.\r\nThis method calls an account service to resolve and authenticate domain.\r\nAlso it checks if XML configuration is set and brandcode is specified.\r\nIt also checks if Brand exists in umbraco and Partner associated with it.",
+      "request": {
+        "name": "Returns the requirements for pvr plugin.\r\nThis method calls an account service to resolve and authenticate domain.\r\nAlso it checks if XML configuration is set and brandcode is specified.\r\nIt also checks if Brand exists in umbraco and Partner associated with it.",
+        "description": {
+          "content": "Returns the requirements for pvr plugin.\r\nThis method calls an account service to resolve and authenticate domain.\r\nAlso it checks if XML configuration is set and brandcode is specified.\r\nIt also checks if Brand exists in umbraco and Partner associated with it.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "pvrplugin",
+            ":domain"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "domain",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "a772ab00-2e3a-4c7e-b31e-cca649b3e842",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "pvrplugin",
+                ":domain"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domain",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "51ee5ba1-60be-44e1-8c70-cbaa3e748801",
+      "name": "Returns the requirements for pvr plugin.\r\nThis method calls an account service to resolve and authenticate domain.\r\nAlso it checks if XML configuration is set and brandcode is specified.\r\nIt also checks if Brand exists in umbraco and Partner associated with it.",
+      "request": {
+        "name": "Returns the requirements for pvr plugin.\r\nThis method calls an account service to resolve and authenticate domain.\r\nAlso it checks if XML configuration is set and brandcode is specified.\r\nIt also checks if Brand exists in umbraco and Partner associated with it.",
+        "description": {
+          "content": "Returns the requirements for pvr plugin.\r\nThis method calls an account service to resolve and authenticate domain.\r\nAlso it checks if XML configuration is set and brandcode is specified.\r\nIt also checks if Brand exists in umbraco and Partner associated with it.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "pvrplugin",
+            ":domain",
+            ":partnerid"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "",
+              "key": "partnerid",
+              "description": "(Required) Format - int32."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "domain",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "afa3e228-332c-48b2-b7d1-924a92508346",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "pvrplugin",
+                ":domain",
+                ":partnerid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "partnerid",
+                  "description": "(Required) Format - int32."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domain",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f3ac857d-7f35-4638-8683-99cfb9fb3ab1",
+      "name": "Returns trial licence for the ApiKey",
+      "request": {
+        "name": "Returns trial licence for the ApiKey",
+        "description": {
+          "content": "Returns trial licence for the ApiKey",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "trial",
+            ":apikey",
+            ":token"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "apikey",
+              "description": "(Required) The customers ApiKey"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "token",
+              "description": "(Required) Authentication token with the licence.list rights"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3bf0dc52-d08a-4863-9037-c1cbf1030696",
+          "name": "OK - request completed successfully",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "trial",
+                ":apikey",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apikey",
+                  "description": "(Required) The customers ApiKey"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Authentication token with the licence.list rights"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": \"string\",\n  \"apiKey\": \"string\",\n  \"product\": \"string\",\n  \"startDate\": \"string\",\n  \"endDate\": \"string\",\n  \"volume\": 0,\n  \"remainingVolume\": 0\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "7dbde573-d2fc-4f7e-9b75-15b42ce450cf",
+          "name": "Bad Request - the apiKey or token is missing",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "trial",
+                ":apikey",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apikey",
+                  "description": "(Required) The customers ApiKey"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Authentication token with the licence.list rights"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "7016c0c7-e578-4f2f-835a-fed5bbcb1402",
+          "name": "Forbidden - the authentication token is invalid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "trial",
+                ":apikey",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apikey",
+                  "description": "(Required) The customers ApiKey"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Authentication token with the licence.list rights"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "fc9a9b57-9e23-4960-ab9b-99f59c69c835",
+          "name": "Not Found - the apiKey is not recognized",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "trial",
+                ":apikey",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apikey",
+                  "description": "(Required) The customers ApiKey"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Authentication token with the licence.list rights"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "52663852-0ba2-43a4-ba3c-76a6f546eb4b",
+          "name": "Internal Server Error - an unexpected error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "trial",
+                ":apikey",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apikey",
+                  "description": "(Required) The customers ApiKey"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Authentication token with the licence.list rights"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "a36b50d5-7dae-4a3e-8182-e6295b136f37",
+          "name": "Service Unavailable - this or a dependent service is unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "trial",
+                ":apikey",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apikey",
+                  "description": "(Required) The customers ApiKey"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Authentication token with the licence.list rights"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "7e3709f1-dd86-4e1b-989f-6da26a5939ef",
+      "name": "The main report processing endpoint. \r\nReport Processor calls this method with the message body from *-Created queues",
+      "request": {
+        "name": "The main report processing endpoint. \r\nReport Processor calls this method with the message body from *-Created queues",
+        "description": {
+          "content": "The main report processing endpoint. \r\nReport Processor calls this method with the message body from *-Created queues",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "reporting",
+            ":token"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "token",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          },
+          {
+            "key": "Accept",
+            "value": "application/xml"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "disabled": false,
+              "key": "0",
+              "value": "<"
+            },
+            {
+              "disabled": false,
+              "key": "1",
+              "value": "s"
+            },
+            {
+              "disabled": false,
+              "key": "2",
+              "value": "t"
+            },
+            {
+              "disabled": false,
+              "key": "3",
+              "value": "r"
+            },
+            {
+              "disabled": false,
+              "key": "4",
+              "value": "i"
+            },
+            {
+              "disabled": false,
+              "key": "5",
+              "value": "n"
+            },
+            {
+              "disabled": false,
+              "key": "6",
+              "value": "g"
+            },
+            {
+              "disabled": false,
+              "key": "7",
+              "value": ">"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "a5d8fefb-6643-4c93-8464-22ed7d5a1d8e",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "reporting",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "0",
+                  "value": "<"
+                },
+                {
+                  "disabled": false,
+                  "key": "1",
+                  "value": "s"
+                },
+                {
+                  "disabled": false,
+                  "key": "2",
+                  "value": "t"
+                },
+                {
+                  "disabled": false,
+                  "key": "3",
+                  "value": "r"
+                },
+                {
+                  "disabled": false,
+                  "key": "4",
+                  "value": "i"
+                },
+                {
+                  "disabled": false,
+                  "key": "5",
+                  "value": "n"
+                },
+                {
+                  "disabled": false,
+                  "key": "6",
+                  "value": "g"
+                },
+                {
+                  "disabled": false,
+                  "key": "7",
+                  "value": ">"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "9d86656f-cd48-4ea7-92e8-7d2b6539b8cb",
+      "name": "This method will create a new user with the trial account and licence",
+      "request": {
+        "name": "This method will create a new user with the trial account and licence",
+        "description": {
+          "content": "This method will create a new user with the trial account and licence",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "trial",
+            ":token"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "token",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product\": \"<string>\",\n  \"startDate\": \"<dateTime>\",\n  \"termMonths\": \"<string>\",\n  \"volume\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"contactFirstname\": \"<string>\",\n  \"contactSurname\": \"<string>\",\n  \"contactEmailAddress\": \"<string>\",\n  \"contactPhoneNumber\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "d5d3b6aa-08ea-49de-9f04-d4ecd92a953b",
+          "name": "Created - trial account created successfully",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "trial",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product\": \"string\",\n  \"startDate\": \"string\",\n  \"termMonths\": \"string\",\n  \"volume\": \"string\",\n  \"companyName\": \"string\",\n  \"contactFirstname\": \"string\",\n  \"contactSurname\": \"string\",\n  \"contactEmailAddress\": \"string\",\n  \"contactPhoneNumber\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"status\": \"string\",\n  \"apiKey\": \"string\",\n  \"product\": \"string\",\n  \"startDate\": \"string\",\n  \"endDate\": \"string\",\n  \"volume\": 0,\n  \"remainingVolume\": 0\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "4f93e8c0-9393-446a-a4d5-34ae9a1b36e0",
+          "name": "Bad Request - the apiKey or token is missing",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "trial",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product\": \"string\",\n  \"startDate\": \"string\",\n  \"termMonths\": \"string\",\n  \"volume\": \"string\",\n  \"companyName\": \"string\",\n  \"contactFirstname\": \"string\",\n  \"contactSurname\": \"string\",\n  \"contactEmailAddress\": \"string\",\n  \"contactPhoneNumber\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "b2e7c983-22ff-4f62-a0d4-c66c3a98aa1a",
+          "name": "Forbidden - the authentication token is invalid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "trial",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product\": \"string\",\n  \"startDate\": \"string\",\n  \"termMonths\": \"string\",\n  \"volume\": \"string\",\n  \"companyName\": \"string\",\n  \"contactFirstname\": \"string\",\n  \"contactSurname\": \"string\",\n  \"contactEmailAddress\": \"string\",\n  \"contactPhoneNumber\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "2f666956-6ccf-41a7-af9e-bb529820494d",
+          "name": "Conflict - a user with this email address already exists",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "trial",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product\": \"string\",\n  \"startDate\": \"string\",\n  \"termMonths\": \"string\",\n  \"volume\": \"string\",\n  \"companyName\": \"string\",\n  \"contactFirstname\": \"string\",\n  \"contactSurname\": \"string\",\n  \"contactEmailAddress\": \"string\",\n  \"contactPhoneNumber\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "fa84de88-1729-4310-aa1b-479a75044532",
+          "name": "Internal Server Error - an unexpected error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "trial",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product\": \"string\",\n  \"startDate\": \"string\",\n  \"termMonths\": \"string\",\n  \"volume\": \"string\",\n  \"companyName\": \"string\",\n  \"contactFirstname\": \"string\",\n  \"contactSurname\": \"string\",\n  \"contactEmailAddress\": \"string\",\n  \"contactPhoneNumber\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "58fcdc50-cf5d-4349-b84a-d7cce01ccee0",
+          "name": "Service Unavailable - this or a dependent service is unavailable",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "trial",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product\": \"string\",\n  \"startDate\": \"string\",\n  \"termMonths\": \"string\",\n  \"volume\": \"string\",\n  \"companyName\": \"string\",\n  \"contactFirstname\": \"string\",\n  \"contactSurname\": \"string\",\n  \"contactEmailAddress\": \"string\",\n  \"contactPhoneNumber\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hometrack.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "8bfea4c3-f736-40ac-aad2-dd5e1e4e3300",
+    "name": "Hometrack API Public",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Hometrack API for public consumption",
+      "type": "text/plain"
+    }
+  }
+}

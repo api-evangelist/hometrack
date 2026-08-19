@@ -1,0 +1,23 @@
+{
+  "item": [],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hometrack.com/climate/graphql",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "c7310c3d-cb2a-470d-af75-8f569e4e790f",
+    "name": "Climate GraphQL",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

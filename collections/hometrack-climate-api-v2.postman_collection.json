@@ -1,0 +1,1548 @@
+{
+  "item": [
+    {
+      "id": "75480d59-716c-415c-b611-24abea3c0f85",
+      "name": "Returns CoastalErosionData data for a given property",
+      "request": {
+        "name": "Returns CoastalErosionData data for a given property",
+        "description": {
+          "content": "Returns CoastalErosionData data for a given property",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "ground-coastalerosion-twinn",
+            ":uprn"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "dataVersion",
+              "value": "<string>",
+              "description": "(Required) Data Version Number"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<long>",
+              "key": "uprn",
+              "description": "(Required) Format - int64. Data Version Number"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "Client Identifer used for tracking",
+            "key": "X-Client-ID",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "Client Reference used for tracking",
+            "key": "X-Client-Reference",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "Unique Transaction ID, used for tracking and support",
+            "key": "X-Correlation-ID",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "5a3a0f51-c95d-4ed6-80e6-9c61ed5abdcf",
+          "name": "Request successful",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ground-coastalerosion-twinn",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"uprn\": 0,\n  \"versionNumber\": \"string\",\n  \"noActiveIntervention\": {\n    \"managementPlan\": \"string\",\n    \"distanceM\": \"string\",\n    \"current\": {\n      \"firstYearOfHazard\": 0,\n      \"firstYearOfHazardErosionScore\": 0\n    },\n    \"future\": [\n      {\n        \"scenario\": \"string\",\n        \"firstYearOfHazard\": 0,\n        \"firstYearOfHazardErosionScore\": 0\n      }\n    ]\n  },\n  \"shorelineManagementPlan\": {\n    \"managementPlan\": \"string\",\n    \"distanceM\": \"string\",\n    \"current\": {\n      \"firstYearOfHazard\": 0,\n      \"firstYearOfHazardErosionScore\": 0\n    },\n    \"future\": [\n      {\n        \"scenario\": \"string\",\n        \"firstYearOfHazard\": 0,\n        \"firstYearOfHazardErosionScore\": 0\n      }\n    ]\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "5c38b4ef-03ab-41b4-b723-0a23ea869e65",
+          "name": "Request was not valid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ground-coastalerosion-twinn",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "e6e73097-4bb0-46fa-9ea3-2b72140a15fa",
+          "name": "CoastalErosionData data not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ground-coastalerosion-twinn",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "7b5e9309-e36a-42b9-872a-f10f2e928904",
+          "name": "An error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ground-coastalerosion-twinn",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bb291643-5d30-4814-860c-46fe97e3c5fb",
+      "name": "Returns EPC data for a given property",
+      "request": {
+        "name": "Returns EPC data for a given property",
+        "description": {
+          "content": "Returns EPC data for a given property",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "epc-hometrack",
+            ":uprn"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<long>",
+              "key": "uprn",
+              "description": "(Required) Format - int64."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "22bcabb3-a7c8-48f3-88a8-5507b25c8048",
+          "name": "Request successful",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "epc-hometrack",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"rawHashValue\": \"string\",\n  \"mappingHeatingKey\": 0,\n  \"mappingTenureKey\": 0,\n  \"dataSourceId\": 0,\n  \"uprn\": 0,\n  \"concatenatedAddress\": \"string\",\n  \"custRef1\": \"string\",\n  \"custRef2\": \"string\",\n  \"postcode\": \"string\",\n  \"pcd\": \"string\",\n  \"houseName\": \"string\",\n  \"streetName\": \"string\",\n  \"locality\": \"string\",\n  \"town\": \"string\",\n  \"county\": \"string\",\n  \"fullAddress\": \"string\",\n  \"propType\": \"string\",\n  \"propStyle\": \"string\",\n  \"totalRoomCount\": 0,\n  \"floorArea\": 0,\n  \"heating\": \"string\",\n  \"floorsInBlock\": 0,\n  \"outbuildings\": 0,\n  \"inspectionDate\": \"string\",\n  \"reportDate\": \"string\",\n  \"instrType1\": \"string\",\n  \"addressMatchFlag\": true,\n  \"addressMatchAttempts\": 0,\n  \"numberHeatedRooms\": 0,\n  \"roofDescription\": \"string\",\n  \"floorHeight\": 0,\n  \"currentEnergyRating\": \"A\",\n  \"currentEnergyEfficiency\": 0,\n  \"potentialEnergyRating\": \"A\",\n  \"potentialEnergyEfficiency\": 0,\n  \"localAuthority\": \"string\",\n  \"constituency\": \"string\",\n  \"environmentImpactCurrent\": 0,\n  \"environmentImpactPotential\": 0,\n  \"energyConsumptionCurrent\": 0,\n  \"energyConsumptionPotential\": 0,\n  \"co2EmissionCurrent\": 0,\n  \"co2CurrentPerFloorArea\": 0,\n  \"co2EmissionPotential\": 0,\n  \"lightingCostCurrent\": 0,\n  \"lightingCostPotential\": 0,\n  \"heatingCostCurrent\": 0,\n  \"heatingCostPotential\": 0,\n  \"hotWaterCostCurrent\": 0,\n  \"hotWaterCostPotential\": 0,\n  \"energyTariff\": \"string\",\n  \"mainsGasFlag\": \"string\",\n  \"floorLevel\": \"string\",\n  \"flatTopStorey\": \"string\",\n  \"mainHeatingControls\": 0,\n  \"multiGlazeProportion\": 0,\n  \"glazedType\": \"string\",\n  \"glazedArea\": \"string\",\n  \"lowEnergyLighting\": 0,\n  \"numberOpenFireplaces\": 0,\n  \"hotwaterDescription\": \"string\",\n  \"hotWaterEnergyEff\": \"string\",\n  \"hotWaterEnvEff\": \"string\",\n  \"floorDescription\": \"string\",\n  \"floorEnergyEff\": \"string\",\n  \"floorEnvEff\": \"string\",\n  \"windowsDescription\": \"string\",\n  \"windowsEnergyEff\": \"string\",\n  \"windowsEnvEff\": \"string\",\n  \"wallsDescription\": \"string\",\n  \"wallsEnergyEff\": \"string\",\n  \"wallsEnvEff\": \"string\",\n  \"secondheatDescription\": \"string\",\n  \"sheatingEnergyEff\": \"string\",\n  \"sheatingEnvEff\": \"string\",\n  \"roofEnergyEff\": \"string\",\n  \"roofEnvEff\": \"string\",\n  \"mainheatDescription\": \"string\",\n  \"mainheatEnergyEff\": \"string\",\n  \"mainheatEnvEff\": \"string\",\n  \"mainheatcontDescription\": \"string\",\n  \"mainheatcEnergyEff\": \"string\",\n  \"mainheatcEnvEff\": \"string\",\n  \"lightingDescription\": \"string\",\n  \"lightingEnergyEff\": \"string\",\n  \"lightingEnvEff\": \"string\",\n  \"airTightnessDescription\": \"string\",\n  \"airTightnessEnergyEff\": \"string\",\n  \"airTightnessEnvEff\": \"string\",\n  \"windTurbineCount\": 0,\n  \"heatLossCorridoor\": \"string\",\n  \"heatLossCorridoorLength\": 0,\n  \"photoSupply\": 0,\n  \"solarWaterHeatingFlag\": \"string\",\n  \"mechanicalVentilation\": \"string\",\n  \"localAuthorityLabel\": \"string\",\n  \"constituencyLabel\": \"string\",\n  \"constructionAgeBand\": \"string\",\n  \"lodgementDate\": \"string\",\n  \"tenure\": \"string\",\n  \"fixedLightingOutletsCount\": 0,\n  \"lowEnergyFixedLightCount\": 0,\n  \"typeOfAssessment\": \"string\",\n  \"_3YearEnergyCostCurrent\": 0,\n  \"_3YearEnergySavingPotential\": 0,\n  \"currentEnvironmentalRating\": \"string\",\n  \"potentialEnvironmentalRating\": \"string\",\n  \"lzcEnergySources\": 0,\n  \"spaceHeatingDemand\": 0,\n  \"waterHeatingDemand\": 0,\n  \"impactLoftInsulation\": 0,\n  \"impactCavityWallInsulation\": 0,\n  \"impactSolidWallInsulation\": 0,\n  \"mainHeatingCategory\": 0,\n  \"addendumText\": 0,\n  \"dataZone\": 0,\n  \"YearBuilt\": 0,\n  \"isNewBuild\": 0,\n  \"effectiveDate\": \"string\",\n  \"hashValue\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ce905b45-5a4f-4f82-bd37-ee0b8274373c",
+          "name": "Request was not valid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "epc-hometrack",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "56865e14-040c-492a-94e1-8128acc19b6f",
+          "name": "EPC data not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "epc-hometrack",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64."
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "967f179a-1f28-4dab-b466-8c8487becfd3",
+          "name": "An error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "epc-hometrack",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64."
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "36d7a7c2-a161-4cf2-9cfa-46a3690812e2",
+      "name": "Returns Flood data for a given property",
+      "request": {
+        "name": "Returns Flood data for a given property",
+        "description": {
+          "content": "Returns Flood data for a given property",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "flood-twinn",
+            ":uprn"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "dataVersion",
+              "value": "<string>",
+              "description": "(Required) Data Version Number"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<long>",
+              "key": "uprn",
+              "description": "(Required) Format - int64. Data Version Number"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "Client Identifer used for tracking",
+            "key": "X-Client-ID",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "Client Reference used for tracking",
+            "key": "X-Client-Reference",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "Unique Transaction ID, used for tracking and support",
+            "key": "X-Correlation-ID",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "bf4159ce-5f78-4bc0-aa47-0b2a24991acf",
+          "name": "Request successful",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flood-twinn",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"current\": [\n    {\n      \"versionNumber\": \"string\",\n      \"year\": \"string\",\n      \"scenario\": \"string\",\n      \"floodDefenceLevel\": 0,\n      \"defendedScore\": 0,\n      \"defendedRiskRatio\": 0,\n      \"defendedADR\": 0,\n      \"defendedAAL\": 0,\n      \"defendedFluvialScore\": 0,\n      \"defendedFluvialRiskRatio\": 0,\n      \"defendedFluvialMaxDepth30Years\": 0,\n      \"defendedFluvialMaxDepth75Years\": 0,\n      \"defendedFluvialMaxDepth100Years\": 0,\n      \"defendedFluvialMaxDepth250Years\": 0,\n      \"defendedFluvialMaxDepth500Years\": 0,\n      \"defendedFluvialMaxDepth1000Years\": 0,\n      \"defendedFluvialADR\": 0,\n      \"defendedFluvialAAL\": 0,\n      \"defendedTidalScore\": 0,\n      \"defendedTidalRiskRatio\": 0,\n      \"defendedTidalMaxDepth30Years\": 0,\n      \"defendedTidalMaxDepth75Years\": 0,\n      \"defendedTidalMaxDepth100Years\": 0,\n      \"defendedTidalMaxDepth250Years\": 0,\n      \"defendedTidalMaxDepth500Years\": 0,\n      \"defendedTidalMaxDepth1000Years\": 0,\n      \"defendedTidalADR\": 0,\n      \"defendedTidalAAL\": 0,\n      \"undefendedScore\": 0,\n      \"undefendedRiskRatio\": 0,\n      \"undefendedADR\": 0,\n      \"undefendedAAL\": 0,\n      \"undefendedFluvialScore\": 0,\n      \"undefendedFluvialRiskRatio\": 0,\n      \"undefendedFluvialMaxDepth30Years\": 0,\n      \"undefendedFluvialMaxDepth75Years\": 0,\n      \"undefendedFluvialMaxDepth100Years\": 0,\n      \"undefendedFluvialMaxDepth250Years\": 0,\n      \"undefendedFluvialMaxDepth500Years\": 0,\n      \"undefendedFluvialMaxDepth1000Years\": 0,\n      \"undefendedFluvialADR\": 0,\n      \"undefendedFluvialAAL\": 0,\n      \"undefendedTidalScore\": 0,\n      \"undefendedTidalRiskRatio\": 0,\n      \"undefendedTidalMaxDepth30Years\": 0,\n      \"undefendedTidalMaxDepth75Years\": 0,\n      \"undefendedTidalMaxDepth100Years\": 0,\n      \"undefendedTidalMaxDepth250Years\": 0,\n      \"undefendedTidalMaxDepth500Years\": 0,\n      \"undefendedTidalMaxDepth1000Years\": 0,\n      \"undefendedTidalADR\": 0,\n      \"undefendedTidalAAL\": 0,\n      \"undefendedPluvialScore\": 0,\n      \"undefendedPluvialRiskRatio\": 0,\n      \"undefendedPluvialMaxDepth30Years\": 0,\n      \"undefendedPluvialMaxDepth75Years\": 0,\n      \"undefendedPluvialMaxDepth100Years\": 0,\n      \"undefendedPluvialMaxDepth250Years\": 0,\n      \"undefendedPluvialMaxDepth500Years\": 0,\n      \"undefendedPluvialMaxDepth1000Years\": 0,\n      \"undefendedPluvialADR\": 0,\n      \"undefendedPluvialAAL\": 0\n    }\n  ],\n  \"future\": [\n    {\n      \"versionNumber\": \"string\",\n      \"year\": \"string\",\n      \"scenario\": \"string\",\n      \"floodDefenceLevel\": 0,\n      \"defendedScore\": 0,\n      \"defendedRiskRatio\": 0,\n      \"defendedADR\": 0,\n      \"defendedAAL\": 0,\n      \"defendedFluvialScore\": 0,\n      \"defendedFluvialRiskRatio\": 0,\n      \"defendedFluvialMaxDepth30Years\": 0,\n      \"defendedFluvialMaxDepth75Years\": 0,\n      \"defendedFluvialMaxDepth100Years\": 0,\n      \"defendedFluvialMaxDepth250Years\": 0,\n      \"defendedFluvialMaxDepth500Years\": 0,\n      \"defendedFluvialMaxDepth1000Years\": 0,\n      \"defendedFluvialADR\": 0,\n      \"defendedFluvialAAL\": 0,\n      \"defendedTidalScore\": 0,\n      \"defendedTidalRiskRatio\": 0,\n      \"defendedTidalMaxDepth30Years\": 0,\n      \"defendedTidalMaxDepth75Years\": 0,\n      \"defendedTidalMaxDepth100Years\": 0,\n      \"defendedTidalMaxDepth250Years\": 0,\n      \"defendedTidalMaxDepth500Years\": 0,\n      \"defendedTidalMaxDepth1000Years\": 0,\n      \"defendedTidalADR\": 0,\n      \"defendedTidalAAL\": 0,\n      \"undefendedScore\": 0,\n      \"undefendedRiskRatio\": 0,\n      \"undefendedADR\": 0,\n      \"undefendedAAL\": 0,\n      \"undefendedFluvialScore\": 0,\n      \"undefendedFluvialRiskRatio\": 0,\n      \"undefendedFluvialMaxDepth30Years\": 0,\n      \"undefendedFluvialMaxDepth75Years\": 0,\n      \"undefendedFluvialMaxDepth100Years\": 0,\n      \"undefendedFluvialMaxDepth250Years\": 0,\n      \"undefendedFluvialMaxDepth500Years\": 0,\n      \"undefendedFluvialMaxDepth1000Years\": 0,\n      \"undefendedFluvialADR\": 0,\n      \"undefendedFluvialAAL\": 0,\n      \"undefendedTidalScore\": 0,\n      \"undefendedTidalRiskRatio\": 0,\n      \"undefendedTidalMaxDepth30Years\": 0,\n      \"undefendedTidalMaxDepth75Years\": 0,\n      \"undefendedTidalMaxDepth100Years\": 0,\n      \"undefendedTidalMaxDepth250Years\": 0,\n      \"undefendedTidalMaxDepth500Years\": 0,\n      \"undefendedTidalMaxDepth1000Years\": 0,\n      \"undefendedTidalADR\": 0,\n      \"undefendedTidalAAL\": 0,\n      \"undefendedPluvialScore\": 0,\n      \"undefendedPluvialRiskRatio\": 0,\n      \"undefendedPluvialMaxDepth30Years\": 0,\n      \"undefendedPluvialMaxDepth75Years\": 0,\n      \"undefendedPluvialMaxDepth100Years\": 0,\n      \"undefendedPluvialMaxDepth250Years\": 0,\n      \"undefendedPluvialMaxDepth500Years\": 0,\n      \"undefendedPluvialMaxDepth1000Years\": 0,\n      \"undefendedPluvialADR\": 0,\n      \"undefendedPluvialAAL\": 0\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "618b2113-17d7-4c57-9823-e70e838f2f31",
+          "name": "Request was not valid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flood-twinn",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1eb5300c-5533-46ed-a025-e7fadd433d07",
+          "name": "Flood data not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flood-twinn",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "3695fab6-2501-4987-9b88-22ac56377d6f",
+          "name": "An error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flood-twinn",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "67c3451e-2e11-4fcd-8726-99e852cff699",
+      "name": "Returns Ground data for a given property",
+      "request": {
+        "name": "Returns Ground data for a given property",
+        "description": {
+          "content": "Returns Ground data for a given property",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "ground-terrafirma",
+            ":uprn"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "dataVersion",
+              "value": "<string>",
+              "description": "(Required) Data Version Number"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<long>",
+              "key": "uprn",
+              "description": "(Required) Format - int64. Data Version Number"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "Client Identifer used for tracking",
+            "key": "X-Client-ID",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "Client Reference used for tracking",
+            "key": "X-Client-Reference",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "Unique Transaction ID, used for tracking and support",
+            "key": "X-Correlation-ID",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "0287716c-7095-4953-b334-815dddf6914f",
+          "name": "Request successful",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ground-terrafirma",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"current\": [\n    {\n      \"versionNumber\": \"string\",\n      \"highestScore\": 0,\n      \"miningScore\": 0,\n      \"miningNonCoalScore\": 0,\n      \"miningCoalScore\": 0,\n      \"miningCheshireBrineScore\": 0,\n      \"dissolutionScore\": 0,\n      \"sinkHoleScore\": 0,\n      \"miscellaneousScore\": 0,\n      \"soilSubsidenceScore\": 0,\n      \"coastalErosionScore\": 0,\n      \"landslipScore\": 0,\n      \"shape\": \"string\",\n      \"subsidenceScore\": 0\n    }\n  ],\n  \"future\": [\n    {\n      \"versionNumber\": \"string\",\n      \"year\": \"string\",\n      \"scenario\": \"string\",\n      \"uprn\": 0,\n      \"highestScore\": 0,\n      \"soilSubsidenceScore\": 0,\n      \"coastalErosionScore\": 0,\n      \"subsidenceScore\": 0\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "731b8c8c-ddb8-4954-874a-078513b1244c",
+          "name": "Request was not valid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ground-terrafirma",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "a460e88a-8ef3-48e0-9379-2c66ec07e926",
+          "name": "Ground data not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ground-terrafirma",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "0688459a-bd0f-4a54-96ba-b507ff78cc97",
+          "name": "An error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ground-terrafirma",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6b66508b-f79d-483b-9d43-127293c7381d",
+      "name": "Returns SubsidenceScoreData data for a given property",
+      "request": {
+        "name": "Returns SubsidenceScoreData data for a given property",
+        "description": {
+          "content": "Returns SubsidenceScoreData data for a given property",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "ground-subsidence-twinn",
+            ":uprn"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "dataVersion",
+              "value": "<string>",
+              "description": "(Required) Data Version Number"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<long>",
+              "key": "uprn",
+              "description": "(Required) Format - int64. Data Version Number"
+            }
+          ]
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "Client Identifer used for tracking",
+            "key": "X-Client-ID",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "Client Reference used for tracking",
+            "key": "X-Client-Reference",
+            "value": "<string>"
+          },
+          {
+            "disabled": false,
+            "description": "Unique Transaction ID, used for tracking and support",
+            "key": "X-Correlation-ID",
+            "value": "<string>"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "52b0f8d4-6218-4020-82a4-a35440a018e6",
+          "name": "Request successful",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ground-subsidence-twinn",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"uprn\": 0,\n  \"versionNumber\": \"string\",\n  \"current\": {\n    \"collapsibleDeposits\": 0,\n    \"compressibleGround\": 0,\n    \"landslides\": 0,\n    \"runningSands\": 0,\n    \"solubleRocks\": 0,\n    \"shrinkSwell\": 0,\n    \"subsidenceScore\": 0,\n    \"subsidenceValuesFrmBGS\": 0\n  },\n  \"future\": [\n    {\n      \"year\": \"string\",\n      \"scenario\": \"string\",\n      \"subsidenceScore\": 0\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "150256c1-dccb-4799-bec4-983ca0ab7e96",
+          "name": "Request was not valid",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ground-subsidence-twinn",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "a69167ac-f5f1-41ad-baeb-96348efbba10",
+          "name": "SubsidenceScoreData data not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ground-subsidence-twinn",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "13027e18-149e-473d-ad67-a40f6680f51b",
+          "name": "An error has occured",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "ground-subsidence-twinn",
+                ":uprn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataVersion",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "uprn",
+                  "description": "(Required) Format - int64. Data Version Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Client Identifer used for tracking",
+                "key": "X-Client-ID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Client Reference used for tracking",
+                "key": "X-Client-Reference",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique Transaction ID, used for tracking and support",
+                "key": "X-Correlation-ID",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hometrack.com/climate",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "c9c4dbfa-006d-4cc7-a386-b25e4bb6d9ca",
+    "name": "Climate API (v2)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

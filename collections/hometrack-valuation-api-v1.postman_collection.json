@@ -1,0 +1,546 @@
+{
+  "item": [
+    {
+      "id": "bec68ba2-1b99-4984-bf1e-db21bff69a59",
+      "name": "Authentication",
+      "request": {
+        "name": "Authentication",
+        "description": {
+          "content": "Authenticates the client by exchanging an API key with a temporary token. The token will only be valid for 5 minutes.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "authentication",
+            ":apiKey"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "apiKey",
+              "description": "(Required) The API key."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "6c4e0736-30c7-490c-9368-fb6e9a55f6e5",
+          "name": "The response JSON, which contains the newly generated token, along with a list of resources which can be accessed using the token.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "authentication",
+                ":apiKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiKey",
+                  "description": "(Required) The API key."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"token\": \"a962c38a-6517-4eb5-8ca9-22d4c845487f\",\n  \"links\": [\n    {\n      \"rel\": \"valuation\",\n      \"href\": \"/v1/valuation\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "15dc0da4-45af-449e-b615-9abe44fbd738",
+      "name": "Status",
+      "request": {
+        "name": "Status",
+        "description": {
+          "content": "This function checks if the Valuation API is currently available.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "status"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "25c66e98-a022-4d6a-8bf7-11294a086a90",
+          "name": "The Valuation API is up and running.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "dab0b628-1746-4c96-8179-326a04ac70bb",
+          "name": "The Valuation API is currently unavailable.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d9b31232-ea9e-418e-8a4f-7f538ff5c1a2",
+      "name": "Valuation",
+      "request": {
+        "name": "Valuation",
+        "description": {
+          "content": "This endpoint runs a valuation on a given property.\n\n<div class=\"row\">\n    <div class=\"col-md-12\">\n        <h4>Authorization</h4>\n        <p>\n            The Valuation endpoint uses a <b>token-based authorization</b>. Each valuation request will require an 'Authorization' header with a valid user token. \n            The token can be generated through a POST request to the <span style='font-family: \"Courier New\", Courier, monospace;'>/authentication/{apiKey}</span> endpoint. This will authenticate your API Key and will exchange it with a temporary authorization token which will be valid for 5 minutes.\n            <br/><br />\n            The Authorization header format for Token based authentication needed for the Valuation API looks like this:\n        </p>\n            <pre>Authorization: Token token=\"652da107-bb66-4886-9f73-d8d4a3243eb7\"</pre>\n        <p>We also accept less strict variations, such as:</p>\n        <pre>Authorization: Token token=652da107-bb66-4886-9f73-d8d4a3243eb7<br />Authorization: Token 652da107-bb66-4886-9f73-d8d4a3243eb7</pre>\n    </div>\n</div>",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "valuation",
+            ":accountId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "accountId",
+              "description": "(Required) Your account ID."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"property\": {\n    \"address\": \"<string>\",\n    \"postcode\": \"<string>\",\n    \"propertyType\": \"<string>\",\n    \"bedrooms\": \"<integer>\",\n    \"receptions\": \"<integer>\",\n    \"reference\": \"<string>\",\n    \"effectiveDate\": \"<string>\",\n    \"estimatedValue\": \"<number>\",\n    \"loanAmount\": \"<number>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "b30d651e-68b9-4afb-b7ed-5db409133535",
+          "name": "Valuation response JSON. Depending on your subscription, the response body may not include all the fields presented here. Have a look at the sample below, and check the schema definition for details about each field.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "valuation",
+                ":accountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Your account ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Token based authorization header. Example value: <br/>\n<div style='font-family: \"Courier New\", Courier, monospace;'>Token token=\"652da107-bb66-4886-9f73-d8d4a3243eb7\"</div>",
+                "key": "Authorization",
+                "value": "string"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"property\": {\n    \"address\": \"141 Upper Hill street\",\n    \"postcode\": \"L8 8EN\",\n    \"propertyType\": \"end terrace house\",\n    \"bedrooms\": 4,\n    \"receptions\": 1,\n    \"reference\": \"CREF55555\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"propertyValuation\": {\n    \"value\": 132000,\n    \"upperValue\": 158000,\n    \"lowerValue\": 106000,\n    \"confidenceBand\": \"low\",\n    \"effectiveDate\": \"2019-08-28\"\n  },\n  \"rentalValuation\": {\n    \"monthlyRentalValue\": 1410,\n    \"monthlyRentalUpperValue\": 1690,\n    \"monthlyRentalLowerValue\": 1130,\n    \"confidenceBand\": \"low\",\n    \"effectiveDate\": \"2019-08-28\"\n  },\n  \"flags\": [],\n  \"clientReference\": \"CREF55555\",\n  \"ourReference\": \"HT123123REF\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "80aa0be3-bb56-4bf7-9504-e1266cdac581",
+          "name": "The request body does not match the definition.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "valuation",
+                ":accountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Your account ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Token based authorization header. Example value: <br/>\n<div style='font-family: \"Courier New\", Courier, monospace;'>Token token=\"652da107-bb66-4886-9f73-d8d4a3243eb7\"</div>",
+                "key": "Authorization",
+                "value": "string"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"property\": {\n    \"address\": \"141 Upper Hill street\",\n    \"postcode\": \"L8 8EN\",\n    \"propertyType\": \"end terrace house\",\n    \"bedrooms\": 4,\n    \"receptions\": 1,\n    \"reference\": \"CREF55555\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "5d67b638-3e34-4a8e-9194-80cd9c23e187",
+          "name": "The 'Authorization' header is missing or has the wrong format.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "valuation",
+                ":accountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Your account ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Token based authorization header. Example value: <br/>\n<div style='font-family: \"Courier New\", Courier, monospace;'>Token token=\"652da107-bb66-4886-9f73-d8d4a3243eb7\"</div>",
+                "key": "Authorization",
+                "value": "string"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"property\": {\n    \"address\": \"141 Upper Hill street\",\n    \"postcode\": \"L8 8EN\",\n    \"propertyType\": \"end terrace house\",\n    \"bedrooms\": 4,\n    \"receptions\": 1,\n    \"reference\": \"CREF55555\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "c2dcd0a8-1b4d-4140-8669-37600e82b844",
+          "name": "We return this in the following situations:\n- The provided user token is invalid or has expired. \n- The account ID provided in the URL does not match the account authenticated by the user token. \n- The associated account is incorrectly set up for running valuations.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "valuation",
+                ":accountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Your account ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Token based authorization header. Example value: <br/>\n<div style='font-family: \"Courier New\", Courier, monospace;'>Token token=\"652da107-bb66-4886-9f73-d8d4a3243eb7\"</div>",
+                "key": "Authorization",
+                "value": "string"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"property\": {\n    \"address\": \"141 Upper Hill street\",\n    \"postcode\": \"L8 8EN\",\n    \"propertyType\": \"end terrace house\",\n    \"bedrooms\": 4,\n    \"receptions\": 1,\n    \"reference\": \"CREF55555\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "09653c43-4593-4e17-8401-d63a28c9626e",
+          "name": "Rate limit is exceeded. The response body will tell you when you can try again.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "valuation",
+                ":accountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Your account ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Token based authorization header. Example value: <br/>\n<div style='font-family: \"Courier New\", Courier, monospace;'>Token token=\"652da107-bb66-4886-9f73-d8d4a3243eb7\"</div>",
+                "key": "Authorization",
+                "value": "string"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"property\": {\n    \"address\": \"141 Upper Hill street\",\n    \"postcode\": \"L8 8EN\",\n    \"propertyType\": \"end terrace house\",\n    \"bedrooms\": 4,\n    \"receptions\": 1,\n    \"reference\": \"CREF55555\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"statusCode\": 429,\n  \"message\": \"Rate limit is exceeded. Try again in 60 seconds.\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hometrack.com/valuation-api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "0c1c41f1-b765-4e71-a603-6a13b066aa30",
+    "name": "Valuation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Generally available version of the Valuation API.",
+      "type": "text/plain"
+    }
+  }
+}

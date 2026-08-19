@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Valuation API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/valuation-api/v1/authentication/:apiKey",
+        "params": [
+          {
+            "name": "apiKey",
+            "value": "",
+            "type": "path",
+            "description": "The API key."
+          }
+        ]
+      },
+      "docs": "Authenticates the client by exchanging an API key with a temporary token. The token will only be valid for 5 minutes."
+    },
+    {
+      "info": {
+        "name": "Status",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/valuation-api/v1/status"
+      },
+      "docs": "This function checks if the Valuation API is currently available."
+    },
+    {
+      "info": {
+        "name": "Valuation",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/valuation-api/v1/valuation/:accountId",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "Your account ID."
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "This endpoint runs a valuation on a given property.\n\n<div class=\"row\">\n    <div class=\"col-md-12\">\n        <h4>Authorization</h4>\n        <p>\n            The Valuation endpoint uses a <b>token-based authorization</b>. Each valuation request will require an 'Authorization' header with a valid user token. \n            The token can be generated through a POST request to the <span style='font-family: \"Courier New\", Courier, monospace;'>/authentication/{apiKey}</span> endpoint. This will authenticat"
+    }
+  ],
+  "bundled": true
+}

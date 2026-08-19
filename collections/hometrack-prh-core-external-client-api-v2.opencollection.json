@@ -1,0 +1,613 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "(PRH) - Core External Client API v2.0",
+    "version": "v2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "/organisation/{orgId}/case - GET",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/case",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "lastProviderUpdatedFrom",
+            "value": "",
+            "type": "query",
+            "description": "Start point to filter the response to cases last updated in a specific date/time range."
+          },
+          {
+            "name": "reportUpdatedFrom",
+            "value": "",
+            "type": "query",
+            "description": "Start point to filter the response to cases with a report last updated in a specific date/time range."
+          },
+          {
+            "name": "reportUpdatedTo",
+            "value": "",
+            "type": "query",
+            "description": "End point to filter the response to cases with a report last updated in a specific date/time range."
+          },
+          {
+            "name": "pageResults",
+            "value": "",
+            "type": "query",
+            "description": "Turn paging on or off (on by default). 5000 result limit when off."
+          },
+          {
+            "name": "pageSize",
+            "value": "",
+            "type": "query",
+            "description": "The page size returned."
+          },
+          {
+            "name": "caseStatus",
+            "value": "",
+            "type": "query",
+            "description": "Filter the response to cases at a specific status"
+          },
+          {
+            "name": "page",
+            "value": "",
+            "type": "query",
+            "description": "The zero-indexed page number to return, if paging is on."
+          },
+          {
+            "name": "lastProviderStatus",
+            "value": "",
+            "type": "query",
+            "description": "Filter the response to cases where the last data provider run is at a specific status."
+          },
+          {
+            "name": "lenderRef",
+            "value": "",
+            "type": "query",
+            "description": "Filter the response by Lender reference."
+          },
+          {
+            "name": "instructionRef",
+            "value": "",
+            "type": "query",
+            "description": "Filter the response by a complete or partial instruction reference."
+          },
+          {
+            "name": "hasReport",
+            "value": "",
+            "type": "query",
+            "description": "Filter the response to cases that have a valuation report."
+          },
+          {
+            "name": "orderBy",
+            "value": "",
+            "type": "query",
+            "description": "Specifies how the response should be sorted, as a SQL ORDER BY string"
+          },
+          {
+            "name": "lastProviderUpdatedTo",
+            "value": "",
+            "type": "query",
+            "description": "End point to filter the response to cases last updated in a specific date/time range."
+          },
+          {
+            "name": "reportAcceptable",
+            "value": "",
+            "type": "query",
+            "description": "Filter the response to cases that have a valuation report which is completed and passes any assessment rules."
+          }
+        ]
+      },
+      "docs": "Retrieve a list of PRH cases for the organisation, filtered by one or more of the queryParameters as described"
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/case/{caseId} - GET",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/case/:caseId",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "caseId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Retrieve a specific case from PRH by specifying the internal caseId."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/case/{caseId}/documents - GET",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/case/:caseId/documents",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "caseId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Retrieve a list of documents attached to the specified PRH case."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/case/{caseId}/documents - POST",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/case/:caseId/documents",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "caseId",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Attach new documents to the specified PRH case."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/case/{caseId}/documents/{documentReference} - GET",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/case/:caseId/documents/:documentReference",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "caseId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "documentReference",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Retrieve a specific document attached to the specified PRH case."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/case/{caseId}/documents/{documentReference}/verify - GET",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/case/:caseId/documents/:documentReference/verify",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "caseId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "documentReference",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Verify that the specified document is available."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/case/{caseId}/process/{caseProcessId} - GET",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/case/:caseId/process/:caseProcessId",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "caseId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "caseProcessId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Retrieve the specified PRH case, filtered to a specific case process."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/case/{caseId}/process/{caseProcessId}/status - GET",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/case/:caseId/process/:caseProcessId/status",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "caseId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "caseProcessId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Retrieve the status of the specified case process on the specified PRH case."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/case/{caseId}/report - GET",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/case/:caseId/report",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "caseId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Retrieve a list of valuation reports attached to the specified PRH case."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/case/{caseId}/report/{revision} - GET",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/case/:caseId/report/:revision",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "caseId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "revision",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Retrieve a specific valuation report attached to the specified PRH case."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/case/{caseId}/report/latest - GET",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/case/:caseId/report/latest",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "caseId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Retrieve the most recent valuation report attached to the specified PRH case."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/case/{caseId}/status - GET",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/case/:caseId/status",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "caseId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "dataProviderCode",
+            "value": "",
+            "type": "query",
+            "description": "Filter the response to a specific data provider, by data provider code."
+          },
+          {
+            "name": "statusCode",
+            "value": "",
+            "type": "query",
+            "description": "Filter the response to a specific status code."
+          },
+          {
+            "name": "fromStatusDate",
+            "value": "",
+            "type": "query",
+            "description": "Start point to filter the response to statuses received in a specific date/time range."
+          },
+          {
+            "name": "toStatusDate",
+            "value": "",
+            "type": "query",
+            "description": "End point to filter the response to statuses received in a specific date/time range."
+          }
+        ]
+      },
+      "docs": "Search for previous data provider status updates made on the specified PRH case."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/case/{caseId}/status - POST",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/case/:caseId/status",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "caseId",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Send a data provider status update to the specified PRH case."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/case/{caseId}/status/latest - GET",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/case/:caseId/status/latest",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "caseId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Retrieves the most recent data provider status update on the specified case."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/instruction - POST",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/instruction",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a new instruction on the PRH system."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/instruction - PUT",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/instruction",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Reinstruct or reprocess an existing instruction on the PRH system."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/property/repository - GET",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/property/repository",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "externalReference",
+            "value": "",
+            "type": "query",
+            "description": "The External Reference Number linked to the property."
+          },
+          {
+            "name": "instructionReference",
+            "value": "",
+            "type": "query",
+            "description": "The Instruction Reference Number linked to the property."
+          },
+          {
+            "name": "uprn",
+            "value": "",
+            "type": "query",
+            "description": "The Unique Property Reference Number (UPRN) for the property."
+          }
+        ]
+      },
+      "docs": "Retrieve the property value from the property valuation repository."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/property/repository/{repositoryId} - GET",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/property/repository/:repositoryId",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "repositoryId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Retrieve a property value from the property valuation repository."
+    },
+    {
+      "info": {
+        "name": "/organisation/{orgId}/property?postalCode={postalCode} - GET",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.hometrack.com/prh/organisation/:orgId/property",
+        "params": [
+          {
+            "name": "orgId",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "postalCode",
+            "value": "",
+            "type": "query",
+            "description": "The Postal Code of the property."
+          },
+          {
+            "name": "addressLine1",
+            "value": "",
+            "type": "query",
+            "description": "The first line of the address of the property."
+          },
+          {
+            "name": "page",
+            "value": "",
+            "type": "query",
+            "description": "The zero-indexed page number."
+          },
+          {
+            "name": "pageSize",
+            "value": "",
+            "type": "query",
+            "description": "The page size."
+          }
+        ]
+      },
+      "docs": "Search for properties within the property valuation repository."
+    }
+  ],
+  "bundled": true
+}
