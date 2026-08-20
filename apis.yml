@@ -56,6 +56,17 @@ accessModel:
   method: manual
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/groq.png
 tags:
+- Real-Estate
+- United Kingdom
+- PropTech
+- Valuation
+- AVM
+- Mortgage
+- Property Data
+- Climate Risk
+- Lending
+- Surveying
+tags_raw:
 - Real Estate
 - United Kingdom
 - PropTech
@@ -91,6 +102,12 @@ apis:
   - AVM
   - Valuation
   - Mortgage
+  - Real-Estate
+  - United Kingdom
+  tags_raw:
+  - AVM
+  - Valuation
+  - Mortgage
   - Real Estate
   - United Kingdom
   properties:
@@ -114,6 +131,12 @@ apis:
   humanURL: https://developer.hometrack.com/apis
   baseURL: https://api.hometrack.com/climate/graphql
   tags:
+  - GraphQL
+  - Climate Risk
+  - Property Data
+  - Real-Estate
+  - United Kingdom
+  tags_raw:
   - GraphQL
   - Climate Risk
   - Property Data
