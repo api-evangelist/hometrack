@@ -87,108 +87,265 @@ created: '2026-07-26'
 modified: '2026-07-26'
 specificationVersion: '0.23'
 apis:
-- aid: hometrack:hometrack-broker-avm-api
-  name: Hometrack Broker AVM API
-  description: >-
-    Hometrack's own catalogue description is "This API provides access to the Broker AVM service." Twelve
-    operations across two revisions (v1 and v2 paths served side by side): POST /broker/order creates
-    a valuation order for a property, POST /broker/v2/order "creates the valuation order with climate
-    data for the property", and GET operations retrieve the order, the order status, the valuation, the
-    valuation input supplied at inception, and — on /internal/... paths — the raw valuation response "with
-    all data, audit traces etc". The harvested request schema for a broker order is detailed and real:
-    an order block with accountId, orderReference, userId and valuationType, and a valuations array carrying
-    address (postcode, address, uprn), effectiveDate, a loan block (repaymentType, loanAmount, outstandingLoanAmount,
-    additionalLoanAmount, remainingTerm, minimumRentalIncome, existingMortgage, instructionType) and a
-    property block (bedrooms, receptions, propertyType, propertyStyle, constructionType, constructionPeriod,
-    yearBuilt, floorArea, parking, exLocalAuthority, visibleFromRoad). Anonymous GET on this path returns
-    HTTP 401.
+- aid: hometrack:hometrack-authentication-api
+  name: Hometrack Authentication API
+  description: The Authentication API from Hometrack — 2 operation(s) for authentication.
   humanURL: https://developer.hometrack.com/apis
   baseURL: https://api.hometrack.com/valuation/v2
   tags:
-  - AVM
-  - Valuation
-  - Mortgage
-  - Real-Estate
-  - United Kingdom
-  tags_raw:
-  - AVM
-  - Valuation
-  - Mortgage
-  - Real Estate
-  - United Kingdom
+  - Authentication
   properties:
   - type: OpenAPI
-    url: openapi/hometrack-broker-avm-api-openapi.yml
-  - type: Overlay
-    url: overlays/hometrack-broker-avm-api-overlay.yaml
+    url: openapi/hometrack-authentication-api-openapi.yml
   - type: Documentation
     url: https://developer.hometrack.com/apis
   - type: Authentication
     url: https://developer.hometrack.com/api-authentication
-- aid: hometrack:hometrack-climate-graphql-api
-  name: Hometrack Climate GraphQL API
-  description: >-
-    A GraphQL API registered in Hometrack's API Management catalogue with type "graphql" and path /climate/graphql,
-    fronting the same climate data backend (web-uks-prod-data-api.azurewebsites.net/graphql). It is a
-    real, listed API but its contract is not anonymously retrievable: the operations collection and the
-    schema collection both returned empty arrays to an unauthenticated caller, so no GraphQL SDL could
-    be harvested, and the OpenAPI export for it is a stub with servers and security schemes but no paths.
-    Recorded here because absence of the schema is itself the finding.
+- aid: hometrack:hometrack-brands-api
+  name: Hometrack Brands API
+  description: The Brands API from Hometrack — 1 operation(s) for brands.
   humanURL: https://developer.hometrack.com/apis
-  baseURL: https://api.hometrack.com/climate/graphql
+  baseURL: https://api.hometrack.com/valuation/v2
   tags:
-  - GraphQL
-  - Climate Risk
-  - Property Data
-  - Real-Estate
-  - United Kingdom
-  tags_raw:
-  - GraphQL
-  - Climate Risk
-  - Property Data
-  - Real Estate
-  - United Kingdom
+  - Brands
   properties:
   - type: OpenAPI
-    url: openapi/hometrack-climate-graphql-api-openapi.yml
-  - type: Overlay
-    url: overlays/hometrack-climate-graphql-api-overlay.yaml
+    url: openapi/hometrack-brands-api-openapi.yml
   - type: Documentation
     url: https://developer.hometrack.com/apis
-- aid: hometrack:hometrack-api-public-openapi
-  name: Hometrack API Public
-  description: Hometrack API Public from Hometrack — 19 path(s) described in OpenAPI.
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-broker-api
+  name: Hometrack Broker API
+  description: The Broker API from Hometrack — 10 operation(s) for broker.
   humanURL: https://developer.hometrack.com/apis
   baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Broker
   properties:
   - type: OpenAPI
-    url: openapi/hometrack-api-public-openapi.yml
-- aid: hometrack:hometrack-climate-api-v2-openapi
-  name: Hometrack Climate API (v2)
-  description: Hometrack Climate API (v2) from Hometrack — 5 path(s) described in OpenAPI.
+    url: openapi/hometrack-broker-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-epc-hometrack-api
+  name: Hometrack Epc Hometrack API
+  description: The Epc Hometrack API from Hometrack — 1 operation(s) for epc hometrack.
   humanURL: https://developer.hometrack.com/apis
   baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Epc Hometrack
   properties:
   - type: OpenAPI
-    url: openapi/hometrack-climate-api-v2-openapi.yml
-- aid: hometrack:hometrack-prh-core-external-client-api-v2-openapi
-  name: Hometrack (PRH) - Core External Client API v2.0
+    url: openapi/hometrack-epc-hometrack-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-flood-twinn-api
+  name: Hometrack Flood Twinn API
+  description: The Flood Twinn API from Hometrack — 1 operation(s) for flood twinn.
+  humanURL: https://developer.hometrack.com/apis
+  baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Flood Twinn
+  properties:
+  - type: OpenAPI
+    url: openapi/hometrack-flood-twinn-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-ground-coastalerosion-twinn-api
+  name: Hometrack Ground Coastalerosion Twinn API
   description: >-
-    Hometrack (PRH) - Core External Client API v2.0 from Hometrack — 16 path(s) described in OpenAPI.
+    The Ground Coastalerosion Twinn API from Hometrack — 1 operation(s) for ground coastalerosion twinn.
   humanURL: https://developer.hometrack.com/apis
   baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Ground Coastalerosion Twinn
   properties:
   - type: OpenAPI
-    url: openapi/hometrack-prh-core-external-client-api-v2-openapi.yml
-- aid: hometrack:hometrack-valuation-api-v1-openapi
+    url: openapi/hometrack-ground-coastalerosion-twinn-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-ground-subsidence-twinn-api
+  name: Hometrack Ground Subsidence Twinn API
+  description: >-
+    The Ground Subsidence Twinn API from Hometrack — 1 operation(s) for ground subsidence twinn.
+  humanURL: https://developer.hometrack.com/apis
+  baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Ground Subsidence Twinn
+  properties:
+  - type: OpenAPI
+    url: openapi/hometrack-ground-subsidence-twinn-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-ground-terrafirma-api
+  name: Hometrack Ground Terrafirma API
+  description: The Ground Terrafirma API from Hometrack — 1 operation(s) for ground terrafirma.
+  humanURL: https://developer.hometrack.com/apis
+  baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Ground Terrafirma
+  properties:
+  - type: OpenAPI
+    url: openapi/hometrack-ground-terrafirma-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-internal-api
+  name: Hometrack Internal API
+  description: The Internal API from Hometrack — 2 operation(s) for internal.
+  humanURL: https://developer.hometrack.com/apis
+  baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Internal
+  properties:
+  - type: OpenAPI
+    url: openapi/hometrack-internal-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-licences-api
+  name: Hometrack Licences API
+  description: The Licences API from Hometrack — 1 operation(s) for licences.
+  humanURL: https://developer.hometrack.com/apis
+  baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Licences
+  properties:
+  - type: OpenAPI
+    url: openapi/hometrack-licences-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-organisation-api
+  name: Hometrack Organisation API
+  description: The Organisation API from Hometrack — 16 operation(s) for organisation.
+  humanURL: https://developer.hometrack.com/apis
+  baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Organisation
+  properties:
+  - type: OpenAPI
+    url: openapi/hometrack-organisation-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-partners-api
+  name: Hometrack Partners API
+  description: The Partners API from Hometrack — 2 operation(s) for partners.
+  humanURL: https://developer.hometrack.com/apis
+  baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Partners
+  properties:
+  - type: OpenAPI
+    url: openapi/hometrack-partners-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-pvrplugin-api
+  name: Hometrack Pvrplugin API
+  description: The Pvrplugin API from Hometrack — 4 operation(s) for pvrplugin.
+  humanURL: https://developer.hometrack.com/apis
+  baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Pvrplugin
+  properties:
+  - type: OpenAPI
+    url: openapi/hometrack-pvrplugin-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-reporting-api
+  name: Hometrack Reporting API
+  description: The Reporting API from Hometrack — 7 operation(s) for reporting.
+  humanURL: https://developer.hometrack.com/apis
+  baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Reporting
+  properties:
+  - type: OpenAPI
+    url: openapi/hometrack-reporting-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-status-api
+  name: Hometrack Status API
+  description: The Status API from Hometrack — 1 operation(s) for status.
+  humanURL: https://developer.hometrack.com/apis
+  baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Status
+  properties:
+  - type: OpenAPI
+    url: openapi/hometrack-status-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-trial-api
+  name: Hometrack Trial API
+  description: The Trial API from Hometrack — 2 operation(s) for trial.
+  humanURL: https://developer.hometrack.com/apis
+  baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Trial
+  properties:
+  - type: OpenAPI
+    url: openapi/hometrack-trial-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-valuation-api
   name: Hometrack Valuation API
-  description: Hometrack Valuation API from Hometrack — 3 path(s) described in OpenAPI.
+  description: The Valuation API from Hometrack — 1 operation(s) for valuation.
   humanURL: https://developer.hometrack.com/apis
   baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Valuation
   properties:
   - type: OpenAPI
-    url: openapi/hometrack-valuation-api-v1-openapi.yml
+    url: openapi/hometrack-valuation-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
+- aid: hometrack:hometrack-zoopla-api
+  name: Hometrack Zoopla API
+  description: The Zoopla API from Hometrack — 1 operation(s) for zoopla.
+  humanURL: https://developer.hometrack.com/apis
+  baseURL: https://api.hometrack.com/valuation/v2
+  tags:
+  - Zoopla
+  properties:
+  - type: OpenAPI
+    url: openapi/hometrack-zoopla-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hometrack.com/apis
+  - type: Authentication
+    url: https://developer.hometrack.com/api-authentication
 common:
+- type: Overlay
+  url: overlays/hometrack-broker-avm-api-overlay.yaml
+- type: Overlay
+  url: overlays/hometrack-climate-graphql-api-overlay.yaml
 - type: APIReference
   url: https://developer.hometrack.com/apis
 - type: ChangeLog
