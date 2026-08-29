@@ -354,6 +354,9 @@ apis:
   - type: Authentication
     url: https://developer.hometrack.com/api-authentication
 common:
+- type: CapabilityMap
+  url: capabilities/hometrack-capability-edges.yml
+  name: Hometrack Business Capability Map
 - type: Overlay
   url: overlays/hometrack-broker-avm-api-overlay.yaml
 - type: Overlay

@@ -1,0 +1,48 @@
+slug: hometrack
+provider: Hometrack
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Real Estate
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Broker
+  spec_file: hometrack-broker-api-openapi.yml
+  capability_id: BC-4970
+  capability_id_l1: BC-4970
+  capability_name: Real Estate Valuation & Appraisal Management
+  confidence: 0.9
+  evidence: 'POST /broker/order  ValuePropertyBroker-Spec; GET /broker/order/{orderId}/status  GetValuationStatusById-Spec;
+    schemas: avmValuationBroker, apiValuationResponseBroker, propertyAttributesUsedBroker'
+  reason: Ordering and retrieval of automated property valuations (AVM) for broker/lender channels — the
+    vendor's core appraisal/valuation service. Clearly real-estate valuation; the surface spans engagement/order
+    intake and delivery of the valuation result, so no single L2 is named unambiguously.
+- tag: Valuation
+  spec_file: hometrack-valuation-api-openapi.yml
+  capability_id: BC-4970
+  capability_id_l1: BC-4970
+  capability_name: Real Estate Valuation & Appraisal Management
+  confidence: 0.8
+  evidence: POST /valuation/{accountId} — "Valuation"; schemas Valuation_request_definition, Valuation_API_Response_Definition;
+    "Generally available version of the Valuation API."
+  reason: The core endpoint requests a property valuation from the vendor's AVM, which is real-estate
+    valuation and appraisal. L1 only, since the single generic operation does not identify a specific
+    valuation sub-stage.
+- tag: Internal
+  spec_file: hometrack-internal-api-openapi.yml
+  capability_id: BC-4970
+  capability_id_l1: BC-4970
+  capability_name: Real Estate Valuation & Appraisal Management
+  confidence: 0.75
+  evidence: '"This API provides access to the Broker AVM service."; GET /internal/valuation/{valuationId}/raw
+    GetRawValuationById; schemas avmValuationBroker, propertyAttributesUsedBroker, cavmCapital, cavmRental'
+  reason: Retrieval of automated valuation model outputs (capital and rental values, property attributes
+    used) is real-estate valuation/appraisal work. Left at L1 because the endpoints only retrieve stored
+    valuations and do not clearly name a specific valuation sub-stage.
