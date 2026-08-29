@@ -39,6 +39,18 @@ description: >-
   from government rather than from a real-estate standards body. Hometrack itself
   publishes no open data — the open UK property layer is HM Land Registry Price
   Paid and Ordnance Survey, not Hometrack.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: partner
