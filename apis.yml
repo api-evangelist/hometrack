@@ -133,6 +133,8 @@ apis:
   humanURL: https://developer.hometrack.com/apis
   baseURL: https://api.hometrack.com/valuation/v2
   tags:
+  - Brokers
+  tags_raw:
   - Broker
   properties:
   - type: OpenAPI
