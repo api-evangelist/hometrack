@@ -1,0 +1,96 @@
+openapi: 3.2.0
+info:
+  title: Hometrack API Public Zoopla API
+  description: Hometrack API for public consumption
+  version: '1.0'
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com
+- url: https://api.hometrack.local
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Zoopla
+paths:
+  /api/zoopla/partners/{token}:
+    post:
+      operationId: ZooplaPartnersApi_CreateZooplaPartner
+      summary: Creates a new Zoopla partner. This requires a "partner.create" permission
+      description: Creates a new Zoopla partner. This requires a "partner.create" permission
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Token'
+        description: Format - uuid. The authentication token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ZooplaPartnerCreateRequest'
+            example:
+              BranchId: string
+              Name: string
+      responses:
+        '201':
+          description: Created - the partner was created
+        '400':
+          description: Bad Request - request parameters do not pass the validation
+        '401':
+          description: Unauthorized - token is invalid or expired
+        '403':
+          description: Forbidden - the authentication token is invalid
+        '404':
+          description: Not Found - the principal could not be found
+        '409':
+          description: Conflict - partner already exists
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+        '503':
+          description: Service Unavailable - this or a dependent service is unavailable
+      tags:
+      - Zoopla
+components:
+  schemas:
+    ZooplaPartnerCreateRequest:
+      type: object
+      properties:
+        BranchId:
+          description: Partner / branch ID
+          type: string
+        Name:
+          description: Partner / branch Name
+          type: string
+    Token:
+      format: uuid
+      x-apim-inline: true
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

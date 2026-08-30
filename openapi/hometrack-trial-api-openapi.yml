@@ -1,0 +1,236 @@
+openapi: 3.2.0
+info:
+  title: Hometrack API Public Trial API
+  description: Hometrack API for public consumption
+  version: '1.0'
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com
+- url: https://api.hometrack.local
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Trial
+paths:
+  /api/trial/{apikey}/{token}:
+    get:
+      operationId: TrialApi_Trial
+      summary: Returns trial licence for the ApiKey
+      description: Returns trial licence for the ApiKey
+      parameters:
+      - name: apikey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The customers ApiKey
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Authentication token with the licence.list rights
+      responses:
+        '200':
+          description: OK - request completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trial'
+              example:
+                status: string
+                apiKey: string
+                product: string
+                startDate: string
+                endDate: string
+                volume: 0
+                remainingVolume: 0
+        '400':
+          description: Bad Request - the apiKey or token is missing
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden - the authentication token is invalid
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Not Found - the apiKey is not recognized
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: string
+        '503':
+          description: Service Unavailable - this or a dependent service is unavailable
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+      - Trial
+  /api/trial/{token}:
+    post:
+      operationId: TrialApi_NewTrial
+      summary: This method will create a new user with the trial account and licence
+      description: This method will create a new user with the trial account and licence
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrialRequest'
+            example:
+              product: string
+              startDate: string
+              termMonths: string
+              volume: string
+              companyName: string
+              contactFirstname: string
+              contactSurname: string
+              contactEmailAddress: string
+              contactPhoneNumber: string
+      responses:
+        '201':
+          description: Created - trial account created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trial'
+              example:
+                status: string
+                apiKey: string
+                product: string
+                startDate: string
+                endDate: string
+                volume: 0
+                remainingVolume: 0
+        '400':
+          description: Bad Request - the apiKey or token is missing
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden - the authentication token is invalid
+          content:
+            application/json:
+              schema:
+                type: string
+        '409':
+          description: Conflict - a user with this email address already exists
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: string
+        '503':
+          description: Service Unavailable - this or a dependent service is unavailable
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+      - Trial
+components:
+  schemas:
+    TrialRequest:
+      description: Represents the request to TrialApi endpoint
+      type: object
+      properties:
+        product:
+          description: 'The product code. Ex.: PVR, SAR, Dashboard...'
+          type: string
+        startDate:
+          format: date-time
+          description: Trial start date
+          type: string
+        termMonths:
+          description: Trial term in months.
+          type: string
+        volume:
+          description: Trial volume limit.
+          type: string
+        companyName:
+          description: Contact company name
+          type: string
+        contactFirstname:
+          description: First name of the contact
+          type: string
+        contactSurname:
+          description: Last name of the contact
+          type: string
+        contactEmailAddress:
+          description: Contact email address
+          type: string
+        contactPhoneNumber:
+          description: Contact phone number.
+          type: string
+    Trial:
+      type: object
+      properties:
+        status:
+          type: string
+        apiKey:
+          type: string
+        product:
+          type: string
+        startDate:
+          format: date-time
+          type: string
+        endDate:
+          format: date-time
+          type: string
+        volume:
+          format: int32
+          type: integer
+        remainingVolume:
+          format: int32
+          type: integer
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

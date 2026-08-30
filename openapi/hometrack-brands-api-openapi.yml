@@ -1,0 +1,293 @@
+openapi: 3.2.0
+info:
+  title: Hometrack API Public Brands API
+  description: Hometrack API for public consumption
+  version: '1.0'
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com
+- url: https://api.hometrack.local
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Brands
+paths:
+  /api/brands/{token}/{targetAccountApiKey}:
+    put:
+      operationId: BrandsApi_Put
+      summary: Creates or updates the branding configuration for an account, based on the account's API key
+      description: Creates or updates the branding configuration for an account, based on the account's API key
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The authentication token
+      - name: targetAccountApiKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The API Key for the target account for which you want to update the branding
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrandApiModel'
+            example:
+              brandName: string
+              branchName: string
+              branchAddress: string
+              branchPostcode: string
+              branchTelephoneNumber: string
+              branchEmailAddress: string
+              branchWebsite: string
+              reportName: string
+              hometrackLogoType: 0
+              reportHeading: string
+              reportText: string
+              terms: string
+              showValueRangeOnly: true
+              defaultContactDetails: string
+              frontPageComments: string
+              customerPVRConfiguration: 0
+              agentPVRConfiguration: 0
+              minimumConfidenceBand: string
+              brandLogoColour: string
+              highlightColour: string
+              accentColourIcons: true
+              logo: string
+              branchPhoto: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BrandApiModel'
+            example:
+              brandName: string
+              branchName: string
+              branchAddress: string
+              branchPostcode: string
+              branchTelephoneNumber: string
+              branchEmailAddress: string
+              branchWebsite: string
+              reportName: string
+              hometrackLogoType: 0
+              reportHeading: string
+              reportText: string
+              terms: string
+              showValueRangeOnly: true
+              defaultContactDetails: string
+              frontPageComments: string
+              customerPVRConfiguration: 0
+              agentPVRConfiguration: 0
+              minimumConfidenceBand: string
+              brandLogoColour: string
+              highlightColour: string
+              accentColourIcons: true
+              logo: string
+              branchPhoto: string
+      responses:
+        '200':
+          description: OK - the account's branding configuration has been updated
+        '400':
+          description: Bad Request - request parameters do not pass the validation
+        '401':
+          description: Unauthorized - token is invalid or expired
+        '403':
+          description: Forbidden - the token does not have enough rights to update the account's branding
+        '404':
+          description: Not Found - the target account was not found
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+      tags:
+      - Brands
+    get:
+      operationId: BrandsApi_Get
+      summary: Retrieves the branding configuration associated to a given account
+      description: If a brand for the specific target account is not found, the default Hometrack brand configuration is returned
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The authentication token
+      - name: targetAccountApiKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The API Key for the target account for which you want to retrieve the branding
+      responses:
+        '200':
+          description: OK - request completed successfully, includes model containing the requested brand details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandApiModel'
+              example:
+                brandName: string
+                branchName: string
+                branchAddress: string
+                branchPostcode: string
+                branchTelephoneNumber: string
+                branchEmailAddress: string
+                branchWebsite: string
+                reportName: string
+                hometrackLogoType: 0
+                reportHeading: string
+                reportText: string
+                terms: string
+                showValueRangeOnly: true
+                defaultContactDetails: string
+                frontPageComments: string
+                customerPVRConfiguration: 0
+                agentPVRConfiguration: 0
+                minimumConfidenceBand: string
+                brandLogoColour: string
+                highlightColour: string
+                accentColourIcons: true
+                logo: string
+                branchPhoto: string
+        '400':
+          description: Bad Request - request parameters do not pass the validation
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized - token is invalid or expired
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden - the token does not have enough rights to update the account's branding
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Not Found - the brand could not be found
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+      - Brands
+components:
+  schemas:
+    BrandApiModel:
+      description: "This model represents a Brand configuration. \nIt is normally used for co-branded Property Valuation Reports."
+      type: object
+      properties:
+        brandName:
+          description: <b>[Required on creation]</b> The name of the brand. This field is required when first creating the brand, but can be ignored on update.
+          type: string
+        branchName:
+          description: The name of the branch.
+          type: string
+        branchAddress:
+          description: The address of the branch
+          type: string
+        branchPostcode:
+          description: The postcode of the address of the branch
+          type: string
+        branchTelephoneNumber:
+          description: The telephone number of the branch
+          type: string
+        branchEmailAddress:
+          description: An email address of the branch
+          type: string
+        branchWebsite:
+          description: The website of the branch
+          type: string
+        reportName:
+          description: Name of the report, to be printed on all reports generated using this brand. E.g. "Property Valuation Report" or "Market Appraisal".
+          type: string
+        hometrackLogoType:
+          format: int32
+          description: 'Specifies the type of logo desired. It can be one of the following values:
+
+            <ul><li>1: Standard Hometrack logo</li><li>2: Powered by Hometrack logo</li></ul>'
+          maximum: 2
+          minimum: 1
+          type: integer
+        reportHeading:
+          description: Additional text heading shown in the last page of PDF report
+          type: string
+        reportText:
+          description: Additional text shown in the last page of PDF report
+          type: string
+        terms:
+          description: "<b>[Required on creation]</b> Terms and conditions text which will be shown in Hometrack's PVR plugin. \n            This field is required when first creating the brand, but can be ignored on update."
+          type: string
+        showValueRangeOnly:
+          description: If set to 'true', only the capital value range will be displayed in PDF report (no capital valuation).
+          type: boolean
+        defaultContactDetails:
+          description: "Details to be printed on the back page of the agent leave-behind if contact details are not supplied in the order form. \nAgent name Telephone number(s) Email address"
+          type: string
+        frontPageComments:
+          description: Agent comments to be displayed on the front page of the Agent leave behind.
+          type: string
+        customerPVRConfiguration:
+          format: int32
+          description: The ID of the PVR configuration desired for generating the PDF report.
+          type: integer
+        agentPVRConfiguration:
+          format: int32
+          description: (Obsolete)
+          type: integer
+        minimumConfidenceBand:
+          description: "Low limit for the confidence level which will appear in the PVR. \nYou should provide a decimal value in a range from 1 to 7, or the value 0 if you want to allow any confidence level. <br />\nI.e. if the requested PVR would show a confidence level lower than that specified here, \nthe Low Confidence Level error message will be displayed and the report will not be generated. <br />\nIf not provided, this setting will default to 0 - all confidence levels allowed."
+          type: string
+        brandLogoColour:
+          description: The hex code for the brand's logo colour, to be used on the front and back page of the Agent Leave behind.
+          type: string
+        highlightColour:
+          description: "The hex code for the brand's accent colour, to be used to frame headers in the Agent Leave behind. \nIf no accent colour, please repeat the logo colour."
+          type: string
+        accentColourIcons:
+          type: boolean
+        logo:
+          description: "A Base64-encoded image representing the brand's logo. \nIf set, this logo will be visible on the PDF report.<br />\nWe accept images with or without the data URL scheme. Considering that &lt;data&gt; is the Base64 encoded string representing your logo,\nthe data URL scheme is of this form: <br /><pre>data:[&lt;mediatype&gt;][;base64],&lt;data&gt;</pre>\nExample: \n<pre>data:image/png;base64,iVBORw0KGgo...</pre>"
+          type: string
+        branchPhoto:
+          description: "A Base64-encoded image representing the branch photo. \nIf set, this logo will be visible on the last page of the PDF report.<br />"
+          type: string
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

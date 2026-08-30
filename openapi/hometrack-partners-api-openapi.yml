@@ -1,0 +1,192 @@
+openapi: 3.2.0
+info:
+  title: Hometrack API Public Partners API
+  description: Hometrack API for public consumption
+  version: '1.0'
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com
+- url: https://api.hometrack.local
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Partners
+paths:
+  /api/partners/{token}:
+    post:
+      operationId: PartnersApi_Post
+      summary: Creates a Partner-to-Account entry. Requires the "partner.modify" permission
+      description: Creates a Partner-to-Account entry. Requires the "partner.modify" permission
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Token'
+        description: Format - uuid. The authentication token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartnerCreateRequest'
+            example:
+              accountApiKey: string
+              partnerId: string
+              partnerType: string
+      responses:
+        '201':
+          description: Created - the entry was created
+        '400':
+          description: Bad Request - the request parameters are not provided or are malformed
+        '401':
+          description: Unauthorized - token is invalid or expired
+        '403':
+          description: Forbidden - the authentication token doe not have enough rights to update the account's branding
+        '409':
+          description: Conflict - a Partner with the same Partner ID and Type already exists
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+      tags:
+      - Partners
+  /api/partners/{token}/{partnerType}/{id}:
+    get:
+      operationId: PartnersApi_Get
+      summary: Retrieves the name and API key of the associated account
+      description: Retrieves the name and API key of the associated account
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Token'
+        description: Format - uuid. The authentication token
+      - name: partnerType
+        in: path
+        required: true
+        schema:
+          type: string
+        description: 'Accepted values: "zooplaBranch" or "PSG"'
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The Partner ID
+      responses:
+        '200':
+          description: OK - request completed successfully, includes the requested Partner details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnerResponse'
+              example:
+                partnerId: string
+                partnerType: string
+                apiKey: string
+                principalName: string
+                principalUniqueId: 00000000-0000-0000-0000-000000000000
+                createDate: string
+                modifyDate: string
+        '400':
+          description: Bad Request - the request parameters are not provided or are malformed
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized - token is invalid or expired
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden - the authentication token doe not have enough rights to retrieve partner details
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Not Found - the partner could not be found
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+      - Partners
+components:
+  schemas:
+    PartnerCreateRequest:
+      required:
+      - accountApiKey
+      - partnerId
+      - partnerType
+      type: object
+      properties:
+        accountApiKey:
+          description: <b>[Required]</b> The API Key for the associated Account.
+          type: string
+        partnerId:
+          description: <b>[Required]</b> The partner ID.
+          type: string
+        partnerType:
+          description: '<b>[Required]</b> The partner type: ''zoopla'' or ''PSG''.'
+          type: string
+    Token:
+      format: uuid
+      x-apim-inline: true
+    PartnerResponse:
+      type: object
+      properties:
+        partnerId:
+          type: string
+        partnerType:
+          type: string
+        apiKey:
+          type: string
+        principalName:
+          type: string
+        principalUniqueId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        createDate:
+          format: date-time
+          type: string
+        modifyDate:
+          format: date-time
+          type: string
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

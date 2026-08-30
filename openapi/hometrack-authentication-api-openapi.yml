@@ -1,0 +1,133 @@
+openapi: 3.2.0
+info:
+  title: Hometrack Authentication API
+  version: '1.0'
+  x-refined-note:
+  - x-api-evangelist-provenance differs across the merged source definitions and was not carried
+  description: 'Operations tagged Authentication across 2 of this provider''s published API definitions: hometrack-api-public-openapi.yml, hometrack-valuation-api-v1-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.hometrack.com
+- url: https://api.hometrack.local
+- url: https://api.hometrack.com/valuation-api/v1
+- url: https://api.hometrack.local/valuation-api/v1
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Authentication
+paths:
+  /api/authentication/{apiKey}:
+    post:
+      operationId: AuthenticationApi_Post
+      summary: Authenticates the user by exchanging an API key with a temporary token
+      description: The resulting token will be a plain text GUID. e.g. 64e12ae6-f941-4851-aa4f-86439104056d
+      parameters:
+      - name: apiKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The API key
+      responses:
+        '201':
+          description: Created - authentication was successful
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApiAuthenticationApiKeyPost201TextPlainResponse'
+        '400':
+          description: Bad Request - the apiKey is missing
+          content:
+            text/plain:
+              schema:
+                type: string
+        '403':
+          description: Forbidden - the apiKey could not be authenticated
+          content:
+            text/plain:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            text/plain:
+              schema:
+                type: string
+        '503':
+          description: Service Unavailable - unable to authenticate at this time
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+      - Authentication
+    servers:
+    - url: https://api.hometrack.com
+    - url: https://api.hometrack.local
+  /authentication/{apiKey}:
+    post:
+      operationId: authentication
+      summary: Authentication
+      description: Authenticates the client by exchanging an API key with a temporary token. The token will only be valid for 5 minutes.
+      parameters:
+      - name: apiKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The API key.
+      responses:
+        '200':
+          description: The response JSON, which contains the newly generated token, along with a list of resources which can be accessed using the token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Authentication_Response_Definition'
+              example:
+                token: a962c38a-6517-4eb5-8ca9-22d4c845487f
+                links:
+                - rel: valuation
+                  href: /v1/valuation
+      tags:
+      - Authentication
+    servers:
+    - url: https://api.hometrack.com/valuation-api/v1
+    - url: https://api.hometrack.local/valuation-api/v1
+components:
+  schemas:
+    ApiAuthenticationApiKeyPost201TextPlainResponse:
+      type: string
+    Authentication_Response_Definition:
+      type: object
+      properties:
+        token:
+          description: Token which can be used for doing an authorized request to the Valuation API endpoint.
+          type: string
+        links:
+          description: A list of available resources which can be accessed using the generated token.
+          type: array
+          items:
+            required:
+            - rel
+            - href
+            type: object
+            properties:
+              rel:
+                description: Endpoint name.
+                type: string
+              href:
+                description: The path to this endpoint.
+                type: string
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+x-refined-from:
+- hometrack-api-public-openapi.yml
+- hometrack-valuation-api-v1-openapi.yml

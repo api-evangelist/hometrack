@@ -1,0 +1,228 @@
+openapi: 3.2.0
+info:
+  title: Climate API (v2) Ground Subsidence Twinn API
+  description: ''
+  version: v2
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com/climate
+- url: https://api.hometrack.local/climate
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Ground Subsidence Twinn
+paths:
+  /ground-subsidence-twinn/{uprn}:
+    get:
+      operationId: SubsidenceScoreData
+      summary: Returns SubsidenceScoreData data for a given property
+      description: Returns SubsidenceScoreData data for a given property
+      parameters:
+      - name: dataVersion
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Ground-subsidence-twinn-uprn-GetRequest'
+        description: Data Version Number
+      - name: uprn
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Ground-subsidence-twinn-uprn-GetRequest-1'
+        description: Format - int64. Data Version Number
+      - name: X-Client-ID
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-subsidence-twinn-uprn-GetRequest-2'
+        description: Client Identifer used for tracking
+      - name: X-Client-Reference
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-subsidence-twinn-uprn-GetRequest-3'
+        description: Client Reference used for tracking
+      - name: X-Correlation-ID
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-subsidence-twinn-uprn-GetRequest-4'
+        description: Unique Transaction ID, used for tracking and support
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubsidenceScoreResponseModelV2'
+              example:
+                uprn: 0
+                versionNumber: string
+                current:
+                  collapsibleDeposits: 0
+                  compressibleGround: 0
+                  landslides: 0
+                  runningSands: 0
+                  solubleRocks: 0
+                  shrinkSwell: 0
+                  subsidenceScore: 0
+                  subsidenceValuesFrmBGS: 0
+                future:
+                - year: string
+                  scenario: string
+                  subsidenceScore: 0
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SubsidenceScoreResponseModelV2'
+              example:
+                uprn: 0
+                versionNumber: string
+                current:
+                  collapsibleDeposits: 0
+                  compressibleGround: 0
+                  landslides: 0
+                  runningSands: 0
+                  solubleRocks: 0
+                  shrinkSwell: 0
+                  subsidenceScore: 0
+                  subsidenceValuesFrmBGS: 0
+                future:
+                - year: string
+                  scenario: string
+                  subsidenceScore: 0
+        '400':
+          description: Request was not valid
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '404':
+          description: SubsidenceScoreData data not found
+        '500':
+          description: An error has occured
+      tags:
+      - Ground Subsidence Twinn
+components:
+  schemas:
+    SubsidenceScoreResponseModelV2:
+      required:
+      - current
+      - future
+      type: object
+      properties:
+        uprn:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        versionNumber:
+          type:
+          - string
+          - 'null'
+        current:
+          $ref: '#/components/schemas/SubsidenceScoreCurrentModel'
+        future:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubsidenceScoreFutureModel'
+      additionalProperties: false
+    SubsidenceScoreFutureModel:
+      type: object
+      properties:
+        year:
+          type:
+          - string
+          - 'null'
+        scenario:
+          type:
+          - string
+          - 'null'
+        subsidenceScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    Ground-subsidence-twinn-uprn-GetRequest-1:
+      type: integer
+      format: int64
+      x-apim-inline: true
+    SubsidenceScoreCurrentModel:
+      type: object
+      properties:
+        collapsibleDeposits:
+          type: integer
+          format: int32
+        compressibleGround:
+          type: integer
+          format: int32
+        landslides:
+          type: integer
+          format: int32
+        runningSands:
+          type: integer
+          format: int32
+        solubleRocks:
+          type: integer
+          format: int32
+        shrinkSwell:
+          type: integer
+          format: int32
+        subsidenceScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        subsidenceValuesFrmBGS:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    Ground-subsidence-twinn-uprn-GetRequest-4:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+    Ground-subsidence-twinn-uprn-GetRequest-2:
+      maxLength: 20
+      type: string
+      x-apim-inline: true
+    Ground-subsidence-twinn-uprn-GetRequest:
+      type: string
+      x-apim-inline: true
+    Ground-subsidence-twinn-uprn-GetRequest-3:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

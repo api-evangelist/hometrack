@@ -1,0 +1,307 @@
+openapi: 3.2.0
+info:
+  title: Climate API (v2) Ground Terrafirma API
+  description: ''
+  version: v2
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com/climate
+- url: https://api.hometrack.local/climate
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Ground Terrafirma
+paths:
+  /ground-terrafirma/{uprn}:
+    get:
+      operationId: Ground
+      summary: Returns Ground data for a given property
+      description: Returns Ground data for a given property
+      parameters:
+      - name: dataVersion
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Ground-terrafirma-uprn-GetRequest'
+        description: Data Version Number
+      - name: uprn
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Ground-terrafirma-uprn-GetRequest-1'
+        description: Format - int64. Data Version Number
+      - name: X-Client-ID
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-terrafirma-uprn-GetRequest-2'
+        description: Client Identifer used for tracking
+      - name: X-Client-Reference
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-terrafirma-uprn-GetRequest-3'
+        description: Client Reference used for tracking
+      - name: X-Correlation-ID
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-terrafirma-uprn-GetRequest-4'
+        description: Unique Transaction ID, used for tracking and support
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroundScoreResponseModelV2'
+              example:
+                current:
+                - versionNumber: string
+                  highestScore: 0
+                  miningScore: 0
+                  miningNonCoalScore: 0
+                  miningCoalScore: 0
+                  miningCheshireBrineScore: 0
+                  dissolutionScore: 0
+                  sinkHoleScore: 0
+                  miscellaneousScore: 0
+                  soilSubsidenceScore: 0
+                  coastalErosionScore: 0
+                  landslipScore: 0
+                  shape: string
+                  subsidenceScore: 0
+                future:
+                - versionNumber: string
+                  year: string
+                  scenario: string
+                  uprn: 0
+                  highestScore: 0
+                  soilSubsidenceScore: 0
+                  coastalErosionScore: 0
+                  subsidenceScore: 0
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GroundScoreResponseModelV2'
+              example:
+                current:
+                - versionNumber: string
+                  highestScore: 0
+                  miningScore: 0
+                  miningNonCoalScore: 0
+                  miningCoalScore: 0
+                  miningCheshireBrineScore: 0
+                  dissolutionScore: 0
+                  sinkHoleScore: 0
+                  miscellaneousScore: 0
+                  soilSubsidenceScore: 0
+                  coastalErosionScore: 0
+                  landslipScore: 0
+                  shape: string
+                  subsidenceScore: 0
+                future:
+                - versionNumber: string
+                  year: string
+                  scenario: string
+                  uprn: 0
+                  highestScore: 0
+                  soilSubsidenceScore: 0
+                  coastalErosionScore: 0
+                  subsidenceScore: 0
+        '400':
+          description: Request was not valid
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '404':
+          description: Ground data not found
+        '500':
+          description: An error has occured
+      tags:
+      - Ground Terrafirma
+components:
+  schemas:
+    Ground-terrafirma-uprn-GetRequest-4:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+    Ground-terrafirma-uprn-GetRequest-2:
+      maxLength: 20
+      type: string
+      x-apim-inline: true
+    Ground-terrafirma-uprn-GetRequest-1:
+      type: integer
+      format: int64
+      x-apim-inline: true
+    Ground-terrafirma-uprn-GetRequest:
+      type: string
+      x-apim-inline: true
+    GroundScoreResponseModelV2:
+      required:
+      - current
+      - future
+      type: object
+      properties:
+        current:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseGroundRiskCurrentModel'
+        future:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseGroundRiskFutureModel'
+      additionalProperties: false
+    ClimateChangeDataWithVersionResponseGroundRiskCurrentModel:
+      required:
+      - coastalErosionScore
+      type: object
+      properties:
+        versionNumber:
+          type:
+          - string
+          - 'null'
+        highestScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        miningScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        miningNonCoalScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        miningCoalScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        miningCheshireBrineScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        dissolutionScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        sinkHoleScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        miscellaneousScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        soilSubsidenceScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        coastalErosionScore:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        landslipScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        shape:
+          type:
+          - string
+          - 'null'
+        subsidenceScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    Ground-terrafirma-uprn-GetRequest-3:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+    ClimateChangeDataWithVersionResponseGroundRiskFutureModel:
+      required:
+      - coastalErosionScore
+      type: object
+      properties:
+        versionNumber:
+          type:
+          - string
+          - 'null'
+        year:
+          type:
+          - string
+          - 'null'
+        scenario:
+          type:
+          - string
+          - 'null'
+        uprn:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        highestScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        soilSubsidenceScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        coastalErosionScore:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        subsidenceScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

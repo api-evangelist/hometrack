@@ -1,0 +1,682 @@
+openapi: 3.2.0
+info:
+  title: Hometrack API Public Reporting API
+  description: Hometrack API for public consumption
+  version: '1.0'
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com
+- url: https://api.hometrack.local
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Reporting
+paths:
+  /api/reporting/moveToBlobStorage:
+    get:
+      operationId: ReportingApi_MoveToBlobStorage
+      summary: 'Called via a scheduled task, this method uploads all files from the report directory
+
+        to blob storage and then deletes them.'
+      description: 'Called via a scheduled task, this method uploads all files from the report directory
+
+        to blob storage and then deletes them.'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingMoveToBlobStorageGet200ApplicationXmlResponse'
+              example: <ApiReportingMoveToBlobStorageGet200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingMoveToBlobStorageGet200TextXmlResponse'
+              example: <ApiReportingMoveToBlobStorageGet200TextXmlResponse />
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingMoveToBlobStorageGet200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingMoveToBlobStorageGet200TextJsonResponse'
+              example: {}
+      tags:
+      - Reporting
+  /api/reporting/PropertyValuation/{token}/{transactionReference}:
+    get:
+      operationId: ReportingApi_RetrievePropertyValuationReport
+      summary: Downloads the previously generated Property Valuation Report file
+      description: Downloads the previously generated Property Valuation Report file
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Client's authentication token
+      - name: transactionReference
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The report's transaction ID
+      responses:
+        '200':
+          description: OK - when the report is found and available, includes the binary file stream of the PDF
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/ApiReportingPropertyValuationTokenTransactionReferenceGet200ApplicationPdfRe'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingPropertyValuationTokenTransactionReferenceGet200ApplicationXmlRe'
+              example: <ApiReportingPropertyValuationTokenTransactionReferenceGet200ApplicationXmlRe />
+        '202':
+          description: Accepted - the report has not finished generating - try again later
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/ApiReportingPropertyValuationTokenTransactionReferenceGet202ApplicationPdfRe'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingPropertyValuationTokenTransactionReferenceGet202ApplicationXmlRe'
+              example: <ApiReportingPropertyValuationTokenTransactionReferenceGet202ApplicationXmlRe />
+        '403':
+          description: Forbidden - the authentication token is invalid
+          content:
+            application/pdf:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+        '404':
+          description: Not Found - no record of transactionId found
+          content:
+            application/pdf:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+        '410':
+          description: Gone - the record for that transactionId was found, but the associated PDF file cannot be found
+          content:
+            application/pdf:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+        '499':
+          description: Client Closed Request - production failed when the production of the report failed for an unknown reason - please contact our customer support
+          content:
+            application/pdf:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            application/pdf:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+        '503':
+          description: Service Unavailable - this or a dependent service is unavailable
+          content:
+            application/pdf:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+      tags:
+      - Reporting
+  /api/reporting/TestGet:
+    get:
+      operationId: ReportingApi_TestGet
+      summary: For test purpose
+      description: For test purpose
+      responses:
+        '200':
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestGetGet200ApplicationXmlResponse'
+              example: <ApiReportingTestGetGet200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestGetGet200TextXmlResponse'
+              example: <ApiReportingTestGetGet200TextXmlResponse />
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestGetGet200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestGetGet200TextJsonResponse'
+              example: {}
+      tags:
+      - Reporting
+  /api/reporting/TestPost:
+    post:
+      operationId: ReportingApi_TestPost
+      summary: For test purpose
+      description: For test purpose
+      responses:
+        '200':
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestPostPost200ApplicationXmlResponse'
+              example: <ApiReportingTestPostPost200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestPostPost200TextXmlResponse'
+              example: <ApiReportingTestPostPost200TextXmlResponse />
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestPostPost200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTestPostPost200TextJsonResponse'
+              example: {}
+      tags:
+      - Reporting
+  /api/reporting/PropertyValuation:
+    post:
+      operationId: ReportingApi_RequestPropertyValuationReport
+      summary: Requests a Property Valuation Report
+      description: Requests a Property Valuation Report
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropertyValuationReportRequest'
+            example:
+              Address: string
+              Postcode: string
+              Bedrooms: 0
+              PropertyType: string
+              Receptions: 0
+              YearBuilt: 0
+              FloorArea: 0
+              ValuationDate: string
+              Bathrooms: 0
+              BrandCode: string
+              NoBill: true
+              NoBillSecret: string
+              PreparedFor: string
+              BranchId: string
+              Token: string
+              TransactionId: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PropertyValuationReportRequest'
+            example:
+              Address: string
+              Postcode: string
+              Bedrooms: 0
+              PropertyType: string
+              Receptions: 0
+              YearBuilt: 0
+              FloorArea: 0
+              ValuationDate: string
+              Bathrooms: 0
+              BrandCode: string
+              NoBill: true
+              NoBillSecret: string
+              PreparedFor: string
+              BranchId: string
+              Token: string
+              TransactionId: string
+      responses:
+        '201':
+          description: Created - request accepted and property valuation processed
+        '400':
+          description: Bad Request - request parameters do not pass the validation
+        '402':
+          description: Payment Required - the license has lapsed or the report volume has been used up
+        '403':
+          description: Forbidden - the authentication token is invalid
+        '409':
+          description: Conflict - non-unique transaction ID is provided
+        '499':
+          description: Client Closed Request - production failed when the confidence level for the subject property was lower than the minimum level specified in configuration
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+        '503':
+          description: Service Unavailable - this or a dependent service is unavailable
+      tags:
+      - Reporting
+  /api/reporting/PropertyValuation/config/{token}:
+    get:
+      operationId: ReportingApi_GetPvrConfigurations
+      summary: Retrieves IDs and Names of PVR Configuration Umbraco nodes
+      description: 'Requires a PVR account type with permission: pvr.configuration.list'
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Client's authentication token
+      responses:
+        '200':
+          description: OK - Returns PVR Configurations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PvrConfigsResponse'
+              example:
+                pvrConfigs:
+                - name: string
+                  id: 0
+                pvrV2Configs:
+                - name: string
+                  id: 0
+        '401':
+          description: Unauthorized - the authentication token is invalid
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden - the account does not have permission
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+      - Reporting
+  /api/reporting/{token}:
+    post:
+      operationId: ReportingApi_ProcessPropertyValuation
+      summary: "The main report processing endpoint. \nReport Processor calls this method with the message body from *-Created queues"
+      description: "The main report processing endpoint. \nReport Processor calls this method with the message body from *-Created queues"
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreatedReportModel'
+            example: "<CreatedReportModel>\n  <AccountApiKey>00000000-0000-0000-0000-000000000000</AccountApiKey>\n  <OrderUniqueIdentifier>00000000-0000-0000-0000-000000000000</OrderUniqueIdentifier>\n  <UniqueIdentifier>string</UniqueIdentifier>\n  <OrderNumber>string</OrderNumber>\n  <ReportType>string</ReportType>\n  <BrandCode>string</BrandCode>\n  <Recipient>string</Recipient>\n  <PreparedFor>string</PreparedFor>\n  <ContactDetail>\n    <UniqueId>00000000-0000-0000-0000-000000000000</UniqueId>\n    <Title>string</Title>\n    <Firstname>string</Firstname>\n    <Surname>string</Surname>\n    <EmailAddress>string</EmailAddress>\n    <CompanyName>string</CompanyName>\n    <JobTitle>string</JobTitle>\n    <Fullname>string</Fullname>\n    <DeliveryEmail>string</DeliveryEmail>\n    <Telephone>string</Telephone>\n  </ContactDetail>\n  <ReportParameters />\n  <FileName>string</FileName>\n  <FilePath>string</FilePath>\n  <IsApiReport>true</IsApiReport>\n  <IsLandingPageReport>true</IsLandingPageReport>\n  <TransactionReference>string</TransactionReference>\n  <AdditionalReportDetails />\n  <DateCreated>string</DateCreated>\n</CreatedReportModel>"
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/CreatedReportModel'
+            example: "<CreatedReportModel>\n  <AccountApiKey>00000000-0000-0000-0000-000000000000</AccountApiKey>\n  <OrderUniqueIdentifier>00000000-0000-0000-0000-000000000000</OrderUniqueIdentifier>\n  <UniqueIdentifier>string</UniqueIdentifier>\n  <OrderNumber>string</OrderNumber>\n  <ReportType>string</ReportType>\n  <BrandCode>string</BrandCode>\n  <Recipient>string</Recipient>\n  <PreparedFor>string</PreparedFor>\n  <ContactDetail>\n    <UniqueId>00000000-0000-0000-0000-000000000000</UniqueId>\n    <Title>string</Title>\n    <Firstname>string</Firstname>\n    <Surname>string</Surname>\n    <EmailAddress>string</EmailAddress>\n    <CompanyName>string</CompanyName>\n    <JobTitle>string</JobTitle>\n    <Fullname>string</Fullname>\n    <DeliveryEmail>string</DeliveryEmail>\n    <Telephone>string</Telephone>\n  </ContactDetail>\n  <ReportParameters />\n  <FileName>string</FileName>\n  <FilePath>string</FilePath>\n  <IsApiReport>true</IsApiReport>\n  <IsLandingPageReport>true</IsLandingPageReport>\n  <TransactionReference>string</TransactionReference>\n  <AdditionalReportDetails />\n  <DateCreated>string</DateCreated>\n</CreatedReportModel>"
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatedReportModel'
+            example:
+              AccountApiKey: 00000000-0000-0000-0000-000000000000
+              OrderUniqueIdentifier: 00000000-0000-0000-0000-000000000000
+              UniqueIdentifier: string
+              OrderNumber: string
+              ReportType: string
+              BrandCode: string
+              Recipient: string
+              PreparedFor: string
+              ContactDetail:
+                UniqueId: 00000000-0000-0000-0000-000000000000
+                Title: string
+                Firstname: string
+                Surname: string
+                EmailAddress: string
+                CompanyName: string
+                JobTitle: string
+                Fullname: string
+                DeliveryEmail: string
+                Telephone: string
+              ReportParameters: {}
+              FileName: string
+              FilePath: string
+              IsApiReport: true
+              IsLandingPageReport: true
+              TransactionReference: string
+              AdditionalReportDetails: {}
+              DateCreated: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreatedReportModel'
+            example:
+              AccountApiKey: 00000000-0000-0000-0000-000000000000
+              OrderUniqueIdentifier: 00000000-0000-0000-0000-000000000000
+              UniqueIdentifier: string
+              OrderNumber: string
+              ReportType: string
+              BrandCode: string
+              Recipient: string
+              PreparedFor: string
+              ContactDetail:
+                UniqueId: 00000000-0000-0000-0000-000000000000
+                Title: string
+                Firstname: string
+                Surname: string
+                EmailAddress: string
+                CompanyName: string
+                JobTitle: string
+                Fullname: string
+                DeliveryEmail: string
+                Telephone: string
+              ReportParameters: {}
+              FileName: string
+              FilePath: string
+              IsApiReport: true
+              IsLandingPageReport: true
+              TransactionReference: string
+              AdditionalReportDetails: {}
+              DateCreated: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTokenPost200ApplicationXmlResponse'
+              example: <ApiReportingTokenPost200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTokenPost200TextXmlResponse'
+              example: <ApiReportingTokenPost200TextXmlResponse />
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTokenPost200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiReportingTokenPost200TextJsonResponse'
+              example: {}
+      tags:
+      - Reporting
+components:
+  schemas:
+    ApiReportingTokenPost200TextJsonResponse:
+      type: object
+    ApiReportingTestGetGet200ApplicationXmlResponse:
+      type: object
+    ApiReportingTestGetGet200TextXmlResponse:
+      type: object
+    ApiReportingPropertyValuationTokenTransactionReferenceGet202ApplicationPdfRe:
+      type: object
+    CreatedReportModel:
+      description: Used to pass the data required to send the report to a customer.
+      type: object
+      properties:
+        AccountApiKey:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        OrderUniqueIdentifier:
+          format: uuid
+          description: ''
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        UniqueIdentifier:
+          description: Report unique identifier to get and update the ReportProductionLog record.
+          type: string
+        OrderNumber:
+          description: ''
+          type: string
+        ReportType:
+          description: ''
+          type: string
+        BrandCode:
+          description: ''
+          type: string
+        Recipient:
+          description: ''
+          type: string
+        PreparedFor:
+          description: Used in PVR header
+          type: string
+        ContactDetail:
+          $ref: '#/components/schemas/ProcessContact'
+          description: Customer details
+        ReportParameters:
+          description: ''
+          type: object
+          additionalProperties:
+            type: string
+        FileName:
+          description: This is the report file name, including extension.
+          type: string
+        FilePath:
+          description: This is the full path with the file name and extension.
+          type: string
+        IsApiReport:
+          description: If true the email will be not sent.
+          type: boolean
+        IsLandingPageReport:
+          description: 'If true, then several steps in transformation process will be ignored to improve performance.
+
+            TransactionId value will be required too.'
+          type: boolean
+        TransactionReference:
+          description: Required to retrieve the report path for a landing page order
+          type: string
+        AdditionalReportDetails:
+          description: 'Used to pass the additional information to the report transformation process.
+
+            Will be NOT stored anywhere(Salesforce, DB, Logs), and only used to produce the report.'
+          type: object
+          additionalProperties:
+            type: object
+        DateCreated:
+          format: date-time
+          type: string
+    ApiReportingMoveToBlobStorageGet200TextXmlResponse:
+      type: object
+    ApiReportingTokenPost200ApplicationXmlResponse:
+      type: object
+    ApiReportingTestPostPost200TextJsonResponse:
+      type: object
+    PvrConfigsResponse:
+      description: Used for getting Pvr configuration from umbraco
+      type: object
+      properties:
+        pvrConfigs:
+          description: An array of v1 configurations
+          type: array
+          items:
+            $ref: '#/components/schemas/PvrConfigModel'
+        pvrV2Configs:
+          description: An array of v2 configurations
+          type: array
+          items:
+            $ref: '#/components/schemas/PvrConfigModel'
+    PropertyValuationReportRequest:
+      description: Property valuation report request model.
+      required:
+      - Address
+      - Postcode
+      - Bedrooms
+      - PropertyType
+      - Token
+      - TransactionId
+      type: object
+      properties:
+        Address:
+          description: '[Required] Address'
+          type: string
+        Postcode:
+          description: '[Required] Postcode'
+          type: string
+        Bedrooms:
+          format: int32
+          description: '[Required] Bedroom count. Must be an integer 1 to 10.'
+          maximum: 10
+          minimum: 1
+          type: integer
+        PropertyType:
+          description: '[Required] Property type. It should be one of the following values:
+
+            <ul><li>Bungalow - Semi-Detached</li><li>Bungalow - Detached</li><li>Bungalow - End Terrace</li><li>Bungalow - Mid Terrace</li><li>Flat - Converted</li><li>Flat - Purpose Built</li><li>House - End Terrace</li><li>House - Mid Terrace</li><li>House - Semi-Detached</li><li>House - Detached</li></ul>
+
+            We also accept the following alternative values:
+
+            <ul><li>semi detached bungalow</li><li>detached bungalow</li><li>end terrace bungalow</li><li>mid terrace bungalow</li><li>converted flat</li><li>purpose built flat</li><li>end terrace house</li><li>mid terrace house</li><li>semi detached house</li><li>detached house</li></ul>'
+          type: string
+        Receptions:
+          format: int32
+          description: '[Optional] Receptions count. Must be an integer 1 to 5.'
+          maximum: 5
+          minimum: 1
+          type: integer
+        YearBuilt:
+          format: int32
+          description: "[Optional] Year built. \nAn integer between 1500 and the current year, or null."
+          type: integer
+        FloorArea:
+          format: double
+          description: '[Optional] Floor area, in sq m.'
+          type: number
+        ValuationDate:
+          format: date-time
+          description: "[Optional] Date to apply to the valuation. \nValid range is from 1 Jan 1999 to today.\nIf null, then today's date applied."
+          type: string
+        Bathrooms:
+          format: int32
+          description: '[Optional] The number of bathrooms.'
+          maximum: 10
+          minimum: 1
+          type: integer
+        BrandCode:
+          description: '[Optional] If a brand with this code is set up in our system, the report will be generated with the respective brand options.'
+          type: string
+        NoBill:
+          description: '[Optional] If set to true, the NoBillSecret will be checked against the whitelist.
+
+            On success the report will be created in test mode and transaction will not be synced to Salesforce.'
+          type: boolean
+        NoBillSecret:
+          description: '[Optional] If a value is supplied and paired with NoBill set to true, it will be checked against the whitelist.
+
+            On success the report will be created in test mode and transaction will not be synced to Salesforce.'
+          type: string
+        PreparedFor:
+          description: '[Optional] If specified, will be displayed on front page before valuation address'
+          type: string
+        BranchId:
+          description: '[Optional] Zoopla partner/ branch ID'
+          type: string
+        Token:
+          description: '[Required] Once authenticated, the client will use the received token for all subsequent API calls.'
+          type: string
+        TransactionId:
+          description: '[Required] A unique ID for the transaction request, generated by the customer. The field allows only alphanumeric characters, hyphens (-) and underscores (_).'
+          type: string
+    ApiReportingPropertyValuationTokenTransactionReferenceGet200ApplicationPdfRe:
+      type: object
+    ApiReportingTestPostPost200ApplicationJsonResponse:
+      type: object
+    PvrConfigModel:
+      description: Used for getting Pvr configuration from umbraco
+      type: object
+      properties:
+        name:
+          description: Configuration name
+          type: string
+        id:
+          format: int32
+          description: Configuration Id
+          type: integer
+    ApiReportingTokenPost200ApplicationJsonResponse:
+      type: object
+    ApiReportingTokenPost200TextXmlResponse:
+      type: object
+    ApiReportingMoveToBlobStorageGet200ApplicationJsonResponse:
+      type: object
+    ApiReportingTestGetGet200TextJsonResponse:
+      type: object
+    ApiReportingPropertyValuationTokenTransactionReferenceGet202ApplicationXmlRe:
+      type: object
+    ProcessContact:
+      type: object
+      properties:
+        UniqueId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        Title:
+          type: string
+        Firstname:
+          type: string
+        Surname:
+          type: string
+        EmailAddress:
+          type: string
+        CompanyName:
+          type: string
+        JobTitle:
+          type: string
+        Fullname:
+          type: string
+        DeliveryEmail:
+          type: string
+        Telephone:
+          type: string
+    ApiReportingTestPostPost200TextXmlResponse:
+      type: object
+    ApiReportingPropertyValuationTokenTransactionReferenceGet200ApplicationXmlRe:
+      type: object
+    ApiReportingTestPostPost200ApplicationXmlResponse:
+      type: object
+    ApiReportingMoveToBlobStorageGet200TextJsonResponse:
+      type: object
+    ApiReportingMoveToBlobStorageGet200ApplicationXmlResponse:
+      type: object
+    ApiReportingTestGetGet200ApplicationJsonResponse:
+      type: object
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

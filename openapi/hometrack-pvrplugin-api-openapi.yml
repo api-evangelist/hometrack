@@ -1,0 +1,412 @@
+openapi: 3.2.0
+info:
+  title: Hometrack API Public Pvrplugin API
+  description: Hometrack API for public consumption
+  version: '1.0'
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com
+- url: https://api.hometrack.local
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Pvrplugin
+paths:
+  /api/pvrplugin/enquiry/{token}:
+    post:
+      operationId: PvrPluginApi_StoreEnquiry
+      summary: Checks if email or it's domain is blacklisted and sends verification code if set in umbraco
+      description: Checks if email or it's domain is blacklisted and sends verification code if set in umbraco
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Enquiry'
+            example:
+              Contact:
+                Email: string
+                Firstname: string
+                Lastname: string
+                Phone: string
+                Company: string
+                JobTitle: string
+              BrandCode: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Enquiry'
+            example:
+              Contact:
+                Email: string
+                Firstname: string
+                Lastname: string
+                Phone: string
+                Company: string
+                JobTitle: string
+              BrandCode: string
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Enquiry'
+            example: "<Enquiry>\n  <Contact>\n    <Email>string</Email>\n    <Firstname>string</Firstname>\n    <Lastname>string</Lastname>\n    <Phone>string</Phone>\n    <Company>string</Company>\n    <JobTitle>string</JobTitle>\n  </Contact>\n  <BrandCode>string</BrandCode>\n</Enquiry>"
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/Enquiry'
+            example: "<Enquiry>\n  <Contact>\n    <Email>string</Email>\n    <Firstname>string</Firstname>\n    <Lastname>string</Lastname>\n    <Phone>string</Phone>\n    <Company>string</Company>\n    <JobTitle>string</JobTitle>\n  </Contact>\n  <BrandCode>string</BrandCode>\n</Enquiry>"
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginEnquiryTokenPost200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginEnquiryTokenPost200TextJsonResponse'
+              example: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginEnquiryTokenPost200ApplicationXmlResponse'
+              example: <ApiPvrpluginEnquiryTokenPost200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginEnquiryTokenPost200TextXmlResponse'
+              example: <ApiPvrpluginEnquiryTokenPost200TextXmlResponse />
+      tags:
+      - Pvrplugin
+  /api/pvrplugin/order/{token}:
+    post:
+      operationId: PvrPluginApi_GenerateOrder
+      summary: Creates a report for pvr plugin
+      description: Creates a report for pvr plugin
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GratisOrder'
+            example:
+              NodeId: 0
+              Firstname: string
+              Surname: string
+              EmailAddress: string
+              ValidationCode: string
+              Product:
+                Name: string
+                Type: string
+                Description: string
+                Price: 0
+                InputTypes: string
+                InputValues: string
+              ReportPostcode: string
+              ReportAddress: string
+              BrandName: string
+              BrandCode: string
+              Telephone: string
+              PreparedFor: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GratisOrder'
+            example:
+              NodeId: 0
+              Firstname: string
+              Surname: string
+              EmailAddress: string
+              ValidationCode: string
+              Product:
+                Name: string
+                Type: string
+                Description: string
+                Price: 0
+                InputTypes: string
+                InputValues: string
+              ReportPostcode: string
+              ReportAddress: string
+              BrandName: string
+              BrandCode: string
+              Telephone: string
+              PreparedFor: string
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GratisOrder'
+            example: "<GratisOrder>\n  <NodeId>0</NodeId>\n  <Firstname>string</Firstname>\n  <Surname>string</Surname>\n  <EmailAddress>string</EmailAddress>\n  <ValidationCode>string</ValidationCode>\n  <Product>\n    <Name>string</Name>\n    <Type>string</Type>\n    <Description>string</Description>\n    <Price>0</Price>\n    <InputTypes>string</InputTypes>\n    <InputValues>string</InputValues>\n  </Product>\n  <ReportPostcode>string</ReportPostcode>\n  <ReportAddress>string</ReportAddress>\n  <BrandName>string</BrandName>\n  <BrandCode>string</BrandCode>\n  <Telephone>string</Telephone>\n  <PreparedFor>string</PreparedFor>\n</GratisOrder>"
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/GratisOrder'
+            example: "<GratisOrder>\n  <NodeId>0</NodeId>\n  <Firstname>string</Firstname>\n  <Surname>string</Surname>\n  <EmailAddress>string</EmailAddress>\n  <ValidationCode>string</ValidationCode>\n  <Product>\n    <Name>string</Name>\n    <Type>string</Type>\n    <Description>string</Description>\n    <Price>0</Price>\n    <InputTypes>string</InputTypes>\n    <InputValues>string</InputValues>\n  </Product>\n  <ReportPostcode>string</ReportPostcode>\n  <ReportAddress>string</ReportAddress>\n  <BrandName>string</BrandName>\n  <BrandCode>string</BrandCode>\n  <Telephone>string</Telephone>\n  <PreparedFor>string</PreparedFor>\n</GratisOrder>"
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginOrderTokenPost200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginOrderTokenPost200TextJsonResponse'
+              example: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginOrderTokenPost200ApplicationXmlResponse'
+              example: <ApiPvrpluginOrderTokenPost200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginOrderTokenPost200TextXmlResponse'
+              example: <ApiPvrpluginOrderTokenPost200TextXmlResponse />
+      tags:
+      - Pvrplugin
+  /api/pvrplugin/{domain}:
+    get:
+      operationId: PvrPluginApi_GetConfiguration
+      summary: 'Returns the requirements for pvr plugin.
+
+        This method calls an account service to resolve and authenticate domain.
+
+        Also it checks if XML configuration is set and brandcode is specified.
+
+        It also checks if Brand exists in umbraco and Partner associated with it.'
+      description: 'Returns the requirements for pvr plugin.
+
+        This method calls an account service to resolve and authenticate domain.
+
+        Also it checks if XML configuration is set and brandcode is specified.
+
+        It also checks if Brand exists in umbraco and Partner associated with it.'
+      parameters:
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainGet200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainGet200TextJsonResponse'
+              example: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainGet200ApplicationXmlResponse'
+              example: <ApiPvrpluginDomainGet200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainGet200TextXmlResponse'
+              example: <ApiPvrpluginDomainGet200TextXmlResponse />
+      tags:
+      - Pvrplugin
+  /api/pvrplugin/{domain}/{partnerid}:
+    get:
+      operationId: PvrPluginApi_GetConfigurationByPartnerId
+      summary: 'Returns the requirements for pvr plugin.
+
+        This method calls an account service to resolve and authenticate domain.
+
+        Also it checks if XML configuration is set and brandcode is specified.
+
+        It also checks if Brand exists in umbraco and Partner associated with it.'
+      description: 'Returns the requirements for pvr plugin.
+
+        This method calls an account service to resolve and authenticate domain.
+
+        Also it checks if XML configuration is set and brandcode is specified.
+
+        It also checks if Brand exists in umbraco and Partner associated with it.'
+      parameters:
+      - name: partnerid
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Partnerid'
+        description: Format - int32.
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainPartneridGet200ApplicationJsonResponse'
+              example: {}
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainPartneridGet200TextJsonResponse'
+              example: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainPartneridGet200ApplicationXmlResponse'
+              example: <ApiPvrpluginDomainPartneridGet200ApplicationXmlResponse />
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ApiPvrpluginDomainPartneridGet200TextXmlResponse'
+              example: <ApiPvrpluginDomainPartneridGet200TextXmlResponse />
+      tags:
+      - Pvrplugin
+components:
+  schemas:
+    GratisOrder:
+      type: object
+      properties:
+        NodeId:
+          format: int32
+          type: integer
+        Firstname:
+          type: string
+        Surname:
+          type: string
+        EmailAddress:
+          type: string
+        ValidationCode:
+          type: string
+        Product:
+          $ref: '#/components/schemas/Product'
+        ReportPostcode:
+          type: string
+        ReportAddress:
+          type: string
+        BrandName:
+          type: string
+        BrandCode:
+          type: string
+        Telephone:
+          type: string
+        PreparedFor:
+          type: string
+    ApiPvrpluginEnquiryTokenPost200ApplicationJsonResponse:
+      type: object
+    ApiPvrpluginOrderTokenPost200ApplicationJsonResponse:
+      type: object
+    ApiPvrpluginDomainGet200TextXmlResponse:
+      type: object
+    Enquiry:
+      description: Enquiry model.
+      type: object
+      properties:
+        Contact:
+          $ref: '#/components/schemas/Contact'
+          description: Contact details
+        BrandCode:
+          description: Brand code
+          type: string
+    ApiPvrpluginDomainGet200ApplicationJsonResponse:
+      type: object
+    ApiPvrpluginEnquiryTokenPost200TextXmlResponse:
+      type: object
+    ApiPvrpluginOrderTokenPost200TextXmlResponse:
+      type: object
+    Product:
+      type: object
+      properties:
+        Name:
+          type: string
+        Type:
+          type: string
+        Description:
+          type: string
+        Price:
+          format: double
+          type: number
+        InputTypes:
+          type: string
+        InputValues:
+          type: string
+    ApiPvrpluginDomainPartneridGet200ApplicationJsonResponse:
+      type: object
+    ApiPvrpluginDomainPartneridGet200ApplicationXmlResponse:
+      type: object
+    ApiPvrpluginOrderTokenPost200ApplicationXmlResponse:
+      type: object
+    ApiPvrpluginOrderTokenPost200TextJsonResponse:
+      type: object
+    ApiPvrpluginDomainGet200ApplicationXmlResponse:
+      type: object
+    ApiPvrpluginDomainGet200TextJsonResponse:
+      type: object
+    ApiPvrpluginEnquiryTokenPost200ApplicationXmlResponse:
+      type: object
+    Contact:
+      description: The Contact model. Used for Create/Update/Retrieve operations with salesforce
+      type: object
+      properties:
+        Email:
+          description: Email address
+          type: string
+        Firstname:
+          description: Firstname
+          type: string
+        Lastname:
+          description: Lastname
+          type: string
+        Phone:
+          description: Phone number
+          type: string
+        Company:
+          description: Company name
+          type: string
+        JobTitle:
+          description: Job title
+          type: string
+    ApiPvrpluginEnquiryTokenPost200TextJsonResponse:
+      type: object
+    Partnerid:
+      format: int32
+      x-apim-inline: true
+    ApiPvrpluginDomainPartneridGet200TextJsonResponse:
+      type: object
+    ApiPvrpluginDomainPartneridGet200TextXmlResponse:
+      type: object
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

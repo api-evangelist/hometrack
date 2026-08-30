@@ -1,0 +1,340 @@
+openapi: 3.2.0
+info:
+  title: Broker Avm Internal API
+  description: This API provides access to the Broker AVM service.
+  version: '1.0'
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/broker-avm-api?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/broker-avm-api/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/broker-avm-api/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/broker-avm-api/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com/valuation/v2
+- url: https://api.hometrack.local/valuation/v2
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Internal
+paths:
+  /internal/valuation/{valuationId}/raw:
+    get:
+      operationId: GetRawValuationById-Spec
+      summary: GetRawValuationById-Spec
+      description: Returns a single valuation response in raw format - with all data, audit traces etc
+      parameters:
+      - name: valuationId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/InternalValuation-valuationId-RawGetRequest'
+        description: ID of valuation to return
+      responses:
+        '200':
+          description: Valuation response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiValuationResponseBroker'
+              example:
+                order:
+                  orderReference: string
+                  orderId: string
+                valuationId: string
+                reference: string
+                avm:
+                  valuationDate: string
+                  effectiveDate: string
+                  result: 0
+                  capital:
+                    capitalAmount: 0
+                    confidenceBand: string
+                    lowerCapitalAmount: 0
+                    upperCapitalAmount: 0
+                  rental:
+                    rentalAmount: 0
+                    confidenceBand: string
+                    lowerRentalAmount: 0
+                    upperRentalAmount: 0
+                  property:
+                    yearBuilt: 0
+                    floorArea: 0
+                    receptions: 0
+                    knownValueDate: string
+                    knownValue: 0
+                    bedrooms: 0
+                    propertyType: 0
+                  additionalAttributes:
+                  - name: string
+                    value: string
+                  address:
+                    postcode: string
+                    postTown: string
+                    uprn: 0
+                    udprn: 0
+                    building: string
+                    thoroughfare: string
+                    dependentLocality: string
+                    buildingNumber: 0
+                    dependantThoroughfare: string
+                    subBuilding: string
+        '202':
+          description: Valuation order in progress
+        '401':
+          description: Unauthorised request
+        '404':
+          description: Valuation order not found
+      tags:
+      - Internal
+  /internal/v2/valuation/{valuationId}/raw:
+    get:
+      operationId: GetRawValuationByIdV2-Spec
+      summary: GetRawValuationByIdV2-Spec
+      description: Returns a single valuation response in raw format - with all data, audit traces etc
+      parameters:
+      - name: valuationId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/InternalV2Valuation-valuationId-RawGetRequest'
+        description: ID of valuation to return
+      responses:
+        '200':
+          description: Valuation response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiValuationResponseBroker'
+              example:
+                order:
+                  orderReference: string
+                  orderId: string
+                valuationId: string
+                reference: string
+                avm:
+                  valuationDate: string
+                  effectiveDate: string
+                  result: 0
+                  capital:
+                    capitalAmount: 0
+                    confidenceBand: string
+                    lowerCapitalAmount: 0
+                    upperCapitalAmount: 0
+                  rental:
+                    rentalAmount: 0
+                    confidenceBand: string
+                    lowerRentalAmount: 0
+                    upperRentalAmount: 0
+                  property:
+                    yearBuilt: 0
+                    floorArea: 0
+                    receptions: 0
+                    knownValueDate: string
+                    knownValue: 0
+                    bedrooms: 0
+                    propertyType: 0
+                  additionalAttributes:
+                  - name: string
+                    value: string
+                  address:
+                    postcode: string
+                    postTown: string
+                    uprn: 0
+                    udprn: 0
+                    building: string
+                    thoroughfare: string
+                    dependentLocality: string
+                    buildingNumber: 0
+                    dependantThoroughfare: string
+                    subBuilding: string
+        '202':
+          description: Valuation order in progress
+        '401':
+          description: Unauthorised request
+        '404':
+          description: Valuation order not found
+      tags:
+      - Internal
+components:
+  schemas:
+    additionalAttribute:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    avmValuationBroker:
+      type: object
+      properties:
+        valuationDate:
+          type: string
+          format: date-time
+        effectiveDate:
+          type: string
+          format: date-time
+        result:
+          enum:
+          - 0
+          - 1
+          type: integer
+          format: int32
+          default: 0
+        capital:
+          $ref: '#/components/schemas/cavmCapital'
+        rental:
+          $ref: '#/components/schemas/cavmRental'
+        property:
+          $ref: '#/components/schemas/propertyAttributesUsedBroker'
+        additionalAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/additionalAttribute'
+        address:
+          $ref: '#/components/schemas/addressResponse'
+    cavmCapital:
+      type: object
+      properties:
+        capitalAmount:
+          type: integer
+          format: int32
+        confidenceBand:
+          type: string
+        lowerCapitalAmount:
+          type: integer
+          format: int32
+        upperCapitalAmount:
+          type: integer
+          format: int32
+    InternalV2Valuation-valuationId-RawGetRequest:
+      type: string
+      x-apim-inline: true
+    propertyAttributesUsedBroker:
+      type: object
+      properties:
+        yearBuilt:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        floorArea:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        receptions:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        knownValueDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        knownValue:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        bedrooms:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        propertyType:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    cavmRental:
+      type: object
+      properties:
+        rentalAmount:
+          type: integer
+          format: int32
+        confidenceBand:
+          type: string
+        lowerRentalAmount:
+          type: integer
+          format: int32
+        upperRentalAmount:
+          type: integer
+          format: int32
+    orderApi:
+      type: object
+      properties:
+        orderReference:
+          type: string
+        orderId:
+          type: string
+    apiValuationResponseBroker:
+      type: object
+      properties:
+        order:
+          $ref: '#/components/schemas/orderApi'
+        valuationId:
+          type: string
+        reference:
+          type: string
+        avm:
+          $ref: '#/components/schemas/avmValuationBroker'
+    InternalValuation-valuationId-RawGetRequest:
+      type: string
+      x-apim-inline: true
+    addressResponse:
+      type: object
+      properties:
+        postcode:
+          type: string
+        postTown:
+          type: string
+        uprn:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        udprn:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        building:
+          type: string
+        thoroughfare:
+          type: string
+        dependentLocality:
+          type: string
+        buildingNumber:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        dependantThoroughfare:
+          type: string
+        subBuilding:
+          type: string
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

@@ -1,0 +1,230 @@
+openapi: 3.2.0
+info:
+  title: Climate API (v2) Ground Coastalerosion Twinn API
+  description: ''
+  version: v2
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com/climate
+- url: https://api.hometrack.local/climate
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Ground Coastalerosion Twinn
+paths:
+  /ground-coastalerosion-twinn/{uprn}:
+    get:
+      operationId: CoastalErosionData
+      summary: Returns CoastalErosionData data for a given property
+      description: Returns CoastalErosionData data for a given property
+      parameters:
+      - name: dataVersion
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Ground-coastalerosion-twinn-uprn-GetRequest'
+        description: Data Version Number
+      - name: uprn
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Ground-coastalerosion-twinn-uprn-GetRequest-1'
+        description: Format - int64. Data Version Number
+      - name: X-Client-ID
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-coastalerosion-twinn-uprn-GetRequest-2'
+        description: Client Identifer used for tracking
+      - name: X-Client-Reference
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-coastalerosion-twinn-uprn-GetRequest-3'
+        description: Client Reference used for tracking
+      - name: X-Correlation-ID
+        in: header
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ground-coastalerosion-twinn-uprn-GetRequest-4'
+        description: Unique Transaction ID, used for tracking and support
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoastalErosionScoreResponseModelV2'
+              example:
+                uprn: 0
+                versionNumber: string
+                noActiveIntervention:
+                  managementPlan: string
+                  distanceM: string
+                  current:
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+                  future:
+                  - scenario: string
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+                shorelineManagementPlan:
+                  managementPlan: string
+                  distanceM: string
+                  current:
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+                  future:
+                  - scenario: string
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CoastalErosionScoreResponseModelV2'
+              example:
+                uprn: 0
+                versionNumber: string
+                noActiveIntervention:
+                  managementPlan: string
+                  distanceM: string
+                  current:
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+                  future:
+                  - scenario: string
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+                shorelineManagementPlan:
+                  managementPlan: string
+                  distanceM: string
+                  current:
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+                  future:
+                  - scenario: string
+                    firstYearOfHazard: 0
+                    firstYearOfHazardErosionScore: 0
+        '400':
+          description: Request was not valid
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '404':
+          description: CoastalErosionData data not found
+        '500':
+          description: An error has occured
+      tags:
+      - Ground Coastalerosion Twinn
+components:
+  schemas:
+    Ground-coastalerosion-twinn-uprn-GetRequest-2:
+      maxLength: 20
+      type: string
+      x-apim-inline: true
+    ErosionCurrentScoreModel:
+      type: object
+      properties:
+        firstYearOfHazard:
+          type: integer
+          format: int32
+        firstYearOfHazardErosionScore:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ErosionFuturesScoreModel:
+      type: object
+      properties:
+        scenario:
+          type:
+          - string
+          - 'null'
+        firstYearOfHazard:
+          type: integer
+          format: int32
+        firstYearOfHazardErosionScore:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ErosionManagementPlanModel:
+      type: object
+      properties:
+        managementPlan:
+          type:
+          - string
+          - 'null'
+        distanceM:
+          type:
+          - string
+          - 'null'
+        current:
+          $ref: '#/components/schemas/ErosionCurrentScoreModel'
+        future:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErosionFuturesScoreModel'
+      additionalProperties: false
+    Ground-coastalerosion-twinn-uprn-GetRequest-4:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+    CoastalErosionScoreResponseModelV2:
+      type: object
+      properties:
+        uprn:
+          type: integer
+          format: int64
+        versionNumber:
+          type:
+          - string
+          - 'null'
+        noActiveIntervention:
+          $ref: '#/components/schemas/ErosionManagementPlanModel'
+        shorelineManagementPlan:
+          $ref: '#/components/schemas/ErosionManagementPlanModel'
+      additionalProperties: false
+    Ground-coastalerosion-twinn-uprn-GetRequest:
+      type: string
+      x-apim-inline: true
+    Ground-coastalerosion-twinn-uprn-GetRequest-1:
+      type: integer
+      format: int64
+      x-apim-inline: true
+    Ground-coastalerosion-twinn-uprn-GetRequest-3:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

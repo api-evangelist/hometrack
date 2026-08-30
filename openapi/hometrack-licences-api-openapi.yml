@@ -1,0 +1,143 @@
+openapi: 3.2.0
+info:
+  title: Hometrack API Public Licences API
+  description: Hometrack API for public consumption
+  version: '1.0'
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/hometrack-api-public/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com
+- url: https://api.hometrack.local
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Licences
+paths:
+  /api/licences/{token}/{product}:
+    get:
+      operationId: LicencesApi_Licences
+      summary: Returns all the product licences (valid, expired, blocked, etc...) which belong to the authenticated client
+      description: Returns all the product licences (valid, expired, blocked, etc...) which belong to the authenticated client
+      parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Client's authentication token
+      - name: product
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The product code
+      responses:
+        '200':
+          description: OK - request completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenceArray'
+              example:
+              - product: string
+                status: string
+                type: string
+                startDate: string
+                endDate: string
+                volume: 0
+                remainingVolume: 0
+        '400':
+          description: Bad Request - an input parameter is missing
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Forbidden - the authentication token is invalid
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Not Found - the account or licences could not be found
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal Server Error - an unexpected error has occured
+          content:
+            application/json:
+              schema:
+                type: string
+        '503':
+          description: Service Unavailable - this or a dependent service is unavailable
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+      - Licences
+components:
+  schemas:
+    Licence:
+      description: Licence response model
+      type: object
+      properties:
+        product:
+          description: Product code
+          type: string
+        status:
+          description: Status (Licensed/Expired/Suspended)
+          type: string
+        type:
+          description: AccessOnly or Volume.
+          type: string
+        startDate:
+          format: date-time
+          description: The start date
+          type: string
+        endDate:
+          format: date-time
+          description: The end date
+          type: string
+        volume:
+          format: int32
+          description: The licence volume if applicable
+          type: integer
+        remainingVolume:
+          format: int32
+          description: Shows how many reports can be created for this licence
+          type: integer
+    LicenceArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/Licence'
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query

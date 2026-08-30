@@ -1,0 +1,910 @@
+openapi: 3.2.0
+info:
+  title: Climate API (v2) Epc Hometrack API
+  description: ''
+  version: v2
+  x-api-evangelist-provenance:
+    provider: Hometrack
+    portal: https://developer.hometrack.com
+    harvested: '2026-07-26'
+    method: Azure API Management developer data-plane, anonymous
+    sources:
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2?api-version=2022-04-01-preview&export=true&format=openapi-link
+      status: 200
+      note: OpenAPI 3.0.1 export (info/servers/securitySchemes verbatim; paths empty in export)
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2/operations?api-version=2022-04-01-preview
+      status: 200
+      note: operation list
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2/operations/{operationId}?api-version=2022-04-01-preview
+      status: 200
+      note: per-operation request/response metadata
+    - url: https://developer.hometrack.com/developer/apis/climate-api-v2/schemas?api-version=2022-04-01-preview
+      status: 200
+      note: component schema documents
+    note: paths and components.schemas were reassembled verbatim from Hometrack's own APIM operation and schema metadata; nothing was invented.
+servers:
+- url: https://api.hometrack.com/climate
+- url: https://api.hometrack.local/climate
+security:
+- {}
+- apiKeyHeader: []
+- apiKeyQuery: []
+tags:
+- name: Epc Hometrack
+paths:
+  /epc-hometrack/{uprn}:
+    get:
+      operationId: Epc
+      summary: Returns EPC data for a given property
+      description: Returns EPC data for a given property
+      parameters:
+      - name: uprn
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Epc-hometrack-uprn-GetRequest'
+        description: Format - int64.
+      responses:
+        '200':
+          description: Request successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnergyCertificateResponseModelV2'
+              example:
+                rawHashValue: string
+                mappingHeatingKey: 0
+                mappingTenureKey: 0
+                dataSourceId: 0
+                uprn: 0
+                concatenatedAddress: string
+                custRef1: string
+                custRef2: string
+                postcode: string
+                pcd: string
+                houseName: string
+                streetName: string
+                locality: string
+                town: string
+                county: string
+                fullAddress: string
+                propType: string
+                propStyle: string
+                totalRoomCount: 0
+                floorArea: 0
+                heating: string
+                floorsInBlock: 0
+                outbuildings: 0
+                inspectionDate: string
+                reportDate: string
+                instrType1: string
+                addressMatchFlag: true
+                addressMatchAttempts: 0
+                numberHeatedRooms: 0
+                roofDescription: string
+                floorHeight: 0
+                currentEnergyRating: A
+                currentEnergyEfficiency: 0
+                potentialEnergyRating: A
+                potentialEnergyEfficiency: 0
+                localAuthority: string
+                constituency: string
+                environmentImpactCurrent: 0
+                environmentImpactPotential: 0
+                energyConsumptionCurrent: 0
+                energyConsumptionPotential: 0
+                co2EmissionCurrent: 0
+                co2CurrentPerFloorArea: 0
+                co2EmissionPotential: 0
+                lightingCostCurrent: 0
+                lightingCostPotential: 0
+                heatingCostCurrent: 0
+                heatingCostPotential: 0
+                hotWaterCostCurrent: 0
+                hotWaterCostPotential: 0
+                energyTariff: string
+                mainsGasFlag: string
+                floorLevel: string
+                flatTopStorey: string
+                mainHeatingControls: 0
+                multiGlazeProportion: 0
+                glazedType: string
+                glazedArea: string
+                lowEnergyLighting: 0
+                numberOpenFireplaces: 0
+                hotwaterDescription: string
+                hotWaterEnergyEff: string
+                hotWaterEnvEff: string
+                floorDescription: string
+                floorEnergyEff: string
+                floorEnvEff: string
+                windowsDescription: string
+                windowsEnergyEff: string
+                windowsEnvEff: string
+                wallsDescription: string
+                wallsEnergyEff: string
+                wallsEnvEff: string
+                secondheatDescription: string
+                sheatingEnergyEff: string
+                sheatingEnvEff: string
+                roofEnergyEff: string
+                roofEnvEff: string
+                mainheatDescription: string
+                mainheatEnergyEff: string
+                mainheatEnvEff: string
+                mainheatcontDescription: string
+                mainheatcEnergyEff: string
+                mainheatcEnvEff: string
+                lightingDescription: string
+                lightingEnergyEff: string
+                lightingEnvEff: string
+                airTightnessDescription: string
+                airTightnessEnergyEff: string
+                airTightnessEnvEff: string
+                windTurbineCount: 0
+                heatLossCorridoor: string
+                heatLossCorridoorLength: 0
+                photoSupply: 0
+                solarWaterHeatingFlag: string
+                mechanicalVentilation: string
+                localAuthorityLabel: string
+                constituencyLabel: string
+                constructionAgeBand: string
+                lodgementDate: string
+                tenure: string
+                fixedLightingOutletsCount: 0
+                lowEnergyFixedLightCount: 0
+                typeOfAssessment: string
+                _3YearEnergyCostCurrent: 0
+                _3YearEnergySavingPotential: 0
+                currentEnvironmentalRating: string
+                potentialEnvironmentalRating: string
+                lzcEnergySources: 0
+                spaceHeatingDemand: 0
+                waterHeatingDemand: 0
+                impactLoftInsulation: 0
+                impactCavityWallInsulation: 0
+                impactSolidWallInsulation: 0
+                mainHeatingCategory: 0
+                addendumText: 0
+                dataZone: 0
+                YearBuilt: 0
+                isNewBuild: 0
+                effectiveDate: string
+                hashValue: string
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EnergyCertificateResponseModelV2'
+              example:
+                rawHashValue: string
+                mappingHeatingKey: 0
+                mappingTenureKey: 0
+                dataSourceId: 0
+                uprn: 0
+                concatenatedAddress: string
+                custRef1: string
+                custRef2: string
+                postcode: string
+                pcd: string
+                houseName: string
+                streetName: string
+                locality: string
+                town: string
+                county: string
+                fullAddress: string
+                propType: string
+                propStyle: string
+                totalRoomCount: 0
+                floorArea: 0
+                heating: string
+                floorsInBlock: 0
+                outbuildings: 0
+                inspectionDate: string
+                reportDate: string
+                instrType1: string
+                addressMatchFlag: true
+                addressMatchAttempts: 0
+                numberHeatedRooms: 0
+                roofDescription: string
+                floorHeight: 0
+                currentEnergyRating: A
+                currentEnergyEfficiency: 0
+                potentialEnergyRating: A
+                potentialEnergyEfficiency: 0
+                localAuthority: string
+                constituency: string
+                environmentImpactCurrent: 0
+                environmentImpactPotential: 0
+                energyConsumptionCurrent: 0
+                energyConsumptionPotential: 0
+                co2EmissionCurrent: 0
+                co2CurrentPerFloorArea: 0
+                co2EmissionPotential: 0
+                lightingCostCurrent: 0
+                lightingCostPotential: 0
+                heatingCostCurrent: 0
+                heatingCostPotential: 0
+                hotWaterCostCurrent: 0
+                hotWaterCostPotential: 0
+                energyTariff: string
+                mainsGasFlag: string
+                floorLevel: string
+                flatTopStorey: string
+                mainHeatingControls: 0
+                multiGlazeProportion: 0
+                glazedType: string
+                glazedArea: string
+                lowEnergyLighting: 0
+                numberOpenFireplaces: 0
+                hotwaterDescription: string
+                hotWaterEnergyEff: string
+                hotWaterEnvEff: string
+                floorDescription: string
+                floorEnergyEff: string
+                floorEnvEff: string
+                windowsDescription: string
+                windowsEnergyEff: string
+                windowsEnvEff: string
+                wallsDescription: string
+                wallsEnergyEff: string
+                wallsEnvEff: string
+                secondheatDescription: string
+                sheatingEnergyEff: string
+                sheatingEnvEff: string
+                roofEnergyEff: string
+                roofEnvEff: string
+                mainheatDescription: string
+                mainheatEnergyEff: string
+                mainheatEnvEff: string
+                mainheatcontDescription: string
+                mainheatcEnergyEff: string
+                mainheatcEnvEff: string
+                lightingDescription: string
+                lightingEnergyEff: string
+                lightingEnvEff: string
+                airTightnessDescription: string
+                airTightnessEnergyEff: string
+                airTightnessEnvEff: string
+                windTurbineCount: 0
+                heatLossCorridoor: string
+                heatLossCorridoorLength: 0
+                photoSupply: 0
+                solarWaterHeatingFlag: string
+                mechanicalVentilation: string
+                localAuthorityLabel: string
+                constituencyLabel: string
+                constructionAgeBand: string
+                lodgementDate: string
+                tenure: string
+                fixedLightingOutletsCount: 0
+                lowEnergyFixedLightCount: 0
+                typeOfAssessment: string
+                _3YearEnergyCostCurrent: 0
+                _3YearEnergySavingPotential: 0
+                currentEnvironmentalRating: string
+                potentialEnvironmentalRating: string
+                lzcEnergySources: 0
+                spaceHeatingDemand: 0
+                waterHeatingDemand: 0
+                impactLoftInsulation: 0
+                impactCavityWallInsulation: 0
+                impactSolidWallInsulation: 0
+                mainHeatingCategory: 0
+                addendumText: 0
+                dataZone: 0
+                YearBuilt: 0
+                isNewBuild: 0
+                effectiveDate: string
+                hashValue: string
+        '400':
+          description: Request was not valid
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '404':
+          description: EPC data not found
+        '500':
+          description: An error has occured
+      tags:
+      - Epc Hometrack
+components:
+  schemas:
+    EnergyCertificateResponseModelV2:
+      required:
+      - currentEnergyRating
+      type: object
+      properties:
+        rawHashValue:
+          type:
+          - string
+          - 'null'
+        mappingHeatingKey:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        mappingTenureKey:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          x-cleaned: false
+        dataSourceId:
+          type:
+          - integer
+          - 'null'
+          description: 'This field is cleaned. Internal data source id for source data: 282 = England/Wales, 369 = Scotland.'
+          format: int32
+          x-cleaned: true
+        uprn:
+          type:
+          - integer
+          - 'null'
+          description: This field is cleaned. Unique id for each property, primary key of dataset.
+          format: int64
+          x-cleaned: true
+        concatenatedAddress:
+          type:
+          - string
+          - 'null'
+          description: Number and street name of address.
+        custRef1:
+          type:
+          - string
+          - 'null'
+          description: This field is cleaned. Unique ID for the individual energy certificate.
+          x-cleaned: true
+        custRef2:
+          type:
+          - string
+          - 'null'
+          description: Unique ID for the building.
+        postcode:
+          type:
+          - string
+          - 'null'
+          description: Post Code.
+        pcd:
+          type:
+          - string
+          - 'null'
+          description: This field is cleaned. First half of post code.
+          x-cleaned: true
+        houseName:
+          type:
+          - string
+          - 'null'
+          description: House number/name.
+        streetName:
+          type:
+          - string
+          - 'null'
+        locality:
+          type:
+          - string
+          - 'null'
+        town:
+          type:
+          - string
+          - 'null'
+          description: Town.
+        county:
+          type:
+          - string
+          - 'null'
+          description: County.
+        fullAddress:
+          type:
+          - string
+          - 'null'
+        propType:
+          type:
+          - string
+          - 'null'
+          description: E.g. House, Flat.
+        propStyle:
+          type:
+          - string
+          - 'null'
+          description: E.g. Detached, End-Terrace.
+        totalRoomCount:
+          type:
+          - integer
+          - 'null'
+          description: Total room count within the property.
+          format: int32
+        floorArea:
+          type:
+          - number
+          - 'null'
+          description: This field is cleaned. Property floor area in metres squared.
+          format: double
+          x-cleaned: true
+        heating:
+          type:
+          - string
+          - 'null'
+          description: Type of heating in property.
+        floorsInBlock:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        outbuildings:
+          type:
+          - integer
+          - 'null'
+          description: Number of outbuildings.
+          format: int32
+        inspectionDate:
+          type:
+          - string
+          - 'null'
+          description: This field is cleaned. Inspection date for certificate.
+          format: date-time
+          x-cleaned: true
+        reportDate:
+          type:
+          - string
+          - 'null'
+          description: Date report was created.
+          format: date-time
+        instrType1:
+          type:
+          - string
+          - 'null'
+        addressMatchFlag:
+          type:
+          - boolean
+          - 'null'
+          description: Lecgacy column, invald value.
+        addressMatchAttempts:
+          type:
+          - integer
+          - 'null'
+          description: Legacy column, invalid value.
+          format: int32
+        numberHeatedRooms:
+          type:
+          - integer
+          - 'null'
+          description: Number of rooms with central heating.
+          format: int32
+        roofDescription:
+          type:
+          - string
+          - 'null'
+          description: Description of the roof build.
+        floorHeight:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        currentEnergyRating:
+          $ref: '#/components/schemas/EnergyRating'
+        currentEnergyEfficiency:
+          type:
+          - integer
+          - 'null'
+          description: This field is cleaned. Current energy efficiency of the property, out of 100.
+          format: int32
+          x-cleaned: true
+        potentialEnergyRating:
+          $ref: '#/components/schemas/EnergyRating'
+        potentialEnergyEfficiency:
+          type:
+          - integer
+          - 'null'
+          description: This field is cleaned. Potential energy efficiency, out of 100.
+          format: int32
+          x-cleaned: true
+        localAuthority:
+          type:
+          - string
+          - 'null'
+          description: Unique ID of the local authority.
+        constituency:
+          type:
+          - string
+          - 'null'
+          description: Unique ID of the constituency the property is found in.
+        environmentImpactCurrent:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        environmentImpactPotential:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        energyConsumptionCurrent:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        energyConsumptionPotential:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        co2EmissionCurrent:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        co2CurrentPerFloorArea:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        co2EmissionPotential:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        lightingCostCurrent:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        lightingCostPotential:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        heatingCostCurrent:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        heatingCostPotential:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        hotWaterCostCurrent:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        hotWaterCostPotential:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        energyTariff:
+          type:
+          - string
+          - 'null'
+        mainsGasFlag:
+          type:
+          - string
+          - 'null'
+        floorLevel:
+          type:
+          - string
+          - 'null'
+        flatTopStorey:
+          type:
+          - string
+          - 'null'
+        mainHeatingControls:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        multiGlazeProportion:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        glazedType:
+          type:
+          - string
+          - 'null'
+        glazedArea:
+          type:
+          - string
+          - 'null'
+        lowEnergyLighting:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        numberOpenFireplaces:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        hotwaterDescription:
+          type:
+          - string
+          - 'null'
+        hotWaterEnergyEff:
+          type:
+          - string
+          - 'null'
+        hotWaterEnvEff:
+          type:
+          - string
+          - 'null'
+        floorDescription:
+          type:
+          - string
+          - 'null'
+        floorEnergyEff:
+          type:
+          - string
+          - 'null'
+        floorEnvEff:
+          type:
+          - string
+          - 'null'
+        windowsDescription:
+          type:
+          - string
+          - 'null'
+        windowsEnergyEff:
+          type:
+          - string
+          - 'null'
+        windowsEnvEff:
+          type:
+          - string
+          - 'null'
+        wallsDescription:
+          type:
+          - string
+          - 'null'
+        wallsEnergyEff:
+          type:
+          - string
+          - 'null'
+        wallsEnvEff:
+          type:
+          - string
+          - 'null'
+        secondheatDescription:
+          type:
+          - string
+          - 'null'
+        sheatingEnergyEff:
+          type:
+          - string
+          - 'null'
+        sheatingEnvEff:
+          type:
+          - string
+          - 'null'
+        roofEnergyEff:
+          type:
+          - string
+          - 'null'
+        roofEnvEff:
+          type:
+          - string
+          - 'null'
+        mainheatDescription:
+          type:
+          - string
+          - 'null'
+        mainheatEnergyEff:
+          type:
+          - string
+          - 'null'
+        mainheatEnvEff:
+          type:
+          - string
+          - 'null'
+        mainheatcontDescription:
+          type:
+          - string
+          - 'null'
+        mainheatcEnergyEff:
+          type:
+          - string
+          - 'null'
+        mainheatcEnvEff:
+          type:
+          - string
+          - 'null'
+        lightingDescription:
+          type:
+          - string
+          - 'null'
+        lightingEnergyEff:
+          type:
+          - string
+          - 'null'
+        lightingEnvEff:
+          type:
+          - string
+          - 'null'
+        airTightnessDescription:
+          type:
+          - string
+          - 'null'
+        airTightnessEnergyEff:
+          type:
+          - string
+          - 'null'
+        airTightnessEnvEff:
+          type:
+          - string
+          - 'null'
+        windTurbineCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        heatLossCorridoor:
+          type:
+          - string
+          - 'null'
+        heatLossCorridoorLength:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        photoSupply:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        solarWaterHeatingFlag:
+          type:
+          - string
+          - 'null'
+        mechanicalVentilation:
+          type:
+          - string
+          - 'null'
+        localAuthorityLabel:
+          type:
+          - string
+          - 'null'
+        constituencyLabel:
+          type:
+          - string
+          - 'null'
+        constructionAgeBand:
+          type:
+          - string
+          - 'null'
+        lodgementDate:
+          type:
+          - string
+          - 'null'
+          description: This field is cleaned. Date of certificate publication; used to get the latest certificate per property (UPRN).
+          format: date-time
+          x-cleaned: true
+        tenure:
+          type:
+          - string
+          - 'null'
+        fixedLightingOutletsCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        lowEnergyFixedLightCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        typeOfAssessment:
+          type:
+          - string
+          - 'null'
+        _3YearEnergyCostCurrent:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        _3YearEnergySavingPotential:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        currentEnvironmentalRating:
+          type:
+          - string
+          - 'null'
+        potentialEnvironmentalRating:
+          type:
+          - string
+          - 'null'
+        lzcEnergySources:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        spaceHeatingDemand:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        waterHeatingDemand:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        impactLoftInsulation:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        impactCavityWallInsulation:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        impactSolidWallInsulation:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        mainHeatingCategory:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        addendumText:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        dataZone:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        YearBuilt:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          readOnly: true
+        isNewBuild:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        effectiveDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        hashValue:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Epc-hometrack-uprn-GetRequest:
+      type: integer
+      format: int64
+      x-apim-inline: true
+    EnergyRating:
+      enum:
+      - A
+      - B
+      - C
+      - D
+      - E
+      - F
+      - G
+      type: string
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
