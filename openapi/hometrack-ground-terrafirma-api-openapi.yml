@@ -36,7 +36,6 @@ paths:
     get:
       operationId: Ground
       summary: Returns Ground data for a given property
-      description: Returns Ground data for a given property
       parameters:
       - name: dataVersion
         in: query
@@ -145,21 +144,6 @@ paths:
       - Ground Terrafirma
 components:
   schemas:
-    Ground-terrafirma-uprn-GetRequest-4:
-      maxLength: 50
-      type: string
-      x-apim-inline: true
-    Ground-terrafirma-uprn-GetRequest-2:
-      maxLength: 20
-      type: string
-      x-apim-inline: true
-    Ground-terrafirma-uprn-GetRequest-1:
-      type: integer
-      format: int64
-      x-apim-inline: true
-    Ground-terrafirma-uprn-GetRequest:
-      type: string
-      x-apim-inline: true
     GroundScoreResponseModelV2:
       required:
       - current
@@ -175,6 +159,25 @@ components:
           items:
             $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseGroundRiskFutureModel'
       additionalProperties: false
+    Ground-terrafirma-uprn-GetRequest-1:
+      type: integer
+      format: int64
+      x-apim-inline: true
+    Ground-terrafirma-uprn-GetRequest-2:
+      maxLength: 20
+      type: string
+      x-apim-inline: true
+    Ground-terrafirma-uprn-GetRequest-4:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+    Ground-terrafirma-uprn-GetRequest:
+      type: string
+      x-apim-inline: true
+    Ground-terrafirma-uprn-GetRequest-3:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
     ClimateChangeDataWithVersionResponseGroundRiskCurrentModel:
       required:
       - coastalErosionScore
@@ -249,10 +252,6 @@ components:
           - 'null'
           format: int32
       additionalProperties: false
-    Ground-terrafirma-uprn-GetRequest-3:
-      maxLength: 50
-      type: string
-      x-apim-inline: true
     ClimateChangeDataWithVersionResponseGroundRiskFutureModel:
       required:
       - coastalErosionScore

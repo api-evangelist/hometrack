@@ -35,9 +35,7 @@ paths:
   /api/reporting/moveToBlobStorage:
     get:
       operationId: ReportingApi_MoveToBlobStorage
-      summary: 'Called via a scheduled task, this method uploads all files from the report directory
-
-        to blob storage and then deletes them.'
+      summary: Called via a scheduled task, this method uploads all files from the report…
       description: 'Called via a scheduled task, this method uploads all files from the report directory
 
         to blob storage and then deletes them.'
@@ -67,7 +65,6 @@ paths:
     get:
       operationId: ReportingApi_RetrievePropertyValuationReport
       summary: Downloads the previously generated Property Valuation Report file
-      description: Downloads the previously generated Property Valuation Report file
       parameters:
       - name: token
         in: path
@@ -162,7 +159,6 @@ paths:
     get:
       operationId: ReportingApi_TestGet
       summary: For test purpose
-      description: For test purpose
       responses:
         '200':
           description: OK
@@ -189,7 +185,6 @@ paths:
     post:
       operationId: ReportingApi_TestPost
       summary: For test purpose
-      description: For test purpose
       responses:
         '200':
           description: OK
@@ -216,7 +211,6 @@ paths:
     post:
       operationId: ReportingApi_RequestPropertyValuationReport
       summary: Requests a Property Valuation Report
-      description: Requests a Property Valuation Report
       requestBody:
         content:
           application/json:
@@ -327,8 +321,10 @@ paths:
   /api/reporting/{token}:
     post:
       operationId: ReportingApi_ProcessPropertyValuation
-      summary: "The main report processing endpoint. \nReport Processor calls this method with the message body from *-Created queues"
-      description: "The main report processing endpoint. \nReport Processor calls this method with the message body from *-Created queues"
+      summary: The main report processing endpoint.
+      description: 'The main report processing endpoint.
+
+        Report Processor calls this method with the message body from *-Created queues'
       parameters:
       - name: token
         in: path
@@ -434,100 +430,12 @@ paths:
       - Reporting
 components:
   schemas:
-    ApiReportingTokenPost200TextJsonResponse:
+    ApiReportingTestPostPost200ApplicationXmlResponse:
       type: object
-    ApiReportingTestGetGet200ApplicationXmlResponse:
+    ApiReportingMoveToBlobStorageGet200ApplicationXmlResponse:
       type: object
-    ApiReportingTestGetGet200TextXmlResponse:
+    ApiReportingPropertyValuationTokenTransactionReferenceGet200ApplicationXmlRe:
       type: object
-    ApiReportingPropertyValuationTokenTransactionReferenceGet202ApplicationPdfRe:
-      type: object
-    CreatedReportModel:
-      description: Used to pass the data required to send the report to a customer.
-      type: object
-      properties:
-        AccountApiKey:
-          format: uuid
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        OrderUniqueIdentifier:
-          format: uuid
-          description: ''
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        UniqueIdentifier:
-          description: Report unique identifier to get and update the ReportProductionLog record.
-          type: string
-        OrderNumber:
-          description: ''
-          type: string
-        ReportType:
-          description: ''
-          type: string
-        BrandCode:
-          description: ''
-          type: string
-        Recipient:
-          description: ''
-          type: string
-        PreparedFor:
-          description: Used in PVR header
-          type: string
-        ContactDetail:
-          $ref: '#/components/schemas/ProcessContact'
-          description: Customer details
-        ReportParameters:
-          description: ''
-          type: object
-          additionalProperties:
-            type: string
-        FileName:
-          description: This is the report file name, including extension.
-          type: string
-        FilePath:
-          description: This is the full path with the file name and extension.
-          type: string
-        IsApiReport:
-          description: If true the email will be not sent.
-          type: boolean
-        IsLandingPageReport:
-          description: 'If true, then several steps in transformation process will be ignored to improve performance.
-
-            TransactionId value will be required too.'
-          type: boolean
-        TransactionReference:
-          description: Required to retrieve the report path for a landing page order
-          type: string
-        AdditionalReportDetails:
-          description: 'Used to pass the additional information to the report transformation process.
-
-            Will be NOT stored anywhere(Salesforce, DB, Logs), and only used to produce the report.'
-          type: object
-          additionalProperties:
-            type: object
-        DateCreated:
-          format: date-time
-          type: string
-    ApiReportingMoveToBlobStorageGet200TextXmlResponse:
-      type: object
-    ApiReportingTokenPost200ApplicationXmlResponse:
-      type: object
-    ApiReportingTestPostPost200TextJsonResponse:
-      type: object
-    PvrConfigsResponse:
-      description: Used for getting Pvr configuration from umbraco
-      type: object
-      properties:
-        pvrConfigs:
-          description: An array of v1 configurations
-          type: array
-          items:
-            $ref: '#/components/schemas/PvrConfigModel'
-        pvrV2Configs:
-          description: An array of v2 configurations
-          type: array
-          items:
-            $ref: '#/components/schemas/PvrConfigModel'
     PropertyValuationReportRequest:
       description: Property valuation report request model.
       required:
@@ -609,9 +517,17 @@ components:
         TransactionId:
           description: '[Required] A unique ID for the transaction request, generated by the customer. The field allows only alphanumeric characters, hyphens (-) and underscores (_).'
           type: string
-    ApiReportingPropertyValuationTokenTransactionReferenceGet200ApplicationPdfRe:
-      type: object
     ApiReportingTestPostPost200ApplicationJsonResponse:
+      type: object
+    ApiReportingTestGetGet200ApplicationJsonResponse:
+      type: object
+    ApiReportingMoveToBlobStorageGet200TextJsonResponse:
+      type: object
+    ApiReportingTestPostPost200TextJsonResponse:
+      type: object
+    ApiReportingTestPostPost200TextXmlResponse:
+      type: object
+    ApiReportingTokenPost200TextJsonResponse:
       type: object
     PvrConfigModel:
       description: Used for getting Pvr configuration from umbraco
@@ -624,15 +540,77 @@ components:
           format: int32
           description: Configuration Id
           type: integer
-    ApiReportingTokenPost200ApplicationJsonResponse:
-      type: object
-    ApiReportingTokenPost200TextXmlResponse:
-      type: object
     ApiReportingMoveToBlobStorageGet200ApplicationJsonResponse:
       type: object
-    ApiReportingTestGetGet200TextJsonResponse:
+    ApiReportingTokenPost200ApplicationJsonResponse:
       type: object
-    ApiReportingPropertyValuationTokenTransactionReferenceGet202ApplicationXmlRe:
+    CreatedReportModel:
+      description: Used to pass the data required to send the report to a customer.
+      type: object
+      properties:
+        AccountApiKey:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        OrderUniqueIdentifier:
+          format: uuid
+          description: ''
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        UniqueIdentifier:
+          description: Report unique identifier to get and update the ReportProductionLog record.
+          type: string
+        OrderNumber:
+          description: ''
+          type: string
+        ReportType:
+          description: ''
+          type: string
+        BrandCode:
+          description: ''
+          type: string
+        Recipient:
+          description: ''
+          type: string
+        PreparedFor:
+          description: Used in PVR header
+          type: string
+        ContactDetail:
+          $ref: '#/components/schemas/ProcessContact'
+          description: Customer details
+        ReportParameters:
+          description: ''
+          type: object
+          additionalProperties:
+            type: string
+        FileName:
+          description: This is the report file name, including extension.
+          type: string
+        FilePath:
+          description: This is the full path with the file name and extension.
+          type: string
+        IsApiReport:
+          description: If true the email will be not sent.
+          type: boolean
+        IsLandingPageReport:
+          description: 'If true, then several steps in transformation process will be ignored to improve performance.
+
+            TransactionId value will be required too.'
+          type: boolean
+        TransactionReference:
+          description: Required to retrieve the report path for a landing page order
+          type: string
+        AdditionalReportDetails:
+          description: 'Used to pass the additional information to the report transformation process.
+
+            Will be NOT stored anywhere(Salesforce, DB, Logs), and only used to produce the report.'
+          type: object
+          additionalProperties:
+            type: object
+        DateCreated:
+          format: date-time
+          type: string
+    ApiReportingTestGetGet200TextJsonResponse:
       type: object
     ProcessContact:
       type: object
@@ -659,17 +637,35 @@ components:
           type: string
         Telephone:
           type: string
-    ApiReportingTestPostPost200TextXmlResponse:
+    ApiReportingPropertyValuationTokenTransactionReferenceGet202ApplicationXmlRe:
       type: object
-    ApiReportingPropertyValuationTokenTransactionReferenceGet200ApplicationXmlRe:
+    ApiReportingPropertyValuationTokenTransactionReferenceGet202ApplicationPdfRe:
       type: object
-    ApiReportingTestPostPost200ApplicationXmlResponse:
+    ApiReportingTestGetGet200TextXmlResponse:
       type: object
-    ApiReportingMoveToBlobStorageGet200TextJsonResponse:
+    ApiReportingTestGetGet200ApplicationXmlResponse:
       type: object
-    ApiReportingMoveToBlobStorageGet200ApplicationXmlResponse:
+    ApiReportingTokenPost200ApplicationXmlResponse:
       type: object
-    ApiReportingTestGetGet200ApplicationJsonResponse:
+    ApiReportingMoveToBlobStorageGet200TextXmlResponse:
+      type: object
+    ApiReportingPropertyValuationTokenTransactionReferenceGet200ApplicationPdfRe:
+      type: object
+    PvrConfigsResponse:
+      description: Used for getting Pvr configuration from umbraco
+      type: object
+      properties:
+        pvrConfigs:
+          description: An array of v1 configurations
+          type: array
+          items:
+            $ref: '#/components/schemas/PvrConfigModel'
+        pvrV2Configs:
+          description: An array of v2 configurations
+          type: array
+          items:
+            $ref: '#/components/schemas/PvrConfigModel'
+    ApiReportingTokenPost200TextXmlResponse:
       type: object
   securitySchemes:
     apiKeyHeader:

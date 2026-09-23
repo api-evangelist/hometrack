@@ -36,7 +36,6 @@ paths:
     get:
       operationId: Epc
       summary: Returns EPC data for a given property
-      description: Returns EPC data for a given property
       parameters:
       - name: uprn
         in: path

@@ -35,7 +35,7 @@ paths:
   /api/brands/{token}/{targetAccountApiKey}:
     put:
       operationId: BrandsApi_Put
-      summary: Creates or updates the branding configuration for an account, based on the account's API key
+      summary: Creates or updates the branding configuration for an account, based on the…
       description: Creates or updates the branding configuration for an account, based on the account's API key
       parameters:
       - name: token

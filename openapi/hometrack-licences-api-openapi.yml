@@ -35,7 +35,7 @@ paths:
   /api/licences/{token}/{product}:
     get:
       operationId: LicencesApi_Licences
-      summary: Returns all the product licences (valid, expired, blocked, etc...) which belong to the authenticated client
+      summary: Returns all the product licences (valid, expired, blocked, etc...) which belong…
       description: Returns all the product licences (valid, expired, blocked, etc...) which belong to the authenticated client
       parameters:
       - name: token

@@ -36,7 +36,29 @@ paths:
     post:
       operationId: valuation
       summary: Valuation
-      description: "This endpoint runs a valuation on a given property.\n\n<div class=\"row\">\n    <div class=\"col-md-12\">\n        <h4>Authorization</h4>\n        <p>\n            The Valuation endpoint uses a <b>token-based authorization</b>. Each valuation request will require an 'Authorization' header with a valid user token. \n            The token can be generated through a POST request to the <span style='font-family: \"Courier New\", Courier, monospace;'>/authentication/{apiKey}</span> endpoint. This will authenticate your API Key and will exchange it with a temporary authorization token which will be valid for 5 minutes.\n            <br/><br />\n            The Authorization header format for Token based authentication needed for the Valuation API looks like this:\n        </p>\n            <pre>Authorization: Token token=\"652da107-bb66-4886-9f73-d8d4a3243eb7\"</pre>\n        <p>We also accept less strict variations, such as:</p>\n        <pre>Authorization: Token token=652da107-bb66-4886-9f73-d8d4a3243eb7<br />Authorization: Token 652da107-bb66-4886-9f73-d8d4a3243eb7</pre>\n    </div>\n</div>"
+      description: 'This endpoint runs a valuation on a given property.
+
+
+        Authorization
+
+
+        The Valuation endpoint uses a token-based authorization. Each valuation request will require an ''Authorization'' header with a valid user token.
+
+        The token can be generated through a POST request to the /authentication/{apiKey} endpoint. This will authenticate your API Key and will exchange it with a temporary authorization token which will be valid for 5 minutes.
+
+
+        The Authorization header format for Token based authentication needed for the Valuation API looks like this:
+
+
+        Authorization: Token token="652da107-bb66-4886-9f73-d8d4a3243eb7"
+
+
+        We also accept less strict variations, such as:
+
+
+        Authorization: Token token=652da107-bb66-4886-9f73-d8d4a3243eb7
+
+        Authorization: Token 652da107-bb66-4886-9f73-d8d4a3243eb7'
       parameters:
       - name: accountId
         in: path

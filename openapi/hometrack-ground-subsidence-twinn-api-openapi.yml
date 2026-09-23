@@ -36,7 +36,6 @@ paths:
     get:
       operationId: SubsidenceScoreData
       summary: Returns SubsidenceScoreData data for a given property
-      description: Returns SubsidenceScoreData data for a given property
       parameters:
       - name: dataVersion
         in: query
@@ -127,6 +126,27 @@ paths:
       - Ground Subsidence Twinn
 components:
   schemas:
+    Ground-subsidence-twinn-uprn-GetRequest-3:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+    SubsidenceScoreFutureModel:
+      type: object
+      properties:
+        year:
+          type:
+          - string
+          - 'null'
+        scenario:
+          type:
+          - string
+          - 'null'
+        subsidenceScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
     SubsidenceScoreResponseModelV2:
       required:
       - current
@@ -149,27 +169,6 @@ components:
           items:
             $ref: '#/components/schemas/SubsidenceScoreFutureModel'
       additionalProperties: false
-    SubsidenceScoreFutureModel:
-      type: object
-      properties:
-        year:
-          type:
-          - string
-          - 'null'
-        scenario:
-          type:
-          - string
-          - 'null'
-        subsidenceScore:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      additionalProperties: false
-    Ground-subsidence-twinn-uprn-GetRequest-1:
-      type: integer
-      format: int64
-      x-apim-inline: true
     SubsidenceScoreCurrentModel:
       type: object
       properties:
@@ -202,6 +201,10 @@ components:
           - 'null'
           format: int32
       additionalProperties: false
+    Ground-subsidence-twinn-uprn-GetRequest-1:
+      type: integer
+      format: int64
+      x-apim-inline: true
     Ground-subsidence-twinn-uprn-GetRequest-4:
       maxLength: 50
       type: string
@@ -211,10 +214,6 @@ components:
       type: string
       x-apim-inline: true
     Ground-subsidence-twinn-uprn-GetRequest:
-      type: string
-      x-apim-inline: true
-    Ground-subsidence-twinn-uprn-GetRequest-3:
-      maxLength: 50
       type: string
       x-apim-inline: true
   securitySchemes:

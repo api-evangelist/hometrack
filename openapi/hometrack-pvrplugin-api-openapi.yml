@@ -35,7 +35,7 @@ paths:
   /api/pvrplugin/enquiry/{token}:
     post:
       operationId: PvrPluginApi_StoreEnquiry
-      summary: Checks if email or it's domain is blacklisted and sends verification code if set in umbraco
+      summary: Checks if email or it's domain is blacklisted and sends verification code if…
       description: Checks if email or it's domain is blacklisted and sends verification code if set in umbraco
       parameters:
       - name: token
@@ -106,7 +106,6 @@ paths:
     post:
       operationId: PvrPluginApi_GenerateOrder
       summary: Creates a report for pvr plugin
-      description: Creates a report for pvr plugin
       parameters:
       - name: token
         in: path
@@ -195,13 +194,7 @@ paths:
   /api/pvrplugin/{domain}:
     get:
       operationId: PvrPluginApi_GetConfiguration
-      summary: 'Returns the requirements for pvr plugin.
-
-        This method calls an account service to resolve and authenticate domain.
-
-        Also it checks if XML configuration is set and brandcode is specified.
-
-        It also checks if Brand exists in umbraco and Partner associated with it.'
+      summary: Returns the requirements for pvr plugin.
       description: 'Returns the requirements for pvr plugin.
 
         This method calls an account service to resolve and authenticate domain.
@@ -240,13 +233,7 @@ paths:
   /api/pvrplugin/{domain}/{partnerid}:
     get:
       operationId: PvrPluginApi_GetConfigurationByPartnerId
-      summary: 'Returns the requirements for pvr plugin.
-
-        This method calls an account service to resolve and authenticate domain.
-
-        Also it checks if XML configuration is set and brandcode is specified.
-
-        It also checks if Brand exists in umbraco and Partner associated with it.'
+      summary: Returns the requirements for pvr plugin.
       description: 'Returns the requirements for pvr plugin.
 
         This method calls an account service to resolve and authenticate domain.
@@ -290,6 +277,53 @@ paths:
       - Pvrplugin
 components:
   schemas:
+    ApiPvrpluginEnquiryTokenPost200ApplicationXmlResponse:
+      type: object
+    ApiPvrpluginDomainPartneridGet200TextXmlResponse:
+      type: object
+    Partnerid:
+      format: int32
+      x-apim-inline: true
+    ApiPvrpluginEnquiryTokenPost200TextXmlResponse:
+      type: object
+    ApiPvrpluginEnquiryTokenPost200TextJsonResponse:
+      type: object
+    ApiPvrpluginDomainGet200TextXmlResponse:
+      type: object
+    ApiPvrpluginOrderTokenPost200TextXmlResponse:
+      type: object
+    ApiPvrpluginDomainPartneridGet200TextJsonResponse:
+      type: object
+    ApiPvrpluginEnquiryTokenPost200ApplicationJsonResponse:
+      type: object
+    Contact:
+      description: The Contact model. Used for Create/Update/Retrieve operations with salesforce
+      type: object
+      properties:
+        Email:
+          description: Email address
+          type: string
+        Firstname:
+          description: Firstname
+          type: string
+        Lastname:
+          description: Lastname
+          type: string
+        Phone:
+          description: Phone number
+          type: string
+        Company:
+          description: Company name
+          type: string
+        JobTitle:
+          description: Job title
+          type: string
+    ApiPvrpluginOrderTokenPost200TextJsonResponse:
+      type: object
+    ApiPvrpluginDomainPartneridGet200ApplicationXmlResponse:
+      type: object
+    ApiPvrpluginOrderTokenPost200ApplicationXmlResponse:
+      type: object
     GratisOrder:
       type: object
       properties:
@@ -318,11 +352,9 @@ components:
           type: string
         PreparedFor:
           type: string
-    ApiPvrpluginEnquiryTokenPost200ApplicationJsonResponse:
+    ApiPvrpluginDomainGet200ApplicationXmlResponse:
       type: object
-    ApiPvrpluginOrderTokenPost200ApplicationJsonResponse:
-      type: object
-    ApiPvrpluginDomainGet200TextXmlResponse:
+    ApiPvrpluginDomainGet200TextJsonResponse:
       type: object
     Enquiry:
       description: Enquiry model.
@@ -334,12 +366,6 @@ components:
         BrandCode:
           description: Brand code
           type: string
-    ApiPvrpluginDomainGet200ApplicationJsonResponse:
-      type: object
-    ApiPvrpluginEnquiryTokenPost200TextXmlResponse:
-      type: object
-    ApiPvrpluginOrderTokenPost200TextXmlResponse:
-      type: object
     Product:
       type: object
       properties:
@@ -358,48 +384,9 @@ components:
           type: string
     ApiPvrpluginDomainPartneridGet200ApplicationJsonResponse:
       type: object
-    ApiPvrpluginDomainPartneridGet200ApplicationXmlResponse:
+    ApiPvrpluginDomainGet200ApplicationJsonResponse:
       type: object
-    ApiPvrpluginOrderTokenPost200ApplicationXmlResponse:
-      type: object
-    ApiPvrpluginOrderTokenPost200TextJsonResponse:
-      type: object
-    ApiPvrpluginDomainGet200ApplicationXmlResponse:
-      type: object
-    ApiPvrpluginDomainGet200TextJsonResponse:
-      type: object
-    ApiPvrpluginEnquiryTokenPost200ApplicationXmlResponse:
-      type: object
-    Contact:
-      description: The Contact model. Used for Create/Update/Retrieve operations with salesforce
-      type: object
-      properties:
-        Email:
-          description: Email address
-          type: string
-        Firstname:
-          description: Firstname
-          type: string
-        Lastname:
-          description: Lastname
-          type: string
-        Phone:
-          description: Phone number
-          type: string
-        Company:
-          description: Company name
-          type: string
-        JobTitle:
-          description: Job title
-          type: string
-    ApiPvrpluginEnquiryTokenPost200TextJsonResponse:
-      type: object
-    Partnerid:
-      format: int32
-      x-apim-inline: true
-    ApiPvrpluginDomainPartneridGet200TextJsonResponse:
-      type: object
-    ApiPvrpluginDomainPartneridGet200TextXmlResponse:
+    ApiPvrpluginOrderTokenPost200ApplicationJsonResponse:
       type: object
   securitySchemes:
     apiKeyHeader:

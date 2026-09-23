@@ -36,7 +36,6 @@ paths:
     get:
       operationId: TrialApi_Trial
       summary: Returns trial licence for the ApiKey
-      description: Returns trial licence for the ApiKey
       parameters:
       - name: apikey
         in: path
@@ -101,7 +100,6 @@ paths:
     post:
       operationId: TrialApi_NewTrial
       summary: This method will create a new user with the trial account and licence
-      description: This method will create a new user with the trial account and licence
       parameters:
       - name: token
         in: path

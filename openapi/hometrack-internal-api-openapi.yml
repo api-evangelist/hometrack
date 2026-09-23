@@ -172,13 +172,41 @@ paths:
       - Internal
 components:
   schemas:
-    additionalAttribute:
+    addressResponse:
       type: object
       properties:
-        name:
+        postcode:
           type: string
-        value:
+        postTown:
           type: string
+        uprn:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        udprn:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        building:
+          type: string
+        thoroughfare:
+          type: string
+        dependentLocality:
+          type: string
+        buildingNumber:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        dependantThoroughfare:
+          type: string
+        subBuilding:
+          type: string
+    InternalV2Valuation-valuationId-RawGetRequest:
+      type: string
+      x-apim-inline: true
     avmValuationBroker:
       type: object
       properties:
@@ -207,23 +235,17 @@ components:
             $ref: '#/components/schemas/additionalAttribute'
         address:
           $ref: '#/components/schemas/addressResponse'
-    cavmCapital:
+    apiValuationResponseBroker:
       type: object
       properties:
-        capitalAmount:
-          type: integer
-          format: int32
-        confidenceBand:
+        order:
+          $ref: '#/components/schemas/orderApi'
+        valuationId:
           type: string
-        lowerCapitalAmount:
-          type: integer
-          format: int32
-        upperCapitalAmount:
-          type: integer
-          format: int32
-    InternalV2Valuation-valuationId-RawGetRequest:
-      type: string
-      x-apim-inline: true
+        reference:
+          type: string
+        avm:
+          $ref: '#/components/schemas/avmValuationBroker'
     propertyAttributesUsedBroker:
       type: object
       properties:
@@ -276,6 +298,9 @@ components:
         upperRentalAmount:
           type: integer
           format: int32
+    InternalValuation-valuationId-RawGetRequest:
+      type: string
+      x-apim-inline: true
     orderApi:
       type: object
       properties:
@@ -283,51 +308,26 @@ components:
           type: string
         orderId:
           type: string
-    apiValuationResponseBroker:
+    cavmCapital:
       type: object
       properties:
-        order:
-          $ref: '#/components/schemas/orderApi'
-        valuationId:
-          type: string
-        reference:
-          type: string
-        avm:
-          $ref: '#/components/schemas/avmValuationBroker'
-    InternalValuation-valuationId-RawGetRequest:
-      type: string
-      x-apim-inline: true
-    addressResponse:
-      type: object
-      properties:
-        postcode:
-          type: string
-        postTown:
-          type: string
-        uprn:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        udprn:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        building:
-          type: string
-        thoroughfare:
-          type: string
-        dependentLocality:
-          type: string
-        buildingNumber:
-          type:
-          - integer
-          - 'null'
+        capitalAmount:
+          type: integer
           format: int32
-        dependantThoroughfare:
+        confidenceBand:
           type: string
-        subBuilding:
+        lowerCapitalAmount:
+          type: integer
+          format: int32
+        upperCapitalAmount:
+          type: integer
+          format: int32
+    additionalAttribute:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
           type: string
   securitySchemes:
     apiKeyHeader:

@@ -36,7 +36,6 @@ paths:
     post:
       operationId: ZooplaPartnersApi_CreateZooplaPartner
       summary: Creates a new Zoopla partner. This requires a "partner.create" permission
-      description: Creates a new Zoopla partner. This requires a "partner.create" permission
       parameters:
       - name: token
         in: path

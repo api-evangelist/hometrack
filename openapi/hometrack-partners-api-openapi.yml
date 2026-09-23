@@ -36,7 +36,6 @@ paths:
     post:
       operationId: PartnersApi_Post
       summary: Creates a Partner-to-Account entry. Requires the "partner.modify" permission
-      description: Creates a Partner-to-Account entry. Requires the "partner.modify" permission
       parameters:
       - name: token
         in: path
@@ -72,7 +71,6 @@ paths:
     get:
       operationId: PartnersApi_Get
       summary: Retrieves the name and API key of the associated account
-      description: Retrieves the name and API key of the associated account
       parameters:
       - name: token
         in: path
@@ -141,22 +139,6 @@ paths:
       - Partners
 components:
   schemas:
-    PartnerCreateRequest:
-      required:
-      - accountApiKey
-      - partnerId
-      - partnerType
-      type: object
-      properties:
-        accountApiKey:
-          description: <b>[Required]</b> The API Key for the associated Account.
-          type: string
-        partnerId:
-          description: <b>[Required]</b> The partner ID.
-          type: string
-        partnerType:
-          description: '<b>[Required]</b> The partner type: ''zoopla'' or ''PSG''.'
-          type: string
     Token:
       format: uuid
       x-apim-inline: true
@@ -180,6 +162,22 @@ components:
           type: string
         modifyDate:
           format: date-time
+          type: string
+    PartnerCreateRequest:
+      required:
+      - accountApiKey
+      - partnerId
+      - partnerType
+      type: object
+      properties:
+        accountApiKey:
+          description: <b>[Required]</b> The API Key for the associated Account.
+          type: string
+        partnerId:
+          description: <b>[Required]</b> The partner ID.
+          type: string
+        partnerType:
+          description: '<b>[Required]</b> The partner type: ''zoopla'' or ''PSG''.'
           type: string
   securitySchemes:
     apiKeyHeader:
