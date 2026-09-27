@@ -144,37 +144,15 @@ paths:
       - Ground Terrafirma
 components:
   schemas:
-    GroundScoreResponseModelV2:
-      required:
-      - current
-      - future
-      type: object
-      properties:
-        current:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseGroundRiskCurrentModel'
-        future:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseGroundRiskFutureModel'
-      additionalProperties: false
+    Ground-terrafirma-uprn-GetRequest-3:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
     Ground-terrafirma-uprn-GetRequest-1:
       type: integer
       format: int64
       x-apim-inline: true
-    Ground-terrafirma-uprn-GetRequest-2:
-      maxLength: 20
-      type: string
-      x-apim-inline: true
     Ground-terrafirma-uprn-GetRequest-4:
-      maxLength: 50
-      type: string
-      x-apim-inline: true
-    Ground-terrafirma-uprn-GetRequest:
-      type: string
-      x-apim-inline: true
-    Ground-terrafirma-uprn-GetRequest-3:
       maxLength: 50
       type: string
       x-apim-inline: true
@@ -295,6 +273,28 @@ components:
           - 'null'
           format: int32
       additionalProperties: false
+    GroundScoreResponseModelV2:
+      required:
+      - current
+      - future
+      type: object
+      properties:
+        current:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseGroundRiskCurrentModel'
+        future:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseGroundRiskFutureModel'
+      additionalProperties: false
+    Ground-terrafirma-uprn-GetRequest-2:
+      maxLength: 20
+      type: string
+      x-apim-inline: true
+    Ground-terrafirma-uprn-GetRequest:
+      type: string
+      x-apim-inline: true
   securitySchemes:
     apiKeyHeader:
       type: apiKey

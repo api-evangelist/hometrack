@@ -140,49 +140,6 @@ paths:
       - Ground Coastalerosion Twinn
 components:
   schemas:
-    Ground-coastalerosion-twinn-uprn-GetRequest-3:
-      maxLength: 50
-      type: string
-      x-apim-inline: true
-    ErosionFuturesScoreModel:
-      type: object
-      properties:
-        scenario:
-          type:
-          - string
-          - 'null'
-        firstYearOfHazard:
-          type: integer
-          format: int32
-        firstYearOfHazardErosionScore:
-          type: integer
-          format: int32
-      additionalProperties: false
-    Ground-coastalerosion-twinn-uprn-GetRequest-1:
-      type: integer
-      format: int64
-      x-apim-inline: true
-    Ground-coastalerosion-twinn-uprn-GetRequest:
-      type: string
-      x-apim-inline: true
-    ErosionCurrentScoreModel:
-      type: object
-      properties:
-        firstYearOfHazard:
-          type: integer
-          format: int32
-        firstYearOfHazardErosionScore:
-          type: integer
-          format: int32
-      additionalProperties: false
-    Ground-coastalerosion-twinn-uprn-GetRequest-4:
-      maxLength: 50
-      type: string
-      x-apim-inline: true
-    Ground-coastalerosion-twinn-uprn-GetRequest-2:
-      maxLength: 20
-      type: string
-      x-apim-inline: true
     CoastalErosionScoreResponseModelV2:
       type: object
       properties:
@@ -197,6 +154,20 @@ components:
           $ref: '#/components/schemas/ErosionManagementPlanModel'
         shorelineManagementPlan:
           $ref: '#/components/schemas/ErosionManagementPlanModel'
+      additionalProperties: false
+    ErosionFuturesScoreModel:
+      type: object
+      properties:
+        scenario:
+          type:
+          - string
+          - 'null'
+        firstYearOfHazard:
+          type: integer
+          format: int32
+        firstYearOfHazardErosionScore:
+          type: integer
+          format: int32
       additionalProperties: false
     ErosionManagementPlanModel:
       type: object
@@ -218,6 +189,35 @@ components:
           items:
             $ref: '#/components/schemas/ErosionFuturesScoreModel'
       additionalProperties: false
+    ErosionCurrentScoreModel:
+      type: object
+      properties:
+        firstYearOfHazard:
+          type: integer
+          format: int32
+        firstYearOfHazardErosionScore:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Ground-coastalerosion-twinn-uprn-GetRequest-1:
+      type: integer
+      format: int64
+      x-apim-inline: true
+    Ground-coastalerosion-twinn-uprn-GetRequest:
+      type: string
+      x-apim-inline: true
+    Ground-coastalerosion-twinn-uprn-GetRequest-4:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+    Ground-coastalerosion-twinn-uprn-GetRequest-3:
+      maxLength: 50
+      type: string
+      x-apim-inline: true
+    Ground-coastalerosion-twinn-uprn-GetRequest-2:
+      maxLength: 20
+      type: string
+      x-apim-inline: true
   securitySchemes:
     apiKeyHeader:
       type: apiKey

@@ -139,6 +139,22 @@ paths:
       - Partners
 components:
   schemas:
+    PartnerCreateRequest:
+      required:
+      - accountApiKey
+      - partnerId
+      - partnerType
+      type: object
+      properties:
+        accountApiKey:
+          description: <b>[Required]</b> The API Key for the associated Account.
+          type: string
+        partnerId:
+          description: <b>[Required]</b> The partner ID.
+          type: string
+        partnerType:
+          description: '<b>[Required]</b> The partner type: ''zoopla'' or ''PSG''.'
+          type: string
     Token:
       format: uuid
       x-apim-inline: true
@@ -162,22 +178,6 @@ components:
           type: string
         modifyDate:
           format: date-time
-          type: string
-    PartnerCreateRequest:
-      required:
-      - accountApiKey
-      - partnerId
-      - partnerType
-      type: object
-      properties:
-        accountApiKey:
-          description: <b>[Required]</b> The API Key for the associated Account.
-          type: string
-        partnerId:
-          description: <b>[Required]</b> The partner ID.
-          type: string
-        partnerType:
-          description: '<b>[Required]</b> The partner type: ''zoopla'' or ''PSG''.'
           type: string
   securitySchemes:
     apiKeyHeader:

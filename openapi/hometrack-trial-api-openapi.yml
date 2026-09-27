@@ -170,6 +170,27 @@ paths:
       - Trial
 components:
   schemas:
+    Trial:
+      type: object
+      properties:
+        status:
+          type: string
+        apiKey:
+          type: string
+        product:
+          type: string
+        startDate:
+          format: date-time
+          type: string
+        endDate:
+          format: date-time
+          type: string
+        volume:
+          format: int32
+          type: integer
+        remainingVolume:
+          format: int32
+          type: integer
     TrialRequest:
       description: Represents the request to TrialApi endpoint
       type: object
@@ -202,27 +223,6 @@ components:
         contactPhoneNumber:
           description: Contact phone number.
           type: string
-    Trial:
-      type: object
-      properties:
-        status:
-          type: string
-        apiKey:
-          type: string
-        product:
-          type: string
-        startDate:
-          format: date-time
-          type: string
-        endDate:
-          format: date-time
-          type: string
-        volume:
-          format: int32
-          type: integer
-        remainingVolume:
-          format: int32
-          type: integer
   securitySchemes:
     apiKeyHeader:
       type: apiKey
