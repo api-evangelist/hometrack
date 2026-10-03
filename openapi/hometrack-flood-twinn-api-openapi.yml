@@ -348,19 +348,38 @@ paths:
       - Flood Twinn
 components:
   schemas:
-    Flood-twinn-uprn-GetRequest:
+    FloodScoreResponseModelV2:
+      required:
+      - current
+      - future
+      type: object
+      properties:
+        current:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseFloodScoreDataModel'
+        future:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseFloodScoreDataModel'
+      additionalProperties: false
+    Flood-twinn-uprn-GetRequest-4:
+      maxLength: 50
       type: string
       x-apim-inline: true
     Flood-twinn-uprn-GetRequest-1:
       type: integer
       format: int64
       x-apim-inline: true
-    Flood-twinn-uprn-GetRequest-2:
-      maxLength: 20
-      type: string
-      x-apim-inline: true
     Flood-twinn-uprn-GetRequest-3:
       maxLength: 50
+      type: string
+      x-apim-inline: true
+    Flood-twinn-uprn-GetRequest:
+      type: string
+      x-apim-inline: true
+    Flood-twinn-uprn-GetRequest-2:
+      maxLength: 20
       type: string
       x-apim-inline: true
     ClimateChangeDataWithVersionResponseFloodScoreDataModel:
@@ -673,25 +692,6 @@ components:
           - integer
           - 'null'
           format: int32
-      additionalProperties: false
-    Flood-twinn-uprn-GetRequest-4:
-      maxLength: 50
-      type: string
-      x-apim-inline: true
-    FloodScoreResponseModelV2:
-      required:
-      - current
-      - future
-      type: object
-      properties:
-        current:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseFloodScoreDataModel'
-        future:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseFloodScoreDataModel'
       additionalProperties: false
   securitySchemes:
     apiKeyHeader:

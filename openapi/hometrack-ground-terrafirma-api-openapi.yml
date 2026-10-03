@@ -148,14 +148,79 @@ components:
       maxLength: 50
       type: string
       x-apim-inline: true
-    Ground-terrafirma-uprn-GetRequest-1:
-      type: integer
-      format: int64
+    GroundScoreResponseModelV2:
+      required:
+      - current
+      - future
+      type: object
+      properties:
+        current:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseGroundRiskCurrentModel'
+        future:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseGroundRiskFutureModel'
+      additionalProperties: false
+    Ground-terrafirma-uprn-GetRequest-2:
+      maxLength: 20
+      type: string
       x-apim-inline: true
     Ground-terrafirma-uprn-GetRequest-4:
       maxLength: 50
       type: string
       x-apim-inline: true
+    Ground-terrafirma-uprn-GetRequest-1:
+      type: integer
+      format: int64
+      x-apim-inline: true
+    Ground-terrafirma-uprn-GetRequest:
+      type: string
+      x-apim-inline: true
+    ClimateChangeDataWithVersionResponseGroundRiskFutureModel:
+      required:
+      - coastalErosionScore
+      type: object
+      properties:
+        versionNumber:
+          type:
+          - string
+          - 'null'
+        year:
+          type:
+          - string
+          - 'null'
+        scenario:
+          type:
+          - string
+          - 'null'
+        uprn:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        highestScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        soilSubsidenceScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        coastalErosionScore:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        subsidenceScore:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
     ClimateChangeDataWithVersionResponseGroundRiskCurrentModel:
       required:
       - coastalErosionScore
@@ -230,71 +295,6 @@ components:
           - 'null'
           format: int32
       additionalProperties: false
-    ClimateChangeDataWithVersionResponseGroundRiskFutureModel:
-      required:
-      - coastalErosionScore
-      type: object
-      properties:
-        versionNumber:
-          type:
-          - string
-          - 'null'
-        year:
-          type:
-          - string
-          - 'null'
-        scenario:
-          type:
-          - string
-          - 'null'
-        uprn:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        highestScore:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        soilSubsidenceScore:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        coastalErosionScore:
-          maximum: 100
-          minimum: 1
-          type: integer
-          format: int32
-        subsidenceScore:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      additionalProperties: false
-    GroundScoreResponseModelV2:
-      required:
-      - current
-      - future
-      type: object
-      properties:
-        current:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseGroundRiskCurrentModel'
-        future:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseGroundRiskFutureModel'
-      additionalProperties: false
-    Ground-terrafirma-uprn-GetRequest-2:
-      maxLength: 20
-      type: string
-      x-apim-inline: true
-    Ground-terrafirma-uprn-GetRequest:
-      type: string
-      x-apim-inline: true
   securitySchemes:
     apiKeyHeader:
       type: apiKey

@@ -139,47 +139,6 @@ paths:
       - Valuation
 components:
   schemas:
-    Valuation_request_definition:
-      type: object
-      properties:
-        property:
-          type: object
-          properties:
-            address:
-              description: The property address.
-              type: string
-            postcode:
-              description: The property postcode.
-              type: string
-            propertyType:
-              description: The property type. This must match one of the values listed above.
-              type: string
-            bedrooms:
-              description: The number of bedrooms.
-              type: integer
-            receptions:
-              description: The number of receptions.
-              type: integer
-            reference:
-              description: Client reference code.
-              type: string
-            effectiveDate:
-              description: (optional) The date for which this valuation applies. (YYYY-MM-DD)
-              type: string
-            estimatedValue:
-              description: (optional) The estimated value of the property.
-              type: number
-            loanAmount:
-              description: (optional) The loan amount for the property.
-              type: number
-      example:
-        property:
-          address: 141 Upper Hill street
-          postcode: L8 8EN
-          propertyType: end terrace house
-          bedrooms: 4
-          receptions: 1
-          reference: CREF55555
     Valuation_API_Response_Definition:
       title: Valuation API Response
       description: Schema definition for a full Valuation API response.
@@ -232,6 +191,47 @@ components:
         ourReference:
           description: Hometrack reference number.
           type: string
+    Valuation_request_definition:
+      type: object
+      properties:
+        property:
+          type: object
+          properties:
+            address:
+              description: The property address.
+              type: string
+            postcode:
+              description: The property postcode.
+              type: string
+            propertyType:
+              description: The property type. This must match one of the values listed above.
+              type: string
+            bedrooms:
+              description: The number of bedrooms.
+              type: integer
+            receptions:
+              description: The number of receptions.
+              type: integer
+            reference:
+              description: Client reference code.
+              type: string
+            effectiveDate:
+              description: (optional) The date for which this valuation applies. (YYYY-MM-DD)
+              type: string
+            estimatedValue:
+              description: (optional) The estimated value of the property.
+              type: number
+            loanAmount:
+              description: (optional) The loan amount for the property.
+              type: number
+      example:
+        property:
+          address: 141 Upper Hill street
+          postcode: L8 8EN
+          propertyType: end terrace house
+          bedrooms: 4
+          receptions: 1
+          reference: CREF55555
   securitySchemes:
     apiKeyHeader:
       type: apiKey

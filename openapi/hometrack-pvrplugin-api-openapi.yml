@@ -277,41 +277,29 @@ paths:
       - Pvrplugin
 components:
   schemas:
-    Enquiry:
-      description: Enquiry model.
+    ApiPvrpluginDomainPartneridGet200ApplicationJsonResponse:
+      type: object
+    Product:
       type: object
       properties:
-        Contact:
-          $ref: '#/components/schemas/Contact'
-          description: Contact details
-        BrandCode:
-          description: Brand code
+        Name:
           type: string
-    ApiPvrpluginEnquiryTokenPost200ApplicationXmlResponse:
-      type: object
-    ApiPvrpluginDomainPartneridGet200TextXmlResponse:
-      type: object
-    ApiPvrpluginDomainGet200ApplicationXmlResponse:
-      type: object
-    ApiPvrpluginDomainPartneridGet200ApplicationXmlResponse:
-      type: object
-    ApiPvrpluginDomainGet200TextJsonResponse:
-      type: object
-    ApiPvrpluginOrderTokenPost200ApplicationJsonResponse:
-      type: object
-    ApiPvrpluginEnquiryTokenPost200TextJsonResponse:
-      type: object
-    ApiPvrpluginDomainPartneridGet200TextJsonResponse:
-      type: object
-    ApiPvrpluginEnquiryTokenPost200TextXmlResponse:
-      type: object
-    ApiPvrpluginOrderTokenPost200ApplicationXmlResponse:
+        Type:
+          type: string
+        Description:
+          type: string
+        Price:
+          format: double
+          type: number
+        InputTypes:
+          type: string
+        InputValues:
+          type: string
+    ApiPvrpluginOrderTokenPost200TextXmlResponse:
       type: object
     Partnerid:
       format: int32
       x-apim-inline: true
-    ApiPvrpluginDomainGet200ApplicationJsonResponse:
-      type: object
     Contact:
       description: The Contact model. Used for Create/Update/Retrieve operations with salesforce
       type: object
@@ -334,6 +322,32 @@ components:
         JobTitle:
           description: Job title
           type: string
+    ApiPvrpluginOrderTokenPost200ApplicationJsonResponse:
+      type: object
+    ApiPvrpluginOrderTokenPost200TextJsonResponse:
+      type: object
+    ApiPvrpluginEnquiryTokenPost200TextXmlResponse:
+      type: object
+    ApiPvrpluginDomainGet200TextJsonResponse:
+      type: object
+    ApiPvrpluginDomainPartneridGet200ApplicationXmlResponse:
+      type: object
+    Enquiry:
+      description: Enquiry model.
+      type: object
+      properties:
+        Contact:
+          $ref: '#/components/schemas/Contact'
+          description: Contact details
+        BrandCode:
+          description: Brand code
+          type: string
+    ApiPvrpluginEnquiryTokenPost200TextJsonResponse:
+      type: object
+    ApiPvrpluginDomainGet200TextXmlResponse:
+      type: object
+    ApiPvrpluginDomainPartneridGet200TextJsonResponse:
+      type: object
     GratisOrder:
       type: object
       properties:
@@ -362,31 +376,17 @@ components:
           type: string
         PreparedFor:
           type: string
+    ApiPvrpluginDomainPartneridGet200TextXmlResponse:
+      type: object
+    ApiPvrpluginOrderTokenPost200ApplicationXmlResponse:
+      type: object
     ApiPvrpluginEnquiryTokenPost200ApplicationJsonResponse:
       type: object
-    ApiPvrpluginOrderTokenPost200TextXmlResponse:
+    ApiPvrpluginDomainGet200ApplicationJsonResponse:
       type: object
-    ApiPvrpluginDomainPartneridGet200ApplicationJsonResponse:
+    ApiPvrpluginEnquiryTokenPost200ApplicationXmlResponse:
       type: object
-    Product:
-      type: object
-      properties:
-        Name:
-          type: string
-        Type:
-          type: string
-        Description:
-          type: string
-        Price:
-          format: double
-          type: number
-        InputTypes:
-          type: string
-        InputValues:
-          type: string
-    ApiPvrpluginOrderTokenPost200TextJsonResponse:
-      type: object
-    ApiPvrpluginDomainGet200TextXmlResponse:
+    ApiPvrpluginDomainGet200ApplicationXmlResponse:
       type: object
   securitySchemes:
     apiKeyHeader:

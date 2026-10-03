@@ -186,97 +186,6 @@ components:
         upperCapitalAmount:
           type: integer
           format: int32
-    addressResponse:
-      type: object
-      properties:
-        postcode:
-          type: string
-        postTown:
-          type: string
-        uprn:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        udprn:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        building:
-          type: string
-        thoroughfare:
-          type: string
-        dependentLocality:
-          type: string
-        buildingNumber:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        dependantThoroughfare:
-          type: string
-        subBuilding:
-          type: string
-    InternalValuation-valuationId-RawGetRequest:
-      type: string
-      x-apim-inline: true
-    orderApi:
-      type: object
-      properties:
-        orderReference:
-          type: string
-        orderId:
-          type: string
-    additionalAttribute:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-    avmValuationBroker:
-      type: object
-      properties:
-        valuationDate:
-          type: string
-          format: date-time
-        effectiveDate:
-          type: string
-          format: date-time
-        result:
-          enum:
-          - 0
-          - 1
-          type: integer
-          format: int32
-          default: 0
-        capital:
-          $ref: '#/components/schemas/cavmCapital'
-        rental:
-          $ref: '#/components/schemas/cavmRental'
-        property:
-          $ref: '#/components/schemas/propertyAttributesUsedBroker'
-        additionalAttributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/additionalAttribute'
-        address:
-          $ref: '#/components/schemas/addressResponse'
-    cavmRental:
-      type: object
-      properties:
-        rentalAmount:
-          type: integer
-          format: int32
-        confidenceBand:
-          type: string
-        lowerRentalAmount:
-          type: integer
-          format: int32
-        upperRentalAmount:
-          type: integer
-          format: int32
     apiValuationResponseBroker:
       type: object
       properties:
@@ -288,7 +197,7 @@ components:
           type: string
         avm:
           $ref: '#/components/schemas/avmValuationBroker'
-    InternalV2Valuation-valuationId-RawGetRequest:
+    InternalValuation-valuationId-RawGetRequest:
       type: string
       x-apim-inline: true
     propertyAttributesUsedBroker:
@@ -329,6 +238,97 @@ components:
           - integer
           - 'null'
           format: int32
+    addressResponse:
+      type: object
+      properties:
+        postcode:
+          type: string
+        postTown:
+          type: string
+        uprn:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        udprn:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        building:
+          type: string
+        thoroughfare:
+          type: string
+        dependentLocality:
+          type: string
+        buildingNumber:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        dependantThoroughfare:
+          type: string
+        subBuilding:
+          type: string
+    cavmRental:
+      type: object
+      properties:
+        rentalAmount:
+          type: integer
+          format: int32
+        confidenceBand:
+          type: string
+        lowerRentalAmount:
+          type: integer
+          format: int32
+        upperRentalAmount:
+          type: integer
+          format: int32
+    orderApi:
+      type: object
+      properties:
+        orderReference:
+          type: string
+        orderId:
+          type: string
+    avmValuationBroker:
+      type: object
+      properties:
+        valuationDate:
+          type: string
+          format: date-time
+        effectiveDate:
+          type: string
+          format: date-time
+        result:
+          enum:
+          - 0
+          - 1
+          type: integer
+          format: int32
+          default: 0
+        capital:
+          $ref: '#/components/schemas/cavmCapital'
+        rental:
+          $ref: '#/components/schemas/cavmRental'
+        property:
+          $ref: '#/components/schemas/propertyAttributesUsedBroker'
+        additionalAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/additionalAttribute'
+        address:
+          $ref: '#/components/schemas/addressResponse'
+    additionalAttribute:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    InternalV2Valuation-valuationId-RawGetRequest:
+      type: string
+      x-apim-inline: true
   securitySchemes:
     apiKeyHeader:
       type: apiKey

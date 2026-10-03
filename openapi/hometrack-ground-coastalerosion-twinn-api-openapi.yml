@@ -203,9 +203,6 @@ components:
       type: integer
       format: int64
       x-apim-inline: true
-    Ground-coastalerosion-twinn-uprn-GetRequest:
-      type: string
-      x-apim-inline: true
     Ground-coastalerosion-twinn-uprn-GetRequest-4:
       maxLength: 50
       type: string
@@ -216,6 +213,9 @@ components:
       x-apim-inline: true
     Ground-coastalerosion-twinn-uprn-GetRequest-2:
       maxLength: 20
+      type: string
+      x-apim-inline: true
+    Ground-coastalerosion-twinn-uprn-GetRequest:
       type: string
       x-apim-inline: true
   securitySchemes:

@@ -143,17 +143,8 @@ components:
           - 'null'
           format: int32
       additionalProperties: false
-    Ground-subsidence-twinn-uprn-GetRequest-3:
-      maxLength: 50
+    Ground-subsidence-twinn-uprn-GetRequest:
       type: string
-      x-apim-inline: true
-    Ground-subsidence-twinn-uprn-GetRequest-2:
-      maxLength: 20
-      type: string
-      x-apim-inline: true
-    Ground-subsidence-twinn-uprn-GetRequest-1:
-      type: integer
-      format: int64
       x-apim-inline: true
     SubsidenceScoreResponseModelV2:
       required:
@@ -177,11 +168,20 @@ components:
           items:
             $ref: '#/components/schemas/SubsidenceScoreFutureModel'
       additionalProperties: false
-    Ground-subsidence-twinn-uprn-GetRequest-4:
+    Ground-subsidence-twinn-uprn-GetRequest-2:
+      maxLength: 20
+      type: string
+      x-apim-inline: true
+    Ground-subsidence-twinn-uprn-GetRequest-3:
       maxLength: 50
       type: string
       x-apim-inline: true
-    Ground-subsidence-twinn-uprn-GetRequest:
+    Ground-subsidence-twinn-uprn-GetRequest-1:
+      type: integer
+      format: int64
+      x-apim-inline: true
+    Ground-subsidence-twinn-uprn-GetRequest-4:
+      maxLength: 50
       type: string
       x-apim-inline: true
     SubsidenceScoreCurrentModel:
