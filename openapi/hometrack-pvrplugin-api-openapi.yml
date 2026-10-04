@@ -277,8 +277,6 @@ paths:
       - Pvrplugin
 components:
   schemas:
-    ApiPvrpluginDomainPartneridGet200ApplicationJsonResponse:
-      type: object
     Product:
       type: object
       properties:
@@ -297,57 +295,13 @@ components:
           type: string
     ApiPvrpluginOrderTokenPost200TextXmlResponse:
       type: object
-    Partnerid:
-      format: int32
-      x-apim-inline: true
-    Contact:
-      description: The Contact model. Used for Create/Update/Retrieve operations with salesforce
-      type: object
-      properties:
-        Email:
-          description: Email address
-          type: string
-        Firstname:
-          description: Firstname
-          type: string
-        Lastname:
-          description: Lastname
-          type: string
-        Phone:
-          description: Phone number
-          type: string
-        Company:
-          description: Company name
-          type: string
-        JobTitle:
-          description: Job title
-          type: string
-    ApiPvrpluginOrderTokenPost200ApplicationJsonResponse:
-      type: object
-    ApiPvrpluginOrderTokenPost200TextJsonResponse:
-      type: object
-    ApiPvrpluginEnquiryTokenPost200TextXmlResponse:
-      type: object
-    ApiPvrpluginDomainGet200TextJsonResponse:
+    ApiPvrpluginEnquiryTokenPost200TextJsonResponse:
       type: object
     ApiPvrpluginDomainPartneridGet200ApplicationXmlResponse:
       type: object
-    Enquiry:
-      description: Enquiry model.
-      type: object
-      properties:
-        Contact:
-          $ref: '#/components/schemas/Contact'
-          description: Contact details
-        BrandCode:
-          description: Brand code
-          type: string
-    ApiPvrpluginEnquiryTokenPost200TextJsonResponse:
-      type: object
-    ApiPvrpluginDomainGet200TextXmlResponse:
-      type: object
-    ApiPvrpluginDomainPartneridGet200TextJsonResponse:
-      type: object
+    Partnerid:
+      format: int32
+      x-apim-inline: true
     GratisOrder:
       type: object
       properties:
@@ -376,17 +330,63 @@ components:
           type: string
         PreparedFor:
           type: string
-    ApiPvrpluginDomainPartneridGet200TextXmlResponse:
+    ApiPvrpluginDomainGet200ApplicationJsonResponse:
       type: object
     ApiPvrpluginOrderTokenPost200ApplicationXmlResponse:
       type: object
-    ApiPvrpluginEnquiryTokenPost200ApplicationJsonResponse:
-      type: object
-    ApiPvrpluginDomainGet200ApplicationJsonResponse:
-      type: object
     ApiPvrpluginEnquiryTokenPost200ApplicationXmlResponse:
       type: object
+    ApiPvrpluginOrderTokenPost200TextJsonResponse:
+      type: object
+    ApiPvrpluginDomainGet200TextJsonResponse:
+      type: object
     ApiPvrpluginDomainGet200ApplicationXmlResponse:
+      type: object
+    ApiPvrpluginOrderTokenPost200ApplicationJsonResponse:
+      type: object
+    ApiPvrpluginEnquiryTokenPost200ApplicationJsonResponse:
+      type: object
+    ApiPvrpluginEnquiryTokenPost200TextXmlResponse:
+      type: object
+    ApiPvrpluginDomainPartneridGet200TextXmlResponse:
+      type: object
+    Contact:
+      description: The Contact model. Used for Create/Update/Retrieve operations with salesforce
+      type: object
+      properties:
+        Email:
+          description: Email address
+          type: string
+        Firstname:
+          description: Firstname
+          type: string
+        Lastname:
+          description: Lastname
+          type: string
+        Phone:
+          description: Phone number
+          type: string
+        Company:
+          description: Company name
+          type: string
+        JobTitle:
+          description: Job title
+          type: string
+    ApiPvrpluginDomainPartneridGet200ApplicationJsonResponse:
+      type: object
+    ApiPvrpluginDomainPartneridGet200TextJsonResponse:
+      type: object
+    Enquiry:
+      description: Enquiry model.
+      type: object
+      properties:
+        Contact:
+          $ref: '#/components/schemas/Contact'
+          description: Contact details
+        BrandCode:
+          description: Brand code
+          type: string
+    ApiPvrpluginDomainGet200TextXmlResponse:
       type: object
   securitySchemes:
     apiKeyHeader:

@@ -172,34 +172,13 @@ paths:
       - Internal
 components:
   schemas:
-    cavmCapital:
+    additionalAttribute:
       type: object
       properties:
-        capitalAmount:
-          type: integer
-          format: int32
-        confidenceBand:
+        name:
           type: string
-        lowerCapitalAmount:
-          type: integer
-          format: int32
-        upperCapitalAmount:
-          type: integer
-          format: int32
-    apiValuationResponseBroker:
-      type: object
-      properties:
-        order:
-          $ref: '#/components/schemas/orderApi'
-        valuationId:
+        value:
           type: string
-        reference:
-          type: string
-        avm:
-          $ref: '#/components/schemas/avmValuationBroker'
-    InternalValuation-valuationId-RawGetRequest:
-      type: string
-      x-apim-inline: true
     propertyAttributesUsedBroker:
       type: object
       properties:
@@ -238,6 +217,20 @@ components:
           - integer
           - 'null'
           format: int32
+    cavmCapital:
+      type: object
+      properties:
+        capitalAmount:
+          type: integer
+          format: int32
+        confidenceBand:
+          type: string
+        lowerCapitalAmount:
+          type: integer
+          format: int32
+        upperCapitalAmount:
+          type: integer
+          format: int32
     addressResponse:
       type: object
       properties:
@@ -270,27 +263,6 @@ components:
           type: string
         subBuilding:
           type: string
-    cavmRental:
-      type: object
-      properties:
-        rentalAmount:
-          type: integer
-          format: int32
-        confidenceBand:
-          type: string
-        lowerRentalAmount:
-          type: integer
-          format: int32
-        upperRentalAmount:
-          type: integer
-          format: int32
-    orderApi:
-      type: object
-      properties:
-        orderReference:
-          type: string
-        orderId:
-          type: string
     avmValuationBroker:
       type: object
       properties:
@@ -319,16 +291,44 @@ components:
             $ref: '#/components/schemas/additionalAttribute'
         address:
           $ref: '#/components/schemas/addressResponse'
-    additionalAttribute:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
     InternalV2Valuation-valuationId-RawGetRequest:
       type: string
       x-apim-inline: true
+    cavmRental:
+      type: object
+      properties:
+        rentalAmount:
+          type: integer
+          format: int32
+        confidenceBand:
+          type: string
+        lowerRentalAmount:
+          type: integer
+          format: int32
+        upperRentalAmount:
+          type: integer
+          format: int32
+    apiValuationResponseBroker:
+      type: object
+      properties:
+        order:
+          $ref: '#/components/schemas/orderApi'
+        valuationId:
+          type: string
+        reference:
+          type: string
+        avm:
+          $ref: '#/components/schemas/avmValuationBroker'
+    InternalValuation-valuationId-RawGetRequest:
+      type: string
+      x-apim-inline: true
+    orderApi:
+      type: object
+      properties:
+        orderReference:
+          type: string
+        orderId:
+          type: string
   securitySchemes:
     apiKeyHeader:
       type: apiKey

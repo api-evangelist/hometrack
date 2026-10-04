@@ -322,10 +322,6 @@ components:
       - F
       - G
       type: string
-    Epc-hometrack-uprn-GetRequest:
-      type: integer
-      format: int64
-      x-apim-inline: true
     EnergyCertificateResponseModelV2:
       required:
       - currentEnergyRating
@@ -898,6 +894,10 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    Epc-hometrack-uprn-GetRequest:
+      type: integer
+      format: int64
+      x-apim-inline: true
   securitySchemes:
     apiKeyHeader:
       type: apiKey

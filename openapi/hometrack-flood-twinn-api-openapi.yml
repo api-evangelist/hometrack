@@ -363,23 +363,19 @@ components:
           items:
             $ref: '#/components/schemas/ClimateChangeDataWithVersionResponseFloodScoreDataModel'
       additionalProperties: false
-    Flood-twinn-uprn-GetRequest-4:
-      maxLength: 50
-      type: string
-      x-apim-inline: true
     Flood-twinn-uprn-GetRequest-1:
       type: integer
       format: int64
+      x-apim-inline: true
+    Flood-twinn-uprn-GetRequest:
+      type: string
       x-apim-inline: true
     Flood-twinn-uprn-GetRequest-3:
       maxLength: 50
       type: string
       x-apim-inline: true
-    Flood-twinn-uprn-GetRequest:
-      type: string
-      x-apim-inline: true
-    Flood-twinn-uprn-GetRequest-2:
-      maxLength: 20
+    Flood-twinn-uprn-GetRequest-4:
+      maxLength: 50
       type: string
       x-apim-inline: true
     ClimateChangeDataWithVersionResponseFloodScoreDataModel:
@@ -693,6 +689,10 @@ components:
           - 'null'
           format: int32
       additionalProperties: false
+    Flood-twinn-uprn-GetRequest-2:
+      maxLength: 20
+      type: string
+      x-apim-inline: true
   securitySchemes:
     apiKeyHeader:
       type: apiKey
