@@ -522,12 +522,138 @@ paths:
       - Broker
 components:
   schemas:
-    additionalAttribute:
+    addressRequestBroker:
       type: object
       properties:
-        name:
+        postcode:
           type: string
-        value:
+        address:
+          type: string
+        uprn:
+          type:
+          - integer
+          - 'null'
+          format: int64
+    BrokerOrder-orderId-StatusGetRequest:
+      type: string
+      x-apim-inline: true
+    valuationStatusResponse:
+      type: object
+      properties:
+        valuationId:
+          type: string
+        reference:
+          type: string
+        status:
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          type: integer
+          format: int32
+          default: 0
+        valuationType:
+          enum:
+          - 0
+          - 1
+          - 2
+          type: integer
+          format: int32
+          default: 0
+    BrokerV2Valuation-valuationId-InputGetRequest:
+      type: string
+      x-apim-inline: true
+    BrokerV2Order-orderId-GetRequest:
+      type: string
+      x-apim-inline: true
+    propertyAttributesUsedBroker:
+      type: object
+      properties:
+        yearBuilt:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        floorArea:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        receptions:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        knownValueDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        knownValue:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        bedrooms:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        propertyType:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    property:
+      type: object
+      properties:
+        receptions:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        bedrooms:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        propertyStyle:
+          type: string
+        propertyType:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        visibleFromRoad:
+          type: boolean
+        constructionPeriod:
+          type: string
+        constructionType:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        exLocalAuthority:
+          type: boolean
+        parking:
+          type: boolean
+        floorArea:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        yearBuilt:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    valuationListResponse:
+      type: object
+      properties:
+        valuationId:
+          type: string
+        reference:
           type: string
     avmValuationBroker:
       type: object
@@ -589,64 +715,56 @@ components:
           type: string
         subBuilding:
           type: string
-    cavmCapital:
+    valuationOrderResponse:
       type: object
       properties:
-        capitalAmount:
+        orderId:
+          type: string
+        orderReference:
+          type: string
+        valuations:
+          type: array
+          items:
+            $ref: '#/components/schemas/valuationListResponse'
+    cavmRental:
+      type: object
+      properties:
+        rentalAmount:
           type: integer
           format: int32
         confidenceBand:
           type: string
-        lowerCapitalAmount:
+        lowerRentalAmount:
           type: integer
           format: int32
-        upperCapitalAmount:
+        upperRentalAmount:
           type: integer
           format: int32
-    property:
+    apiValuationResponseBroker:
       type: object
       properties:
-        receptions:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        bedrooms:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        propertyStyle:
+        order:
+          $ref: '#/components/schemas/orderApi'
+        valuationId:
           type: string
-        propertyType:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        visibleFromRoad:
-          type: boolean
-        constructionPeriod:
+        reference:
           type: string
-        constructionType:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        exLocalAuthority:
-          type: boolean
-        parking:
-          type: boolean
-        floorArea:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        yearBuilt:
-          type:
-          - integer
-          - 'null'
-          format: int32
-    BrokerOrderPost200PlainTextResponse:
+        avm:
+          $ref: '#/components/schemas/avmValuationBroker'
+    additionalAttribute:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    BrokerValuation-valuationId-InputGetRequest:
+      type: string
+      x-apim-inline: true
+    BrokerV2Valuation-valuationId-GetRequest:
+      type: string
+      x-apim-inline: true
+    BrokerValuation-valuationId-GetRequest:
       type: string
       x-apim-inline: true
     loan:
@@ -726,7 +844,38 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/valuationStatusResponse'
+    BrokerOrderPost200PlainTextResponse:
+      type: string
+      x-apim-inline: true
+    apiRequestBroker:
+      type: object
+      properties:
+        order:
+          $ref: '#/components/schemas/order'
+        valuations:
+          type: array
+          items:
+            $ref: '#/components/schemas/valuationSectionBroker'
     BrokerV2OrderPost200PlainTextResponse:
+      type: string
+      x-apim-inline: true
+    valuationSectionBroker:
+      type: object
+      properties:
+        address:
+          $ref: '#/components/schemas/addressRequestBroker'
+        effectiveDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        loan:
+          $ref: '#/components/schemas/loan'
+        property:
+          $ref: '#/components/schemas/property'
+        reference:
+          type: string
+    BrokerOrder-orderId-GetRequest:
       type: string
       x-apim-inline: true
     order:
@@ -748,172 +897,23 @@ components:
           type: integer
           format: int32
           default: 0
-    cavmRental:
+    cavmCapital:
       type: object
       properties:
-        rentalAmount:
+        capitalAmount:
           type: integer
           format: int32
         confidenceBand:
           type: string
-        lowerRentalAmount:
+        lowerCapitalAmount:
           type: integer
           format: int32
-        upperRentalAmount:
+        upperCapitalAmount:
           type: integer
           format: int32
     BrokerV2Order-orderId-StatusGetRequest:
       type: string
       x-apim-inline: true
-    valuationStatusResponse:
-      type: object
-      properties:
-        valuationId:
-          type: string
-        reference:
-          type: string
-        status:
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          type: integer
-          format: int32
-          default: 0
-        valuationType:
-          enum:
-          - 0
-          - 1
-          - 2
-          type: integer
-          format: int32
-          default: 0
-    propertyAttributesUsedBroker:
-      type: object
-      properties:
-        yearBuilt:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        floorArea:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        receptions:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        knownValueDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        knownValue:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        bedrooms:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        propertyType:
-          type:
-          - integer
-          - 'null'
-          format: int32
-    BrokerValuation-valuationId-InputGetRequest:
-      type: string
-      x-apim-inline: true
-    BrokerV2Valuation-valuationId-InputGetRequest:
-      type: string
-      x-apim-inline: true
-    valuationListResponse:
-      type: object
-      properties:
-        valuationId:
-          type: string
-        reference:
-          type: string
-    BrokerV2Valuation-valuationId-GetRequest:
-      type: string
-      x-apim-inline: true
-    BrokerV2Order-orderId-GetRequest:
-      type: string
-      x-apim-inline: true
-    addressRequestBroker:
-      type: object
-      properties:
-        postcode:
-          type: string
-        address:
-          type: string
-        uprn:
-          type:
-          - integer
-          - 'null'
-          format: int64
-    valuationSectionBroker:
-      type: object
-      properties:
-        address:
-          $ref: '#/components/schemas/addressRequestBroker'
-        effectiveDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        loan:
-          $ref: '#/components/schemas/loan'
-        property:
-          $ref: '#/components/schemas/property'
-        reference:
-          type: string
-    valuationOrderResponse:
-      type: object
-      properties:
-        orderId:
-          type: string
-        orderReference:
-          type: string
-        valuations:
-          type: array
-          items:
-            $ref: '#/components/schemas/valuationListResponse'
-    BrokerOrder-orderId-GetRequest:
-      type: string
-      x-apim-inline: true
-    BrokerValuation-valuationId-GetRequest:
-      type: string
-      x-apim-inline: true
-    BrokerOrder-orderId-StatusGetRequest:
-      type: string
-      x-apim-inline: true
-    apiValuationResponseBroker:
-      type: object
-      properties:
-        order:
-          $ref: '#/components/schemas/orderApi'
-        valuationId:
-          type: string
-        reference:
-          type: string
-        avm:
-          $ref: '#/components/schemas/avmValuationBroker'
-    apiRequestBroker:
-      type: object
-      properties:
-        order:
-          $ref: '#/components/schemas/order'
-        valuations:
-          type: array
-          items:
-            $ref: '#/components/schemas/valuationSectionBroker'
   securitySchemes:
     apiKeyHeader:
       type: apiKey

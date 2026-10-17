@@ -312,16 +312,6 @@ paths:
       - Epc Hometrack
 components:
   schemas:
-    EnergyRating:
-      enum:
-      - A
-      - B
-      - C
-      - D
-      - E
-      - F
-      - G
-      type: string
     EnergyCertificateResponseModelV2:
       required:
       - currentEnergyRating
@@ -898,6 +888,16 @@ components:
       type: integer
       format: int64
       x-apim-inline: true
+    EnergyRating:
+      enum:
+      - A
+      - B
+      - C
+      - D
+      - E
+      - F
+      - G
+      type: string
   securitySchemes:
     apiKeyHeader:
       type: apiKey

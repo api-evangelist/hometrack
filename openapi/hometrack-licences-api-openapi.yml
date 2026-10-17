@@ -99,6 +99,10 @@ paths:
       - Licences
 components:
   schemas:
+    LicenceArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/Licence'
     Licence:
       description: Licence response model
       type: object
@@ -128,10 +132,6 @@ components:
           format: int32
           description: Shows how many reports can be created for this licence
           type: integer
-    LicenceArray:
-      type: array
-      items:
-        $ref: '#/components/schemas/Licence'
   securitySchemes:
     apiKeyHeader:
       type: apiKey
