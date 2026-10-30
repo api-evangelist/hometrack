@@ -1,4 +1,4 @@
-# Hometrack (hometrack)
+# Hometrack
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,187 +66,150 @@
 
 Hometrack is a United Kingdom property data, valuation and risk-decisioning company, founded in 1999 and now part of Houseful — the Silver Lake-owned group that also owns Zoopla, PrimeLocation, Alto and Jupix. It launched its automated valuation model in 2002 and says it now runs more than 50 million valuations a year, that 18 of the top 20 UK mortgage lenders use its AVM in their origination processes, and that it was the first AVM accredited by Moody's, Standard & Poor's and Fitch. It is a founding member of the European AVM Alliance. In the UK value chain it does not sit on the listings side at all: with no MLS in this market, residential listings are controlled by Rightmove and Zoopla and reach them through agency CRM software, while Hometrack sits on the lending and risk side — valuation, comparables, climate and property risk data, surveyor allocation and case management for mortgage lenders, surveyors, brokers, housing associations and investors. Its API posture is unusually revealing and must be stated in two halves. The developer surface is real and genuinely public: an Azure API Management developer portal at developer.hometrack.com is served anonymously, its data plane answers unauthenticated requests, and six APIs — a Valuation API, a Broker AVM API, a Property Risk Hub core client API, a Climate API, a Climate GraphQL API and an internal-facing public API — are listed there with full operation and schema metadata, from which six OpenAPI 3.0.1 documents were harvested. The access gate, however, is commercial: the portal states plainly that "to interact with any of our APIs you will need to have a valid API Key for that respective product. If you do not yet have an API Key, please contact us", and the gateway at api.hometrack.com answers anonymous calls with HTTP 401 "Unauthorized. Access token is missing or invalid." Authentication is OAuth 2.0 client credentials through Auth0 (hometrack-prod.eu.auth0.com) against the audience https://api.hometrack.com, with documented scopes read:valuations and write:valuations. So: contracts are readable by anyone, data is reachable by nobody without a Hometrack commercial agreement. There is no RESO Web API or Data Dictionary certification and no OData $metadata anywhere in Hometrack's stack — RESO is a North American NAR/MLS construct and the UK has no MLS to certify against. Notably, Hometrack's Climate API keys every property off the UPRN, the Unique Property Reference Number issued by GeoPlace and distributed by Ordnance Survey: the UK does have a universal property identifier, it just comes from government rather than from a real-estate standards body. Hometrack itself publishes no open data — the open UK property layer is HM Land Registry Price Paid and Ordnance Survey, not Hometrack.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/hometrack/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/hometrack/refs/heads/main/apis.yml)
+**Areas:** Real Estate · United Kingdom · PropTech · Valuation · AVM · Mortgage · Property Data · Climate Risk · Lending · Surveying
 
-## Tags
+## Hometrack on APIs.io
 
-- Real Estate
-- United Kingdom
-- PropTech
-- Valuation
-- AVM
-- Mortgage
-- Property Data
-- Climate Risk
-- Lending
-- Surveying
+Everything profiled for Hometrack is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hometrack/](https://apis.io/providers/hometrack/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (18)
 
-- **Created:** 2026-07-26
-- **Modified:** 2026-07-26
+- [Hometrack Authentication API](https://apis.io/apis/hometrack/hometrack-authentication-api/) — The Authentication API from Hometrack — 2 operation(s) for authentication.
+- [Hometrack Brands API](https://apis.io/apis/hometrack/hometrack-brands-api/) — The Brands API from Hometrack — 1 operation(s) for brands.
+- [Hometrack Broker API](https://apis.io/apis/hometrack/hometrack-broker-api/) — The Broker API from Hometrack — 10 operation(s) for broker.
+- [Hometrack Epc Hometrack API](https://apis.io/apis/hometrack/hometrack-epc-hometrack-api/) — The Epc Hometrack API from Hometrack — 1 operation(s) for epc hometrack.
+- [Hometrack Flood Twinn API](https://apis.io/apis/hometrack/hometrack-flood-twinn-api/) — The Flood Twinn API from Hometrack — 1 operation(s) for flood twinn.
+- [Hometrack Ground Coastalerosion Twinn API](https://apis.io/apis/hometrack/hometrack-ground-coastalerosion-twinn-api/) — The Ground Coastalerosion Twinn API from Hometrack — 1 operation(s) for ground coastalerosion twinn.
+- [Hometrack Ground Subsidence Twinn API](https://apis.io/apis/hometrack/hometrack-ground-subsidence-twinn-api/) — The Ground Subsidence Twinn API from Hometrack — 1 operation(s) for ground subsidence twinn.
+- [Hometrack Ground Terrafirma API](https://apis.io/apis/hometrack/hometrack-ground-terrafirma-api/) — The Ground Terrafirma API from Hometrack — 1 operation(s) for ground terrafirma.
+- [Hometrack Internal API](https://apis.io/apis/hometrack/hometrack-internal-api/) — The Internal API from Hometrack — 2 operation(s) for internal.
+- [Hometrack Licences API](https://apis.io/apis/hometrack/hometrack-licences-api/) — The Licences API from Hometrack — 1 operation(s) for licences.
+- [Hometrack Organisation API](https://apis.io/apis/hometrack/hometrack-organisation-api/) — The Organisation API from Hometrack — 16 operation(s) for organisation.
+- [Hometrack Partners API](https://apis.io/apis/hometrack/hometrack-partners-api/) — The Partners API from Hometrack — 2 operation(s) for partners.
+- [Hometrack Pvrplugin API](https://apis.io/apis/hometrack/hometrack-pvrplugin-api/) — The Pvrplugin API from Hometrack — 4 operation(s) for pvrplugin.
+- [Hometrack Reporting API](https://apis.io/apis/hometrack/hometrack-reporting-api/) — The Reporting API from Hometrack — 7 operation(s) for reporting.
+- [Hometrack Status API](https://apis.io/apis/hometrack/hometrack-status-api/) — The Status API from Hometrack — 1 operation(s) for status.
+- [Hometrack Trial API](https://apis.io/apis/hometrack/hometrack-trial-api/) — The Trial API from Hometrack — 2 operation(s) for trial.
+- [Hometrack Valuation API](https://apis.io/apis/hometrack/hometrack-valuation-api/) — The Valuation API from Hometrack — 1 operation(s) for valuation.
+- [Hometrack Zoopla API](https://apis.io/apis/hometrack/hometrack-zoopla-api/) — The Zoopla API from Hometrack — 1 operation(s) for zoopla.
 
-## APIs
+### Published properties
 
-### Hometrack Valuation API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Described in Hometrack's own Azure API Management catalogue as the "Generally available version of the Valuation API". Three operations: POST /authentication/{apiKey} exchanges an API key for a temporary token valid for five minutes, GET /status reports whether the Valuation API is currently available, and POST /valuation/{accountId} runs a valuation on a given property. The valuation endpoint uses token-based authorization with an Authorization header of the form 'Token token="<guid>"' (Hometrack documents that it also accepts looser variants without the quotes or the token= prefix). GET /status is the one operation in Hometrack's entire published surface that answered an anonymous probe with HTTP 200 — it returned a zero-byte body, confirming the gateway is live.
+#### MCP servers (1)
 
-- **Human URL:** [https://developer.hometrack.com/apis](https://developer.hometrack.com/apis)
-- **Base URL:** `https://api.hometrack.com/valuation-api/v1`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [hometrack-mcp.yml](https://apis.io/servers/hometrack/hometrack-mcp-yml/)
 
-- Valuation
-- AVM
-- Real Estate
-- United Kingdom
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [OpenAPI](openapi/hometrack-valuation-api-v1-openapi.yml)
-- [Documentation](https://developer.hometrack.com/apis)
-- [Authentication](https://developer.hometrack.com/api-authentication)
-- [Authentication](authentication/hometrack-auth0-openid-configuration.json)
+- [Hometrack Agentic Access](https://apis.io/agentic-access/hometrack/hometrack-agentic-access/)
 
-### Hometrack Broker AVM API
+#### Collections (6)
 
-Hometrack's own catalogue description is "This API provides access to the Broker AVM service." Twelve operations across two revisions (v1 and v2 paths served side by side): POST /broker/order creates a valuation order for a property, POST /broker/v2/order "creates the valuation order with climate data for the property", and GET operations retrieve the order, the order status, the valuation, the valuation input supplied at inception, and — on /internal/... paths — the raw valuation response "with all data, audit traces etc". The harvested request schema for a broker order is detailed and real: an order block with accountId, orderReference, userId and valuationType, and a valuations array carrying address (postcode, address, uprn), effectiveDate, a loan block (repaymentType, loanAmount, outstandingLoanAmount, additionalLoanAmount, remainingTerm, minimumRentalIncome, existingMortgage, instructionType) and a property block (bedrooms, receptions, propertyType, propertyStyle, constructionType, constructionPeriod, yearBuilt, floorArea, parking, exLocalAuthority, visibleFromRoad). Anonymous GET on this path returns HTTP 401.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://developer.hometrack.com/apis](https://developer.hometrack.com/apis)
-- **Base URL:** `https://api.hometrack.com/valuation/v2`
+- [Hometrack API Public](https://apis.io/collections/hometrack/open-hometrack-api-public/)
+- [Broker Avm API](https://apis.io/collections/hometrack/open-hometrack-broker-avm-api/)
+- [Climate API (v2)](https://apis.io/collections/hometrack/open-hometrack-climate-api-v2/)
+- [Climate GraphQL](https://apis.io/collections/hometrack/open-hometrack-climate-graphql-api/)
+- [(PRH) - Core External Client API v2.0](https://apis.io/collections/hometrack/open-hometrack-prh-core-external-client-api-v2/)
+- [Valuation API](https://apis.io/collections/hometrack/open-hometrack-valuation-api-v1/)
 
-#### Tags
+#### Overlays (6)
 
-- AVM
-- Valuation
-- Mortgage
-- Real Estate
-- United Kingdom
+OpenAPI overlays, including conversational phrasing for each operation.
 
-#### Properties
+- [Hometrack Api Public Overlay](https://apis.io/overlays/hometrack/hometrack-api-public-overlay/)
+- [Hometrack Broker Avm Api Overlay](https://apis.io/overlays/hometrack/hometrack-broker-avm-api-overlay/)
+- [Hometrack Climate Api V2 Overlay](https://apis.io/overlays/hometrack/hometrack-climate-api-v2-overlay/)
+- [Hometrack Climate Graphql Api Overlay](https://apis.io/overlays/hometrack/hometrack-climate-graphql-api-overlay/)
+- [Hometrack Prh Core External Client Api V2 Overlay](https://apis.io/overlays/hometrack/hometrack-prh-core-external-client-api-v2-overlay/)
+- [Hometrack Valuation Api V1 Overlay](https://apis.io/overlays/hometrack/hometrack-valuation-api-v1-overlay/)
 
-- [OpenAPI](openapi/hometrack-broker-avm-api-openapi.yml)
-- [Documentation](https://developer.hometrack.com/apis)
-- [Authentication](https://developer.hometrack.com/api-authentication)
+#### Security (2)
 
-### Hometrack PRH Core External Client API v2.0
+Authentication, trust centre, and vulnerability disclosure.
 
-Catalogued by Hometrack as "(PRH) - Core External Client API v2.0 — Our PRH 'Core' API offering to all customers who want it." PRH is Hometrack's Property Risk Hub, the case-management and surveyor-instruction platform sold to mortgage lenders. Nineteen operations under /organisation/{orgId}: create an instruction (POST /instruction) and reinstruct or reprocess an existing one (PUT /instruction); list and retrieve cases; retrieve a case filtered to a specific case process and that process's status; list, attach, retrieve and verify case documents; list and retrieve valuation reports attached to a case, including a /report/latest shortcut; read and post data-provider status updates on a case; and search the property valuation repository by postal code or repository id. The harvested schema document is the richest in Hometrack's catalogue at 257 component schemas, including a full "PRH - External Client API - Create Instruction - JSON schema" with a worked example.
+- [Hometrack Authentication](https://apis.io/security/hometrack/hometrack-authentication/)
+- [Hometrack Domain Security](https://apis.io/security/hometrack/hometrack-domain-security/)
 
-- **Human URL:** [https://developer.hometrack.com/apis](https://developer.hometrack.com/apis)
-- **Base URL:** `https://api.hometrack.com/prh`
+#### OAuth scopes (1)
 
-#### Tags
+The permissions the API asks for.
 
-- Property Risk
-- Case Management
-- Surveying
-- Mortgage
-- Real Estate
-- United Kingdom
+- [Hometrack Scopes](https://apis.io/scopes/hometrack/hometrack-scopes/)
 
-#### Properties
+## Where to find this API
 
-- [OpenAPI](openapi/hometrack-prh-core-external-client-api-v2-openapi.yml)
-- [Documentation](https://developer.hometrack.com/apis)
-- [Authentication](https://developer.hometrack.com/api-authentication)
-
-### Hometrack Climate API (v2)
-
-Five GET operations returning climate and energy risk data for a single property, keyed on UPRN — the Unique Property Reference Number, the UK's government-issued national property identifier: /epc-hometrack/{uprn} returns EPC (energy performance) data, /flood-twinn/{uprn} returns flood data, /ground-terrafirma/{uprn} returns ground data, /ground-subsidence-twinn/{uprn} returns subsidence score data and /ground-coastalerosion-twinn/{uprn} returns coastal erosion data. Four of the five take a dataVersion parameter, and the supplier is visible in the path segments — Twinn for flood, subsidence and coastal erosion, Terrafirma for ground. Every operation accepts X-Client-ID, X-Client-Reference and X-Correlation-ID tracking headers. The harvested schema document carries 35 component schemas covering the response models (FloodScoreResponseModelV2, SubsidenceScoreResponseModelV2, CoastalErosionScoreResponseModelV2, GroundScoreResponseModelV2, EnergyCertificateResponseModelV2 and their sub-models). The APIM contract records the backend as web-uks-prod-data-api.azurewebsites.net/v2.
-
-- **Human URL:** [https://developer.hometrack.com/apis](https://developer.hometrack.com/apis)
-- **Base URL:** `https://api.hometrack.com/climate`
-
-#### Tags
-
-- Climate Risk
-- Property Data
-- EPC
-- Flood
-- Real Estate
-- United Kingdom
-
-#### Properties
-
-- [OpenAPI](openapi/hometrack-climate-api-v2-openapi.yml)
-- [Documentation](https://developer.hometrack.com/apis)
-- [Authentication](https://developer.hometrack.com/api-authentication)
-
-### Hometrack Climate GraphQL API
-
-A GraphQL API registered in Hometrack's API Management catalogue with type "graphql" and path /climate/graphql, fronting the same climate data backend (web-uks-prod-data-api.azurewebsites.net/graphql). It is a real, listed API but its contract is not anonymously retrievable: the operations collection and the schema collection both returned empty arrays to an unauthenticated caller, so no GraphQL SDL could be harvested, and the OpenAPI export for it is a stub with servers and security schemes but no paths. Recorded here because absence of the schema is itself the finding.
-
-- **Human URL:** [https://developer.hometrack.com/apis](https://developer.hometrack.com/apis)
-- **Base URL:** `https://api.hometrack.com/climate/graphql`
-
-#### Tags
-
-- GraphQL
-- Climate Risk
-- Property Data
-- Real Estate
-- United Kingdom
-
-#### Properties
-
-- [OpenAPI](openapi/hometrack-climate-graphql-api-openapi.yml)
-- [Documentation](https://developer.hometrack.com/apis)
-
-### Hometrack API Public
-
-Catalogued by Hometrack as "Hometrack API for public consumption" and mounted at the gateway root. Twenty operations that are mostly account, licensing, branding and report-generation plumbing rather than a property data product: POST /api/authentication/{apiKey} exchanges an API key for a plain-text GUID token; /api/reporting/PropertyValuation requests and then downloads a Property Valuation Report; /api/brands/{token}/{targetAccountApiKey} reads and writes the co-branding configuration used on those reports; /api/licences/{token}/{product} returns the product licences belonging to the authenticated account; /api/partners and /api/zoopla/partners create and read partner-to-account entries under "partner.create" and "partner.modify" permissions; /api/pvrplugin endpoints serve the Property Valuation Report plugin; and /api/trial endpoints issue trial licences. The name is misleading — nothing here is callable without a Hometrack-issued API key, and the presence of a scheduled-task endpoint (GET /api/reporting/moveToBlobStorage) and two "For test purpose" endpoints suggests an internal API that has been published to the catalogue as-is.
-
-- **Human URL:** [https://developer.hometrack.com/apis](https://developer.hometrack.com/apis)
-- **Base URL:** `https://api.hometrack.com`
-
-#### Tags
-
-- Reporting
-- Accounts
-- Licensing
-- Real Estate
-- United Kingdom
-
-#### Properties
-
-- [OpenAPI](openapi/hometrack-api-public-openapi.yml)
-- [Documentation](https://developer.hometrack.com/apis)
-- [Authentication](https://developer.hometrack.com/api-authentication)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.hometrack.com/)
-- [Developer Portal](https://developer.hometrack.com/)
 - [Documentation](https://developer.hometrack.com/apis)
-- [Authentication](https://developer.hometrack.com/api-authentication)
-- [OpenID Connect Discovery](authentication/hometrack-auth0-openid-configuration.json)
-- [Sign Up](https://developer.hometrack.com/signup)
-- [Sign In](https://developer.hometrack.com/signin)
-- [Contact Us](https://www.hometrack.com/contact-us/)
-- [About](https://www.hometrack.com/about/)
+- [API reference](https://developer.hometrack.com/apis)
+- [Sign up](https://developer.hometrack.com/signup)
+- [Changelog](https://developer.hometrack.com/api-changelog)
 - [Blog](https://www.hometrack.com/blog/)
-- [Blog RSS](https://www.hometrack.com/feed/)
-- [Press Releases](https://www.hometrack.com/press-releases/)
-- [Newsroom](https://www.hometrack.com/newsroom/uk-house-price-index/)
-- [Terms of Service](https://www.hometrack.com/terms/)
-- [Privacy Policy](https://www.hometrack.com/privacy/)
-- [Security](https://www.hometrack.com/iso-27001/)
-- [GitHub Organization](https://github.com/Hometrack)
-- [Linked In](https://uk.linkedin.com/company/hometrack)
+- [Compliance](https://www.hometrack.com/iso-27001/)
+- [Terms of service](https://www.hometrack.com/terms/)
+- [Privacy policy](https://www.hometrack.com/privacy/)
+- [GitHub](https://github.com/Hometrack)
 
-## Access
+## API Evangelist rating
 
-- **Access gate:** partner-only. Hometrack's developer portal states verbatim: "To interact with any of our APIs you will need to have a valid API Key for that respective product. If you do not yet have an API Key, please contact us." There is no application form, no review workflow, no published terms and no self-service issuance — a commercial agreement with Hometrack is the only documented route to a credential. In practice that means being a mortgage lender, surveyor, broker, housing association or investor buying valuation, comparables or property risk data under contract. No MLS, board, association, IDX or VOW licence exists in this market.
-- **What is genuinely open:** the contracts. `developer.hometrack.com` is a stock Azure API Management portal served anonymously, and its data plane answers unauthenticated requests — the API catalogue, every operation's request/response metadata with worked JSON examples, every component schema, and the OpenAPI export endpoint all returned HTTP 200 with no credentials. Six OpenAPI 3.0.1 documents covering 55 paths and 381 schemas were harvested this way.
-- **What is closed:** the data. `GET https://api.hometrack.com/valuation/v2/broker/order/1` returns HTTP 401 `{ "statusCode": 401, "message": "Unauthorized. Access token is missing or invalid." }`. Exactly one operation in the whole surface answered anonymously — `GET https://api.hometrack.com/valuation-api/v1/status`, HTTP 200 with a zero-byte body, the documented availability check.
-- **Auth model:** OAuth 2.0 client credentials via Auth0. POST to `https://hometrack-prod.eu.auth0.com/oauth/token` with `client_id`, `client_secret`, `audience: https://api.hometrack.com` and `grant_type: client_credentials`; the Bearer token is valid 24 hours. Documented scopes are `read:valuations` and `write:valuations`. The Auth0 discovery document is served anonymously and is saved verbatim at [authentication/hometrack-auth0-openid-configuration.json](authentication/hometrack-auth0-openid-configuration.json). Two APIs also implement an older pattern: `POST /authentication/{apiKey}` exchanges a Hometrack-issued API key for a short-lived token (five minutes on the Valuation API).
-- **RESO posture:** no RESO reference found anywhere. No Web API or Data Dictionary certification, no OData `$metadata`, no RESO Universal Property Identifier. `https://www.reso.org/certificates/` was fetched anonymously (HTTP 200, 416,233 bytes) and contains zero occurrences of "hometrack" and zero of "united kingdom". The UK has no MLS to certify against, and Hometrack is on the lender side of the market rather than the listings side.
-- **Property identifier:** Hometrack's Climate API keys every operation off the **UPRN** — the Unique Property Reference Number issued by local authorities, curated by GeoPlace and distributed via Ordnance Survey AddressBase. The UK does have a universal property identifier; it comes from government rather than from a real-estate standards body, which is the structural inverse of the RESO UPI story.
-- **Open data:** none published by Hometrack. Its house price index and rental market reports are PDFs and web pages behind a newsletter signup, not APIs. Hometrack *consumes* the open UK layer — UPRN and EPC data — without republishing it. The open UK property layer is HM Land Registry (Price Paid and ownership data under the Open Government Licence) and Ordnance Survey.
-- **Webhooks / events / SDKs / Postman:** none. No webhook or callback operation exists in any of the six APIs; the Broker AVM order workflow is asynchronous but served by polling. No AsyncAPI, no streaming. `github.com/Hometrack` exists but has zero public repositories. The authentication page shows a Postman screenshot but publishes no collection.
-- **Versioning:** a real, published deprecation policy on the portal home — only the three newest versions are available at any time, plus an optional public beta/preview, with a worked example (v11b beta, v10 latest, v9 first deprecation warning, v8 last warning).
-- **Trial / sandbox / pricing:** none. `sandbox.hometrack.com` does not resolve, no pricing is published, and the only "trial" endpoint in the catalogue itself requires an existing Hometrack API key.
+**Kin Score 45.3** — developing · rubric 0.25.0 · scored 2026-10-23
 
-See [review.yml](review.yml) for the full probe log, RESO posture, access gate, auth model, and harvest provenance.
+| Facet | Score |
+|---|---|
+| Discoverability | 68.8 |
+| Contract quality | 46.6 |
+| Contract governance | 18.2 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 49.4 |
+| Access clarity | 42.1 |
+
+**Agent readiness 35.5** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | mostly |
+
+**Regulatory alignment 39.2** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hometrack/](https://apis.io/providers/hometrack/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Hometrack: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hometrack/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
